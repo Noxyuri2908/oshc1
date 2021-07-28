@@ -1,0 +1,838 @@
+
+.crm{
+  position: fixed;
+  right: 0;
+  top: 30%;
+  margin-left: 0.5em;
+  height: 50px;
+  width: 50px;
+  line-height: 47px;
+  padding: 0;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #696666;
+  border-radius: 50%;
+  border: 0.15em solid #046b96;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.crm:hover {
+  color: #fff;
+  background-color: #046b96;
+  border-color: #046b96;
+  background-position: 0.75em bottom;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.crm:focus {
+  background-position: 2em -4em;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+} 
+
+/* //crm */
+
+
+.dsach{
+  position: fixed;
+  right: 0;
+  top: 37%;
+  margin-left: 0.5em;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  padding: 0;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #696666;
+  border-radius: 50%;
+  border: 0.15em solid #046b96;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.dsach:hover {
+  color: #fff;
+  background-color: #046b96;
+  border-color: #046b96;
+  background-position: 0.75em bottom;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.dsach:focus {
+  background-position: 2em -4em;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+} 
+
+/* btn danh sach */
+.avatar-user{
+	float: left;
+}
+.comment {
+  height: 380px;
+  overflow: hidden;
+  width: 100%;
+}
+button.btn.btn-info.btn-truoc {
+  margin-top: 10px;
+  position: relative;
+}
+button.btn.btn-info.btn-sau {
+  margin-top: 23px;
+  position: relative;
+  float: right;
+}
+.clear{
+	clear: both;
+}
+.giaykhaisinh{
+	padding: 0;
+}
+.form-control-sm{
+	height: 30px;
+}
+.form-control-sm{
+	height: 30px;
+	color: blue;
+	font-size: 11px;
+	padding: 0 5px;
+}
+.form-control-sm:focus{
+	box-shadow: 0 0 0 0.1rem rgba(44, 123, 229, 0.25);
+}
+button.btn.btn-info.btn-them {
+  float: right;
+  margin-right: 24px;
+  margin-top: 0px;
+}
+.form-group select{
+	height: 30px;
+  font-size: 12px;
+  color: blue;
+  width: 100%;
+}
+
+.cottrai .form-group{
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+.danhsach {
+	font-size: 11px;
+	float: left;
+	line-height: 2.5;
+	padding-left: 5px;
+}
+.danhsach div{
+  float: left;
+}
+.danhsach span{
+ padding-left: 5px;
+}
+
+.but-ton{
+	float: left;
+	margin-bottom: 10px;
+}
+.cottrai{
+	border-right: 2px solid;
+}
+.txtthongtintuyensinh{
+	font-size: 20px;
+	color: red;
+}
+.comment{
+  width: 100%;
+  overflow: hidden;
+
+}
+.divtxt{
+	padding: 10px;
+	padding-bottom: 30px;
+}
+.btn {
+  font-size: 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.btn.btn-info{
+  color: #fff;
+  background-color: #2b99b9;
+  border-color: #2991ae;
+}
+.btn.btn-danger {
+  color: #fff;
+  background-color: #db1b3f;
+  border-color: #d01a3b;
+}
+.title-label{
+ font-size: 14px;
+ font-weight: 400 !important;
+}
+.img-up{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.noidungtuvan{
+	padding-top: 10px;
+	padding-left: 30px;
+}
+.txtnd{
+	display: inline-block;
+}
+.container{
+	padding-top: 50px;
+}
+.cms-title, .cms-top-bar-center, .cms-top-bar-right {
+  float: left;
+  width: 33.3%;
+}
+main#top {
+  overflow: hidden;
+}
+.top-bar {
+  background: #046b96;
+  color: #fff;
+  height: 50px;
+  padding: 13px;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+}
+span.count-not {
+  border: 3px solid #fff;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #e63757;
+  color: #fff;
+  padding: 0px 6px;
+  line-height: 19px;
+  font-size: 13px;
+}
+.unread-indicator::before {
+  display: none;
+}
+span.topbar-c-t {
+  float: none;
+  margin-right: 15px;
+  display: inline-block;
+  position: relative;
+  top: -11px;
+}
+.cms-top-bar-right span {
+  float: left;
+  margin-right: 3px;
+}
+.cms-top-bar-right ul.navbar-nav.align-items-center.ml-auto {
+  float: left;
+  display: block;
+}
+.cms-top-bar-center .nav-item.dropdown {
+  display: inline-block;
+}
+.cms-top-bar-center {
+  text-align: center;
+}
+form.form-inline.search-box {
+  float: none;
+  display: inline-block;
+}
+.cms-top-bar-right {
+  text-align: right;
+  position: relative;
+  top: -10px;
+}
+.cms-top-bar-right span {
+  float: none;
+  margin-right: 3px;
+}
+.cms-top-bar-right ul.navbar-nav.align-items-center.ml-auto {
+  float: none;
+  display: inline-block;
+}
+.cms-top-bar-right .search-box .search-input {
+  width: auto;
+  padding-left: 2.95rem;
+  height: 30px;
+}
+.cms-top-bar-center .avatar-xl {
+  height: 40px;
+  width: 40px;
+  position: relative;
+  top: -7px;
+}
+.card.mb-3 {
+  float: left;
+  width: 100%;
+}
+a#navbarDropdownUser {
+  float: left;
+  line-height: 30px;
+  color: #fff;
+}
+.content {
+  float: left;
+  width: 100%;
+}
+span.topbar-c-t:after {
+  content: '';
+  position: absolute;
+  right: 46%;
+  bottom: -4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  display: block;
+  color: #fff;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+}
+input[type="checkbox"] {
+    margin-top: 6px;
+}
+label.col-sm-9{
+  font-weight: 400 !important;
+}
+.form-control-sm.txt-mail{
+  min-width: 180px;
+  width: 180px;
+}
+.form-group{
+  margin-bottom: 5px;
+}
+ .btn-alight{
+      float: right;
+      margin-right: -90px;
+    }
+    .btn-alight .btn{
+      width: 70px;
+      margin: 0 5px !important;
+    }
+    .danhsach{
+      float: right;
+    }
+@media (max-width: 1400px) {
+   .col-sm-9.div-sel-tiemnang.pd0 {
+    padding-left: 3px;
+}
+ .col-sm-6.cotphai {
+    padding-left: 40px;
+    margin-right: -58px;
+  }
+  select.sel-nguoigoi.form-control {
+    margin-left: -50px;
+    width: 180px;
+}
+input#txt-ngaygoilai {
+    margin-left: -50px;
+    width: 180px;
+}
+.col-sm-9.pd10 {
+    padding-left: 3px;
+}
+  .row{
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  .col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12{
+    padding: 0 5px;
+  }
+  .form-control-sm{
+    font-size: 13px;
+  }
+label.col-sm-6.col-form-label.col-form-label-sm.title-label.res-sm{
+  margin-right: -15px;
+  padding-left: 40px;
+}
+input.form-control.form-control-sm._pd-10 {
+    margin-left: -5px;
+}
+.col-sm-3.pd0 .form-control-sm.txt-mail{
+      width: 325px;
+}
+select#doitac_id{
+  margin-left: -8px;
+}
+  input.in-10.form-control.form-control-sm {
+    width: 170px;
+  }
+  #doituongut{
+    width: 50px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .w-10{
+        width: 140px;
+  }
+  .cms-title {
+    width: 40%;
+  }
+  .cms-top-bar-center {
+    width: 20%;
+  }
+  .cms-top-bar-right {
+    width: 40%;
+  }
+  .cms-title, .cms-top-bar-center, .cms-top-bar-right {
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    line-height: 29px;
+  }
+  button.f-left.btn.trai {
+    width: max-content;
+  }
+  .item-list {
+    min-height: 33px;
+    float: left;
+    margin-top: -1px;
+    width: 77.5%;
+    background: #fff;
+    padding: 0 15px;
+    border-radius: 4px;
+    border: 1PX SOLID #DDD;
+    margin-left: 31px;
+  }
+}
+@media only screen and (max-width: 1366px){
+  .sel-thang{
+    padding: 5px;
+  }
+  .lb-danhaphoc{
+   padding-left: 0;
+   padding-right: 0;
+  }
+  .form-control-sm{
+    min-width: 125px;
+  }
+  .col-sm-5.pd10 {
+    padding: 0;
+  }
+  .form-control-sm.txt-mail{
+    width: 125px;
+  }
+  .form-control-sm.txt-nam{
+   width: 60px;
+   min-width: 100%;
+  }
+  .txtthongtintuyensinh{
+    font-size: 18px;
+  }
+  .phieudk .col-sm-3 {
+    padding-right: 0;
+  }
+  .phieudk .col-sm-3 .col-sm-9 {
+    padding-right: 0;
+  }
+  .bangtn .col-sm-3 {
+    padding-right: 0;
+  }
+  .bangtn .col-sm-3.giayks {
+    padding-right: 15px;
+  }
+  
+  .bangtn .col-sm-3 .col-sm-9 {
+    padding-right: 0;
+  }
+  label.col-sm-9 {
+    margin-bottom: 0;
+  }
+  .cottrai .col-sm-5 .form-group{
+    margin-bottom: 0;
+  }
+  .cottrai .col-sm-3 .form-group{
+    margin-bottom: 0;
+  }
+  
+
+  
+  
+}
+@media only screen and (min-width: 992px){
+  .comment {
+    height: 393px;
+    overflow: hidden;
+  }
+  button.btn.btn-info.btn-themdt {
+    margin-left: 50%;
+  }
+  input.form-control.form-control-sm.txt-doitac {
+    height: 35px;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 991px){
+  span.topbar-c-t {
+    font-size: 15px;
+  }
+  .top-bar{
+    height: 100px;
+  }
+  button.btn {
+    margin-top: 10px;
+  }
+  .danhsach {
+    margin-left: 190px;
+    margin-top: -35px;
+  }
+  .title-label {
+    white-space: nowrap;
+  }
+  label.col-sm-3 {
+    white-space: nowrap;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label {
+    white-space: nowrap;
+  }
+  p.noidungtuvan {
+    font-size: 12px;
+  }
+  input.form-control.form-control-sm.txt-noidungtv {
+    margin-left: 25px;
+  }
+  select.sel-dgttdata {
+    margin-left: 105px;
+  }
+  span.txt-user {
+    font-size: 13px;
+  }
+  label.col-sm-4.col-form-label.col-form-label-sm.title-label {
+    white-space: nowrap;
+  }
+  input.form-control.form-control-sm.txt-truongtccd {
+    width: 170px;
+    margin-left: 35px;
+  }
+  select.sel-helienthong {
+    width: 70px;
+  }
+  select.sel-doitac {
+    margin-left: -35px;
+    width: 200px;
+  }
+  button.btn.btn-info.btn-them {
+    margin-left: -20px;
+    margin-top: -2px;
+  }
+  h3.txtthongtintuyensinh {
+    white-space: nowrap;
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label {
+    white-space: nowrap;
+  }
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label {
+    white-space: nowrap;
+  }
+  label.col-sm-4 {
+    white-space: nowrap;
+  }
+  label.col-sm-9.col-form-label.col-form-label-sm.title-label {
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  label.col-sm-10.col-form-label.col-form-label-sm.title-label {
+    white-space: nowrap;
+    font-size: 11px;
+    margin-left: -23px;
+  }
+  input#txt-ngaygoilai {
+    width: 82px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-ngaydangky {
+    margin-left: -20px;
+  }
+  input#txt-ngaydangky {
+    margin-left: 23px;
+    width: 70px;
+  }
+  input.form-control.form-control-sm.txt-cmtnd {
+    margin-left: -30px;
+    width: 103px;
+  }
+  input.form-control.form-control-sm.txt-dienthoai {
+    width: 80px;
+  }
+  input.form-control.form-control-sm.txt-dtgiadinh {
+    margin-left: -10px;
+    width: 80px;
+  }
+  input.form-control.form-control-sm.txt-mail {
+    width: 238px;
+  }
+  input#txt-ngaygoi {
+    margin-left: -22px;
+    width: 100px;
+  }
+  label.col-sm-4.col-form-label.col-form-label-sm.title-label.lb-nam {
+    margin-left: -7px;
+    margin-right: 6px;
+  }
+  input.form-control.form-control-sm.txt-nam {
+    width: 45px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label.lb-danhaphoc {
+    margin-left: -7px;
+  }
+  .col-sm-4.div-cb-danhaphoc {
+    margin-left: 7px;
+  }
+  h1.text-center {
+    font-size: 30px;
+  }
+  input.form-control.form-control-sm.txt-doitac {
+    height: 30px;
+  }
+  button.btn.btn-info.btn-themdt {
+    margin-left: 195px;
+  }
+
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label {
+    font-size: 11px;
+  }
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label.lb-ndtlt {
+    margin-left: -15px;
+    margin-right: 15px;
+  }
+  input#txt-ndtlt {
+    width: 70px;
+  }
+  .col-sm-8.div-cb-damuahs {
+    margin-left: 160px;
+    margin-top: -29px;
+  }
+  .col-sm-3.div-cb-pts {
+    margin-top: -24px;
+    margin-left: 95px;
+  }
+  .col-sm-3.div-cb-bangthpt {
+    margin-top: -25px;
+    margin-left: 60px;
+  }
+  label.col-sm-9.col-form-label.col-form-label-sm.title-label.lb-hocba {
+    margin-left: -22px;
+  }
+  label.col-sm-4.col-form-label.col-form-label-sm.title-label.lb-anh {
+    margin-left: -22px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label.giaykhaisinh {
+    margin-left: -22px;
+    margin-top: 3px;
+    margin-right: 21px;
+  }
+
+  .comment {
+    height: 477px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+}
+@media only screen and (max-width: 768px){
+  span.topbar-c-t {
+    font-size: 10px;
+  }
+  input.form-control.rounded-pill.search-input {
+    width: 150px;
+  }
+  .danhsach {
+    margin-left: 90px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label {
+    font-size: 10px;
+  }
+  .cms-title {
+    font-size: 11px;
+  }
+  span {
+    font-size: 11px;
+  }
+  .cms-top-bar-center {
+    margin-top: -5px;
+  }
+  input.form-control.rounded-pill.search-input {
+    width: 110px;
+  }
+  span.count-not {
+    font-size: 11px;
+  }
+  label.col-sm-3.col-form-label.col-form-label-sm.title-label {
+    font-size: 10px;
+  }
+  label.col-sm-4.col-form-label.col-form-label-sm.title-label {
+    font-size: 10px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label.giaykhaisinh {
+    font-size: 10px;
+  }
+  label.col-sm-4 {
+    font-size: 10px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label.lb-danhaphoc {
+    font-size: 10px;
+  }
+  label.col-sm-9.col-form-label.col-form-label-sm.title-label.lb-bangthpt {
+    font-size: 10px;
+  }
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label {
+    font-size: 10px;
+  }
+  label.col-sm-10.col-form-label.col-form-label-sm.title-label {
+    font-size: 10px;
+  }
+  h3.txtthongtintuyensinh {
+    font-size: 10px;
+  }
+  p.noidungtuvan {
+    font-size: 9px;
+    margin-left: -20px;
+  }
+  span.txt-user {
+    font-size: 10px;
+  }
+  img.img-up {
+    width: 25px;
+    height: 25px;
+  }
+  input#txt-ngaydangky {
+    width: 47px;
+  }
+  input.form-control.form-control-sm.txt-cmtnd {
+    width: 80px;
+  }
+  .col-sm-6.rd-gt {
+    font-size: 10px;
+    white-space: nowrap;
+    margin-left: -18px;
+    margin-top: 3px;
+  }
+  input.form-control.form-control-sm.txt-dienthoai {
+    width: 65px;
+  }
+  input.form-control.form-control-sm.txt-dtgiadinh {
+    width: 60px;
+  }
+  input.form-control.form-control-sm.txt-mail {
+    width: 184px;
+  }
+  input.form-control.form-control-sm.txt-fb {
+    width: 184px;
+  }
+  select.sel-nganhlt {
+    width: 65px;
+  }
+  select.sel-helienthong {
+    width: 50px;
+  }
+  input.form-control.form-control-sm.txt-diachi {
+    width: 184px;
+  }
+  input.form-control.form-control-sm.txt-truongtccd {
+    width: 127px;
+  }
+  select.sel-doitac {
+    margin-left: -25px;
+    width: 130px;
+  }
+  button.btn.btn-info.btn-them {
+    margin-left: -37px;
+    height: 27px;
+  }
+  input.form-control.form-control-sm.txt-nam {
+    margin-top: -22px;
+    margin-left: 20px;
+    width: 38px;
+  }
+  .col-sm-4.div-cb-danhaphoc {
+    margin-top: -22px;
+    margin-left: 60px;
+  }
+  .col-sm-5.div-cb-bothi {
+    padding-left: 25px;
+  }
+  input#txt-ndtlt {
+    width: 39px;
+    margin-left: 11px;
+  }
+  .col-sm-8.div-cb-damuahs {
+    margin-left: 122px;
+  }
+  input#txt-ngaygoi {
+    margin-left: -20px;
+    width: 80px;
+  }
+  select.sel-nguoigoi {
+    width: 75px;
+  }
+  input#txt-ngaygoilai {
+    width: 75px;
+  }
+  input.form-control.form-control-sm.txt-noidungtv {
+    width: 185px;
+  }
+  label.col-sm-3.lb-dgttdata {
+    font-size: 11px;
+    margin-top: 5px;
+  }
+  select.sel-dgttdata {
+    margin-left: 89px;
+  }
+  .comment {
+    height: 493px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .col-sm-3.div-cb-pts {
+    margin-left: 50px;
+    margin-top: 1px;
+  }
+  .col-sm-5.div-cb-bang {
+    margin-top: 24px;
+    margin-left: -25px;
+  }
+  .col-sm-2.div-cb-bangdiem {
+    margin-top: 24px;
+    margin-left: -33px;
+  }
+}
+@media only screen and (min-width: 992px){
+  input.form-control.rounded-pill.search-input {
+    width: 180px;
+  }
+}
+.pd0 {
+  padding: 0 8px;
+}
+.pd10 {
+  padding: 0 10px;
+}
+.container{
+  padding-top: 50px;
+}
+.row {
+  width: 100%;
+}
+.pd50 {
+  padding-top: 70px;
+  padding-bottom: 45px;
+}

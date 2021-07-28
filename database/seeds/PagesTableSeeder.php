@@ -1,0 +1,60 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class PagesTableSeeder extends Seeder
+{
+
+    /**
+     * Auto generated seed file
+     *
+     * @return void
+     */
+    public function run()
+    {
+        
+
+        \DB::table('pages')->delete();
+        
+        \DB::table('pages')->insert(array (
+            0 => 
+            array (
+                'id' => 1,
+                'slug' => 'trang-chu',
+                'name' => 'Trang chủ',
+                'content' => '{"title-1":"We are here to help you","service_home_main_content":null,"service_home_image_1":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/COMPARE-QUOTE-BUY-02.png","service_home_value_title_1":"COMPARE & QUOTE AND BUY","service_home_value_link_1":"https:\\/\\/oshcglobal.com.au\\/get-a-quote","service_home_type_1":"1","service_home_image_2":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/AMEND-02.png","service_home_value_title_2":"AMEND PERSONAL DETAILS","service_home_type_2":"2","service_home_value_link_2":"#","service_home_image_3":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/CHANGE%20VISA-02.png","service_home_value_title_3":"CHANGE VISA DATE","service_home_type_3":"2","service_home_value_link_3":"#","service_home_image_4":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/REFUND-02.png","service_home_value_title_4":"REFUND","service_home_type_4":"2","service_home_value_link_4":"#","service_home_image_5":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/UPGRADE-02.png","service_home_value_title_5":"UPGRADE","service_home_type_5":"2","service_home_value_link_5":"#","service_home_image_6":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/DOWNGRADE-02.png","service_home_value_title_6":"DOWNGRADE","service_home_type_6":"2","service_home_value_link_6":"#","service_home_image_7":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/EXTEND-02.png","service_home_value_title_7":"EXTEND POLICY","service_home_type_7":"2","service_home_value_link_7":"#","service_home_image_8":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/EXTRA%20COVER-02.png","service_home_value_title_8":"EXTRA COVER","service_home_type_8":"2","service_home_value_link_8":"#","sub_service_home_image_1":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/ACTIVE%20OSHC-02.png","sub_service_home_value_title_1":"ACTIVE OSHC","sub_service_home_value_link_1":"#","sub_service_home_image_2":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/FIND%20A%20DOCTOR-02.png","sub_service_home_value_title_2":"FIND A DOCTOR","sub_service_home_value_link_2":"#","sub_service_home_image_3":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/CLAIM-02.png","sub_service_home_value_title_3":"CLAIM","sub_service_home_value_link_3":"#","sub_service_home_image_4":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/Q%26amp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3BA-02.png","sub_service_home_value_title_4":"Q&A","sub_service_home_value_link_4":"https:\\/\\/oshcglobal.com.au\\/qa","repeat":{"service_home":[{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/COMPARE-QUOTE-BUY-02.png","title":"COMPARE & QUOTE AND BUY","type":"1","link":"https:\\/\\/oshcglobal.com.au\\/get-a-quote"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/AMEND-02.png","title":"AMEND PERSONAL DETAILS","type":"2","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/CHANGE%20VISA-02.png","title":"CHANGE VISA DATE","type":"2","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/REFUND-02.png","title":"REFUND","type":"2","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/UPGRADE-02.png","title":"UPGRADE","type":"2","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/DOWNGRADE-02.png","title":"DOWNGRADE","type":"2","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/EXTEND-02.png","title":"EXTEND POLICY","type":"2","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/EXTRA%20COVER-02.png","title":"EXTRA COVER","type":"2","link":"#"}],"sub_service_home":[{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/ACTIVE%20OSHC-02.png","title":"ACTIVE OSHC","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/FIND%20A%20DOCTOR-02.png","title":"FIND A DOCTOR","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/CLAIM-02.png","title":"CLAIM","link":"#"},{"image":"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/Q%26amp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3Bamp%3BA-02.png","title":"Q&A","link":"https:\\/\\/oshcglobal.com.au\\/qa"}]}}',
+                'type' => 2,
+                'note' => NULL,
+                'status' => 1,
+                'created_at' => '2019-08-03 07:12:33',
+                'updated_at' => '2020-10-06 21:57:40',
+            ),
+            1 => 
+            array (
+                'id' => 2,
+                'slug' => 'qa',
+                'name' => 'Q&A',
+                'content' => NULL,
+                'type' => NULL,
+                'note' => NULL,
+                'status' => 1,
+                'created_at' => '2019-08-05 03:37:25',
+                'updated_at' => '2019-08-05 03:37:25',
+            ),
+            2 => 
+            array (
+                'id' => 11,
+                'slug' => 'about-us',
+                'name' => 'About us',
+                'content' => '{"image_banner":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/bg-p.jpg","banner_main_content":"About OSHCglobal","banner_sub_content":"<p>No matter where you are from,<\\/p>\\r\\n\\r\\n<p>We are always here to care and support you while studying in Australia<\\/p>","title-1":null,"who_we_are_content":"OSHC Global is an OSHC insurance platform for international students studying in Australia where you can compare and choose a right overseas student health insurance; saves you up to thousands of dollars; and brings you the best services. \\r\\nOur team is very experienced and enthusiastic in the international education sector  also they are always passionate and supportive in helping students while studying in Australia.","image_slide_who_we_are":"[\\"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/overseas-students.jpg\\",\\"https:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/overseas-students-2.jpg\\"]","link_youtube":["https:\\/\\/www.youtube.com\\/watch?v=na9eBzLMhTg","https:\\/\\/www.youtube.com\\/watch?v=GTRQsa3jpXU","https:\\/\\/www.youtube.com\\/watch?v=fK_w3hcSCeI"],"title-2":null,"core_value_main_content":null,"core_value_main_content_1":"Customer First","core_value_image_1":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v1.png","box_core_value_title_1":"Be your own customer","core_value_main_content_2":"Quality","core_value_image_2":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v2.png","box_core_value_title_2":"What we do, we must do well","core_value_main_content_3":"Be Trusted","core_value_image_3":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v3.png","box_core_value_title_3":"We are trusted by students around the world  for over 10 years","core_value_main_content_4":"Continuously Improvement","core_value_image_4":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v4.png","box_core_value_title_4":"We focus on how we can operate more effectively","title-3":"OUR COMMITMENT","our_mission_main_content":null,"our_mission_main_content_1":"Best Advice And Solution","our_mission_image_banner_1":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m1.png","our_mission_value_title_1":"We will give you the best advice and solution about OSHC. We can do it as the system is smart in processing and our team are very experienced, enthusiastic and determined","our_mission_main_content_2":"Save Your Money","our_mission_image_banner_2":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m2.png","our_mission_value_title_2":"As the former international students ourselves, we know how much money you have to spend for studying abroad, so we should find a best way to reduce expenses for you","our_mission_main_content_3":"Integrity","our_mission_image_banner_3":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m4.png","our_mission_value_title_3":"We are consistently open, honest, ethical and genuine. We demonstrate Integrity in our actions, fostering trust in our relationships","our_mission_main_content_4":"Support 24\\/7","our_mission_image_banner_4":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m3.png","our_mission_value_title_4":"Please do not hesitate to contact us as we are available 24\\/7 to help you.  Our team has a quote \\u201cFast is better than slow \\u201c","title-4":null,"company_business_main_content":null,"company_business_image_banner_1":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/student.png","company_business_main_content_1":["Students","5000+","customers\\/year"],"company_business_image_banner_2":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/travel.png","company_business_main_content_2":["Countries","50+",null],"company_business_image_banner_3":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/travel.png","company_business_main_content_3":["Education agencies","500+",null],"repeat":{"core_value":[{"main_content":"Customer First","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v1.png","title":"Be your own customer"},{"main_content":"Quality","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v2.png","title":"What we do, we must do well"},{"main_content":"Be Trusted","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v3.png","title":"We are trusted by students around the world  for over 10 years"},{"main_content":"Continuously Improvement","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/v4.png","title":"We focus on how we can operate more effectively"}],"our_mission":[{"main_content":"Best Advice And Solution","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m1.png","title":"We will give you the best advice and solution about OSHC. We can do it as the system is smart in processing and our team are very experienced, enthusiastic and determined"},{"main_content":"Save Your Money","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m2.png","title":"As the former international students ourselves, we know how much money you have to spend for studying abroad, so we should find a best way to reduce expenses for you"},{"main_content":"Integrity","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m4.png","title":"We are consistently open, honest, ethical and genuine. We demonstrate Integrity in our actions, fostering trust in our relationships"},{"main_content":"Support 24\\/7","image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/m3.png","title":"Please do not hesitate to contact us as we are available 24\\/7 to help you.  Our team has a quote \\u201cFast is better than slow \\u201c"}],"company_business":[{"image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/student.png","main_content":["Students","5000+","customers\\/year"]},{"image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/travel.png","main_content":["Countries","50+",null]},{"image":"http:\\/\\/oshcglobal.com.au\\/FILES\\/source\\/travel.png","main_content":["Education agencies","500+",null]}]}}',
+                'type' => 1,
+                'note' => NULL,
+                'status' => 1,
+                'created_at' => '2020-06-09 08:06:09',
+                'updated_at' => '2020-10-26 23:06:03',
+            ),
+        ));
+        
+        
+    }
+}

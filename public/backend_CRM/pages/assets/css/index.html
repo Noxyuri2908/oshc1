@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>Falcon | Dashboard &amp; WebApp Template</title>
+
+
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="assets/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+  <link href="assets/css/BsMultiSelect.css" rel="stylesheet">
+  <link href="assets/lib/flatpickr/flatpickr.min.css" rel="stylesheet">
+  <link href="assets/lib/datatables-bs4/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="assets/lib/datatables.net-responsive-bs4/responsive.bootstrap4.css" rel="stylesheet">
+  <link href="assets/css/theme.css" rel="stylesheet">
+  <link href="assets/css/cms.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+  <main class="main" id="top">
+    <div class="content">
+      <div class="top-bar navbar-top sticky-kit navbar-expand">
+        <div class="col-md-12">
+          <div class="cms-title">
+            Phần mềm quản lý cơ sở dữ liệu - Đại học Đại Nam
+          </div>
+          <div class="cms-top-bar-center">
+            <div class="nav-item dropdown">
+              <a class="nav-link pr-0" id="navbarDropdownUser" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="topbar-c-t">Xin chào! Trương Đức Cường</span>
+              </a>
+              <div class="avatar avatar-xl">
+                <img class="rounded-circle" src="assets/img/team/3.jpg" alt="">
+              </div>
+              <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownUser">
+                <div class="bg-white rounded-soft py-2">
+                  <a class="dropdown-item" href="#!">Set status</a>
+                  <a class="dropdown-item" href="pages/profile.html">Profile &amp; account</a>
+                  <a class="dropdown-item" href="#!">Feedback</a>
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="pages/settings.html">Settings</a>
+                  <a class="dropdown-item" href="authentication/log-out.html">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cms-top-bar-right">
+            <span>Thông báo:</span>
+            <ul class="navbar-nav align-items-center ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link unread-indicator" id="navbarDropdownNotification" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="count-not">2</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-card" aria-labelledby="navbarDropdownNotification">
+                  <div class="card card-notification shadow-none" style="max-width: 20rem">
+                    <div class="card-header">
+                      <div class="row justify-content-between align-items-center">
+                        <div class="col-auto">
+                          <h6 class="card-header-title mb-0">Notifications</h6>
+                        </div>
+                        <div class="col-auto"><a class="card-link font-weight-normal" href="#">Mark all as read</a></div>
+                      </div>
+                    </div>
+                    <div class="list-group list-group-flush font-weight-normal fs--1">
+                      <div class="list-group-title">NEW</div>
+                      <div class="list-group-item">
+                        <a class="notification notification-flush bg-200" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-2xl mr-3">
+                              <div class="avatar-name rounded-circle"><span>AB</span></div>
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1"><strong>Albert Brooks</strong> reacted to <strong>Mia Khalifa's</strong> status</p>
+                            <span class="notification-time"><svg class="svg-inline--fa fa-gratipay fa-w-16 mr-1 text-danger" aria-hidden="true" data-prefix="fab" data-icon="gratipay" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm114.6 226.4l-113 152.7-112.7-152.7c-8.7-11.9-19.1-50.4 13.6-72 28.1-18.1 54.6-4.2 68.5 11.9 15.9 17.9 46.6 16.9 61.7 0 13.9-16.1 40.4-30 68.1-11.9 32.9 21.6 22.6 60 13.8 72z"></path></svg><!-- <span class="mr-1 fab fa-gratipay text-danger"></span> -->9hr</span>
+
+                          </div>
+                        </a>
+
+                      </div>
+                      <div class="list-group-title">EARLIER</div>
+                      <div class="list-group-item">
+                        <a class="notification notification-flush" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-2xl mr-3">
+                              <img class="rounded-circle" src="assets/img/icons/weather.jpg" alt="">
+
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1">The forecast today shows a low of 20℃ in California. See today's weather.</p>
+                            <span class="notification-time"><span class="mr-1" role="img" aria-label="Emoji">🌤️</span>1d</span>
+
+                          </div>
+                        </a>
+
+                      </div>
+                    </div>
+                    <div class="card-footer text-center border-top-0"><a class="card-link d-block" href="pages/notifications.html">View all</a></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <form class="form-inline search-box">
+              <input class="form-control rounded-pill search-input" type="search" placeholder="Tìm kiếm..." aria-label="Search" /><span class="position-absolute fas fa-search text-400 search-box-icon"></span>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="search-index">
+        <div class="row-1">
+          <div class="left-r">
+            <button class="btn btn-falcon-default btn-sm mx-2" type="button"><span class="fas fa-filter mr-1" data-fa-transform="shrink-3"></span><span>Bộ lọc</span></button>
+            <form class="search-1" method="post" action="">
+              <select name="states" id="example-s" class="form-control"  multiple="single" style="display: none;">
+                <option value="AL">Hà Nội</option>
+                <option value="AK">Giới tính Nam</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+              </select>
+              <button class="subm" type="submit"><span class='fas fa-search'></span></button>
+            </form>
+          </div>
+          <div class="right-r">
+            <div class="nav-item dropdown">
+              <button class="f-left btn trai nav-link pr-0" id="navbarDropdownCol" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fas fa-users"></span> <span>Chọn DS hiển thị</span><span class="fas fa-sort-down"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownCol">
+                <div class="bg-white rounded-soft py-2">
+                  <a class="dropdown-item" href="#!">Học viên chính quy</a>
+                  <a class="dropdown-item" href="#!">Học viên liên thông</a>
+                  <a class="dropdown-item" href="#!">Học viên ĐKH dược</a>
+                </div>
+              </div>
+            </div>
+            <button class="add-news f-left btn trai"><a href="">
+              <span class=" fas fa-home"></span> CMS Home</a>
+            </button>
+            <div class="nav-item dropdown">
+              <button class="f-left btn trai nav-link pr-0" id="navbarDropdownCms" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fas fa-user-plus"></span> <span>Tạo mới học viên</span> <span class="fas fa-sort-down"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownCms">
+                <div class="bg-white rounded-soft py-2">
+                  <a class="dropdown-item" href="#!">Học viên chính quy</a>
+                  <a class="dropdown-item" href="#!">Học viên liên thông</a>
+                  <a class="dropdown-item" href="#!">Học viên cập nhật dược</a>
+                </div>
+              </div>
+            </div>
+            <button class="date-1">
+              Hôm nay: <span>24/5/2019</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="search-fast">
+        <form class="search-inner" method="post" action="">
+          <input class="w1" type="text" name="name" placeholder="Họ và tên" value="">
+          <input class="w1" type="text" name="phone" placeholder="Số điện thoại" value="">
+          <div class="flatpickr">
+            <input class="flatpickr flatpickr-input" type="text" placeholder="Ngày sinh" data-input value=""> <!-- input is mandatory -->
+            <a class="input-button" title="toggle" data-toggle>
+              <span class="far fa-calendar-alt"></span>
+            </a>
+          </div>
+          <input class="w1" type="text" name="cmnd" placeholder="Chứng minh thư" value="">
+          <select class="chon-nganh">
+            <option value="" selected>Chọn ngành</option>
+            <option value="ketoan">Kế toán</option>
+            <option value="cntt">CNTT & TT</option>
+            <option value="supham">Sư phạm</option>
+            <option value="congtrinh">Công trình</option>
+          </select>
+          <button class="sub-fast" type="submit">Tìm nhanh</button>
+        </form>
+      </div>
+
+      <div class="option-header">
+        <button class="add-news f-left btn trai"><a href="">
+          <span class="fas fa-plus"></span> Tạo mới</a>
+        </button>
+        <button class="action-del f-left btn trai"><a href="
+          "><span class="fas fa-trash-alt"></span> <span>Xóa</span></a>
+        </button>
+        <button class="action-del f-left btn trai" type="button" data-toggle="modal" data-target="#upModal"><span class="fas fa-exchange-alt"></span> Xuất/Nhập
+        </button>
+        <div class="modal fade" id="upModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xuất nhập File</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span class="font-weight-light" aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="">
+                  <input type="file" name="upfilexn">
+                  <button type="submit" class="form-control">Gửi</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="xem-full trai">
+          <span class="tit-f">Xem đầy đủ</span>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="nav-item dropdown">
+          <button class="f-left btn trai nav-link pr-0" id="navbarDropdownFile" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fas fa-print"></span> <span>In Files</span> <span class="fas fa-sort-down"></span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownFile">
+            <div class="bg-white rounded-soft py-2">
+              <a class="dropdown-item" href="#!">In giấy HT</a>
+              <a class="dropdown-item" href="#!">In giấy nhập học</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <button class="f-left btn trai nav-link pr-0" id="navbarDropdownEmail" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fas fa-mail-bulk"></span> <span>Gửi Email</span><span class="fas fa-sort-down"></span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownEmail">
+            <div class="bg-white rounded-soft py-2">
+              <a class="dropdown-item" href="#!">Gửi Email</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <button class="f-left btn trai nav-link pr-0" id="navbarDropdownOption" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="far fa-lightbulb"></span> <span>Tác vụ khác</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownOption">
+            <div class="bg-white rounded-soft py-2">
+              <a class="dropdown-item" href="#!">Gửi SMS</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <button class="f-left btn trai nav-link pr-0" id="navbarDropdownCol" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fas fa-columns"></span> <span>Chọn cột cần xem</span><span class="fas fa-sort-down"></span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownCol">
+            <div class="bg-white rounded-soft py-2">
+              <a class="dropdown-item" href="#!">Họ và tên</a>
+              <a class="dropdown-item" href="#!">Giới tính</a>
+              <a class="dropdown-item" href="#!">Tỉnh/Thành phố</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <section id="table-hv">
+        <div class="title-table">
+          <span>Đã chọn: <span class="count-tick">12</span></span>BẢNG THÔNG TIN HỌC VIÊN
+        </div>
+        <div class="card-data thongtin-hocvien">
+          <table id="info-table" class="table table-bordered table-sm table-dashboard">
+            <thead>
+              <tr>
+                <th>Chọn</th>
+                <th class="w2">Mã thí sinh</th>
+                <th>Ngày đăng ký</th>
+                <th class="w2">Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Dân tộc</th>
+                <th class="w2">Nơi sinh</th>
+                <th class="w2">Khu vực yêu tiên</th>
+                <th class="w2">Tối tượng yêu tiên</th>
+                <th class="w2">Địa chỉ liên hệ</th>
+                <th class="w2">Tỉnh/Thành phố</th>
+                <th class="w2">Huyện/Quận</th>
+                <th class="w2">Xã/Phường</th>
+                <th>Mã Tỉnh</th>
+                <th>Mã Huyện</th>
+                <th class="w2">Điện thoại</th>
+                <th class="w2">Điện thoại gia đình</th>
+                <th class="w2">Email</th>
+                <th class="w2">Đối tác</th>
+                <th class="w2">Link facebook</th>
+                <th class="w2">Năm tuyển sinh</th>
+                <th class="w2">Tình trạng nhập học</th>
+                <th class="w2">Mã giấy nhập học</th>
+                <th class="w2">Ngày in giấy nhập học</th>
+                <th class="w2">Phương thức xét tuyển</th>
+                <th class="w2">Ngành xét tuyển</th>
+                <th class="w2">Mã ngành</th>
+                <th class="w2">Tổ hợp xét tuyển</th>
+                <th class="w2">Mã phiếu báo điểm</th>
+                <th class="w2">Điểm môn 1</th>
+                <th class="w2">Điểm môn 2</th>
+                <th class="w2">Điểm môn 3</th>
+                <th class="w2">Tổng điểm</th>
+                <th class="w2">Trường THPT</th>
+                <th class="w2">Mã trường THPT</th>
+                <th class="w2">Đơn xét tuyển</th>
+                <th>Học bạ</th>
+                <th>Bằng/CNTN</th>
+                <th >Gửi email</th>
+                <th>Gửi SMS</th>
+                <th class="w2">Gửi giấy HT</th>
+                <th class="w2">Ghi chú</th>
+                <th>Ngày gọi</th>
+                <th>Người gọi</th>
+                <th>Lần gọi</th>
+                <th class="w2">Ngày gọi lại</th>
+                <th class="w2">Nội dung tư vấn</th>
+                <th class="w2">Đánh giá tình trạng data</th>
+                <th class="w2">Lưu log sửa đổi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="checklist"></td>
+                <td>DCU00000001</td>
+                <td>20/12/4019</td>
+                <td>Nguyễn Anh Tuấn</td>
+                <td>01/02/1995</td>
+                <td>Nam</td>
+                <td>Kinh</td>
+                <td>Bỉm sơn, Thanh hóa</td>
+                <td>Miền núi</td>
+                <td>Con em chính sách</td>
+                <td>Tổ 8 khu 6</td>
+                <td>Thanh hóa</td>
+                <td>Đông sơn</td>
+                <td>Phường bắc sơn</td>
+                <td>001</td>
+                <td>002</td>
+                <td>0189444555</td>
+                <td>0987456789</td>
+                <td>mongdu@gamil.com</td>
+                <td>Không</td>
+                <td>http://facebook.com/mongdu</td>
+                <td>2014</td>
+                <td>Đang học tập</td>
+                <td>M00019191</td>
+                <td>10/20/2015</td>
+                <td>Chính quy</td>
+                <td>Dược</td>
+                <td>D00011</td>
+                <td>AOO(Toán-Lý-Hóa)</td>
+                <td>PHIEU001</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>27</td>
+                <td>THPT Bỉm Sơn</td>
+                <td>BS0011111</td>
+                <td>Đại học</td>
+                <td>Có</td>
+                <td>Không</td>
+                <td><input type="checkbox" name="checkmail"></td>
+                <td><input type="checkbox" name="checkht"></td>
+                <td><input type="checkbox" name="checknhaphoc"></td>
+                <td><input class="ghichu" type="text" name="note" value="Đã gọi và nhắn tin SMS" readonly><a href=""><span class="fas fa-pen"></span></a></td>
+                <td>01/05/2019</td>
+                <td>MinhH01</td>
+                <td>3</td>
+                <td>
+                  <div class="flatpickr">
+                    <input class="flatpickr flatpickr-input" type="text" placeholder="" data-input value=""> <!-- input is mandatory -->
+                    <a class="input-button" title="toggle" data-toggle>
+                      <span class="far fa-calendar-alt"></span>
+                    </a>
+                  </div>
+                </td>
+                <td>Thông báo trúng tuyển</td>
+                <td>Tốt</td>
+                <td>04/05/2019</td>
+              </tr>
+
+
+            </tbody>
+            <tr class="total-action">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>200</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>35</td>
+              <td>40</td>
+              <td>30</td>
+              <td>20</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+
+      </section>
+
+      <footer>
+        <div class="row no-gutters justify-content-between fs--1 mt-4 mb-3">
+          <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">Thank you for creating with Falcon <span class="d-none d-sm-inline-block">| </span><br class="d-sm-none" /> 2018 &copy; <a href="https://themewagon.com">Themewagon</a></p>
+          </div>
+          <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">v1.3.0</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <!-- ===============================================-->
+  <!--    End of Main Content-->
+  <!-- ===============================================-->
+
+
+
+
+  <!-- ===============================================-->
+  <!--    JavaScripts-->
+  <!-- ===============================================-->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/lib/stickyfilljs/stickyfill.min.js"></script>
+  <script src="assets/lib/sticky-kit/sticky-kit.min.js"></script>
+  <script src="assets/lib/chart.js/Chart.min.js"></script>
+  <script src="assets/lib/jqvmap/jquery.vmap.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/BsMultiSelect.js"></script>
+  <script src="assets/lib/flatpickr/flatpickr.min.js"></script>
+  <script src="assets/lib/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="assets/lib/datatables-bs4/dataTables.bootstrap4.min.js"></script>
+  <script src="assets/lib/datatables.net-responsive/dataTables.responsive.js"></script>
+  <script src="assets/lib/datatables.net-responsive-bs4/responsive.bootstrap4.js"></script>
+  <script>
+    $("select[multiple='single']").bsMultiSelect({
+              selectedPanelDefMinHeight: 'calc(2.25rem + 2px)',  // default size
+              selectedPanelLgMinHeight: 'calc(2.875rem + 2px)',  // LG size
+              selectedPanelSmMinHeight: 'calc(1.8125rem + 2px)', // SM size
+              selectedPanelDisabledBackgroundColor: '#e9ecef',   // disabled background
+              selectedPanelFocusBorderColor: '#80bdff',          // focus border
+              selectedPanelFocusBoxShadow: '0 0 0 0.2rem rgba(0, 123, 255, 0.25)',  // foxus shadow
+              selectedPanelFocusValidBoxShadow: '0 0 0 0.2rem rgba(40, 167, 69, 0.25)',  // valid foxus shadow
+              selectedPanelFocusInvalidBoxShadow: '0 0 0 0.2rem rgba(220, 53, 69, 0.25)',  // invalid foxus shadow
+              inputColor: '#495057', // color of keyboard entered text
+              selectedItemContentDisabledOpacity: '.65' // btn disabled opacity used
+            });
+    $(".flatpickr").flatpickr({
+      maxDate: "today",
+      dateFormat: "d/m/Y",
+    });
+    $('#info-table').DataTable( {
+      responsive: {
+        details: false
+      },
+      select: true,
+      autoFill: true,
+      "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Tất cả"]],
+      "language": {
+        "lengthMenu": 'Hiển thị <select class="form-control">'+
+        '<option value="10">10</option>'+
+        '<option value="20">20</option>'+
+        '<option value="30">30</option>'+
+        '<option value="40">40</option>'+
+        '<option value="100">100</option>'+
+        '<option value="-1">All</option>'+
+        '</select> bản ghi'
+      }
+    });
+  </script>
+</body>
+</html>

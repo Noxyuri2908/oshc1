@@ -1,0 +1,37 @@
+@media (min-width: 992px){
+    #mainContent {
+        margin-left: 13.625rem;
+        transition: ease .6s;
+        margin-top: 30px !important;
+    }
+}
+.navbar-vertical.navbar-expand-lg{
+    width: 3.625rem;
+}
+.text-content-nav{
+    display: inline;
+}
+#navbar-crm{
+    width: 12.625rem;
+    transition: ease .6s;
+}
+
+*,body{
+    font-family: roboto, Helvetica, Arial, Sanserif;
+}
+
+*,body a, body input ,body select{
+    font-size: 12px;
+}
+
+#value_status_group{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.text-center{
+    text-align: center;
+}
+
+
+

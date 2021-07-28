@@ -1,0 +1,60 @@
+<?php
+
+return [
+    'base_url' => 'https://oshcglobal.com.au/',
+    'admin_url' => 'https://oshcglobal.com.au/',
+    'ajax_url' => 'https://oshcglobal.com.au/',
+    'ajax_crm_url' => 'https://oshcglobal.com.au/crm/',
+    'role' => [
+        1 => 'Create User',
+        2 => 'Edit User',
+        3 => 'Delete User',
+        4 => 'View User',
+        5 => 'Create Service',
+        6 => 'Edit Service',
+        5 => 'Delete Service',
+        5 => 'View Service',
+        9 => 'Create Commission',
+        10 => 'Edit Commission',
+        11 => 'Delete Commission',
+        12 => 'View Commission',
+        13 => 'Create Price',
+        14 => 'Edit Price',
+        15 => 'Delete Price',
+        16 => 'View Price',
+        17 => 'Create Marketing',
+        18 => 'Edit Marketing',
+        19 => 'Delete Marketing',
+        20 => 'View Marketing',
+        21 => 'Create Info Website',
+        22 => 'Edit Info Website',
+        23 => 'Delete Info Website',
+        24 => 'View Info Website',
+        25 => 'Create Staff',
+        26 => 'Edit Staff',
+        27 => 'Delete Staff',
+        28 => 'View Staff',
+        29 => 'Assign User',
+    ],
+    'status' => [
+        1 => 'Potential',
+        2 => 'Touchbase',
+        3 => 'Signed contract',
+        4 => 'Cooperating',
+        5 => 'Quiet',
+        6 => 'Inactive',
+        7 => 'Pending',
+        8 => 'Refused'
+    ],
+    'type_agent' => [
+        1 => 'Education agent',
+        2 => 'Travel agent',
+        3 => 'English center',
+        4 => 'School',
+        5 => 'Immigration agent'
+    ],
+    'service_id' => [
+        'oshc' => 1,
+        'ovhc' => 2
+    ],
+];

@@ -1,0 +1,1218 @@
+
+.crm{
+  position: fixed;
+  right: 0;
+  top: 30%;
+  margin-left: 0.5em;
+  height: 50px;
+  width: 50px;
+  line-height: 47px;
+  padding: 0;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #696666;
+  border-radius: 50%;
+  border: 0.15em solid #046b96;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.crm:hover {
+  color: #fff;
+  background-color: #046b96;
+  border-color: #046b96;
+  background-position: 0.75em bottom;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.crm:focus {
+  background-position: 2em -4em;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+} 
+
+/* //crm */
+
+
+.dsach{
+  position: fixed;
+  right: 0;
+  top: 37%;
+  margin-left: 0.5em;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  padding: 0;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #696666;
+  border-radius: 50%;
+  border: 0.15em solid #046b96;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.dsach:hover {
+  color: #fff;
+  background-color: #046b96;
+  border-color: #046b96;
+  background-position: 0.75em bottom;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.dsach:focus {
+  background-position: 2em -4em;
+  -webkit-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+} 
+
+/* btn danh sach */
+.avatar-user{
+	float: left;
+}
+.comment {
+  height: 476px;
+  width: 100%;
+  overflow: hidden;
+}
+.btn-alight{
+  float: right;
+  margin-right: -25px;
+}
+.btn-alight .btn{
+  width: 70px;
+}
+
+button.btn.btn-info.btn-truoc {
+  margin-left: 10px;
+  float: right;
+}
+button.btn.btn-info.btn-sau {
+  float: right;
+  margin-right: -80px;
+}
+.bangcntn{
+  margin-left: -20px;
+}
+.check-gui{
+  margin-left: 18px;
+}
+.check-bang{
+  margin-left: 30px;
+}
+.txt-diem{
+  margin-left: 15px;
+}
+.txt-tongdiem{
+  margin-left: 7px;
+}
+.clear{
+	clear: both;
+}
+.giaykhaisinh{
+	padding: 0;
+}
+.form-control-sm{
+	height: 30px;
+}
+.form-control-sm{
+	height: 30px;
+	color: blue;
+	font-size: 12px;
+	padding: 0 5px;
+}
+.form-control-sm:focus{
+	box-shadow: 0 0 0 0.1rem rgba(44, 123, 229, 0.25);
+}
+
+.form-group select{
+	height: 30px;
+  font-size: 12px;
+  color: blue;
+  width: 100%;
+}
+button.btn.btn-info.btn-them {
+  float: right;
+  margin-right: 24px;
+  margin-top: 0px;
+}
+.cottrai .form-group{
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+.danhsach {
+	font-size: 11px;
+	float: right;
+	line-height: 2.5;
+	padding-left: 5px;
+}
+.danhsach div{
+  float: left;
+}
+.danhsach span{
+ padding-left: 5px;
+}
+
+.but-ton{
+	float: left;
+	margin-bottom: 10px;
+  padding-left: 15px;
+}
+.cottrai{
+	border-right: 2px solid;
+  position: relative;
+}
+.col-sm-6.cotphai {
+  position: relative;
+  padding-top: 35px;
+}
+.txtthongtintuyensinh{
+	font-size: 20px;
+	color: red;
+}
+.comment{
+  width: 100%;
+  overflow: hidden;
+}
+.divtxt{
+
+	padding: 10px;
+	padding-bottom: 30px;
+}
+.btn {
+  font-size: 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.btn.btn-info{
+  color: #fff;
+  background-color: #2b99b9;
+  border-color: #2991ae;
+}
+.btn.btn-danger {
+  color: #fff;
+  background-color: #db1b3f;
+  border-color: #d01a3b;
+}
+.title-label{
+ font-size: 13px;
+ font-weight: 400 !important;
+ white-space: nowrap;
+}
+.img-up{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.noidungtuvan{
+	padding-top: 10px;
+	padding-left: 30px;
+}
+.txtnd{
+	display: inline-block;
+}
+.container{
+	padding-top: 50px;
+}
+.cms-title, .cms-top-bar-center, .cms-top-bar-right {
+  float: left;
+  width: 33.3%;
+}
+main#top {
+  overflow: hidden;
+}
+.top-bar {
+  background: #046b96;
+  color: #fff;
+  height: 50px;
+  padding: 13px;
+}
+span.count-not {
+  border: 3px solid #fff;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #e63757;
+  color: #fff;
+  padding: 0px 6px;
+  line-height: 19px;
+  font-size: 13px;
+}
+.unread-indicator::before {
+  display: none;
+}
+span.topbar-c-t {
+  float: none;
+  margin-right: 15px;
+  display: inline-block;
+  position: relative;
+  top: -11px;
+}
+.cms-top-bar-right span {
+  float: left;
+  margin-right: 3px;
+}
+.cms-top-bar-right ul.navbar-nav.align-items-center.ml-auto {
+  float: left;
+  display: block;
+}
+.cms-top-bar-center .nav-item.dropdown {
+  display: inline-block;
+}
+.cms-top-bar-center {
+  text-align: center;
+}
+form.form-inline.search-box {
+  float: none;
+  display: inline-block;
+}
+.cms-top-bar-right {
+  text-align: right;
+  position: relative;
+  top: -10px;
+}
+.cms-top-bar-right span {
+  float: none;
+  margin-right: 3px;
+}
+.cms-top-bar-right ul.navbar-nav.align-items-center.ml-auto {
+  float: none;
+  display: inline-block;
+}
+.cms-top-bar-right .search-box .search-input {
+  width: auto;
+  padding-left: 2.95rem;
+  height: 30px;
+}
+.cms-top-bar-center .avatar-xl {
+  height: 40px;
+  width: 40px;
+  position: relative;
+  top: -7px;
+}
+.card.mb-3 {
+  float: left;
+  width: 100%;
+}
+a#navbarDropdownUser {
+  float: left;
+  line-height: 30px;
+  color: #fff;
+}
+.content {
+  float: left;
+  width: 100%;
+}
+span.topbar-c-t:after {
+  content: '';
+  position: absolute;
+  right: 46%;
+  bottom: -4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  display: block;
+  color: #fff;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+}
+.btn-themdt{
+  margin-top: 10px;
+  margin-left: 350px;
+}
+.txt-themdoitac{
+  height: 30px;
+}
+@media only screen and (max-width: 991px){
+  label.col-sm-9.col-form-label.col-form-label-sm.title-label.lb-xhb {
+    margin-top: -23px;
+    margin-left: 16px;
+  }
+  .col-sm-2.div-cb-dtqg {
+    margin-left: -21px;
+  }
+  .cms-title {
+    font-size: 13px;
+  }
+  span.topbar-c-t {
+    font-size: 15px;
+  }
+  .top-bar{
+    height: 100px;
+  }
+  .res-md{
+    margin-left: -17px;
+  }
+  .gt-nn {
+    font-size: 8px;
+  }
+  .label-xaphuong{
+    padding-right: 15px;
+  }
+  .lb-danhgiatinhtrang {
+    white-space: nowrap;
+    
+  }
+  .txttiemnang{
+    margin-left: 100px;
+  }
+  .col-sm-9.div-sel-tiemnang {
+    margin-top: -7px;
+  }
+  select.txttiemnang {
+    width: 140px;
+  }
+
+  p.noidungtuvan, .txt-nguoigoi {
+    font-size: 11px;
+  }
+  .lb-nam{
+    margin-left: -17px;
+    padding-right: 30px;
+  }
+  h3.txtthongtintuyensinh {
+    font-size: 12px;
+    white-space: nowrap;
+    padding-top: 5px;
+  }
+  .txt-nam{
+    margin-left: -10px;
+    width: 50px;
+  }
+  .title-label{
+    font-size: 11px;
+  }
+  .txt-doitac{
+    width: 160px;
+  }
+  button.btn.btn-info {
+    font-size: 10px;
+    margin-left: -20px;
+  }
+  button.btn.btn-info.btn-themdt {
+    margin-left: 200px;
+  }
+  select.txt-nganh {
+    width: 100px;
+  }
+  select.txt-manganh {
+    margin-left: -14px;
+  }
+  .txt-mapbd{
+    margin-left: -15px;
+
+  }
+  select.txttohop {
+    width: 100px;
+  }
+  select.txt-noisinh {
+    width: 86px;
+  }
+  select.txt-khuvuc {
+    margin-left: -25px;
+  }
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label {
+    margin-left: -20px;
+  }
+  select.txt-tinhtp {
+    width: 67px;
+  }
+  select.txt-quanhuyen {
+    width: 87px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-mahuyen {
+    margin-left: -18px;
+    padding-right: 39px;
+  }
+  select.txt-thpt {
+    width: 85px;
+  }
+  input.form-control.form-control-sm.txt-tongdiem {
+    width: 40px;
+    margin-left: -13px;
+  }
+  input.form-control.form-control-sm.txt-diem {
+    width: 27px;
+  }
+  button.btn {
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+  button.btn.btn-info.btn-infile {
+    margin-left: 10px;
+  }
+  button.btn.btn-info.btn-them {
+    margin-top: 0px;
+  }
+  input[type="radio"] {
+    margin-right: 1px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn {
+    margin-right: 21px;
+    padding-left: 10px;
+  }
+  input.check-bang {
+    margin-left: 2px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-hocba {
+    margin-left: -10px;
+    margin-right: 15px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guimail {
+    margin-left: -10px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guisms {
+    margin-left: -10px;
+  }
+  input.check-gui {
+    margin-left: 2px;
+  }
+  .cms-title {
+    font-size: 19px;
+  }
+  .comment {
+    height: 540px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .col-sm-6.div-sel-nguoigoi {
+    margin-left: -20px;
+  }
+  button.btn.btn-info.btn-thesmt {
+    margin-left: 199px;
+  }
+  button.btn.btn-info.btn-truoc {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+}
+@media only screen and (max-width: 768px){
+  .col-sm-2.div-cb-dtqg {
+    margin-left: 5px;
+  }
+  .text-center {
+    font-size: 30px;
+  }
+
+  select.txt-khuvuc {
+    width: 57px;
+    font-size: 9px;
+    margin-left: -8px;
+  }
+  select.txt-noisinh {
+    width: 60px;
+  }
+  
+
+  label.col-sm-3.lb-danhgiatinhtrang {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  select.txttiemnang {
+
+    margin-left: 120px;
+  }
+  p.noidungtuvan {
+    font-size: 9px;
+  }
+  .comment{
+    width: 100%;
+    height: 551px;
+    overflow: hidden;
+  }
+  .cms-title {
+    font-size: 16px;
+  }
+  span.txt-nguoigoi {
+    font-size: 9px;
+  }
+  span.topbar-c-t {
+    font-size: 11px;
+    margin-left: 15px;
+  }
+  span {
+    font-size: 13px;
+  }
+  select.txt-quanhuyen {
+    width: 64px;
+    margin-left: 3px;
+  }
+  input.form-control.form-control-sm {
+    width: 50px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label {
+    font-size: 9px;
+  }
+  input.form-control.form-control-sm.txt-diachinha {
+    width: 100%;
+  }
+  label.col-sm-3.col-form-label.col-form-label-sm.title-label {
+    font-size: 9px;
+  }
+  select.txt-quanhuyen {
+    width: 60px;
+  }
+  select.txt-doitac {
+    width: 115px;
+  }
+  button.btn.btn-info.btn-them {
+    height: 25px;
+    margin-left: -30px;
+  }
+  input.form-control.form-control-sm.txt-thesmoitac {
+    width: 100%;
+  }
+  button.btn.btn-info.btn-thesmt {
+
+    margin-left: 200px;
+  }
+  select.txt-nganh {
+    width: 75px;
+  }
+  select.txt-manganh {
+    width: 50px;
+  }
+  select.txttohop {
+    width: 75px;
+  }
+  select.txt-thpt {
+    width: 60px;
+  }
+  select.txt-matruong {
+    width: 43px;
+    margin-left: 7px;
+  }
+  h3.txtthongtintuyensinh {
+    font-size: 8px;
+  }
+  input.form-control.form-control-sm.txt-magiaybaonh {
+    margin-left: 10px;
+  }
+  input.form-control.form-control-sm.txt-ghichu {
+    width: 100%;
+  }
+  select.txt-tinhtp {
+    width: 36px;
+    margin-left: -15px;
+  }
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label {
+    font-size: 9px;
+    margin-left: -41px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-mahuyen {
+    font-size: 9px;
+    margin-left: -30px;
+  }
+  select.cb-mahuyen {
+    margin-left: -8px;
+    width: 35px;
+  }
+  select.cb-mahuyen {
+    font-size: 10px;
+  }
+  .form-group select {
+
+    font-size: 10px;
+
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label {
+    font-size: 8px;
+  }
+  label.col-sm-9.col-form-label.col-form-label-sm.title-label {
+    font-size: 9px;
+    margin-left: -20px;
+  }
+  label.col-sm-10.col-form-label.col-form-label-sm.title-label {
+    font-size: 8px;
+    margin-left: -33px;
+  }
+  input.cb-dtqg {
+    margin-left: -15px;
+  }
+  label.txt-lhxt.col-sm-12.col-form-label.col-form-label-sm.title-label {
+    font-size: 8px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label {
+    font-size: 8px;
+    margin-left: -13px;
+  }
+  label.col-sm-4.col-form-label.col-form-label-sm.title-label.lb-nam {
+    font-size: 8px;
+  }
+  input.form-control.form-control-sm.txt-nam {
+    margin-top: -20px;
+    margin-left: 5px;
+    width: 40px;
+  }
+  input.rd-loaihinhxettuyen {
+    margin-left: -10px;
+  }
+  input.cb-dtqg {
+    margin-left: -25px;
+  }
+  select.txt-nganh {
+    font-size: 9px;
+    height: 18px;
+
+  }
+  select.txt-manganh {
+    font-size: 9px;
+    height: 18px;
+    margin-left: -10px;
+  }
+  select.txttohop {
+    font-size: 9px;
+    height: 18px;
+  }
+  select.txt-thpt {
+    font-size: 9px;
+    height: 18px;
+  }
+  select.txt-matruong {
+    font-size: 9px;
+    height: 18px;
+  }
+  input.form-control.form-control-sm.txt-mail {
+    width: 170px;
+  }
+  input.form-control.form-control-sm.txt-fb {
+    width: 100%;
+  }
+  input.form-control.form-control-sm.txt-tongdiem {
+    margin-top: 30px;
+    margin-left: -5px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-tong {
+    margin-left: -100px;
+    margin-top: 30px;
+  }
+  input.form-control.form-control-sm.txt-diem.txt-diem3 {
+    margin-left: 90px;
+    margin-top: -21px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-diem2 {
+    margin-left: 15px;
+  }
+  input.form-control.form-control-sm.txt-diem.txt-diem2 {
+    margin-left: 70px;
+    margin-top: -20px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-diem3 {
+    margin-left: 35px;
+  }
+  input.form-control.form-control-sm.txt-diem {
+    margin-left: 18px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn {
+    margin-left: -15px;
+  }
+  input.form-control.rounded-pill.search-input {
+    width: 170px;
+  }
+  .danhsach {
+    margin-top: -35px;
+    margin-left: 100px;
+  }
+  button.btn.btn-info.btn-truoc {
+    margin-left: 0px;
+  }
+  select.txttiemnang {
+    width: 102px;
+  }
+  input.form-control.form-control-sm.txttuvan {
+    margin-left: 10px;
+    width: 211px;
+  }
+
+}
+@media only screen and (max-width: 500px){
+
+  img.rounded-circle {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: -5px;
+  }
+  span.topbar-c-t {
+    font-size: 10px;
+  }
+  .cms-title {
+    font-size: 10px;
+  }
+  span {
+    font-size: 10px;
+  }
+  span.count-not {
+    font-size: 10px;
+  }
+  input.form-control.rounded-pill.search-input {
+    width: 110px;
+  }
+  button.btn {
+    margin-top: 70px;
+  }
+  button.btn.btn-thoat {
+    margin-top: 10px;
+  }
+  .danhsach {
+    margin-left: 170px;
+    margin-top: -40px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label {
+    font-size: 15px;
+  }
+  input.form-control.form-control-sm {
+    margin-left: 100px;
+    margin-top: -25px;
+    width: 150px;
+  }
+  .col-sm-6.gt-nn {
+    margin-left: 100px;
+    margin-top: -20px;
+    font-size: 12px;
+  }
+  label.col-sm-3.col-form-label.col-form-label-sm.title-label {
+    font-size: 15px;
+  }
+  input.form-control.form-control-sm.txt-diachinha {
+    margin-left: 100px;
+    width: 200px;
+  }
+  select.txt-noisinh {
+    font-size: 13px;
+    height: 22px;
+    width: 140px;
+  }
+  select.txt-khuvuc {
+    margin-left: 2px;
+    font-size: 13px;
+    width: 80px;
+    height: 23px;
+  }
+  select.txt-tinhtp {
+    margin-left: 2px;
+    font-size: 13px;
+    width: 140px;
+    height: 22px;
+  }
+  label.col-sm-7.col-form-label.col-form-label-sm.title-label {
+    margin-left: 2px;
+    font-size: 15px;
+  }
+  select.txt-matinh {
+    font-size: 13px;
+    height: 22px;
+    width: 40px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-mahuyen {
+    margin-left: 2px;
+    font-size: 15px;
+  }
+  select.cb-mahuyen {
+    margin-left: 2px;
+    font-size: 13px;
+    width: 40px;
+    height: 22px;
+  }
+  select.txt-quanhuyen {
+    font-size: 13px;
+    height: 22px;
+    width: 90px;
+  }
+  input.form-control.form-control-sm {
+    width: 250px;
+  }
+  input.form-control.form-control-sm.txt-mail {
+    width: 250px;
+  }
+  input.form-control.form-control-sm.txt-fb {
+    width: 250px;
+  }
+  select.txt-doitac {
+    font-size: 13px;
+    width: 270px;
+    height: 22px;
+  }
+  h1.text-center {
+    font-size: 25px;
+  }
+  button.btn.btn-info.btn-thesmt {
+    margin-top: 5px;
+    margin-left: 165px;
+  }
+  input.form-control.form-control-sm.txt-thesmoitac {
+    margin-top: 25px;
+    margin-left: 1px;
+    height: 30px;
+  }
+  button.btn.btn-info.btn-them {
+    margin-top: -60px;
+    margin-left: 273px;
+  }
+  h3.txtthongtintuyensinh {
+    font-size: 15px;
+  }
+  label.col-sm-4.col-form-label.col-form-label-sm.title-label.lb-nam {
+    margin-top: -32px;
+    margin-left: 170px;
+    font-size: 15px;
+  }
+  input.form-control.form-control-sm.txt-nam {
+    margin-left: 215px;
+    margin-top: -29px;
+  }
+  label.col-sm-8.col-form-label.col-form-label-sm.title-label {
+    font-size: 15px;
+    margin-left: 280px;
+    margin-top: -36px;
+  }
+  .col-sm-4.div-cb-dnh {
+    margin-top: -33px;
+    margin-left: 390px;
+  }
+  input.form-control.form-control-sm.txt-magiaybaonh {
+    margin-left: 155px;
+  }
+  #txt-ngayinbgnh{
+    margin-left: 155px;
+  }
+  label.col-sm-12.col-form-label.col-form-label-sm.title-label.txt-lhxt {
+    font-size: 15px;
+  }
+  .col-sm-3.div-cb-xhb {
+    margin-top: -30px;
+    margin-left: 170px;
+  }
+  label.col-sm-9.col-form-label.col-form-label-sm.title-label {
+    font-size: 13px;
+    margin-top: -34px;
+    margin-left: 180px;
+  }
+  .col-sm-2.div-cb-dtqg {
+    margin-left: 300px;
+    margin-top: -34px;
+  }
+  label.col-sm-10.col-form-label.col-form-label-sm.title-label {
+    font-size: 13px;
+    margin-left: 290px;
+    margin-top: -37px;
+  }
+  input.cb-dtqg {
+    margin-left: -30px;
+  }
+  select.txt-nganh {
+    font-size: 13px;
+    height: 22px;
+    width: 170px;
+  }
+  .col-sm-6.div-sel-nganh {
+    margin-top: -31px;
+    margin-left: 160px;
+  }
+  select.txt-manganh {
+    font-size: 13px;
+    width: 90px;
+    height: 22px;
+    margin-left: 160px;
+  }
+  .col-sm-6.div-sel-manganh {
+    margin-top: -33px;
+  }
+  select.txttohop {
+    font-size: 13px;
+    height: 22px;
+    width: 150px;
+    margin-left: 160px;
+  }
+  .col-sm-6.div-sel-tohop {
+    margin-top: -32px;
+  }
+  input.form-control.form-control-sm.txt-mapbd {
+    width: 150px;
+    margin-left: 160px;
+  }
+  input.form-control.form-control-sm.txt-diem {
+    margin-left: 160px;
+    width: 50px;
+  }
+  input.form-control.form-control-sm.txt-diem.txt-diem2 {
+    margin-left: 160px;
+  }
+  input.form-control.form-control-sm.txt-diem.txt-diem3 {
+    margin-left: 160px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-diem2 {
+    margin-left: 2px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-diem3 {
+    margin-left: 2px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.lb-tong {
+    margin-left: 2px;
+    margin-top: 0px;
+  }
+  input.form-control.form-control-sm.txt-tongdiem {
+    margin-top: -25px;
+    margin-left: 160px;
+    width: 50px;
+  }
+  select.txt-thpt {
+    font-size: 13px;
+    height: 22px;
+    width: 150px;
+
+    margin-left: 160px;
+  }
+  .col-sm-6.div-sel-thpt {
+    margin-top: -32px;
+  }
+  select.txt-matruong {
+    font-size: 13px;
+    height: 22px;
+    width: 100px;
+    margin-left: 160px;
+  }
+  .col-sm-6.div-sel-matruong {
+    margin-top: -32px;
+  }
+  .col-sm-6.div-donxt {
+    margin-top: -27px;
+    margin-left: 60px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-hocba {
+    margin-top: -36px;
+    margin-left: 90px;
+  }
+  .col-sm-6.div-cb-hocba {
+    margin-top: -32px;
+    margin-left: 150px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.lb-bang {
+    margin-top: -40px;
+    margin-left: 185px;
+  }
+  .col-sm-6.div-cb-bang {
+    margin-top: -37px;
+    margin-left: 270px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guimail {
+    margin-top: -45px;
+    margin-left: 305px;
+  }
+  .col-sm-6.div-cb-guimail {
+    margin-top: -42px;
+    margin-left: 375px;
+  }
+  .col-sm-6.cottrai {
+    border-right: none;
+  }
+  
+
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guisms {
+    margin-left: 2px;
+  }
+  .col-sm-6.div-cb-guisms {
+    margin-top: -26px;
+    margin-left: 60px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.lb-giayht {
+    margin-left: 100px;
+    margin-top: -35px;
+  }
+  .col-sm-6.div-cb-guigiayht {
+    margin-top: -31px;
+    margin-left: 180px;
+  }
+  input.form-control.form-control-sm.txt-ghichu {
+    width: 220px;
+  }
+  #txt-ngaygoi{
+    width: 220px!important;
+  }
+  select.sel-nguoigoi {
+    font-size: 13px;
+    height: 22px;
+    width: 110px;
+    margin-left: 100px;
+  }
+  .col-sm-6.div-sel-nguoigoi {
+    margin-top: -32px;
+  }
+  select.sel-langoi {
+    font-size: 13px;
+    height: 22px;
+    width: 50px;
+    margin-left: 100px;
+  }
+  .col-sm-6.div-sel-langoi {
+    margin-top: -32px;
+  }
+  input#txt-ngaygoilai {
+    width: 110px!important;
+  }
+  input.form-control.form-control-sm.txttuvan {
+    width: 220px;
+    margin-left: 150px;
+  }
+  select.txttiemnang {
+    font-size: 13px;
+    height: 22px;
+    width: 130px;
+    margin-left: 180px;
+  }
+  .col-sm-9.div-sel-tiemnang {
+    margin-top: -33px;
+  }
+  .comment {
+    width: 100%;
+    overflow: hidden;
+  }
+  p.noidungtuvan {
+    font-size: 12px;
+  }
+
+  
+}
+@media only screen and (min-width: 992px){
+  .cms-title {
+    font-size: 13px;
+    margin-top: 3px;
+  }
+  span.topbar-c-t {
+    font-size: 13px;
+  }
+  .cms-top-bar-right span, .cms-top-bar-right navbar-nav align-items-center ml-auto{
+    margin-left: -150px;
+    font-size: 13px;
+  }
+
+  input.form-control.rounded-pill.search-input {
+    width: 180px;
+  }
+  input.form-control.rounded-pill.search-input {
+    width: 180px;
+  }
+
+  .cms-top-bar-right span{
+    margin-right: 10px;
+  }
+  p.noidungtuvan {
+    font-size: 14px;
+  }
+  .comment {
+    height: 493px;
+    width: 100%;
+    overflow: hidden;
+  }
+  select.txt-khuvuc {
+    margin-left: 121px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.khuvuc-sm {
+    margin-left: 45px;
+  }
+  .col-sm-6.div-sel-khuvuc {
+    margin-top: -30px;
+    margin-bottom: 10px;
+  }
+  .col-sm-5.div-sel-matinh {
+    margin-left: -11px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-mahuyen {
+    margin-left: -10px;
+    margin-right: 10px;
+  }
+  input.form-control.form-control-sm.txt-mail {
+    width: 100%;
+  }
+  input.form-control.form-control-sm.txt-thesmoitac {
+    height: 30px;
+    margin-bottom: 10px;
+  }
+  button.btn.btn-info.btn-thesmt {
+    margin-left: 345px;
+  }
+  .col-sm-2.div-cb-dtqg {
+    margin-left: -15px;
+  }
+  .col-sm-6.div-sel-nganh {
+    margin-left: -18px;
+    margin-top: -3px;
+  }
+  select.txttohop {
+    margin-left: -18px;
+    width: 147px;
+  }
+  input.form-control.form-control-sm.txt-mapbd {
+    width: 75px;
+  }
+  input.form-control.form-control-sm.txt-diem {
+    margin-left: 25px;
+  }
+  input.form-control.form-control-sm.txt-tongdiem {
+    margin-left: -20px;
+    width: 54px;
+  }
+  .col-sm-6.div-donxt {
+    margin-left: 50px;
+    margin-top: -25px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.txt-hocba {
+    margin-left: -8px;
+    margin-right: 8px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.lb-bang {
+    font-size: 12px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guimail {
+    margin-left: -9px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guimail {
+    font-size: 12px;
+    margin-left: -10px;
+  }
+  label.col-sm-6.col-form-label.col-form-label-sm.title-label.bangcntn.txt-guisms {
+    margin-left: -13px;
+  }
+  span.count-not {
+    margin-left: -10px;
+  }
+
+}
+.pd0 {
+  padding: 8px;
+}
+.pd10 {
+  padding: 0 10px;
+}
+.container{
+  padding-top: 50px;
+}
+.row {
+  width: 100%;
+}
+.pd50 {
+  padding-top: 70px;
+}
+.pd00 {
+  padding: 0;
+}
+.pdr {
+  padding-right: 9px;
+}
+@media only screen and (max-width: 375px){
+
+}
