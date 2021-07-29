@@ -157,6 +157,13 @@ class AddColumn extends Migration
                 $table->float('difference', 10, 0)->nullable()->default(0)->after('total');
             });
         }
+
+        if (!Schema::hasColumn('profits', 'vnd'))
+        {
+            Schema::table('profits', function(Blueprint $table) {
+                $table->double('vnd', 8, 2)->nullable()->default(0.00)->after('pay_agent_extra');
+            });
+        }
     }
 
     /**
@@ -305,6 +312,13 @@ class AddColumn extends Migration
         {
             Schema::table('applies', function(Blueprint $table) {
                 $table->dropColumn('difference')->after('total');
+            });
+        }
+
+        if (Schema::hasColumn('profits', 'vnd'))
+        {
+            Schema::table('profits', function(Blueprint $table) {
+                $table->dropColumn('vnd')->after('pay_agent_extra');
             });
         }
     }

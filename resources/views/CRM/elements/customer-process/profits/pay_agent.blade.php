@@ -40,6 +40,12 @@
                 </div>
             </div>
             <div class="form-group clearfix">
+                <label class="control-label">+ / - VND</label>
+                <div class="input-contenr">
+                    <input type="text" class="form-control text-right" id="vnd" value="{{$profit != null ? $profit->vnd : ''}}">
+                </div>
+            </div>
+            <div class="form-group clearfix">
                 <label class="control-label">Amount VND</label>
                 <div class="input-contenr">
                     <input type="text" class="form-control text-right" id="pay_agent_amount_VN" value="" readonly>
@@ -126,12 +132,13 @@
     @include('CRM.partials.number_currency',['ids'=>[
         'pay_agent_amount_comm',
         'pay_agent_extra',
-        'pay_agent_total_amount'
+        'pay_agent_total_amount',
     ]])
     @include('CRM.partials.js.number_vnd_format',[
     'ids'=>[
         'pay_agent_exchange_rate',
-        'pay_agent_amount_VN'
+        'pay_agent_amount_VN',
+        'vnd'
     ],
     'nameFunction'=>'numberFormatVnd'
 ])

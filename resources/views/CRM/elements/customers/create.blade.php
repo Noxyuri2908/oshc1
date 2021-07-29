@@ -371,7 +371,6 @@
             var calcGstValue = 0;
             if(parseInt(gst) == 2){
                 calcGstValue = (parseFloat(net_amount)-parseFloat(extra)) * (parseFloat(comm) / 100) / 11;
-                console.log(calcGstValue.toFixed(2));
                 $('#gst').val(calcGstValue.toFixed(2));
             }else{
                 $('#gst').val(calcGstValue);

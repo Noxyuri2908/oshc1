@@ -66,7 +66,7 @@
                 <label class="control-label">Provider</label>
                 <div class="input-contenr">
                     <input type="text" class="form-control text-right"
-                           value="{{$obj->provider != null ? $obj->provider->name : ''}}" readonly>
+                           value="{{$obj->provider != null ? $obj->provider->name : ''}}" id="provider_pay" readonly>
                 </div>
             </div>
             <div class="form-group clearfix">

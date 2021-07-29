@@ -398,6 +398,8 @@
         issue_date_com_agent_profit = $('#issue_date_com_agent_profit').val()
         pay_agent_extra = $('#pay_agent_extra').val()
         difference = $('#difference-annalink-received').val()
+        vnd = $('#vnd').val()
+        console.log(vnd)
 
         if (!flag) {
             $('#div_profit_alert').html(_html)
@@ -446,7 +448,8 @@
                 gst_status_agent_profit,
                 issue_date_com_agent_profit,
                 pay_agent_extra,
-                difference
+                difference,
+                vnd
             }, function (data) {
                 window.location.reload()
             })
@@ -589,9 +592,16 @@
         let _promotion_annalink_receipt = parseFloat(convertStringCurrencyToNumber($('#promotion_annalink_receipt').val()));
         let _discount_annalink_receipt = parseFloat(convertStringCurrencyToNumber($('#discount_annalink_receipt').val()));
         let _currency_receipt = $('#profit1_currency_receipt').val();
+        var provider_pay = $('#provider_pay').val();
+        var surchagefee =  parseFloat(convertNumberToCurrency($('#bankfee_annalink_receipt').val()));
+        var payprovider_vnd =  parseFloat(convertNumberToCurrency($('#pay_provider_total_VN').val()));
         let revenueExRate;
         if(_currency_receipt == 'VND'){
-            revenueExRate = net_amount * (exchangeRateInvoice - exchangeRatePayForProvider);
+            if (provider_pay === 'HCC Student Secure' || provider_pay === 'HCC Atlas'){
+                revenueExRate = (net_amount + surchagefee) * (exchangeRateInvoice - payprovider_vnd);
+            }else{
+                revenueExRate = net_amount * (exchangeRateInvoice - exchangeRatePayForProvider);
+            }
         }else{
             revenueExRate = 0;
         }

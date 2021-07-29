@@ -63,7 +63,8 @@ class Profit extends Model
         'note_cp',
         'staff_id_cp',
         'look_payment_form',
-        'pay_agent_extra'
+        'pay_agent_extra',
+        'vnd'
     ];
     public static $STATUS = [
         1=>'Done',
