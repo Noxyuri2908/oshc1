@@ -370,8 +370,9 @@
             let comm = $('#data_comm_agent').val() != '' ? convertStringCurrencyToNumber($('#data_comm_agent').val()) : 0
             var calcGstValue = 0;
             if(parseInt(gst) == 2){
-                calcGstValue = parseFloat(((parseFloat(net_amount)-parseFloat(extra)) * parseFloat(comm)) - ((parseFloat(net_amount)-parseFloat(extra)) * parseFloat(comm)/1.1)).toFixed(2);
-                $('#gst').val(calcGstValue);
+                calcGstValue = (parseFloat(net_amount)-parseFloat(extra)) * (parseFloat(comm) / 100) / 11;
+                console.log(calcGstValue.toFixed(2));
+                $('#gst').val(calcGstValue.toFixed(2));
             }else{
                 $('#gst').val(calcGstValue);
             }
