@@ -130,10 +130,10 @@
                 <div class="form-group">
                     <label for="student_id">Location Australia</label>
                     <select name="location_australia" id="location_australia" class="form-control">
-                        <option value="">Select</option>
-                        @foreach(\Config::get('location_australia') as $key=>$location)
+                        @foreach(\Config::get('location_australia') as $key => $location)
                             @if(!empty($obj))
-                                <option value="{{$key}}" {{isset($obj) && $obj->location_australia == $key ?'selected' : ''}}>{{$location}}</option>
+
+                                <option value="{{$key}}" {{$obj->location_australia == $key ? 'selected' : ''}}>{{$location}}</option>
                             @else
                                 <option value="{{$key}}" {{request()->location_australia == $key ?'selected' : ''}}>{{$location}}</option>
                             @endif
