@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label class="control-label">Profit {{!empty($obj->phieuthus) && !empty($obj->phieuthus->first()->current_id) ? $obj->phieuthus->first()->getCurrency():''}}</label>
+			<label class="control-label">Profit VND</label>
 			<div class="input-contenr">
 				<input type="text" class="form-control text-right" id="profit_money_VND" value="" readonly>
 			</div>

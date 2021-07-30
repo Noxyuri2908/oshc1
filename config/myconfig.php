@@ -114,9 +114,9 @@ return [
         6 => 'Pending',
     ],
     'status_visa' => [
-        1 => 'OK',
+        1 => 'Granted',
         2 => 'Not yet',
-        3 => 'Fail',
+        3 => 'Failed / Cancelled',
         4 => 'Cancel'
     ],
     'type_visa' => [

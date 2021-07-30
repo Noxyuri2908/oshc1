@@ -519,7 +519,8 @@
     function callTotalAmountVnd(){
         let totalAmount = $('#pay_agent_total_amount').val() || 0;
         let exchangeRate = $('#pay_agent_exchange_rate').val() || 0;
-        let amountTotalVND = parseFloat(convertStringCurrencyToNumber(totalAmount))*parseFloat(convertStringCurrencyToNumber(exchangeRate));
+        var vnd = (parseFloat(convertStringCurrencyToNumber($('#vnd').val())));
+        let amountTotalVND = (parseFloat(convertStringCurrencyToNumber(totalAmount))*parseFloat(convertStringCurrencyToNumber(exchangeRate))) + vnd;
         $('#pay_agent_amount_VN').val(amountTotalVND);
     }
     function callTotalAmount(){
@@ -607,12 +608,12 @@
         }
         let _bankfee_annalink_receipt = parseFloat(convertStringCurrencyToNumber($('#bankfee_annalink_receipt').val()));
         let _bankfee_profit = _bankfee_annalink_receipt * exchangeRateInvoice;
-        if(_currency_receipt == 'VND'){
-            _profit_VN = totat_profit1 * exchangeRatePayForProvider - ((_promotion_annalink_receipt + _discount_annalink_receipt) * (exchangeRateInvoice -exchangeRatePayForProvider));
-        }else{
-            _profit_VN = totat_profit1 * exchangeRatePayForProvider ;
-        }
+
         $('#profit_total').val(totat_profit1 / 1.1);
+
+        var  profit_total = parseFloat(convertStringCurrencyToNumber($('#profit_total').val()));
+        var vnd = parseFloat(convertStringCurrencyToNumber($('#vnd').val()));
+        _profit_VN = (profit_total * exchangeRateInvoice) - vnd;
 
         var gst = $('#profit_total').val() * (10 / 100);
         $('#gst').val(gst.toFixed(2));
