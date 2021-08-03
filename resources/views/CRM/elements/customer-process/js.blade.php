@@ -613,7 +613,10 @@
 
         var  profit_total = parseFloat(convertStringCurrencyToNumber($('#profit_total').val()));
         var vnd = parseFloat(convertStringCurrencyToNumber($('#vnd').val()));
-        _profit_VN = (profit_total * exchangeRateInvoice) - vnd;
+        var pay_provider_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#pay_provider_exchange_rate').val()));
+
+
+        _profit_VN = (profit_total * pay_provider_exchange_rate) - (vnd);
 
         var gst = $('#profit_total').val() * (10 / 100);
         $('#gst').val(gst.toFixed(2));
