@@ -89,22 +89,57 @@
         $('#refund_provider_amount_VND').val(_amount_VND)
     }
 
-    function stdAmountVND() {
-        _amount = parseFloat(convertStringCurrencyToNumber($('#std_amount').val())) || 0
-        _exchange_rate = parseFloat(convertStringCurrencyToNumber($('#std_exchange_rate').val())) || 0
-        _deducation = parseFloat(convertStringCurrencyToNumber($('#std_deduction').val())) || 0
-        _amount_VND = parseFloat((_amount - _deducation) * _exchange_rate)
-        $('#std_refund_VND').val(_amount_VND)
+    function loadRefund() {
+        refundAmountVND();
+        loadBalance();
+        loadProfit$();
+        loadProfitVND();
+        loadTotalAmount$();
+        loadAmountVND();
     }
 
-    function loadRefund() {
-        // $('#refund_profit_2').val($('#profit_money').val());
-        // $('#refund_profit_2_VN').val($('#profit_money_VND').val());
-        // $('#refund_amount_com').val($('#pay_agent_amount_comm').val());
-        // $('#refund_exchange_rate_agent').val($('#pay_agent_exchange_rate').val());
-        // $('#refund_agent_vnd').val($('#pay_agent_amount_VN').val());
-        refundAmountVND()
-        stdAmountVND()
+    function loadBalance(){
+        var refund_provider_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#refund_provider_exchange_rate').val()))
+        var std_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#std_exchange_rate').val()))
+        var std_amount = parseFloat(convertStringCurrencyToNumber($('#std_amount').val()))
+        var balance = (refund_provider_exchange_rate - std_exchange_rate) * std_amount;
+        $('#balance_refund').val(balance);
+    }
+
+    function loadProfit$(){
+        var commission_refund = parseFloat(convertStringCurrencyToNumber($('#commission_refund').val()))
+        var refund_amount_com_agent_gbcfa = parseFloat(convertStringCurrencyToNumber($('#refund_amount_com_agent_gbcfa').val()))
+        var profit = (commission_refund - refund_amount_com_agent_gbcfa) * (-1);
+        $('#refund_profit_2').val(profit);
+    }
+
+    function loadProfitVND(){
+        var refund_profit_2 = parseFloat(convertStringCurrencyToNumber($('#refund_profit_2').val()))
+        var refund_exchange_rate_agent = parseFloat(convertStringCurrencyToNumber($('#refund_exchange_rate_agent').val()))
+        var extra_fee_refund = parseFloat(convertStringCurrencyToNumber($('#extra_fee_refund').val()))
+        var std_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#std_exchange_rate').val()))
+        var balance_refund = parseFloat(convertStringCurrencyToNumber($('#balance_refund').val()))
+        var profitVND = (refund_profit_2 * refund_exchange_rate_agent) + (extra_fee_refund * std_exchange_rate) + balance_refund;
+
+        $('#refund_profit_2_VN').val(profitVND);
+
+    }
+
+    function loadTotalAmount$(){
+        var std_amount = parseFloat(convertStringCurrencyToNumber($('#std_amount').val()))
+        var std_deduction = parseFloat(convertStringCurrencyToNumber($('#std_deduction').val()))
+        var bank_fee_refund = parseFloat(convertStringCurrencyToNumber($('#bank_fee_refund').val()))
+        var totalAmount = std_amount + std_deduction + bank_fee_refund;
+
+        $('#total_amount_pay_back_student_refund').val(totalAmount);
+    }
+
+    function loadAmountVND(){
+        var total_amount_pay_back_student_refund = parseFloat(convertStringCurrencyToNumber($('#total_amount_pay_back_student_refund').val()))
+        var std_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#std_exchange_rate').val()))
+        var amountVND = total_amount_pay_back_student_refund * std_exchange_rate;
+
+        $('#std_refund_VND').val(amountVND);
     }
 
     function getNumber(str) {
@@ -479,6 +514,11 @@
         _refund_situation_pp = $('#refund_situation_pp').val()
         _refund_type_of_refund_pp = $('#refund_type_of_refund_pp').val();
         _refund_bank_pp = $('#refund_bank_pp').val();
+        _commission_refund = $('#commission_refund').val();
+        _extra_fee_refund = $('#extra_fee_refund').val();
+        _bank_fee_refund = $('#bank_fee_refund').val();
+        _balance_refund = $('#balance_refund').val();
+        _status = $('#status :selected').val();
         _html += '</div>';
         if (!flag) {
             $('#div_refund_alert').html(_html);
@@ -509,7 +549,12 @@
                 refund_agent_vnd: _refund_agent_vnd,
                 refund_situation_pp:_refund_situation_pp,
                 refund_type_of_refund_pp:_refund_type_of_refund_pp,
-                refund_bank_pp:_refund_bank_pp
+                refund_bank_pp:_refund_bank_pp,
+                commission : _commission_refund,
+                extra_fee: _extra_fee_refund,
+                bank_fee : _bank_fee_refund,
+                balance : _balance_refund,
+                status : _status
             }, function (data) {
                 window.location.reload();
             })
@@ -630,23 +675,14 @@
         let amount_com = refund_provider_amount * refund_percent_com_agent / 100;
         $('#refund_amount_com_agent_gbcfa').val(convertNumberToCurrency(parseInt(amount_com).toFixed(2)));
     }
-    function calcTotalAmountPayBackStudentRefund(){
-        let std_amount =convertStringCurrencyToNumber($('#std_amount').val());
-        let std_deduction = convertStringCurrencyToNumber($('#std_deduction').val());
-        let total_amount_pay_back_student_refund = std_amount-std_deduction;
-        $('#total_amount_pay_back_student_refund').val(total_amount_pay_back_student_refund);
-    }
+
     function getProfitLink(){
         let typeOfRefundStatusFullRefund = 1;
         let typeOfRefundStatusPartialRefund = 2;
         let refund_type_of_refund_pp = $('#refund_type_of_refund_pp').val();
         if(refund_type_of_refund_pp == typeOfRefundStatusFullRefund){
-            let profit_money = convertStringCurrencyToNumber($('#profit_money').val());
-            let profit_money_VND = convertStringCurrencyToNumber($('#profit_money_VND').val());
             let pay_agent_amount_comm = convertStringCurrencyToNumber($('#pay_agent_amount_comm').val());
             let pay_agent_amount_VN = convertStringCurrencyToNumber($('#pay_agent_amount_VN').val());
-            $('#refund_profit_2').val(profit_money);
-            $('#refund_profit_2_VN').val(profit_money_VND);
             $('#refund_amount_com_agent_gbcfa').val(pay_agent_amount_comm);
             $('#refund_agent_vnd').val(pay_agent_amount_VN);
         }
@@ -656,7 +692,6 @@
         loadRefund();
         loadComAgent();
         calsTotalProfit1();
-        calcTotalAmountPayBackStudentRefund();
         //callTotalAmount();
         //callTotalAmountVnd();
         $(document).on('change','#refund_type_of_refund_pp',function(e){

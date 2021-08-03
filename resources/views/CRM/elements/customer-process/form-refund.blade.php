@@ -9,7 +9,7 @@
 		@include('CRM.elements.customer-process.refunds.std')
 		<fieldset>
             {{-- {{dd($profit)}} --}}
-			<legend>Get back com from agent</legend>
+			<legend>Recall commission from agent</legend>
 			<div class="form">
                 <div class="form-group clearfix">
                     <label class="control-label">% com</label>
@@ -50,6 +50,16 @@
                         >
 					</div>
 				</div>
+                <div class="form-group clearfix">
+                    <label class="control-label">Status</label>
+                    <div class="input-contenr">
+                        <select name="" id="status" class="form-control">
+                            @foreach(config('myconfig.status_refund_recall') as $key=>$value)
+                                <option value="{{$key}}" {{$refund != null ? ($refund->status == $key ? 'selected' : '') : ''}}>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 				<div class="form-group clearfix">
 					<label class="control-label">Note</label>
 					<div class="input-contenr">
@@ -69,6 +79,7 @@
         'refund_profit_2',
         'refund_profit_2_VN',
         'refund_agent_vnd',
-        'refund_amount_com_agent_gbcfa'
-        ]])
+        'refund_amount_com_agent_gbcfa',
+        'extra_fee_refund'
+        ], 'currency' => $obj->provider->currency()])
 @endpush

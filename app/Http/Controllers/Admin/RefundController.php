@@ -61,6 +61,11 @@ class RefundController extends Controller
         $data['refund_situation_pp'] = $request->input('refund_situation_pp');
         $data['refund_type_of_refund_pp'] = $request->input('refund_type_of_refund_pp');
         $data['refund_bank_pp'] = $request->input('refund_bank_pp');
+        $data['commission'] = $request->input('commission');
+        $data['extra_fee'] = $request->input('extra_fee');
+        $data['bank_fee'] = $request->input('bank_fee');
+        $data['balance'] = $request->input('balance');
+        $data['status'] = $request->input('status');
         $apply = Apply::find($data['apply_id']);
         if ($apply == null) abor(404);
         $id_refund = $request->input('id_refund');

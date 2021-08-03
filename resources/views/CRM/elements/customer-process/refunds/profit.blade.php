@@ -1,5 +1,5 @@
 <fieldset>
-	<legend>Profit 2</legend>
+	<legend>Revenue ajustment</legend>
 	<div class="form">
 		<div class="form-group clearfix">
 			<div class="form-group clearfix">
@@ -19,9 +19,16 @@
 				</select>
 			</div>
         </div>
+        <div class="form-group clearfix">
+            <div class="form-group clearfix">
+                <label class="control-label">Extra fee</label>
+                <div class="input-contenr">
+                    <input class="form-control " id="extra_fee_refund" type="text" value="{{$refund != null ? $refund->extra_fee : ''}}">
+                </div>
+            </div>
         {{-- {{dd($profit)}} --}}
 		<div class="form-group clearfix">
-			<label class="control-label">Profit $</label>
+			<label class="control-label">Revenue</label>
 			<div class="input-contenr">
             <input type="text" class="form-control" id="refund_profit_2"
             @if(!empty($refund))

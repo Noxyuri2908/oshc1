@@ -30,7 +30,13 @@ class Refund extends Model
         'refund_amount_com_agent_gbcfa',
         'refund_situation_pp',
         'refund_type_of_refund_pp',
-        'refund_bank_pp'
+        'refund_bank_pp',
+        'commission',
+        'extra_fee',
+        'bank_fee',
+        'balance',
+        'status'
+
     ];
 
     public function invoice()

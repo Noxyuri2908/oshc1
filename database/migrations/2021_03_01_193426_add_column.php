@@ -164,6 +164,41 @@ class AddColumn extends Migration
                 $table->double('vnd', 8, 2)->nullable()->default(0.00)->after('pay_agent_extra');
             });
         }
+
+        if (!Schema::hasColumn('refunds', 'commission'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->double('commission', 8, 2)->nullable()->default(0.00)->after('refund_bank_pp');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'extra_fee'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->double('extra_fee', 8, 2)->nullable()->default(0.00)->after('commission');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'bank_fee'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->double('bank_fee', 8, 2)->nullable()->default(0.00)->after('extra_fee');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'balance'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->double('balance', 8, 2)->nullable()->default(0.00)->after('bank_fee');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'status'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->integer('status')->nullable()->after('balance');
+            });
+        }
     }
 
     /**
@@ -319,6 +354,34 @@ class AddColumn extends Migration
         {
             Schema::table('profits', function(Blueprint $table) {
                 $table->dropColumn('vnd')->after('pay_agent_extra');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'commission'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->dropColumn('commission')->after('refund_bank_pp');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'extra_fee'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->dropColumn('extra_fee')->after('commission');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'bank_fee'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->dropColumn('bank_fee')->after('extra_fee');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'balance'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->dropColumn('balance')->after('bank_fee');
             });
         }
     }
