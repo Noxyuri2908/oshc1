@@ -129,7 +129,7 @@
         var std_amount = parseFloat(convertStringCurrencyToNumber($('#std_amount').val()))
         var std_deduction = parseFloat(convertStringCurrencyToNumber($('#std_deduction').val()))
         var bank_fee_refund = parseFloat(convertStringCurrencyToNumber($('#bank_fee_refund').val()))
-        var totalAmount = std_amount + std_deduction + bank_fee_refund;
+        var totalAmount = std_amount - std_deduction - bank_fee_refund;
 
         $('#total_amount_pay_back_student_refund').val(totalAmount);
     }
