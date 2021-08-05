@@ -119,7 +119,7 @@ class FlywireCrawlData implements ShouldQueue
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-request/payment/search?_s=fullText=='.$paymentId.':*',
+            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-requests/fulfilments?_s=fullText=='.$paymentId.':*',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

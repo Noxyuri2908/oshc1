@@ -19,35 +19,37 @@
     <div class="seeAll"><a href="#">See All</a></div>
 </div>
 
-<script>
-    $('.event-noti').click(function () {
+@push('scripts')
+    <script>
+        $('.event-noti').click(function () {
 
-        // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
-        $('#notifications').fadeToggle('fast', 'linear', function () {
-            if ($('#notifications').is(':hidden')) {
-                $('.event-noti').css('background-color', '#2E467C');
-            }
-            // CHANGE BACKGROUND COLOR OF THE BUTTON.
-            else $('.event-noti').css('background-color', '#FFF');
+            // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+            $('#notifications').fadeToggle('fast', 'linear', function () {
+                if ($('#notifications').is(':hidden')) {
+                    $('.event-noti').css('background-color', '#2E467C');
+                }
+                // CHANGE BACKGROUND COLOR OF THE BUTTON.
+                else $('.event-noti').css('background-color', '#FFF');
+            });
+
+            // $('#noti_Counter').fadeOut('slow');     // HIDE THE COUNTER.
+
+            return false;
         });
 
-        // $('#noti_Counter').fadeOut('slow');     // HIDE THE COUNTER.
+        // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
+        $(document).click(function () {
+            $('#notifications').hide();
 
-        return false;
-    });
+            // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
+            if ($('#noti_Counter').is(':hidden')) {
+                // CHANGE BACKGROUND COLOR OF THE BUTTON.
+                $('.event-noti').css('background-color', '#2E467C');
+            }
+        });
 
-    // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
-    $(document).click(function () {
-        $('#notifications').hide();
-
-        // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
-        if ($('#noti_Counter').is(':hidden')) {
-            // CHANGE BACKGROUND COLOR OF THE BUTTON.
-            $('.event-noti').css('background-color', '#2E467C');
-        }
-    });
-
-    $('#notifications').click(function () {
-        return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
-    });
-</script>
+        $('#notifications').click(function () {
+            return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
+        });
+    </script>
+@endpush
