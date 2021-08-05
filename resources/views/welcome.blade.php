@@ -140,37 +140,37 @@
     <!-- end partner-home -->
 
     </section>
-    <div class="modal fade" id="myModal">
-        <div class="modal-body max-width-60">
-            <button type="button" class="close-md" data-dismiss="modal"></button>
-            <div class="modal-block modal-left modal-top">
-                <div class="modal-inner">
-                    <div class="content-popup row">
-                        <a class="w-100" href="{{isset($infos) ? $infos->link : ''}}">
-                            <img src="{{isset($infos) ? $infos->image : ''}}">
-                        </a>
-                        <a class="pop-up-oshv-box" target="_blank" href="http://ovhcglobal.com.au/">
+{{--    <div class="modal fade" id="myModal">--}}
+{{--        <div class="modal-body max-width-60">--}}
+{{--            <button type="button" class="close-md" data-dismiss="modal"></button>--}}
+{{--            <div class="modal-block modal-left modal-top">--}}
+{{--                <div class="modal-inner">--}}
+{{--                    <div class="content-popup row">--}}
+{{--                        <a class="w-100" href="{{isset($infos) ? $infos->link : ''}}">--}}
+{{--                            <img src="{{isset($infos) ? $infos->image : ''}}">--}}
+{{--                        </a>--}}
+{{--                        <a class="pop-up-oshv-box" target="_blank" href="http://ovhcglobal.com.au/">--}}
 
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @section('js')
-    <script>
-        var modal = $('#myModal');
-        setTimeout(function () {
-            if (sessionStorage.getItem('popup') == null) {
-                modal.modal('show');
-                modal.css({
-                    'display': 'flex',
-                    'align-items': 'center'
-                });
-                sessionStorage.setItem("popup", "show");
-            }
-        }, 3000);
-    </script>
+{{--    <script>--}}
+{{--        var modal = $('#myModal');--}}
+{{--        setTimeout(function () {--}}
+{{--            if (sessionStorage.getItem('popup') == null) {--}}
+{{--                modal.modal('show');--}}
+{{--                modal.css({--}}
+{{--                    'display': 'flex',--}}
+{{--                    'align-items': 'center'--}}
+{{--                });--}}
+{{--                sessionStorage.setItem("popup", "show");--}}
+{{--            }--}}
+{{--        }, 3000);--}}
+{{--    </script>--}}
     <script type="text/javascript">
         $(document).ready(function () {
             jQuery('.home-slide').lightSlider({
