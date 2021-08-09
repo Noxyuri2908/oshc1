@@ -73,7 +73,7 @@ Receipt
         _payer = $('#phieuthu_payer').val();
         _type_payment = $('#type_payment').val();
         _address = $('#phieuthu_address').val();
-        _account_bank = $('#phieuthu_account_bank').val();
+        _account_bank = $('#phieuthu_account_bank :selected').val()
         _note = $('#phieuthu_note').val();
         _code = $('#phieuthu_code').val();
         _amount = $('#phieuthu_amount').val();

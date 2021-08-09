@@ -257,7 +257,7 @@
         _payer = $('#phieuthu_payer').val()
         _type_payment = $('#type_payment').val()
         _address = $('#phieuthu_address').val()
-        _account_bank = $('#phieuthu_account_bank').val()
+        _account_bank = $('#phieuthu_account_bank :selected').val()
         _note = $('#phieuthu_note').val()
         _code = $('#phieuthu_code').val()
         _amount = $('#phieuthu_amount').val()
@@ -513,7 +513,7 @@
         _refund_agent_vnd = $('#refund_agent_vnd').val()
         _refund_situation_pp = $('#refund_situation_pp').val()
         _refund_type_of_refund_pp = $('#refund_type_of_refund_pp').val();
-        _refund_bank_pp = $('#refund_bank_pp').val();
+        _refund_bank_pp = $('#refund_bank_pp :selected').val();
         _commission_refund = $('#commission_refund').val();
         _extra_fee_refund = $('#extra_fee_refund').val();
         _bank_fee_refund = $('#bank_fee_refund').val();

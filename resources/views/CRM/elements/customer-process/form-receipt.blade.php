@@ -55,13 +55,9 @@ if($agent != null) $info = $agent->info;
 								<div class="col-md-6">
 									<select class="form-control" id="phieuthu_account_bank">
 										<option label=""></option>
-										@foreach(config('bank_account') as $key=>$value)
-										<option data-name="{{$value['name']}}"
-										data-brand="{{$value['brand']}}"
-										data-code="{{$value['code']}}"
-										data-bank="{{$value['bank']}}"
-										value="{{$key}}">{{$key}}</option>
-										@endforeach
+                                        @foreach(getBank() as $key => $item)
+                                            <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}}</option>
+                                        @endforeach
 									</select>
 								</div>
 								<div class="col-md-6">
@@ -214,13 +210,9 @@ $phieuthu_exchange_rate = $phieuthu->amount/($phieuthu->receipt_net_amount + $ph
 								<div class="col-md-6">
 									<select class="form-control" id="phieuthu_account_bank">
 										<option label=""></option>
-										@foreach(config('bank_account') as $key=>$value)
-										<option data-name="{{$value['name']}}"
-										data-brand="{{$value['brand']}}"
-										data-code="{{$value['code']}}"
-										data-bank="{{$value['bank']}}"
-										value="{{$key}}" {{$phieuthu->account_bank == $key ? 'selected' : ''}}>{{$key}}</option>
-										@endforeach
+                                        @foreach(getBank() as $key => $item)
+                                            <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}}</option>
+                                        @endforeach
 									</select>
 								</div>
 								<div class="col-md-6">

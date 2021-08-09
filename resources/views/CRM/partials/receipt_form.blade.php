@@ -34,7 +34,7 @@
         <div class="radio-checked">
             <input type="radio" name="type_payment" value="2"
                    {{(!empty($receipt->type_payment) && $receipt->type_payment == 2)?'checked':''}} required>
-            <label for="chuyen-khoan">Chuyển khoản</label>
+            <label for="chuyen-khoan">Transfer</label>
         </div>
     </div>
     <div class="form-row">
@@ -79,12 +79,8 @@
                                     <div class="col-md-6">
                                         <select class="form-control" id="phieuthu_account_bank">
                                             <option label=""></option>
-                                            @foreach(config('bank_account') as $key=>$value)
-                                                <option data-name="{{$value['name']}}"
-                                                        data-brand="{{$value['brand']}}"
-                                                        data-code="{{$value['code']}}"
-                                                        data-bank="{{$value['bank']}}"
-                                                        value="{{$key}}" {{(!empty($receipt->account_bank) && $receipt->account_bank == $key)?'selected':''}} >{{$key}}</option>
+                                            @foreach(getBank() as $key => $item)
+                                                <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}}</option>
                                             @endforeach
                                         </select>
                                     </div>

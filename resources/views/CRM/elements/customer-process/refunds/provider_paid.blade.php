@@ -40,8 +40,17 @@
         <div class="form-group clearfix">
             <label class="control-label">Bank</label>
             <div class="input-contenr">
-                <input type="text" class="form-control" id="refund_bank_pp" value="{{!empty($refund)?$refund->refund_bank_pp:''}}">
+                <select name="" id="refund_bank_pp" class="form-control">
+                    <option value=""></option>
+                    @foreach(getBank() as $key => $item)
+                        <option value="{{$item->id}}" {{!empty($refund) && $refund->refund_bank_pp == $item->id ? 'selected':''}}>{{$item->account}}</option>
+                    @endforeach
+                </select>
             </div>
+
+{{--            <div class="input-contenr">--}}
+{{--                <input type="text" class="form-control" id="refund_bank_pp" value="{{!empty($refund)?$refund->refund_bank_pp:''}}">--}}
+{{--            </div>--}}
         </div>
         <div class="form-group clearfix">
             <label class="control-label">Commission</label>

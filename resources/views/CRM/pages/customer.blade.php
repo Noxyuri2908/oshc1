@@ -239,7 +239,7 @@
 
 @stop
 @section('content')
-    @include('CRM.elements.table-customer')
+    @include('CRM.pages.customer')
     <div id="div_modal_customer_info"></div>
     <div id="div_modal_agent_info"></div>
     <div id="div_modal_invoice_info"></div>

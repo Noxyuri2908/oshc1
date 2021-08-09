@@ -2010,6 +2010,15 @@ if (!function_exists('sortSettingsByOrder'))
     }
 }
 
+if (!function_exists('getBank'))
+{
+    function getBank()
+    {
+
+        $banks = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->get();
+        return $banks;
+    }
+}
 
 
 

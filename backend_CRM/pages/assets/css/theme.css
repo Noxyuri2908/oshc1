@@ -50,6 +50,9 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+.table-main-customer tbody tr.data-refund td:nth-child(2){
+    position: unset;
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
