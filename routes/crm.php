@@ -238,7 +238,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('flywires/process/get_exchange_rate_date', 'Admin\FlywireController@getExchangeProvider')->name('flywires.process.get_exchange_rate_date');
     Route::post('customer/multi_delete', 'Admin\CustomerController@multiDeleteData')->name('customer.multi_delete');
     Route::post('customer/update/post', 'Admin\CustomerController@updateCustomer')->name('customer.update.post');
-    Route::get('/applies/{tab}', 'Admin\CustomerController@getCommAplly')->name('customer.getCommAplly');
+    Route::get('/applies/{tab}', 'Admin\CustomerController@11')->name('customer.getCommAplly');
 
     Route::post('/export/invoice', [\App\Http\Controllers\Admin\CustomerController::class,'exportIflywirenvoice'])->name('invoice.export');
     Route::post('/export/Exportinvoice', [\App\Http\Controllers\Admin\CustomerController::class,'exportInvoiceWithBalde'])->name('invoice.export.with.blade');

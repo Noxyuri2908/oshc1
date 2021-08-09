@@ -161,7 +161,7 @@
         debounceAjaxFollowUps(e.target.value);
     });
     $(document).on('keypress', function (e) {
-        if (e.keyCode == 13 && readyFollowUps && hoverTable == 'follow-up-agent') {
+        if (e.keyCode == 13 && readyFollowUps) {
             callAjaxFollowUps();
         }
     });

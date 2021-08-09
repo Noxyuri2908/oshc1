@@ -116,6 +116,11 @@
     $(document).on('keyup', '.last-row input[type="text"]', function (e) {
         debounceAjax(e.target.value)
     })
+
+    $(document).on('keyup', '.last-row input[type="email"]', function (e) {
+        debounceAjax(e.target.value)
+    })
+
     $(document).on('change', '.last-row select', function (e) {
         debounceAjax(e.target.value)
     })
