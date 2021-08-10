@@ -42,6 +42,9 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
+{{--    <th></th>--}}
+    <th></th>
     <th>
         <div>
             <select class="form-control" name="provider_id_filter" id="provider_id_filter">
@@ -107,19 +110,6 @@
             </select>
         </div>
     </th>
-{{--    <th>--}}
-{{--        <div>--}}
-{{--            <select class="form-control" name="type_visa_filter" id="type_visa_filter">--}}
-{{--                <option label=""></option>--}}
-{{--                @if(!empty($type_visas))--}}
-{{--                    @foreach($type_visas as $keyVisa=>$valueVisa)--}}
-{{--                        <option--}}
-{{--                            value="{{$keyVisa}}">{{$valueVisa}}</option>--}}
-{{--                    @endforeach--}}
-{{--                @endif--}}
-{{--            </select>--}}
-{{--        </div>--}}
-{{--    </th>--}}
     <th>
         <div>
             <input type="text" class="form-control" name="hoahong_month_filter" id="hoahong_month_filter" autocomplete="off">
@@ -182,8 +172,8 @@
             </select>
         </div>
     </th>
-    <th></th>
-    <th></th>
+{{--    <th></th>--}}
+{{--    <th></th>--}}
     <th></th>
     <th>
         <input class="form-control" value="" name="note_filter" id="note_filter" type="text" autocomplete="off">

@@ -87,11 +87,13 @@
     <th class="width-100">Invoice</th>
     <th class="width-100">Agent</th>
     <th class="width-100">Country</th>
-    <th class="width-120">Name in full</th>
-    <th class="width-170">Net amount</th>
+    <th class="width-120">Register</th>
+    <th class="width-170">Gross amount</th>
     <th class="width-170">Promotion $</th>
     <th class="width-170">Bank fee $</th>
-    <th class="width-170">Surcharge $</th>
+    <th class="width-170">Extend fee</th>
+    <th class="width-170">GST</th>
+    <th class="width-170">Discount</th>
     <th class="width-170">Total $</th>
     <th class="width-170">Provider</th>
     <th class="width-170">Status</th>
@@ -108,8 +110,6 @@
     <th class="width-170">Issue Date</th>
     <th class="width-170">Policy status</th>
     <th class="width-170">Payment note</th>
-    <th class="width-170">+/- $</th>
-    <th class="width-170">+/- time</th>
     <th class="width-170">Receipt amount</th>
     <th class="width-170">Note</th>
     <th class="width-170">Created by</th>
