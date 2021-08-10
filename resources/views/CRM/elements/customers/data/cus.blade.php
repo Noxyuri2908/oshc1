@@ -1,4 +1,5 @@
 @foreach($data as $tmp)
+
     <tr class="data-customer" id="data-customer_{{$tmp->id}}" is-render='false' data-id="{{$tmp->id}}">
         <td class="align-middle sticky-col first-col" data-fixed-columns="true" data-fixed-number="1">
             <input class="ml-3 sub_chk" data-id="{{$tmp->id}}"
@@ -51,23 +52,20 @@
         </td>
         <td class="align-middle sticky-col third-col">{{$tmp->ref_no}}</td>
         <td class="align-middle sticky-col fourth-col">{{convert_date_form_db($tmp->created_at)}}</td>
-        <td class="align-middle sticky-col white-space-break-spaces"><a style="cursor: pointer; color: red"
-                                                                        class="agent_info"
-                                                                        data-id={{$tmp->agent != null ? $tmp->agent->id : ''}}>{{$tmp->agent != null ? $tmp->agent->name : ''}}</a>
+        <td class="align-middle sticky-col white-space-break-spaces">
+            <a style="cursor: pointer; color: red" class="agent_info" data-id={{$tmp->agent != null ? $tmp->agent->id : ''}}>{{$tmp->agent != null ? $tmp->agent->name : ''}}</a>
         </td>
         <td class="align-middle sticky-col white-space-break-spaces">{{$tmp->agent != null ? $tmp->agent->country() : ''}}</td>
-        <td class="align-middle sticky-col white-space-break-spaces"><a style="cursor: pointer; color: red"
-                                                                        class="customer_info"
-                                                                        data-id={{$tmp->registerCus() != null ? $tmp->registerCus()->id : ""}}>{{$tmp->registerCus() != null ? $tmp->registerCus()->first_name.' '.$tmp->registerCus()->last_name : ''}}</a>
+        <td class="align-middle sticky-col white-space-break-spaces">
+            <a style="cursor: pointer; color: red" class="customer_info" data-id={{$tmp->registerCus() != null ? $tmp->registerCus()->id : ""}}>{{$tmp->registerCus() != null ? $tmp->registerCus()->first_name.' '.$tmp->registerCus()->last_name : ''}}</a>
         </td>
         <td class="align-middle">
             {{isset(config('myconfig.status_invoice')[$tmp->status]) ? config('myconfig.status_invoice')[$tmp->status] : ''}}
 
         </td>
         <td class="align-middle">{{!empty($tmp->registerCus())?$tmp->registerCus()->email:''}}</td>
-
-        <td class="align-middle white-space-break-spaces"><a style="cursor: pointer; color: red" class="agent_info"
-                                                             data-id={{$tmp->master != null ? $tmp->master->id : ''}}>{{$tmp->master != null ? $tmp->master->name : ''}}</a>
+        <td class="align-middle white-space-break-spaces">
+            <a style="cursor: pointer; color: red" class="agent_info" data-id={{$tmp->master != null ? $tmp->master->id : ''}}>{{$tmp->master != null ? $tmp->master->name : ''}}</a>
         </td>
         <td class="align-middle">{{isset(config('myconfig.service_country')[$tmp->service_country]) ? config('myconfig.service_country')[$tmp->service_country] : ''}}</td>
         <td class="align-middle">{{$tmp->service != null ? $tmp->service->name : ''}}</td>
@@ -82,18 +80,19 @@
         <td class="align-middle">{{convert_price_float($tmp->net_amount)}}</td>
         <td class="align-middle">{{$tmp->promotion != null ? $tmp->promotion->code : ''}}</td>
         <td class="align-middle">{{number_format($tmp->promotion_amount)}}</td>
-
+        <td class="align-middle">{{!empty($cus) ? $tmp->customers->extend_fee : 0}}</td>
         <td class="align-middle">{{isset(config('myconfig.bank_fee')[$tmp->bank_fee]) ? config('myconfig.bank_fee')[$tmp->bank_fee] : ''}}</td>
         <td class="align-middle">{{convert_price_float($tmp->bank_fee_number)}}</td>
         <td class="align-middle">{{isset(config('myconfig.payment_method')[$tmp->payment_method]) ? config('myconfig.payment_method')[$tmp->payment_method] : ''}}</td>
+        <td class="align-middle">{{$tmp->gst != null ? $tmp->gst : ''}}</td>
         <td class="align-middle">{{convert_price_float($tmp->surcharge)}}</td>
         <td class="align-middle">{{convert_price_float($tmp->extra)}}</td>
         <td class="align-middle">{{convert_price_float($tmp->comm)}}</td>
         <td class="align-middle">{{convert_price_float($tmp->total)}}</td>
-
         <td class="align-middle">{{!empty($tmp->gethh())?$tmp->gethh()->policy_no:''}}</td>
         <td class="align-middle">{{!empty($tmp->gethh())?convert_date_form_db($tmp->gethh()->issue_date):''}}</td>
         <td class="align-middle">{{!empty($tmp->gethh())?$tmp->getPaymentNoteHH():''}}</td>
+        <td class="align-middle">{{!empty($tmp->getCountDay())?$tmp->getCountDay():''}}</td>
         <td class="align-middle">{{!empty($tmp->start_date) && !empty($tmp->end_date) && !empty($tmp->count_month)?$tmp->count_month.' months':''}}</td>
         <td class="align-middle">{{$tmp->staff != null ? $tmp->staff->admin_id : ''}}</td>
         <td class="align-middle">{{$tmp->note}}</td>
