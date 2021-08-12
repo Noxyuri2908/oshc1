@@ -163,9 +163,9 @@
     <tr class="first-row-head">
         <th class="align-middle" colspan="17"></th>
         <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfffff;color:#000">
-            Revenue 1
+            Revenue
         </th>
-        <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #bfbfff;color:#000">
+        <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfbfff;color:#000">
             Annalink received
         </th>
         <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #fffe98;color:#000">Pay
@@ -296,7 +296,12 @@
             'revenue_from_ex_rate',
             'profit_vnd',
             'bank_fee_vnd',
-            'gst'
+            'gst',
+            'net_amount',
+            'promotion_amount',
+            'extra',
+            'total_amount',
+            'difference'
         ],
         'tab'=>$tab,
                         'element_class_btn_row_edit'=>'profit_data_edit',

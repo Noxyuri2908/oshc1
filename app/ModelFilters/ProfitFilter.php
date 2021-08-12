@@ -166,4 +166,34 @@ class ProfitFilter extends ModelFilter
     public function gst($number){
         return $this->where('gst', 'LIKE', '%'.$number.'%');
     }
+
+    public function netAmount($number){
+        return $this->related('invoice', function ($q) use ($number) {
+            $q->where('net_amount', 'LIKE', '%' .$number. '%');
+        });
+    }
+
+    public function promotionAmount($number){
+        return $this->related('invoice', function ($q) use ($number) {
+            $q->where('promotion_amount', 'LIKE', '%' .$number. '%');
+        });
+    }
+
+    public function extra($number){
+        return $this->related('invoice', function ($q) use ($number) {
+            $q->where('extra', 'LIKE', '%' .$number. '%');
+        });
+    }
+
+    public function totalAmount($number){
+        return $this->related('invoice', function ($q) use ($number) {
+            $q->where('total', 'LIKE', '%' .$number. '%');
+        });
+    }
+
+    public function difference($number){
+        return $this->related('invoice', function ($q) use ($number) {
+            $q->where('difference', 'LIKE', '%' .$number. '%');
+        });
+    }
 }

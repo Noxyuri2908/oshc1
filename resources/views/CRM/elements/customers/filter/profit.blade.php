@@ -199,14 +199,39 @@
 {{--  profit end  --}}
 
 {{--  Annalink rec start --}}
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="net_amount_filter" id="net_amount_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="promotion_amount_filter" id="promotion_amount_filter">
+        </div>
+    </th>
+    <th>
+    </th>
+    <th>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="extra_filter" id="extra_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="total_amount_filter" id="total_amount_filter">
+        </div>
+    </th>
+    <th>
+    </th>
+    <th>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="difference_filter" id="difference_filter">
+        </div>
+    </th>
 {{--  Annalink rec end  --}}
 
 {{--    pay comm for agent start--}}
