@@ -86,6 +86,9 @@ class ProfitController extends Controller
         $data['pay_agent_extra'] = convert_number_currency_to_db($request->get('pay_agent_extra'));
         $data['pay_agent_extra'] = convert_number_currency_to_db($request->get('pay_agent_extra'));
         $data['vnd'] = convert_number_currency_to_db($request->get('vnd'));
+        $data['profit_total'] = convert_number_currency_to_db($request->get('profit_total'));
+        $data['profit_bankfee_VND'] = convert_number_currency_to_db($request->get('profit_bankfee_VND'));
+        $data['gst'] = convert_number_currency_to_db($request->get('gst'));
 
         $apply = Apply::find($data['apply_id']);
         if ($apply == null) return view('CRM.elements.customer-process.table-profit');

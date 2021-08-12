@@ -130,10 +130,40 @@ class ProfitFilter extends ModelFilter
             $q->where('payment_note_provider', $id);
         });
     }
+
     public function bankAccount($text){
         return $this->where('pay_provider_bank_account','LIKE', '%'.$text.'%');
     }
+
     public function datePayment($date){
         return $this->whereDate('pay_provider_date',convert_date_to_db($date));
+    }
+
+    public function profitMoney($number){
+        return $this->where('profit_money', 'LIKE', '%'.$number.'%');
+    }
+
+    public function extraFee($number){
+        return $this->where('profit_extra_money', 'LIKE', '%'.$number.'%');
+    }
+
+    public function revenueFromService($number){
+        return $this->where('profit_total', 'LIKE', '%'.$number.'%');
+    }
+
+    public function revenueFromExRate($number){
+        return $this->where('profit_exchange_rate', 'LIKE', '%'.$number.'%');
+    }
+
+    public function profitVnd($number){
+        return $this->where('profit_money_VND', 'LIKE', '%'.$number.'%');
+    }
+
+    public function bankFeeVnd($number){
+        return $this->where('profit_bankfee_VND', 'LIKE', '%'.$number.'%');
+    }
+
+    public function gst($number){
+        return $this->where('gst', 'LIKE', '%'.$number.'%');
     }
 }

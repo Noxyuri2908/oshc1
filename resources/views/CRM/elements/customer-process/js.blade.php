@@ -434,7 +434,9 @@
         pay_agent_extra = $('#pay_agent_extra').val()
         difference = $('#difference-annalink-received').val()
         vnd = $('#vnd').val()
-        console.log(vnd)
+        profit_total = $('#profit_total').val()
+        profit_bankfee_VND = $('#profit_bankfee_VND').val()
+        gst = $('#gst').val()
 
         if (!flag) {
             $('#div_profit_alert').html(_html)
@@ -484,7 +486,10 @@
                 issue_date_com_agent_profit,
                 pay_agent_extra,
                 difference,
-                vnd
+                vnd,
+                profit_total,
+                profit_bankfee_VND,
+                gst
             }, function (data) {
                 window.location.reload()
             })

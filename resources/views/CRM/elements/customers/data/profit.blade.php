@@ -94,11 +94,14 @@
 
         <!-- Profit 1 -->
         <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money)}}</td>
-        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money_VND)}}</td>
-        <td style="background-color: #bfffff" title="Profit 1">{{$tmp->profit_status == 1 ? "Done" : "Refund"}}</td>
-        <td style="background-color: #bfffff" title="Profit 1">{{$tmp->comm_status == 1 ? "Done" : "Refund"}}</td>
-        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_exchange_rate)}}</td>
         <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_extra_money)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_total)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_exchange_rate)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money_VND)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_bankfee_VND)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->gst)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{$tmp->profit_status == 1 ? 'Done' : ($tmp->profit_status == 2 ? 'Refund' : '')}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{$tmp->comm_status == 1 ? 'Done' : ($tmp->comm_status == 2 ? 'Refund' : '')}}</td>
         <!-- Profit 1 -->
 
         <!-- Annalink received -->

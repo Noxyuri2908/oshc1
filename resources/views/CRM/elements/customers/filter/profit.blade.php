@@ -134,8 +134,42 @@
         </div>
     </th>
 
-    <th></th>
-    <th></th>
+{{--  profit start --}}
+    <th>
+        <div>
+            <input type="text" class="form-control" name="profit_money_filter" id="profit_money_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="extra_fee_filter" id="extra_fee_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="revenue_from_service_filter" id="revenue_from_service_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="revenue_from_ex_rate_filter" id="revenue_from_ex_rate_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="profit_vnd_filter" id="profit_vnd_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="bank_fee_vnd_filter" id="bank_fee_vnd_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="gst_filter" id="gst_filter">
+        </div>
+    </th>
     <th>
         <div>
             <select class="form-control" name="profit_status_filter" id="profit_status_filter">
@@ -162,6 +196,9 @@
             </select>
         </div>
     </th>
+{{--  profit end  --}}
+
+{{--  Annalink rec start --}}
     <th></th>
     <th></th>
     <th></th>
@@ -170,6 +207,9 @@
     <th></th>
     <th></th>
     <th></th>
+{{--  Annalink rec end  --}}
+
+{{--    pay comm for agent start--}}
     <th></th>
     <th></th>
     <th></th>
@@ -178,14 +218,18 @@
     <th></th>
     <th></th>
     <th></th>
+{{--    pay comm for agent aend--}}
+
+{{--    comm rec start--}}
     <th></th>
     <th></th>
     <th></th>
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
-    <th></th>
+{{--    comm rec end--}}
+
+{{--    pay for provider start--}}
     <th></th>
     <th></th>
     <th></th>
@@ -212,6 +256,8 @@
                    id="date_payment_filter">
         </div>
     </th>
+{{--    pay for provider end--}}
+
     <th>
         <div>
             <input type="text" class="form-control" name="bank_account_filter" id="bank_account_filter">

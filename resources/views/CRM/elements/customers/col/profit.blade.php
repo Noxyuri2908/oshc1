@@ -162,8 +162,8 @@
 <thead class="bg-200 text-900 thead-dark profit-thead">
     <tr class="first-row-head">
         <th class="align-middle" colspan="17"></th>
-        <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #bfffff;color:#000">
-            Profit 1
+        <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfffff;color:#000">
+            Revenue 1
         </th>
         <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #bfbfff;color:#000">
             Annalink received
@@ -172,10 +172,10 @@
             commission for agent
         </th>
         <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #ffbfff;color:#000">
-            Commission received from provider
+            Commission from Provider
         </th>
         <th class="align-middle text-center" colspan="10" scope="colgroup" style="background-color: #81d881;color:#000">Pay
-            for provider
+            Pay for provider
         </th>
     </tr>
     <tr class="first-row">
@@ -198,35 +198,45 @@
         <th class="align-middle ">Visa status</th>
         <th class="align-middle ">Months</th>
         <th class="align-middle ">Year</th>
+
         <!-- Profit 1 -->
         <th>Profit $</th>
-        <th>Total Profit VND</th>
+        <th>Extra fee ($)</th>
+        <th>Revenue from service</th>
+        <th>Revenue from Ex rate (VND)</th>
+        <th>Profit VND</th>
+        <th>Bank fee (VND)</th>
+        <th>GST</th>
         <th>Profit status</th>
         <th>Commission payment status</th>
-        <th>Profit Exchange Rate</th>
-        <th>Profit Extra Fee</th>
         <!-- Profit 1 -->
 
         <!-- Annalink received -->
-        <th>Net mount</th>
+        <th>Gross amount</th>
         <th>Promotion ($)</th>
         <th>Surcharge ($)</th>
-        <th>Bank fee</th>
-        <th>+/- ($)</th>
+        <th>Surcharge fee</th>
+        <th>Discount</th>
         <th>Total amount ($)</th>
         <th>Exchange rate</th>
-        <th>Total amount VND</th>
+        <th>Total amount receive</th>
+        <th>Difference ($)</th>
         <!-- Annalink received -->
 
         <!-- Pay commission for User/Cousellor -->
         <th>Commission rate</th>
         <th>Bonus %</th>
         <th>Amount com</th>
+        <th>+/- ($)</th>
+        <th>Total amount com ($)</th>
         <th>Deduction</th>
         <th>Exchange rate</th>
-        <th>Amount VNĐ</th>
+        <th>+ / - VND</th>
+        <th>Amount VND</th>
         <th>Date of payment</th>
         <th>GST Status</th>
+        <th>Issue Date</th>
+        <th>Note</th>
         <!-- Pay commission for User/Cousellor -->
 
         <!-- Commission received from provider -->
@@ -279,7 +289,14 @@
             'commission_payment_status',
             'payment_note_provider',
             'date_payment',
-            'bank_account'
+            'bank_account',
+            'profit_money',
+            'extra_fee',
+            'revenue_from_service',
+            'revenue_from_ex_rate',
+            'profit_vnd',
+            'bank_fee_vnd',
+            'gst'
         ],
         'tab'=>$tab,
                         'element_class_btn_row_edit'=>'profit_data_edit',

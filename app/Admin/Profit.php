@@ -64,7 +64,10 @@ class Profit extends Model
         'staff_id_cp',
         'look_payment_form',
         'pay_agent_extra',
-        'vnd'
+        'vnd',
+        'profit_total',
+        'profit_bankfee_VND',
+        'gst'
     ];
     public static $STATUS = [
         1=>'Done',

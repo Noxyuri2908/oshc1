@@ -199,6 +199,27 @@ class AddColumn extends Migration
                 $table->integer('status')->nullable()->after('balance');
             });
         }
+
+        if (!Schema::hasColumn('profits', 'profit_total'))
+        {
+            Schema::table('profits', function(Blueprint $table) {
+                $table->double('profit_total', 8, 2)->nullable()->default(0.00)->after('vnd');
+            });
+        }
+
+        if (!Schema::hasColumn('profits', 'profit_bankfee_VND'))
+        {
+            Schema::table('profits', function(Blueprint $table) {
+                $table->double('profit_bankfee_VND', 8, 2)->nullable()->default(0.00)->after('profit_total');
+            });
+        }
+
+        if (!Schema::hasColumn('profits', 'gst'))
+        {
+            Schema::table('profits', function(Blueprint $table) {
+                $table->double('gst', 8, 2)->nullable()->default(0.00)->after('profit_bankfee_VND');
+            });
+        }
     }
 
     /**

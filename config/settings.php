@@ -352,5 +352,17 @@ return [
                 'filter_blade' => 'CRM.elements.task.sale.table.follow_up_agent.filters.task-description'
             ]
         ]
+    ],
+    'profit' => [
+        'keys' => [
+            'user_id' => [
+                'value' => 'Agent',
+                'isShow' => true,
+                'class' => 'width-220 follow_agent text-center',
+                'order' => 1,
+                'filter_blade' => 'CRM.elements.task.sale.table.follow_up_agent.filters.agent'
+            ],
+        ]
     ]
+
 ];
