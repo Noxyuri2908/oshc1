@@ -67,7 +67,8 @@ class Profit extends Model
         'vnd',
         'profit_total',
         'profit_bankfee_VND',
-        'gst'
+        'gst',
+        'pay_agent_total_amount'
     ];
     public static $STATUS = [
         1=>'Done',

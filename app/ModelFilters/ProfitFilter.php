@@ -196,4 +196,50 @@ class ProfitFilter extends ModelFilter
             $q->where('difference', 'LIKE', '%' .$number. '%');
         });
     }
+
+    public function commissionRate($number){
+        return $this->related('invoice.comms', function ($q) use ($number) {
+            $q->where('comm', $number);
+        });
+    }
+
+    public function bonus($number){
+        return $this->where('pay_agent_bonus', $number);
+    }
+
+    public function amountCom($number){
+        return $this->related('invoice', function ($q) use ($number) {
+            $q->where('comm', 'LIKE', '%'.$number.'%');
+        });
+    }
+
+    public function deduction($number){
+        return $this->where('pay_agent_deduction', 'LIKE', '%'.$number.'%');
+    }
+
+    public function totalAmountCom($number){
+        return $this->where('pay_agent_total_amount', 'LIKE', '%'.$number.'%');
+    }
+
+    public function exchangeRate($number){
+        return $this->where('pay_agent_exchange_rate', 'LIKE', '%'.$number.'%');
+    }
+
+    public function vnd($number){
+        return $this->where('vnd', 'LIKE', '%'.$number.'%');
+    }
+
+    public function amountVnd($number){
+        return $this->where('pay_agent_amount_VN', 'LIKE', '%'.$number.'%');
+    }
+
+    public function dateOfPayment($number){
+        return $this->whereDate('pay_agent_date', '<=', convert_date_to_db($number));
+    }
+
+    public function gstStatus($id){
+        return $this->related('invoice.agent', function ($q) use ($id) {
+            $q->where('gst', $id);
+        });
+    }
 }

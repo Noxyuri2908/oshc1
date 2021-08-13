@@ -126,22 +126,38 @@
 
         <!-- Annalink received -->
 
-        <!-- Pay commission for User/Cousellor -->
-        <td style="background-color: #fffe98"
-            title="Pay commission for Agent/Cousellor">{{(!empty($comm) && !empty($text_donvi))?$comm->comm.' '.$text_donvi:''}}</td>
+        <!-- Commission for Agent -->
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{(!empty($comm) && !empty($text_donvi))?$comm->comm.' '.$text_donvi:''}}</td>
         <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$tmp->pay_agent_bonus}}</td>
-        <td style="background-color: #fffe98"
-            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_amount_comm)}}</td>
-        <td style="background-color: #fffe98"
-            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_deduction)}}</td>
-        <td style="background-color: #fffe98"
-            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_exchange_rate)}}</td>
-        <td style="background-color: #fffe98"
-            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_amount_VN)}}</td>
-        <td style="background-color: #fffe98"
-            title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->pay_agent_date)->format('d/m/Y')}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{!empty($agent) && $agent->gst == 1 ? 'Included' : 'Not included '}}</td>
-        <!-- Pay commission for User/Cousellor -->
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->invoice->comm)}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_deduction)}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_total_amount)}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_exchange_rate)}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->vnd)}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_amount_VN)}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->pay_agent_date)->format('d/m/Y')}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$tmp->gst_status_agent_profit == 1 ? 'Included' : ($tmp->gst_status_agent_profit == 2 ? 'Not included ' : '')}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->issue_date_com_agent)->format('d/m/Y')}}</td>
+        <td class="align-middle text-overflow" style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#notemodal{{$tmp->id}}">{{$tmp->note_cp}}</a>
+            <div class="modal fade" id="notemodal{{$tmp->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{$tmp->note_cp}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+
+        <!-- Commission for Agent -->
 
         <!-- Commission received from provider -->
         <td style="background-color: #ffbfff"

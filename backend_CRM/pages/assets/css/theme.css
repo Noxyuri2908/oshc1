@@ -19082,3 +19082,6 @@ div#info-table_length {
 .action-logout{
     display: flex;
 }
+.text-overflow{
+    overflow: hidden;
+}

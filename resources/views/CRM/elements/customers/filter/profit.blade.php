@@ -234,16 +234,67 @@
     </th>
 {{--  Annalink rec end  --}}
 
-{{--    pay comm for agent start--}}
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-{{--    pay comm for agent aend--}}
+{{--    Commission for Agent start--}}
+    <th>
+        <div>
+            <input type="text" class="form-control" name="commission_rate_filter" id="commission_rate_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="bonus_filter" id="bonus_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="amount_com_filter" id="amount_com_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="deduction_filter" id="deduction_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="total_amount_com_filter" id="total_amount_com_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="exchange_rate_filter" id="exchange_rate_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="vnd_filter" id="vnd_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control" name="amount_vnd_filter" id="amount_vnd_filter">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="date" class="form-control choose-date-form" placeholder="dd/mm/YYYY" name="date_of_payment_filter" id="date_of_payment_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <select class="form-control" name="gst_status_filter" id="gst_status_filter">
+                <option label=""></option>
+                    @foreach($gstConfig as $key=>$key)
+                        <option value="{{$key}}">{{$key}}</option>
+                    @endforeach
+            </select>
+        </div>
+    </th>
+    <th>
+    </th>
+    <th>
+    </th>
+{{--    Commission for Agent aend--}}
 
 {{--    comm rec start--}}
     <th></th>
@@ -293,4 +344,10 @@
    'nameFunction'=>'hoverToLoadSelectAgentIdProfit',
 'elementIdSelect2'=>'agent_id_filter',
 'elementParentIdSelect2'=>'agent_id_filter_select2'
+])
+@push('scripts')
+    @include('CRM.partials.choose_date',[
+    'ids'=>[
+        'date_of_payment_filter',
+]
 ])

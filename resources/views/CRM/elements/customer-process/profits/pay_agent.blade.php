@@ -61,6 +61,7 @@
                 <label class="control-label">GST Status</label>
                 <div class="input-contenr">
                     <select class="form-control" id="gst_status_agent_profit">
+                        <option value=""></option>
                         @if(!empty($profit))
                             <option value="1" {{$profit->gst_status_agent_profit == 1 ? 'selected' : ''}}>Included</option>
                             <option value="2" {{$profit->gst_status_agent_profit == 2 ? 'selected' : ''}}>Not Included</option>

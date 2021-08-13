@@ -168,7 +168,7 @@
         <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfbfff;color:#000">
             Annalink received
         </th>
-        <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #fffe98;color:#000">Pay
+        <th class="align-middle text-center" colspan="12" scope="colgroup" style="background-color: #fffe98;color:#000">
             commission for agent
         </th>
         <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #ffbfff;color:#000">
@@ -229,7 +229,6 @@
         <th>Amount com</th>
         <th>+/- ($)</th>
         <th>Total amount com ($)</th>
-        <th>Deduction</th>
         <th>Exchange rate</th>
         <th>+ / - VND</th>
         <th>Amount VND</th>
@@ -301,7 +300,18 @@
             'promotion_amount',
             'extra',
             'total_amount',
-            'difference'
+            'difference',
+            'pay_agent_total_amount',
+            'commission_rate',
+            'bonus',
+            'amount_com',
+            'deduction',
+            'total_amount_com',
+            'exchange_rate',
+            'vnd',
+            'amount_vnd',
+            'date_of_payment',
+            'gst_status'
         ],
         'tab'=>$tab,
                         'element_class_btn_row_edit'=>'profit_data_edit',

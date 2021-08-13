@@ -220,6 +220,13 @@ class AddColumn extends Migration
                 $table->double('gst', 8, 2)->nullable()->default(0.00)->after('profit_bankfee_VND');
             });
         }
+
+        if (!Schema::hasColumn('profits', 'pay_agent_total_amount'))
+        {
+            Schema::table('profits', function(Blueprint $table) {
+                $table->double('pay_agent_total_amount', 8, 2)->nullable()->default(0.00)->after('gst');
+            });
+        }
     }
 
     /**
