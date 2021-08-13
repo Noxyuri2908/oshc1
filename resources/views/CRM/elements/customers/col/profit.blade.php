@@ -158,6 +158,16 @@
 <col class="width-170"/>
 <col class="width-170"/>
 <col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
+<col class="width-170"/>
 
 <thead class="bg-200 text-900 thead-dark profit-thead">
     <tr class="first-row-head">
@@ -174,7 +184,7 @@
         <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #ffbfff;color:#000">
             Commission from Provider
         </th>
-        <th class="align-middle text-center" colspan="10" scope="colgroup" style="background-color: #81d881;color:#000">Pay
+        <th class="align-middle text-center" colspan="11" scope="colgroup" style="background-color: #81d881;color:#000">
             Pay for provider
         </th>
     </tr>
@@ -249,14 +259,14 @@
 
 
         <!-- Pay for provider -->
+        <th>% Paid</th>
         <th>Amount</th>
+        <th>Extend fee</th>
         <th>Bank fee</th>
         <th>Total amount</th>
         <th>Exchange rate</th>
         <th>Total amount VND</th>
-        <th>% Paid</th>
-        <th>Balance 1 VND</th>
-{{--        <th>Provider</th>--}}
+        <th>Provider</th>
         <th>Payment note</th>
         <th>Date of payment</th>
         <th>Bank account</th>
@@ -316,7 +326,15 @@
             'exchange_rate_comm',
             'total_amount_comm',
             'date_of_receipt',
-            'note'
+            'note',
+            'pay_provider_paid',
+            'pay_provider_amount',
+            'extend_fee',
+            'pay_provider_bank_fee',
+            'pay_provider_total_amount',
+            'pay_provider_exchange_rate',
+            'pay_provider_total_VN',
+            'provider_name'
         ],
         'tab'=>$tab,
                         'element_class_btn_row_edit'=>'profit_data_edit',

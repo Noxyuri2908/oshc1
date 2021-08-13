@@ -327,13 +327,46 @@
 {{--    Commission from Provider end--}}
 
 {{--    pay for provider start--}}
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="pay_provider_paid_filter" id="pay_provider_paid_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="pay_provider_amount_filter" id="pay_provider_amount_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="extend_fee_filter" id="extend_fee_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="pay_provider_bank_fee_filter" id="pay_provider_bank_fee_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="pay_provider_total_amount_filter" id="pay_provider_total_amount_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="pay_provider_exchange_rate_filter" id="pay_provider_exchange_rate_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="pay_provider_total_VN_filter" id="pay_provider_total_VN_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="provider_name_filter" id="provider_name_filter" autocomplete="fale">
+        </div>
+    </th>
     <th>
         <div>
             <select class="form-control" name="payment_note_provider_filter" id="payment_note_provider_filter">
@@ -348,18 +381,12 @@
         </div>
     </th>
     <th>
-        <div>
-            <input type="text" class="form-control choose-date-form" name="date_payment_filter"
-                   id="date_payment_filter">
-        </div>
+
+    </th>
+    <th>
+
     </th>
 {{--    pay for provider end--}}
-
-    <th>
-        <div>
-            <input type="text" class="form-control" name="bank_account_filter" id="bank_account_filter">
-        </div>
-    </th>
 </tr>
 @include('CRM.partials.script-call-agent',[
    'nameFunction'=>'hoverToLoadSelectAgentIdProfit',

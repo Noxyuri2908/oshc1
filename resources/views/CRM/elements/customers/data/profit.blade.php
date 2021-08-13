@@ -192,9 +192,13 @@
 
         <!-- Pay for provider -->
         <td style="background-color: #81d881"
-            title="Pay for provider">{{ convert_price_float($tmp->pay_provider_amount) }}</td>
+            title="Pay for provider">{{ convert_price_float($tmp->pay_provider_paid) }}</td>
         <td style="background-color: #81d881"
-            title="Pay for provider">{{ isset(config('myconfig.bank_fee')[$tmp->pay_provider_bank_fee]) ? config('myconfig.bank_fee')[$tmp->pay_provider_bank_fee] : ''}}</td style="background-color: #81d881" title="Pay for provider">
+            title="Pay for provider">{{ convert_price_float($tmp->pay_provider_amount) }} {{$currency}}</td>
+        <td style="background-color: #81d881"
+            title="Pay for provider">{{ convert_price_float($tmp->invoice->customers->first()->extend_fee) }} {{$currency}}</td>
+        <td style="background-color: #81d881"
+            title="Pay for provider">{{ isset(config('myconfig.bank_fee')[$tmp->pay_provider_bank_fee]) ? config('myconfig.bank_fee')[$tmp->pay_provider_bank_fee] : ''}}</td>
         <td style="background-color: #81d881"
             title="Pay for provider">{{ convert_price_float($tmp->pay_provider_total_amount) }}</td>
         <td style="background-color: #81d881"
@@ -202,9 +206,7 @@
         <td style="background-color: #81d881"
             title="Pay for provider">{{ convert_price_float($tmp->pay_provider_total_VN) }}</td>
         <td style="background-color: #81d881"
-            title="Pay for provider">{{ convert_price_float($tmp->pay_provider_paid)}}</td>
-        <td style="background-color: #81d881"
-            title="Pay for provider">{{ convert_price_float($tmp->pay_provider_balancer_1)}}</td>
+            title="Pay for provider">{{ convert_price_float($tmp->invoice->provider->name)}}</td>
         <td style="background-color: #81d881"
             title="Pay for provider">{{ !empty($payment_note) && !empty(config('myconfig.payment_note_provider')[$payment_note]) ? config('myconfig.payment_note_provider')[$payment_note] : ''}}</td>
         <td style="background-color: #81d881"

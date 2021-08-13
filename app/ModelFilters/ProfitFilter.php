@@ -262,4 +262,42 @@ class ProfitFilter extends ModelFilter
     public function note($text){
         return $this->where('note_of_receipt', 'LIKE', '%'.$text.'%');
     }
+
+    public function payProviderPaid($number){
+        return $this->where('pay_provider_paid', 'LIKE', '%'.$number.'%');
+    }
+
+    public function payProviderAmount($number){
+        return $this->where('pay_provider_amount', 'LIKE', '%'.$number.'%');
+    }
+
+    public function extendFee($number){
+        return $this->related('invoice.customers', function ($q) use ($number) {
+            $q->where('extend_fee', 'LIKE', '%'.$number.'%');
+        });
+    }
+
+    public function payProviderBankFee($number){
+        return $this->where('pay_provider_bank_fee', 'LIKE', '%'.$number.'%');
+
+    }
+
+    public function payProviderTotalAmount($number){
+        return $this->where('pay_provider_total_amount', 'LIKE', '%'.$number.'%');
+    }
+
+    public function payProviderExchangeRate($number){
+        return $this->where('pay_provider_exchange_rate', 'LIKE', '%'.$number.'%');
+    }
+
+    public function payProviderTotalVN($number){
+        return $this->where('pay_provider_total_VN', 'LIKE', '%'.$number.'%');
+    }
+
+    public function ProviderName($text){
+        return $this->related('invoice.provider', function ($q) use ($text) {
+            $q->where('name', 'LIKE', '%'.$text.'%');
+        });
+    }
+
 }
