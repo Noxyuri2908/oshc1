@@ -242,4 +242,24 @@ class ProfitFilter extends ModelFilter
             $q->where('gst', $id);
         });
     }
+
+    public function amount($number){
+       return $this->where('re_total_amount', 'LIKE', '%'.$number.'%');
+    }
+
+    public function exchangeRateComm($number){
+        return $this->where('exchange_rate_re_provider', 'LIKE', '%'.$number.'%');
+    }
+
+    public function totalAmountComm($number){
+        return $this->where('re_total_amount_vn', 'LIKE', '%'.$number.'%');
+    }
+
+    public function dateOfReceipt($number){
+        return $this->whereDate('date_of_receipt', '<=', convert_date_to_db($number));
+    }
+
+    public function note($text){
+        return $this->where('note_of_receipt', 'LIKE', '%'.$text.'%');
+    }
 }

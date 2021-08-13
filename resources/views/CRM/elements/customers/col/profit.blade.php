@@ -311,7 +311,12 @@
             'vnd',
             'amount_vnd',
             'date_of_payment',
-            'gst_status'
+            'gst_status',
+            'amount',
+            'exchange_rate_comm',
+            'total_amount_comm',
+            'date_of_receipt',
+            'note'
         ],
         'tab'=>$tab,
                         'element_class_btn_row_edit'=>'profit_data_edit',

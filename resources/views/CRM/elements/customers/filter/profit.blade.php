@@ -296,14 +296,35 @@
     </th>
 {{--    Commission for Agent aend--}}
 
-{{--    comm rec start--}}
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-{{--    comm rec end--}}
+{{--    Commission from Provider start--}}
+    <th>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control " name="amount_filter" id="amount_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="exchange_rate_comm_filter" id="exchange_rate_comm_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="total_amount_comm_filter" id="total_amount_comm_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="date" class="form-control choose-date-form" placeholder="DD/MM/YYYY"  name="date_of_receipt_filter" id="date_of_receipt_filter" autocomplete="fale">
+        </div>
+    </th>
+    <th>
+        <div>
+            <input type="text" class="form-control "  name="note_filter" id="note_filter" autocomplete="fale">
+        </div>
+    </th>
+{{--    Commission from Provider end--}}
 
 {{--    pay for provider start--}}
     <th></th>
@@ -349,5 +370,6 @@
     @include('CRM.partials.choose_date',[
     'ids'=>[
         'date_of_payment_filter',
+        'date_of_receipt_filter'
 ]
 ])

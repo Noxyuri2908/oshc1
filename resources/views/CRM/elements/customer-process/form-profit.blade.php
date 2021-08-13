@@ -5,7 +5,7 @@
 	<input type="hidden" id="id_profit" value="0">
 	<div class="col-md-4 form-left">
 		@include('CRM.elements.customer-process.profits.annalink')
-        @include('CRM.elements.customer-process.profits.re_provider')
+        @include('CRM.elements.customer-process.profits.re_provider') {{--Commission from Provider--}}
 	</div>
 	<div class="col-md-4 form-left">
         @include('CRM.elements.customer-process.profits.pay_provider')

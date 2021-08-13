@@ -159,7 +159,7 @@
 
         <!-- Commission for Agent -->
 
-        <!-- Commission received from provider -->
+        <!-- Commission from Provider -->
         <td style="background-color: #ffbfff"
             title="Commission received from provider">{{(!empty($provider_com))?$provider_com:''}}</td>
         <td style="background-color: #ffbfff"
@@ -170,8 +170,25 @@
             title="Commission received from provider">{{convert_price_float($tmp->re_total_amount_vn)}}</td>
         <td style="background-color: #ffbfff"
             title="Commission received from provider">{{\Carbon::parse($tmp->date_of_receipt)->format('d/m/Y')}}</td>
-        <td style="background-color: #ffbfff" title="Commission received from provider">{{$tmp->note_of_receipt}}</td>
-        <!-- Commission received from provider -->
+        <td style="background-color: #ffbfff" title="Commission received from provider" class="text-overflow">
+            <a href="" data-toggle="modal" data-target="#note_of_re_{{$tmp->id}}">{{$tmp->note_of_receipt}}</a>
+            <div class="modal fade" id="note_of_re_{{$tmp->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Note of receipt</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{$tmp->note_of_receipt}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <!-- Commission from Provider -->
 
         <!-- Pay for provider -->
         <td style="background-color: #81d881"
