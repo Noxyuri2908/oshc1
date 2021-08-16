@@ -284,8 +284,8 @@
         <div>
             <select class="form-control" name="gst_status_filter" id="gst_status_filter">
                 <option label=""></option>
-                    @foreach($gstConfig as $key=>$key)
-                        <option value="{{$key}}">{{$key}}</option>
+                    @foreach($gstConfig as $key=>$value)
+                        <option value="{{$key}}">{{$value}}</option>
                     @endforeach
             </select>
         </div>
@@ -364,7 +364,7 @@
     </th>
     <th>
         <div>
-            <input type="text" class="form-control "  name="provider_name_filter" id="provider_name_filter" autocomplete="fale">
+            <input type="text" class="form-control "  name="gitpu" id="provider_name_filter" autocomplete="fale">
         </div>
     </th>
     <th>
