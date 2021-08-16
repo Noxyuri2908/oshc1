@@ -150,7 +150,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{$tmp->note_cp}}
+                            <p style="    white-space: break-spaces;">{{$tmp->note_cp}}</p>
                         </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{$tmp->note_of_receipt}}
+                            <p style="    white-space: break-spaces;">{{$tmp->note_of_receipt}}</p>
                         </div>
                     </div>
                 </div>
