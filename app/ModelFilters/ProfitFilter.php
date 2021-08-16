@@ -238,9 +238,7 @@ class ProfitFilter extends ModelFilter
     }
 
     public function gstStatus($id){
-        return $this->related('invoice.agent', function ($q) use ($id) {
-            $q->where('gst', $id);
-        });
+        return $this->where('gst_status_agent_profit', $id);
     }
 
     public function amount($number){

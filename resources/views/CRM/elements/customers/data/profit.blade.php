@@ -136,7 +136,7 @@
         <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->vnd)}}</td>
         <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_amount_VN)}}</td>
         <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->pay_agent_date)->format('d/m/Y')}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$tmp->gst_status_agent_profit == 1 ? 'Included' : ($tmp->gst_status_agent_profit == 2 ? 'Not included ' : '')}}</td>
+        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$tmp->gst_status_agent_profit == 1 ? 'Included' : (($tmp->gst_status_agent_profit == 2) ? 'Not included ' : '')}}</td>
         <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->issue_date_com_agent)->format('d/m/Y')}}</td>
         <td class="align-middle text-overflow" style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">
             <a href="javascript:void(0)" data-toggle="modal" data-target="#notemodal{{$tmp->id}}">{{$tmp->note_cp}}</a>
