@@ -298,4 +298,7 @@ class ProfitFilter extends ModelFilter
         });
     }
 
+    public function dateOfPaymentPay($date){
+        return $this->whereDate('pay_provider_date', '<=', convert_date_to_db($date));
+    }
 }

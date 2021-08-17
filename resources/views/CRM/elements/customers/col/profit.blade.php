@@ -167,7 +167,6 @@
 <col class="width-170"/>
 <col class="width-170"/>
 <col class="width-170"/>
-<col class="width-170"/>
 
 <thead class="bg-200 text-900 thead-dark profit-thead">
     <tr class="first-row-head">
@@ -175,7 +174,7 @@
         <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfffff;color:#000">
             Revenue
         </th>
-        <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfbfff;color:#000">
+        <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #bfbfff;color:#000">
             Annalink received
         </th>
         <th class="align-middle text-center" colspan="12" scope="colgroup" style="background-color: #fffe98;color:#000">
@@ -184,7 +183,7 @@
         <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #ffbfff;color:#000">
             Commission from Provider
         </th>
-        <th class="align-middle text-center" colspan="11" scope="colgroup" style="background-color: #81d881;color:#000">
+        <th class="align-middle text-center" colspan="10" scope="colgroup" style="background-color: #81d881;color:#000">
             Pay for provider
         </th>
     </tr>
@@ -218,13 +217,12 @@
         <th>Bank fee (VND)</th>
         <th>GST</th>
         <th>Profit status</th>
-        <th>Commission payment status</th>
+        <th>Com payment status</th>
         <!-- Profit 1 -->
 
         <!-- Annalink received -->
         <th>Gross amount</th>
         <th>Promotion ($)</th>
-        <th>Surcharge ($)</th>
         <th>Surcharge fee</th>
         <th>Discount</th>
         <th>Total amount ($)</th>
@@ -334,7 +332,8 @@
             'pay_provider_total_amount',
             'pay_provider_exchange_rate',
             'pay_provider_total_VN',
-            'provider_name'
+            'provider_name',
+            'date_of_payment_pay'
         ],
         'tab'=>$tab,
                         'element_class_btn_row_edit'=>'profit_data_edit',

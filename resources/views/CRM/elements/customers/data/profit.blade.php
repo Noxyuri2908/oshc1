@@ -114,8 +114,6 @@
         <td style="background-color: #bfbfff"
             title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($tmp->invoice->bank_fee_number + $cus->extend_fee) : ''}} {{$currency}}</td>
         <td style="background-color: #bfbfff"
-            title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($sum_bank_fee):'' }} {{$currency}}</td>
-        <td style="background-color: #bfbfff"
             title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($tmp->invoice->extra):''}} {{$currency}}</td>
         <td style="background-color: #bfbfff"
             title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($_total_amount):''}} {{$currency}}</td>
@@ -156,7 +154,6 @@
                 </div>
             </div>
         </td>
-
         <!-- Commission for Agent -->
 
         <!-- Commission from Provider -->

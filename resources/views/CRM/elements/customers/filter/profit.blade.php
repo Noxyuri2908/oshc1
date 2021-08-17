@@ -212,8 +212,6 @@
     <th>
     </th>
     <th>
-    </th>
-    <th>
         <div>
             <input type="text" class="form-control" name="extra_filter" id="extra_filter">
         </div>
@@ -381,7 +379,9 @@
         </div>
     </th>
     <th>
-
+        <div>
+            <input type="date" class="form-control choose-date-form" placeholder="DD/MM/YYYY"  name="date_of_payment_pay_filter" id="date_of_payment_pay_filter" autocomplete="fale">
+        </div>
     </th>
     <th>
 
@@ -396,7 +396,7 @@
 @push('scripts')
     @include('CRM.partials.choose_date',[
     'ids'=>[
-        'date_of_payment_filter',
+        'date_of_payment_pay_filter',
         'date_of_receipt_filter'
 ]
 ])
