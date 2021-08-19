@@ -159,45 +159,57 @@
             <!--  Commission for Agent -->
 
             <!-- Commission received from provider -->
-            <td style="background-color: #ffbfff" title="Commission received from provider">{{$provider_com}}</td>
-            <td style="background-color: #ffbfff"
-                title="Commission received from provider">{{(!empty($profit))?convert_price_float($profit->re_total_amount):''}}</td>
-            <td style="background-color: #ffbfff"
-                title="Commission received from provider">{{(!empty($profit))?convert_price_float($profit->exchange_rate_re_provider):''}}</td>
-            <td style="background-color: #ffbfff"
-                title="Commission received from provider">{{(!empty($profit))?convert_price_float($profit->re_total_amount_vn):''}}</td>
-            <td style="background-color: #ffbfff"
-                title="Commission received from provider">{{(!empty($profit))?\Carbon::parse($profit->date_of_receipt)->format('d/m/Y'):''}}</td>
-            <td style="background-color: #ffbfff"
-                title="Commission received from provider">{{(!empty($profit))?$profit->note_of_receipt:''}}</td>
+                <td style="background-color: #ffbfff" title="Commission received from provider">{{$provider_com}}</td>
+                <td style="background-color: #ffbfff"
+                    title="Commission received from provider">{{(!empty($profit))?convert_price_float($profit->re_total_amount):''}}</td>
+                <td style="background-color: #ffbfff"
+                    title="Commission received from provider">{{(!empty($profit))?convert_price_float($profit->exchange_rate_re_provider):''}}</td>
+                <td style="background-color: #ffbfff"
+                    title="Commission received from provider">{{(!empty($profit))?convert_price_float($profit->re_total_amount_vn):''}}</td>
+                <td style="background-color: #ffbfff"
+                    title="Commission received from provider">{{(!empty($profit))?\Carbon::parse($profit->date_of_receipt)->format('d/m/Y'):''}}</td>
+                <td style="background-color: #ffbfff" title="Commission received from provider" class="text-overflow">
+                <a href="" data-toggle="modal" data-target="#note_of_re_{{$profit->id}}">{{$profit->note_of_receipt}}</a>
+                <div class="modal fade" id="note_of_re_{{$profit->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Note of receipt</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="    white-space: break-spaces;">{{$profit->note_of_receipt}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
             <!-- Commission received from provider -->
 
             <!-- Pay for provider -->
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?convert_price_float($profit->pay_provider_amount):'' }}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit)) && isset(config('myconfig.bank_fee')[$profit->pay_provider_bank_fee]) ? config('myconfig.bank_fee')[$profit->pay_provider_bank_fee] : ''}}</td style="background-color: #81d881" title="Pay for provider">
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?convert_price_float($profit->pay_provider_total_amount):'' }}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?convert_price_float($profit->pay_provider_exchange_rate):'' }}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?convert_price_float($profit->pay_provider_total_VN):'' }}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?convert_price_float($profit->pay_provider_paid):''}}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?convert_price_float($profit->pay_provider_balancer_1):''}}</td>
-            {{--            <td style="background-color: #81d881"--}}
-            {{--                title="Pay for provider">{{ $invoice->provider != null ? $invoice->provider->name : ''}}</td>--}}
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ isset(config('myconfig.payment_note_provider')[$payment_note]) ? config('myconfig.payment_note_provider')[$payment_note] : ''}}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?\Carbon::parse($profit->pay_provider_date)->format('d/m/Y'):'' }}</td>
-            <td style="background-color: #81d881"
-                title="Pay for provider">{{ (!empty($profit))?$profit->pay_provider_bank_account:'' }}</td>
-
-
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ convert_price_float($profit->pay_provider_paid) }}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ convert_price_float($profit->pay_provider_amount) }} {{$currency}}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ convert_price_float($cus->extend_fee) }} {{$currency}}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ isset(config('myconfig.bank_fee')[$profit->pay_provider_bank_fee]) ? config('myconfig.bank_fee')[$profit->pay_provider_bank_fee] : ''}}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ convert_price_float($profit->pay_provider_total_amount) }}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ convert_price_float($profit->pay_provider_exchange_rate) }}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ convert_price_float($profit->pay_provider_total_VN) }}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ !empty($payment_note) && !empty(config('myconfig.payment_note_provider')[$payment_note]) ? config('myconfig.payment_note_provider')[$payment_note] : ''}}</td>
+                <td style="background-color: #81d881"
+                    title="Pay for provider">{{ !empty($profit->pay_provider_date)?\Carbon::parse($profit->pay_provider_date)->format('d/m/Y'):'' }}</td>
+                <td style="background-color: #81d881" title="Pay for provider">{{ $profit->pay_provider_bank_account }}</td>
             <!-- Provider paid -->
+
             @php
                 $providerPaidAmountVND = $refund->refund_provider_amount * $refund->refund_provider_exchange_rate;
             @endphp
