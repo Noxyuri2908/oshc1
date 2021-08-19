@@ -179,6 +179,22 @@
 <col class="width-170" />
 <col class="width-170" />
 <col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
+<col class="width-170" />
 <thead class="bg-200 text-900 thead-dark refund-thead">
     <tr class="first-row-head">
         <td class="align-middle" colspan="18"></td>
@@ -202,7 +218,7 @@
 
 
         <th class="align-middle fixed-side">Country</th>
-        <th class="align-middle fixed-side">Name in full</th>
+        <th class="align-middle fixed-side">register</th>
         <th class="align-middle fixed-side">Provider</th>
         <th class="align-middle ">Status</th>
         <th class="align-middle ">Type of Refund</th>

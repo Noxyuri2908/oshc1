@@ -4,14 +4,19 @@
         $agent = $invoice->agent;
         $profit = $invoice->profit->first();
         $refund = $invoice->refund->first();
+        $cus = $invoice->customers->first();
+        $difference = !empty($invoice) ? $invoice->difference : '';
+
 
         $providerCom = $invoice->getProviderCom();
         if($profit != null && $agent != null && $providerCom != null && $refund != null){
-        $_total_amount = floatval($invoice->net_amount) + floatval($invoice->bank_fee) +  floatval($invoice->surcharge) - floatval($invoice->promotion_amount) + floatval($invoice->extra);
+        $_total_amount = !empty($invoice) ? $invoice->total : '';
         $sum_amount = $invoice->phieuthus->sum('amount');
         $sum_bank_fee =  $invoice->phieuthus->sum('bank_fee');
-        $phieuthu_old_exchange_rate = round(floatval((floatval($sum_amount)/floatval($invoice->net_amount + $sum_bank_fee))), 2);
         $currency = $invoice->provider != null ? $invoice->provider->currency() : '';
+        $phieuthu_old_exchange_rate = (!empty($invoice) && floatval($invoice->net_amount + $sum_bank_fee) != 0)?round(floatval((floatval($sum_amount)/floatval($invoice->net_amount + $sum_bank_fee))), 2):0;
+
+
         $hh = $invoice->hhs->first();
         if($hh != null){
         $payment_note = $hh->payment_note_provider;
@@ -94,38 +99,34 @@
             <td class="align-middle">{{(!empty($tmp->invoice) && !empty($profit))?$profit->visa_month:''}}</td>
             <td class="align-middle">{{(!empty($tmp->invoice) && !empty($profit))?$profit->visa_year:''}}</td>
 
-            <!-- Profit 1 -->
-            <td style="background-color: #bfffff"
-                title="Profit 1">{{(!empty($tmp->invoice) && !empty($profit))?convert_price_float($profit->profit_money):''}}</td>
-            <td style="background-color: #bfffff"
-                title="Profit 1">{{(!empty($tmp->invoice) && !empty($profit))?convert_price_float($profit->profit_money_VND):''}}</td>
-            <td style="background-color: #bfffff"
-                title="Profit 1">{{(!empty($tmp->invoice) && !empty($profit) && $profit->profit_status == 1)? "Done" : "Refund"}}</td>
-            <td style="background-color: #bfffff"
-                title="Profit 1">{{(!empty($tmp->invoice) && !empty($profit) && $profit->comm_status == 1 )? "Done" : "Refund"}}</td>
-            <td style="background-color: #bfffff"
-                title="Profit 1">{{(!empty($tmp->invoice) && !empty($profit))?convert_price_float($profit->profit_exchange_rate):''}}</td>
-            <td style="background-color: #bfffff"
-                title="Profit 1">{{(!empty($tmp->invoice) && !empty($profit))?convert_price_float($profit->profit_extra_money):''}}</td>
-            <!-- Profit 1 -->
+            <!-- Revenue -->
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_money)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_extra_money)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_total)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_exchange_rate)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_money_VND)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_bankfee_VND)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->gst)}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{$profit->profit_status == 1 ? 'Done' : ($profit->profit_status == 2 ? 'Refund' : '')}}</td>
+            <td style="background-color: #bfffff" title="Profit 1">{{$profit->comm_status == 1 ? 'Done' : ($profit->comm_status == 2 ? 'Refund' : '')}}</td>
+            <!-- Revenue -->
 
             <!-- Annalink received -->
             <td style="background-color: #bfbfff"
-                title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($tmp->invoice->net_amount):''}} {{$currency}}</td>
+                title="Annalink received ">{{convert_price_float($invoice->net_amount)}} {{$currency}}</td>
             <td style="background-color: #bfbfff"
-                title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($tmp->invoice->promotion_amount):''}} {{$currency}}</td>
+                title="Annalink received ">{{convert_price_float($invoice->promotion_amount)}} {{$currency}}</td>
             <td style="background-color: #bfbfff"
-                title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($tmp->invoice->surcharge):''}} {{$currency}}</td>
+                title="Annalink received ">{{convert_price_float($invoice->bank_fee_number + $cus->extend_fee)}} {{$currency}}</td>
+{{--            <td style="background-color: #bfbfff"--}}
+{{--                title="Annalink received ">{{convert_price_float($tmp->invoice->extra)}} {{$currency}}</td>--}}
             <td style="background-color: #bfbfff"
-                title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($sum_bank_fee):'' }} {{$currency}}</td>
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($tmp->invoice->extra):''}} {{$currency}}</td>
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{!empty($tmp->invoice)?convert_price_float($_total_amount):''}} {{$currency}}</td>
+                title="Annalink received ">{{convert_price_float($_total_amount)}} {{$currency}}</td>
+
             <td style="background-color: #bfbfff"
                 title="Annalink received ">{{convert_price_float($phieuthu_old_exchange_rate)}}</td>
-            <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($sum_amount)}}VNĐ
-            </td>
+            <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($sum_amount)}} VNĐ</td>
+            <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($difference)}} VNĐ</td>
             <!-- Annalink received -->
 
             <!-- Pay commission for User/Cousellor -->
