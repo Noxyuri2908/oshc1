@@ -208,30 +208,55 @@
                 <td style="background-color: #81d881"
                     title="Pay for provider">{{ !empty($profit->pay_provider_date)?\Carbon::parse($profit->pay_provider_date)->format('d/m/Y'):'' }}</td>
                 <td style="background-color: #81d881" title="Pay for provider">{{ $profit->pay_provider_bank_account }}</td>
+            <!-- Pay for provider -->
 
 
-{{--            <!-- Provider paid --> --}}
-            @php
-                $providerPaidAmountVND = $refund->refund_provider_amount * $refund->refund_provider_exchange_rate;
-            @endphp
-            <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_amount):'' }}</td>
-            <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_exchange_rate):'' }}</td>
-            <td>{{$providerPaidAmountVND != null ? convert_price_float($providerPaidAmountVND) : ''}}</td>
-            <td>{{$refund != null ? \Carbon::parse($refund->refund_provider_date)->format('d/m/Y') : ''}}</td>
+            <!-- Provider paid -->
+                @php
+                    $providerPaidAmountVND = $refund->refund_provider_amount * $refund->refund_provider_exchange_rate;
+                @endphp
+
+                <td>{{$configTypeOfRefund[$refund->refund_type_of_refund_pp]}}</td>
+                <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_amount):'' }}</td>
+                <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_exchange_rate):'' }}</td>
+                <td>{{$providerPaidAmountVND != null ? convert_price_float($providerPaidAmountVND) : ''}}</td>
+                <td>{{$refund != null ? \Carbon::parse($refund->refund_provider_date)->format('d/m/Y') : ''}}</td>
+                <td>{{getBank($refund->refund_bank_pp)->account}}</td>
+                <td>{{$refund != null ? $refund->commission : ''}}</td>
+                <td>{{$refund != null ? $refund->refund_situation_pp : ''}}</td>
             <!-- Provider paid -->
 
 
-            <!-- Pay back student -->
-            @php
-                $amountVNDPayBackStudent = $refund->std_amount * $refund->std_exchange_rate;
-            @endphp
-            <td>{{(!empty($refund))?convert_price_float($refund->std_amount):''}}</td>
+            <!-- Pay to client -->
+            <td>{{$refund != null ? $refund->std_amount : ($obj->net_amount - $obj->promotion_amount - $obj->extra)}}</td>
             <td>{{(!empty($refund))?convert_price_float($refund->std_deduction):''}}</td>
-            <td>{{(!empty($refund))?convert_price_float($refund->std_exchange_rate):''}}</td>
-            <td>{{(!empty($amountVNDPayBackStudent))?convert_price_float($amountVNDPayBackStudent):''}}</td>
+            <td>{{(!empty($refund))?convert_price_float($refund->bank_fee):''}}</td>
+
+            <td>{{(!empty($refund))?convert_price_float($refund->total_amount_pay_back_student_refund):''}}</td>
+            <td>{{convert_price_float($refund->std_exchange_rate)}}</td>
+            <td>{{convert_price_float($refund->std_refund_VND)}}</td>
+
             <td>{{(!empty($refund))?\Carbon::parse($refund->std_date_apyment)->format('d/m/Y'):''}}</td>
-            <td>{{(!empty($refund))?$refund->std_note:''}}</td>
-            <!-- Pay back student -->
+            <td style="background-color: #ffbfff" title="Commission received from provider" class="text-overflow">
+                <a href="" data-toggle="modal" data-target="#note_of_re_{{$refund->id}}">{{$refund->std_note}}</a>
+                <div class="modal fade" id="note_of_re_{{$refund->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Note of receipt</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="    white-space: break-spaces;">{{$refund->std_note}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{(!empty($refund))?$refund->balance:''}}</td>
+            <!-- Pay to client -->
 
             <!-- Get back com form agent -->
             <td>{{(!empty($refund))?convert_price_float($refund->refund_amount_com_agent):''}}</td>

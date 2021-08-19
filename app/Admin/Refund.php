@@ -35,7 +35,9 @@ class Refund extends Model
         'extra_fee',
         'bank_fee',
         'balance',
-        'status'
+        'status',
+        'std_refund_VND',
+        'total_amount_pay_back_student_refund'
 
     ];
 

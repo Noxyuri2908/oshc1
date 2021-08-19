@@ -526,6 +526,10 @@
         _bank_fee_refund = $('#bank_fee_refund').val();
         _balance_refund = $('#balance_refund').val();
         _status = $('#status :selected').val();
+        std_refund_VND = $('#std_refund_VND').val();
+        total_amount_pay_back_student_refund = $('#total_amount_pay_back_student_refund').val();
+
+
         _html += '</div>';
         if (!flag) {
             $('#div_refund_alert').html(_html);
@@ -561,7 +565,9 @@
                 extra_fee: _extra_fee_refund,
                 bank_fee : _bank_fee_refund,
                 balance : _balance_refund,
-                status : _status
+                status : _status,
+                std_refund_VND : std_refund_VND,
+                total_amount_pay_back_student_refund : total_amount_pay_back_student_refund
             }, function (data) {
                 window.location.reload();
             })

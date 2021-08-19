@@ -2,7 +2,7 @@
 <input type="hidden" id="id_refund" value="{{$refund != null ? $refund->id : 0}}">
 <div class="form-row">
 	<div class="col-md-6 form-left">
-		@include('CRM.elements.customer-process.refunds.provider_paid')
+		@include('CRM.elements.customer-process.refunds.provider_paid') {{--Received from provider--}}
 		@include('CRM.elements.customer-process.refunds.profit')
 	</div>
 	<div class="col-md-6 form-right">

@@ -11,6 +11,7 @@ View::composer([
     'CRM.elements.customers.filter.com',
     'CRM.elements.customers.filter.profit',
     'CRM.elements.customers.filter.refund',
+    'CRM.elements.customers.data.refund',
     'CRM.elements.customers.filter.extend',
 ], function ($view) {
     $countries = config('country.list');

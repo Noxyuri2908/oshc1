@@ -66,6 +66,10 @@ class RefundController extends Controller
         $data['bank_fee'] = $request->input('bank_fee');
         $data['balance'] = $request->input('balance');
         $data['status'] = $request->input('status');
+        $data['std_refund_VND'] = convert_number_currency_to_db($request->input('std_refund_VND'));
+        $data['total_amount_pay_back_student_refund'] = convert_number_currency_to_db($request->input('total_amount_pay_back_student_refund'));
+
+
         $apply = Apply::find($data['apply_id']);
         if ($apply == null) abor(404);
         $id_refund = $request->input('id_refund');

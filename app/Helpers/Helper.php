@@ -2012,8 +2012,14 @@ if (!function_exists('sortSettingsByOrder'))
 
 if (!function_exists('getBank'))
 {
-    function getBank()
+    function getBank($id = null)
     {
+        if (!empty($id))
+        {
+            $banks = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->where('id', $id)->first();
+            return $banks;
+        }
+
 
         $banks = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->get();
         return $banks;

@@ -227,6 +227,20 @@ class AddColumn extends Migration
                 $table->double('pay_agent_total_amount', 8, 2)->nullable()->default(0.00)->after('gst');
             });
         }
+
+        if (!Schema::hasColumn('refunds', 'std_refund_VND'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->double('std_refund_VND', 8, 2)->nullable()->default(0.00)->after('status');
+            });
+        }
+
+        if (!Schema::hasColumn('refunds', 'total_amount_pay_back_student_refund'))
+        {
+            Schema::table('refunds', function(Blueprint $table) {
+                $table->double('total_amount_pay_back_student_refund', 8, 2)->nullable()->default(0.00)->after('std_refund_VND');
+            });
+        }
     }
 
     /**
