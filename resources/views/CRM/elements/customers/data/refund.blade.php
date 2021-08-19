@@ -208,8 +208,9 @@
                 <td style="background-color: #81d881"
                     title="Pay for provider">{{ !empty($profit->pay_provider_date)?\Carbon::parse($profit->pay_provider_date)->format('d/m/Y'):'' }}</td>
                 <td style="background-color: #81d881" title="Pay for provider">{{ $profit->pay_provider_bank_account }}</td>
-            <!-- Provider paid -->
 
+
+{{--            <!-- Provider paid --> --}}
             @php
                 $providerPaidAmountVND = $refund->refund_provider_amount * $refund->refund_provider_exchange_rate;
             @endphp
