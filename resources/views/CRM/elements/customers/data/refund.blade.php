@@ -100,54 +100,63 @@
             <td class="align-middle">{{(!empty($tmp->invoice) && !empty($profit))?$profit->visa_year:''}}</td>
 
             <!-- Revenue -->
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_money)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_extra_money)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_total)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_exchange_rate)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_money_VND)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_bankfee_VND)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->gst)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{$profit->profit_status == 1 ? 'Done' : ($profit->profit_status == 2 ? 'Refund' : '')}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{$profit->comm_status == 1 ? 'Done' : ($profit->comm_status == 2 ? 'Refund' : '')}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_money)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_extra_money)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_total)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_exchange_rate)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_money_VND)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->profit_bankfee_VND)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($profit->gst)}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{$profit->profit_status == 1 ? 'Done' : ($profit->profit_status == 2 ? 'Refund' : '')}}</td>
+                <td style="background-color: #bfffff" title="Profit 1">{{$profit->comm_status == 1 ? 'Done' : ($profit->comm_status == 2 ? 'Refund' : '')}}</td>
             <!-- Revenue -->
 
             <!-- Annalink received -->
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{convert_price_float($invoice->net_amount)}} {{$currency}}</td>
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{convert_price_float($invoice->promotion_amount)}} {{$currency}}</td>
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{convert_price_float($invoice->bank_fee_number + $cus->extend_fee)}} {{$currency}}</td>
-{{--            <td style="background-color: #bfbfff"--}}
-{{--                title="Annalink received ">{{convert_price_float($tmp->invoice->extra)}} {{$currency}}</td>--}}
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{convert_price_float($_total_amount)}} {{$currency}}</td>
-
-            <td style="background-color: #bfbfff"
-                title="Annalink received ">{{convert_price_float($phieuthu_old_exchange_rate)}}</td>
-            <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($sum_amount)}} VNĐ</td>
-            <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($difference)}} VNĐ</td>
+                <td style="background-color: #bfbfff"
+                    title="Annalink received ">{{convert_price_float($invoice->net_amount)}} {{$currency}}</td>
+                <td style="background-color: #bfbfff"
+                    title="Annalink received ">{{convert_price_float($invoice->promotion_amount)}} {{$currency}}</td>
+                <td style="background-color: #bfbfff"
+                    title="Annalink received ">{{convert_price_float($invoice->bank_fee_number + $cus->extend_fee)}} {{$currency}}</td>
+                <td style="background-color: #bfbfff"
+                    title="Annalink received ">{{convert_price_float($_total_amount)}} {{$currency}}</td>
+                <td style="background-color: #bfbfff"
+                    title="Annalink received ">{{convert_price_float($phieuthu_old_exchange_rate)}}</td>
+                <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($sum_amount)}} VNĐ</td>
+                <td style="background-color: #bfbfff" title="Annalink received ">{{convert_price_float($difference)}} VNĐ</td>
             <!-- Annalink received -->
 
-            <!-- Pay commission for User/Cousellor -->
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{$comm->comm.' '.$text_donvi}}</td>
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{(!empty($profit))?$profit->pay_agent_bonus:''}}</td>
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{(!empty($profit))?convert_price_float($profit->pay_agent_amount_comm):''}}</td>
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{(!empty($profit))?convert_price_float($profit->pay_agent_deduction):''}}</td>
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{(!empty($profit))?convert_price_float($profit->pay_agent_exchange_rate):''}}</td>
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{(!empty($profit))?convert_price_float($profit->pay_agent_amount_VN):''}}</td>
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{(!empty($profit))?\Carbon::parse($profit->pay_agent_date)->format('d/m/Y'):''}}</td>
-
-            <td style="background-color: #fffe98"
-                title="Pay commission for Agent/Cousellor">{{$agent->gst == 1 ? 'Included' : 'Not include '}}</td>
-            <!-- Pay commission for User/Cousellor -->
+            <!--  Commission for Agent -->
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{(!empty($comm) && !empty($text_donvi))?$comm->comm.' '.$text_donvi:''}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$profit->pay_agent_bonus}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($profit->invoice->comm)}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($profit->pay_agent_deduction)}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($profit->pay_agent_total_amount)}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($profit->pay_agent_exchange_rate)}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($profit->vnd)}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($profit->pay_agent_amount_VN)}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($profit->pay_agent_date)->format('d/m/Y')}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$profit->gst_status_agent_profit == 1 ? 'Included' : (($profit->gst_status_agent_profit == 2) ? 'Not included ' : '')}}</td>
+                <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($profit->issue_date_com_agent)->format('d/m/Y')}}</td>
+                <td class="align-middle text-overflow" style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#notemodal{{$profit->id}}">{{$profit->note_cp}}</a>
+                    <div class="modal fade" id="notemodal{{$profit->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="    white-space: break-spaces;">{{$profit->note_cp}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            <!--  Commission for Agent -->
 
             <!-- Commission received from provider -->
             <td style="background-color: #ffbfff" title="Commission received from provider">{{$provider_com}}</td>
