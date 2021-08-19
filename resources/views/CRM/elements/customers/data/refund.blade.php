@@ -299,6 +299,7 @@
             <!-- Revenue ajustment -->
             <td>{{ (!empty($refund))?\Carbon::parse($refund->request_date)->format('d/m/Y'):'' }}</td>
             <td>{{ isset(config('myconfig.status_refund')[$refund->std_status]) ? config('myconfig.status_refund')[$refund->std_status] : '' }}</td>
+            <td>{{ (!empty($refund))?convert_price_float($refund->extra_fee):'' }}</td>
             <td>{{ (!empty($refund))?convert_price_float($refund->refund_profit_2):'' }}</td>
             <td>{{ (!empty($refund))?convert_price_float($refund->refund_profit_2_VN):'' }}</td>
             <!-- Revenue ajustment -->
