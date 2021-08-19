@@ -182,15 +182,15 @@
 <thead class="bg-200 text-900 thead-dark refund-thead">
     <tr class="first-row-head">
         <td class="align-middle" colspan="18"></td>
-        <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #bfffff;color:#000">Profit 1</th>
-        <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #bfbfff;color:#000">Annalink received</th>
-        <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #fffe98;color:#000">Pay commission for agent</th>
+        <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #bfffff;color:#000">Revenue</th>
+        <th class="align-middle text-center" colspan="7" scope="colgroup" style="background-color: #bfbfff;color:#000">Annalink received</th>
+        <th class="align-middle text-center" colspan="12" scope="colgroup" style="background-color: #fffe98;color:#000">Commission for Agent</th>
         <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #ffbfff;color:#000">Commission received from provider</th>
-        <th class="align-middle text-center" colspan="11" scope="colgroup" style="background-color: #81d881;color:#000">Pay for provider</th>
-        <th class="align-middle text-center" colspan="4" scope="colgroup" style="background-color: #ccc;color:#000">Provider paid</th>
-        <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: #fcd703;color:#000">Pay back student</th>
-        <th class="align-middle text-center" colspan="4" scope="colgroup" style="background-color: rgb(216, 208, 208);color:#000">Get back com from agent</th>
-        <th class="align-middle text-center" colspan="3" scope="colgroup" style="background-color: #e7d989;color:#000">Profit 2</th>
+        <th class="align-middle text-center" colspan="10" scope="colgroup" style="background-color: #81d881;color:#000">Pay for provider</th>
+        <th class="align-middle text-center" colspan="8" scope="colgroup" style="background-color: #ccc;color:#000">Received from provider</th>
+        <th class="align-middle text-center" colspan="9" scope="colgroup" style="background-color: #fcd703;color:#000">Pay to client</th>
+        <th class="align-middle text-center" colspan="6" scope="colgroup" style="background-color: rgb(216, 208, 208);color:#000">Recall commission from agent</th>
+        <th class="align-middle text-center" colspan="5" scope="colgroup" style="background-color: #e7d989;color:#000">Revenue ajustment</th>
     </tr>
     <tr class="first-row">
         <th>
@@ -215,36 +215,43 @@
         <th class="align-middle ">Visa status</th>
         <th class="align-middle ">Months</th>
         <th class="align-middle ">Year</th>
-        <!-- Profit 1 -->
+
+        <!-- Revenue -->
         <th>Profit $</th>
-        <th>Total Profit VND</th>
+        <th>Extra fee ($)</th>
+        <th>Revenue from service</th>
+        <th>Revenue from Ex rate (VND)</th>
+        <th>Profit VND</th>
+        <th>Bank fee (VND)</th>
+        <th>GST</th>
         <th>Profit status</th>
         <th>Commission payment status</th>
-        <th>Profit Exchange Rate</th>
-        <th>Profit Extra Fee</th>
-        <!-- Profit 1 -->
+        <!-- Revenue -->
 
         <!-- Annalink received -->
-        <th>Net mount</th>
+        <th>Gross amount</th>
         <th>Promotion ($)</th>
-        <th>Surcharge ($)</th>
-        <th>Bank fee</th>
-        <th>+/- ($)</th>
+        <th>Surcharge fee</th>
         <th>Total amount ($)</th>
         <th>Exchange rate</th>
         <th>Total amount VND</th>
+        <th>Difference</th>
         <!-- Annalink received -->
 
-        <!-- Pay commission for User/Cousellor -->
+        <!--  Commission for Agent -->
         <th>Commission rate</th>
         <th>Bonus %</th>
         <th>Amount com</th>
-        <th>Deduction</th>
+        <th>+/- ($)</th>
+        <th>Total amount com ($)</th>
         <th>Exchange rate</th>
+        <th>+/- VND</th>
         <th>Amount VNĐ</th>
         <th>Date of payment</th>
         <th>GST Status</th>
-        <!-- Pay commission for User/Cousellor -->
+        <th>Issue date</th>
+        <th>Note</th>
+        <!--  Commission for Agent -->
 
         <!-- Commission received from provider -->
         <th>% Commission received</th>
@@ -257,48 +264,57 @@
 
 
         <!-- Pay for provider -->
+        <th>% Paid</th>
         <th>Amount</th>
+        <th>Extend fee</th>
         <th>Bank fee</th>
         <th>Total amount</th>
         <th>Exchange rate</th>
         <th>Total amount VND</th>
-        <th>% Paid</th>
-        <th>Balance 1 VND</th>
-        {{--        <th>Provider</th>--}}
         <th>Payment note</th>
         <th>Date of payment</th>
         <th>Bank account</th>
 
 
-        <!-- Provider paid -->
+        <!-- Received from provider -->
+        <th>Type of refund</th>
         <th>Amount</th>
         <th>Exchange rate</th>
         <th>Amount (VND)</th>
         <th>Paid date</th>
-        <!-- Provider paid -->
+        <th>Bank</th>
+        <th>Commission</th>
+        <th>Situation</th>
+        <!-- Received from provider -->
 
-        <!-- Pay back student -->
+        <!-- Pay to client -->
         <th>Amount</th>
         <th>Deduction ($)</th>
+        <th>Bank fee ($)</th>
+        <th>Total amount ($)</th>
         <th>Exchange rate</th>
         <th>Amount VND</th>
         <th>Date of payment</th>
         <th>Note</th>
-        <!-- Pay back student -->
+        <th>Balance</th>
+        <!-- Pay to client -->
 
-        <!-- Get back com form agent -->
+        <!-- Recall commission from agent -->
+        <th>% com</th>
         <th>Amount com</th>
         <th>Exchange rate</th>
         <th>Amount VND</th>
+        <th>Status</th>
         <th>Note</th>
-        <!-- Get back com form agent -->
+        <!-- Recall commission from agent -->
 
-        <!-- Profit 2 -->
+        <!-- Revenue ajustment -->
         <th>Request date</th>
         <th>Status refund</th>
+        <th>Extra fee</th>
         <th>Profit VND</th>
-        <th>Profit $</th>
-        <!-- Profit 2 -->
+        <th>Profit VND</th>
+        <!-- Revenue ajustment -->
     </tr>
     @include('CRM.elements.customers.filter.refund')
 </thead>
