@@ -376,6 +376,21 @@ class CustomerController extends Controller
                 $data = Refund::when($request->get('ref_no'), function ($query) use ($request, $applyIds) {
                     $query->whereIn('apply_id', $applyIds);
                 })
+                    ->when($request->get('refund_type_of_refund_pp'), function ($query) use ($request) {
+                        $query->where('refund_type_of_refund_pp', $request->input('refund_type_of_refund_pp'));
+                    })
+                    ->when($request->get('refund_type_of_refund_pp_tt'), function ($query) use ($request) {
+                        $query->where('refund_type_of_refund_pp', $request->input('refund_type_of_refund_pp_tt'));
+                    })
+                    ->when($request->get('paid_date'), function ($query) use ($request) {
+                        $query->whereDate('refund_provider_date', '<=', convert_date_to_db($request->input('paid_date')));
+                    })
+                    ->when($request->get('refund_bank_pp'), function ($query) use ($request) {
+                        $query->where('refund_bank_pp', $request->input('refund_bank_pp'));
+                    })
+                    ->when($request->get('request_date'), function ($query) use ($request) {
+                        $query->whereDate('request_date', '<=', convert_date_to_db($request->input('request_date')));
+                    })
                     ->when($request->get('country_id'), function ($query) use ($request, $applyIds) {
                         $query->whereIn('apply_id', $applyIds);
                     })

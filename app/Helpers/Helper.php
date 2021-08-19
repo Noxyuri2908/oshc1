@@ -2020,7 +2020,6 @@ if (!function_exists('getBank'))
             return $banks;
         }
 
-
         $banks = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->get();
         return $banks;
     }

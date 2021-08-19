@@ -328,7 +328,7 @@
         <th>Request date</th>
         <th>Status refund</th>
         <th>Extra fee</th>
-        <th>Profit VND</th>
+        <th>Revenue</th>
         <th>Profit VND</th>
         <!-- Revenue ajustment -->
     </tr>
@@ -366,7 +366,12 @@
             'std_note',
             'note2',
             'request_date',
-            'std_status'
+            'std_status',
+            'refund_type_of_refund_pp',
+            'refund_type_of_refund_pp_tt',
+            'paid_date',
+            'refund_bank_pp',
+            'request_date'
         ],
         'tab'=>$tab,
         'element_class_btn_row_edit'=>'refund_data_edit',

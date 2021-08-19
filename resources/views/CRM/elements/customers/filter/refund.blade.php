@@ -157,32 +157,8 @@
     {{--  Revenue  --}}
         <th></th>
         <th></th>
-        <th>
-            <div>
-                <select class="form-control" name="profit_status_filter" id="profit_status_filter">
-                    <option label=""></option>
-                    @if(!empty($profit_status))
-                        @foreach($profit_status as $keyProfitStatus=>$valueProfitStatus)
-                            <option
-                                value="{{$keyProfitStatus}}">{{$valueProfitStatus}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
-        </th>
-        <th>
-            <div>
-                <select class="form-control" name="commission_payment_status_filter" id="commission_payment_status_filter">
-                    <option label=""></option>
-                    @if(!empty($commission_payment_status))
-                        @foreach($commission_payment_status as $keyCommissionPaymentStatus=>$valueCommissionPaymentStatus)
-                            <option
-                                value="{{$keyCommissionPaymentStatus}}">{{$valueCommissionPaymentStatus}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
-        </th>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -205,36 +181,18 @@
         <th></th>
         <th></th>
         <th>
-            <div>
-                <input type="text" class="form-control choose-date-form" name="pay_agent_date_filter" id="pay_agent_date_filter">
-            </div>
         </th>
         <th>
-            <div>
-                <select class="form-control" name="gst_filter" id="gst_filter">
-                    <option label=""></option>
-                    @if(!empty($gst_status_agent_profit))
-                        @foreach($gst_status_agent_profit as $keyGstStatusAgentProfit=>$valueGstStatusAgentProfit)
-                            <option
-                                value="{{$keyGstStatusAgentProfit}}">{{$valueGstStatusAgentProfit}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
         </th>
         <th></th>
         <th></th>
         <th></th>
         <th></th>
         <th>
-            <div>
-                <input type="text" class="form-control choose-date-form" name="date_of_receipt_filter" id="date_of_receipt_filter">
-            </div>
         </th>
         <th>
-            <div>
-                <input type="text" class="form-control" name="note_of_receipt_filter" id="note_of_receipt_filter">
-            </div>
+        </th>
+        <th>
         </th>
     {{--   Commission for Agent  --}}
 
@@ -251,58 +209,52 @@
         <th></th>
         <th></th>
         <th>
-            <div>
-                <select class="form-control" name="payment_note_provider_filter" id="payment_note_provider_filter">
-                    <option label=""></option>
-                    @if(!empty($type_payment_note))
-                        @foreach($type_payment_note as $keyPaymentNote=>$valuePaymentNote)
-                            <option
-                                value="{{$keyPaymentNote}}">{{$valuePaymentNote}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
         </th>
         <th>
-            <div>
-                <input type="text" class="form-control choose-date-form" name="date_payment_filter"
-                       id="date_payment_filter">
-            </div>
         </th>
         <th>
-            <div>
-                <input type="text" class="form-control" name="bank_account_filter" id="bank_account_filter">
-            </div>
         </th>
         <th></th>
         <th></th>
         <th></th>
         <th>
-            <div>
-                <input type="text" class="form-control choose-date-form" name="refund_provider_date_filter"
-                       id="refund_provider_date_filter">
-            </div>
         </th>
         <th></th>
     {{--  Pay for provider  --}}
 
     {{--   Received from provider  --}}
+        <th>
+            <div>
+                <select class="form-control" name="refund_type_of_refund_pp_tt_filter" id="refund_type_of_refund_pp_tt_filter">
+                    <option label=""></option>
+                    @if(!empty($configTypeOfRefund))
+                        @foreach($configTypeOfRefund as $keyTypeOfRefund=>$valueTypeOfRefund)
+                            <option
+                                value="{{$keyTypeOfRefund}}">{{$valueTypeOfRefund}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+        </th>
         <th></th>
         <th></th>
         <th></th>
         <th>
             <div>
-                <input type="text" class="form-control choose-date-form" name="std_date_apyment_filter"
-                       id="std_date_apyment_filter">
+                <input type="text" class="form-control choose-date-form" name="paid_date_filter" id="paid_date_filter">
             </div>
         </th>
         <th>
             <div>
-                <input type="text" class="form-control" name="std_note_filter"
-                       id="std_note_filter">
+                <select class="form-control" name="refund_bank_pp_filter" id="refund_bank_pp_filter">
+                    <option label=""></option>
+                        @foreach(getBank() as $key => $value)
+                            <option
+                                value="{{$value->id}}">{{$value->code}} {{$value->account}}</option>
+                        @endforeach
+                </select>
             </div>
         </th>
-        <th></th>
         <th></th>
         <th></th>
     {{--  Received from provider   --}}
@@ -310,29 +262,10 @@
 
     {{--  Pay to client  --}}
         <th>
-            <div>
-                <input type="text" class="form-control" name="note2_filter"
-                       id="note2_filter">
-            </div>
         </th>
         <th>
-            <div>
-                <input type="text" class="form-control choose-date-form" name="request_date_filter"
-                       id="request_date_filter">
-            </div>
         </th>
         <th>
-            <div>
-                <select class="form-control" name="std_status_filter" id="std_status_filter">
-                    <option label=""></option>
-                    @if(!empty($std_status))
-                        @foreach($std_status as $keyStdStatus=>$valueStdStatus)
-                            <option
-                                value="{{$keyStdStatus}}">{{$valueStdStatus}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
         </th>
         <th></th>
         <th></th>
@@ -354,7 +287,11 @@
 
 
     {{--  Revenue ajustment  --}}
-        <th></th>
+        <th>
+            <div>
+                <input type="text" class="form-control choose-date-form" name="request_date_filter" id="request_date_filter" autocomplete="false">
+            </div>
+        </th>
         <th></th>
         <th></th>
         <th></th>
@@ -362,3 +299,9 @@
     {{--  Revenue ajustment  --}}
 
 </tr>
+@push('scripts')
+    @include('CRM.partials.choose_date',[
+    'ids'=>[
+        'paid_date_filter'
+]
+])

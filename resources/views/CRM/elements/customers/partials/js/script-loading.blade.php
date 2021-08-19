@@ -98,6 +98,7 @@
     $(document).on('keyup','.last-row input',function(e){
         debounceAjax(e.target.value);
     });
+
     $(document).on('change','.last-row select',function(e){
         debounceAjax(e.target.value);
     });
