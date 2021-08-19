@@ -139,8 +139,8 @@
                 <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$profit->gst_status_agent_profit == 1 ? 'Included' : (($profit->gst_status_agent_profit == 2) ? 'Not included ' : '')}}</td>
                 <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($profit->issue_date_com_agent)->format('d/m/Y')}}</td>
                 <td class="align-middle text-overflow" style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#notemodal{{$profit->id}}">{{$profit->note_cp}}</a>
-                    <div class="modal fade" id="notemodal{{$profit->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#note_cp_{{$profit->id}}">{{$profit->note_cp}}</a>
+                    <div class="modal fade" id="note_cp_{{$profit->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -237,9 +237,9 @@
             <td>{{convert_price_float($refund->std_refund_VND)}}</td>
 
             <td>{{(!empty($refund))?\Carbon::parse($refund->std_date_apyment)->format('d/m/Y'):''}}</td>
-            <td style="background-color: #ffbfff" title="Commission received from provider" class="text-overflow">
-                <a href="" data-toggle="modal" data-target="#note_of_re_{{$refund->id}}">{{$refund->std_note}}</a>
-                <div class="modal fade" id="note_of_re_{{$refund->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <td class="text-overflow">
+                <a href="" data-toggle="modal" data-target="#std_note_{{$refund->id}}">{{$refund->std_note}}</a>
+                <div class="modal fade" id="std_note_{{$refund->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -258,20 +258,50 @@
             <td>{{(!empty($refund))?$refund->balance:''}}</td>
             <!-- Pay to client -->
 
-            <!-- Get back com form agent -->
-            <td>{{(!empty($refund))?convert_price_float($refund->refund_amount_com_agent):''}}</td>
-            <td>{{(!empty($refund))?convert_price_float($refund->refund_exchange_rate_agent):''}}</td>
-            <td>{{(!empty($refund))?convert_price_float($refund->refund_agent_vnd):''}}</td>
-            <td>{{(!empty($refund))?$refund->note2:''}}</td>
+            <!-- Recall commission from agent -->
+                <td>{{$comm->comm}} %</td>
+                <td>{{convert_price_float($refund->refund_amount_com_agent_gbcfa)}}</td>
+                <td>
+                    @if(!empty($refund))
+                        {{convert_price_float($refund->refund_exchange_rate_agent)}}
+                    @elseif(!empty($profit))
+                        {{convert_price_float($profit->pay_agent_exchange_rate)}}
+                    @endif
+                </td>
+                <td>
+                    @if(!empty($refund))
+                        {{convert_price_float($refund->refund_agent_vnd)}}
+                    @elseif(!empty($profit))
+                        {{convert_price_float($profit->pay_agent_amount_VN)}}
+                    @endif
+                </td>
+                <td>{{config('myconfig.status_refund_recall')[$refund->status]}}</td>
+                <td  class="text-overflow">
+                    <a href="" data-toggle="modal" data-target="#note_2_{{$refund->id}}">{{$refund->note2}}</a>
+                    <div class="modal fade" id="note_2_{{$refund->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Note of receipt</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="    white-space: break-spaces;">{{$refund->note2}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            <!-- Recall commission from agent -->
 
-            <!-- Get back com form agent -->
-
-            <!-- Profit 2 -->
+            <!-- Revenue ajustment -->
             <td>{{ (!empty($refund))?\Carbon::parse($refund->request_date)->format('d/m/Y'):'' }}</td>
             <td>{{ isset(config('myconfig.status_refund')[$refund->std_status]) ? config('myconfig.status_refund')[$refund->std_status] : '' }}</td>
             <td>{{ (!empty($refund))?convert_price_float($refund->refund_profit_2):'' }}</td>
             <td>{{ (!empty($refund))?convert_price_float($refund->refund_profit_2_VN):'' }}</td>
-            <!-- Profit 2 -->
+            <!-- Revenue ajustment -->
         </tr>
     @endif
 @endforeach

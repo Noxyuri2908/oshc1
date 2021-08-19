@@ -27,13 +27,13 @@
 					<label class="control-label">Exchange rate</label>
 					<div class="input-contenr">
                         <input type="text" class="form-control" id="refund_exchange_rate_agent"
-                        @if(!empty($refund))
-                            value="{{$refund->refund_exchange_rate_agent}}"
-                        @elseif(!empty($profit))
-                            value="{{$profit->pay_agent_exchange_rate}}"
-                        @else
-                            value=""
-                        @endif>
+                            @if(!empty($refund))
+                                value="{{$refund->refund_exchange_rate_agent}}"
+                            @elseif(!empty($profit))
+                                value="{{$profit->pay_agent_exchange_rate}}"
+                            @else
+                                value=""
+                            @endif>
 					</div>
 				</div>
 				<div class="form-group clearfix">
