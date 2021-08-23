@@ -221,7 +221,7 @@
                 <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_exchange_rate):'' }}</td>
                 <td>{{$providerPaidAmountVND != null ? convert_price_float($providerPaidAmountVND) : ''}}</td>
                 <td>{{$refund != null ? \Carbon::parse($refund->refund_provider_date)->format('d/m/Y') : ''}}</td>
-                <td>{{!empty(getBank($refund->refund_bank_pp)) ? getBank($refund->refund_bank_pp)->account : ''}}</td>
+                <td>{{!empty($refund->refund_bank_pp) ? getBank($refund->refund_bank_pp)->account : ''}}</td>
                 <td>{{$refund != null ? $refund->commission : ''}}</td>
                 <td>{{$refund != null ? $refund->refund_situation_pp : ''}}</td>
             <!-- Provider paid -->
@@ -275,7 +275,7 @@
                         {{convert_price_float($profit->pay_agent_amount_VN)}}
                     @endif
                 </td>
-                <td>{{config('myconfig.status_refund_recall')[$refund->status]}}</td>
+                <td>{{!empty($refund->status) ? config('myconfig.status_refund_recall')[$refund->status] : ''}}</td>
                 <td  class="text-overflow">
                     <a href="" data-toggle="modal" data-target="#note_2_{{$refund->id}}">{{$refund->note2}}</a>
                     <div class="modal fade" id="note_2_{{$refund->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
