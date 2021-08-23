@@ -216,7 +216,7 @@
                     $providerPaidAmountVND = $refund->refund_provider_amount * $refund->refund_provider_exchange_rate;
                 @endphp
 
-                <td>{{$configTypeOfRefund[$refund->refund_type_of_refund_pp]}}</td>
+                <td>{{!empty($refund->refund_type_of_refund_pp) ? $configTypeOfRefund[$refund->refund_type_of_refund_pp] : ''}}</td>
                 <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_amount):'' }}</td>
                 <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_exchange_rate):'' }}</td>
                 <td>{{$providerPaidAmountVND != null ? convert_price_float($providerPaidAmountVND) : ''}}</td>
