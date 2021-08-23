@@ -221,7 +221,7 @@
                 <td>{{(!empty($refund))?convert_price_float($refund->refund_provider_exchange_rate):'' }}</td>
                 <td>{{$providerPaidAmountVND != null ? convert_price_float($providerPaidAmountVND) : ''}}</td>
                 <td>{{$refund != null ? \Carbon::parse($refund->refund_provider_date)->format('d/m/Y') : ''}}</td>
-                <td>{{!empty($refund->refund_bank_pp) ? getBank($refund->refund_bank_pp)->account : ''}}</td>
+                <td>{{!empty($refund->refund_bank_pp) && !empty(getBank($refund->refund_bank_pp)) ? getBank($refund->refund_bank_pp)->account : ''}}</td>
                 <td>{{$refund != null ? $refund->commission : ''}}</td>
                 <td>{{$refund != null ? $refund->refund_situation_pp : ''}}</td>
             <!-- Provider paid -->
