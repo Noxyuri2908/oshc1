@@ -767,6 +767,21 @@ class Apply extends Model
                 convert_date_to_db($request->get('start_date')),
                 convert_date_to_db($request->get('end_date')),
             ])
+            ->groupBy(
+                'applies.id',
+                'applies.agent_id',
+                'applies.provider_id',
+                'applies.initiated_date',
+                'applies.delivered_date',
+                'applies.ref_no',
+                'applies.amount_to',
+                'applies.amount_to_unit',
+                'applies.payment_method',
+                'applies.type_get_data_payment',
+                'customers.full_name',
+                'promotions.amount',
+                'profits.com_status_cp'
+            )
             ->orderBy('applies.initiated_date', 'ASC')->get();
         foreach ($flywire as $items)
         {

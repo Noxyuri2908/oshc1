@@ -592,6 +592,18 @@
                 calFee()
             })
 
+            $('#type_service').change(function (e) {
+                e.preventDefault();
+                let dataId = this.value
+                $.get('http://oshcglobal/crm/ajax/customer/getProvider', { provider_id: dataId }, function (data) {
+                    let html = '<option value=""></option>'
+                    $.each(data, function (index, value) {
+                        html += '<option value="' + value.id + '" data-value="' + value.slug + '" >' + value.name + '</option>'
+                    })
+                    $('#provider_id').html(html)
+                })
+            })
+
             $('#no_of_adults').change(function () {
                 _num = $(this).val()
                 $.get(formPartner, { num: _num }, function (data) {
