@@ -76,6 +76,16 @@
 </div>
 @push('scripts')
     <script>
+
+        $(document).ready(function (){
+            @if(request()->get('name_agent'))
+                var agent_id = {{request()->get('apply_id')}};
+                var name_agent = "{{request()->get('name_agent')}}";
+                $('#agent_id').append('<option value="'+agent_id+'">'+name_agent+'</option>');
+            @endif
+        })
+
+
         $('#master_agent').select2({
             dropdownParent: $('.master_agent_select2'),
             ajax: {

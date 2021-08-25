@@ -314,6 +314,7 @@ class CustomerProcessController extends Controller
     public function showDocsAndRemindForm(Request $request)
     {
         $obj = Apply::findOrFail($request->get('apply_id'));
+        $nameAgent = User::getAgentName($request->get('apply_id'));
         $register = $obj->registerCus();
         $partner = json_encode($obj->partners());
         $childs = json_encode($obj->childrens());
@@ -327,6 +328,8 @@ class CustomerProcessController extends Controller
             route(
                 'customer.create',
                 [
+                    'apply_id' => $request->get('apply_id'),
+                    'name_agent' => $nameAgent,
                     'service_country' => (!empty($obj)) ? $obj->service_country : '',
                     'type_service' => (!empty($obj)) ? $obj->type_service : '',
                     'type_invoice' => (!empty($obj)) ? $obj->type_invoice : '',
