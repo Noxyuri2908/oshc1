@@ -227,16 +227,20 @@
 </div>
 @push('scripts')
     <script>
+        $(document).ready(function (){
+            @if(request()->get('type_invoice'))
+                $('#type_invoice').val('2');
+            @endif
+
+            @if(request()->get('type_service'))
+                callProvider({{request()->get('type_service')}});
+            @endif
+        })
+
         $(document).on('change', '#type_service', function (e) {
             e.preventDefault();
             let dataId = this.value
-            $.get('{{route('ajax.customer.getProvider')}}', { provider_id: dataId }, function (data) {
-                let html = '<option value=""></option>'
-                $.each(data, function (index, value) {
-                    html += '<option value="' + value.id + '" data-value="' + value.slug + '" >' + value.name + '</option>'
-                })
-                $('#provider_id').html(html)
-            })
+            callProvider(dataId);
         })
         $(document).on('change','#start_date, #end_date',function(e){
             let startDate = $('#start_date').val();
@@ -260,6 +264,16 @@
             let month = arr[1];
             let year = arr[2];
             return year+'-'+month+'-'+day;
+        }
+
+        function callProvider(dataId){
+            $.get('{{route('ajax.customer.getProvider')}}', { provider_id: dataId }, function (data) {
+                let html = '<option value=""></option>'
+                $.each(data, function (index, value) {
+                    html += '<option value="' + value.id + '" data-value="' + value.slug + '" >' + value.name + '</option>'
+                })
+                $('#provider_id').html(html)
+            })
         }
     </script>
 @endpush

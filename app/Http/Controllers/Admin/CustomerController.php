@@ -1016,6 +1016,7 @@ class CustomerController extends Controller
                 'first_case_date' => date('Y-m-d'),
             ]);
         }
+
         //Create customer
         $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb');
         $data_register['apply_id'] = $invoice->id;
