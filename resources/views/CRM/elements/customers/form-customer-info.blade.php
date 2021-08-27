@@ -1,3 +1,8 @@
+@php
+    if(!empty(request()->get('destination'))){
+        $destination = request()->get('destination');
+    }
+@endphp
 <div class="card mb-3">
     <div class="card-header">
         <div class="chevron-down-up">
@@ -144,3 +149,13 @@
         </div>
     </div>
 </div>
+@push('script')
+    <script>
+        $(document).ready(function (){
+            var destination = {{$destination ?? ''}};
+            if (!destination){
+                $('#destination').val(destination);
+            }
+        })
+    </script>
+@endpush

@@ -117,7 +117,7 @@
         <td class="align-middle">{{convert_price_float($tmp->comm)}}</td>
         <td class="align-middle">{{convert_price_float($tmp->total)}}</td>
         <td class="align-middle">{{$tmp->staff != null ? $tmp->staff->username : ''}}</td>
-        <td class="align-middle">{{$tmp->note}}</td>
+        <td class="align-middle text-overflow">{{$tmp->note}}</td>
         <td class="align-middle">{{(!empty(\Config::get('location_australia')[$tmp->location_australia]))?\Config::get('location_australia')[$tmp->location_australia]:''}}</td>
 
     </tr>

@@ -316,6 +316,7 @@ class CustomerProcessController extends Controller
         $obj = Apply::findOrFail($request->get('apply_id'));
         $nameAgent = User::getAgentName($request->get('apply_id'));
         $register = $obj->registerCus();
+        $destination = $register->destination;
         $partner = json_encode($obj->partners());
         $childs = json_encode($obj->childrens());
         $remindApply = $obj->remind_status;
@@ -330,6 +331,7 @@ class CustomerProcessController extends Controller
                 [
                     'apply_id' => $request->get('apply_id'),
                     'name_agent' => $nameAgent,
+                    'destination' => $destination,
                     'service_country' => (!empty($obj)) ? $obj->service_country : '',
                     'type_service' => (!empty($obj)) ? $obj->type_service : '',
                     'type_invoice' => (!empty($obj)) ? $obj->type_invoice : '',
