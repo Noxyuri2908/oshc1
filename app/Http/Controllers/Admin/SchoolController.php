@@ -22,7 +22,7 @@ class SchoolController extends Controller
     public function index()
     {
         session()->forget('data_fillter_school');
-        $objs = School::orderby('name')->paginate(50);
+        $objs = School::orderby('name')->get();
         $flag = "partner_school";
         return view('CRM.pages.school')->with(compact('objs', 'flag'));
     }

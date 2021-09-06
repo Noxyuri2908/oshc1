@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\FlywireStoreData;
 use App\Console\Commands\FlywireUpdateStatusByDay;
+use App\Console\Commands\ImportData;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         FlywireStoreData::class,
-        FlywireUpdateStatusByDay::class
+        FlywireUpdateStatusByDay::class,
+        ImportData::class
     ];
 
     /**

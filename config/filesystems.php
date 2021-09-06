@@ -54,8 +54,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
-
+        'data' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/data/'),
+            'url' => env('APP_URL').'/storage/app/data/',
+            'visibility' => 'public',
+        ],
         'album' => [
             'driver' => 'local',
             'root' => base_path().'/FILES/source/album'
