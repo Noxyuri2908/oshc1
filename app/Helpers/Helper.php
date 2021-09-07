@@ -1907,6 +1907,23 @@ if (!function_exists('getValueByIndexConfig'))
     }
 }
 
+if (!function_exists('getKeyConfigByValue'))
+{
+    function getKeyConfigByValue($config, $value)
+    {
+        if (!empty($value))
+        {
+            $result = array_keys($config, $value);
+            if (count($result) > 0)
+            {
+                return $result[0];
+            }
+        }
+
+        return "";
+    }
+}
+
 if (!function_exists('setLabelStatus'))
 {
     function setLabelStatus($status_id)
