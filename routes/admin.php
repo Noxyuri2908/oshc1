@@ -33,16 +33,9 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
         ->name('mutileUpdate.question');
 
     Route::resource('price', 'Admin\PriceController');
-    Route::post(
-        '/mutile-update/price',
-        'Admin\PriceController@mutileUpdate'
-    )
-        ->name('mutileUpdate.price');
-    Route::post(
-        '/import/price',
-        'Admin\PriceController@import'
-    )
-        ->name('import.price');
+    Route::post('/mutile-update/price', 'Admin\PriceController@mutileUpdate')->name('mutileUpdate.price');
+    Route::post('/import/price', 'Admin\PriceController@import')->name('import.price');
+    Route::post('/import/price/import', 'Admin\PriceController@importExcel')->name('import.excel');
 
 
     Route::resource('apply', 'Admin\ApplyController');

@@ -941,7 +941,6 @@ class AgentController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             Excel::import(new UsersImportTypeOfAgent(), $file);
-
         }
         ini_set('memory_limit', '-1');
         return back()->with(['msg', 'The Message Error']);
