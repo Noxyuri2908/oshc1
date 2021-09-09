@@ -154,7 +154,7 @@ class HoahongController extends Controller
         $agent_id = $request->get('agent');
         $dateOfPayment = Hoahong::select('date_payment_provider')->where('apply_id', $agent_id)->first();
 
-        return response()->json(['date' => convert_date_form_db($dateOfPayment->date_payment_provider)]);
+        return response()->json(['date' => convert_date_form_db($dateOfPayment->date_payment_provider ?? "")]);
 
     }
 }

@@ -87,16 +87,14 @@
         </div>
     </div>
 </fieldset>
-<script>
-    @if(!empty($obj->phieuthus) && !empty($obj->phieuthus->first()->current_id) && $obj->phieuthus->first()->getCurrency() == 'VND')
-    $('#total-amount-annalink-received').inputmask({ alias: 'currency', prefix: '', digits: 0 })
-    @else
-    $('#total-amount-annalink-received').inputmask({ alias: 'currency', prefix: '', digits: 2 })
-    @endif
-</script>
 @push('scripts')
         @include('CRM.partials.number_currency',['ids'=>['gross-amount'], 'currency' => !empty($obj) ? $obj->provider->currency() : ''])
     <script type="text/javascript">
+        @if(!empty($obj->phieuthus) && !empty($obj->phieuthus->first()->current_id) && $obj->phieuthus->first()->getCurrency() == 'VND')
+        $('#total-amount-annalink-received').inputmask({ alias: 'currency', prefix: '', digits: 0 })
+        @else
+        $('#total-amount-annalink-received').inputmask({ alias: 'currency', prefix: '', digits: 2 })
+        @endif
         $(document).ready(() => {
 
             var exchange_rate = $('#exchange_rate_annalink_receipt').val();

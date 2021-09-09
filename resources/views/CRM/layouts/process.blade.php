@@ -27,12 +27,15 @@
         return string;
     }
     function convertNumberToCurrency(number){
-        var currency = number.toLocaleString(
-        undefined, // leave undefined to use the browser's locale,
-                    // or use a string like 'en-US' to override it.
-        { minimumFractionDigits: 2 }
-        );
-        return currency;
+        if (!number && number !== NaN && number !== undefined)
+        {
+            var currency = number.toLocaleString(
+                undefined, // leave undefined to use the browser's locale,
+                // or use a string like 'en-US' to override it.
+                { minimumFractionDigits: 2 }
+            );
+            return currency;
+        }
     }
   </script>
   @yield('js')

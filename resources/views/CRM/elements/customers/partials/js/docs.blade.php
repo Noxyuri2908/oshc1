@@ -81,11 +81,7 @@
 
     })
 
-
-
-
-
-    (function () {
+    $(document).ready(function (){
         $('.table-responsive-sm').on('shown.bs.dropdown', function (e) {
             var $table = $(this),
                 $menu = $(e.target).find('.dropdown-menu'),
@@ -98,7 +94,7 @@
         $('.table-responsive-sm').on('hide.bs.dropdown', function () {
             $('#table-all').css("padding-bottom", 0);
         })
-    })();
+    })
 
 
     $(document).on('click', '.delete_doc', function (e) {

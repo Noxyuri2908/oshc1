@@ -139,10 +139,10 @@
     })
 
     $(document).ready(function (){
-        var goss_amount = $('#gross-amount').val().replace(/,/g, '');
-        var promotion = $('#promotion_annalink_receipt').val().replace(/,/g, '');
-        var bank_fee = $('#bankfee_annalink_receipt').val().replace(/,/g, '');
-        var discount  = $('#discount_annalink_receipt').val().replace(/,/g, '');
+        var goss_amount = ($('#gross-amount').val() !== NaN && $('#gross-amount').val() !== undefined) ? $('#gross-amount').val().replace(/,/g, '') : '';
+        var promotion = ($('#promotion_annalink_receipt').val() !== NaN && $('#promotion_annalink_receipt').val() !== undefined) ? $('#promotion_annalink_receipt').val().replace(/,/g, '') : '';
+        var bank_fee = ($('#bankfee_annalink_receipt').val() !== NaN && $('#bankfee_annalink_receipt').val() !== undefined) ? $('#bankfee_annalink_receipt').val().replace(/,/g, '') : '';
+        var discount  = ($('#discount_annalink_receipt').val() !== NaN && $('#discount_annalink_receipt').val() !== undefined) ? $('#discount_annalink_receipt').val().replace(/,/g, '') : '';
 
         var total = goss_amount - promotion - discount;
         total = total + parseFloat(bank_fee);
