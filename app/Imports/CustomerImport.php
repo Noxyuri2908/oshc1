@@ -50,6 +50,7 @@ class CustomerImport implements ToCollection
                     'extra' => $row[40],
                     'comm' => $row[41],
                     'total' => $row[42],
+                    'type_get_data_payment' => 1
                 ]);
 
 
