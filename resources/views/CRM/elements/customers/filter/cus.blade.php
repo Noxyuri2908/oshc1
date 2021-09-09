@@ -179,6 +179,9 @@
     <th></th>
     <th></th>
     <th>
+
+    </th>
+    <th>
         <div>
             <select class="form-control" name="payment_method_filter" id="payment_method_filter">
                 <option label=""></option>
@@ -191,6 +194,7 @@
             </select>
         </div>
     </th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -217,6 +221,7 @@
             </select>
         </div>
     </th>
+    <th></th>
     <th>
         <input type="text" class="form-control" name="month_filter" id="month_filter" autocomplete="off">
     </th>
