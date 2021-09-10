@@ -584,10 +584,12 @@
     function callTotalAmount(){
         let amountCom = convertStringCurrencyToNumber($('#pay_agent_amount_comm').val()) || 0;
         let extra = convertStringCurrencyToNumber($('#pay_agent_extra').val()) || 0;
-        //console.log('amount '+amountCom);
-        //console.log('extra '+extra);
-        let totalAmount = parseFloat(amountCom) + parseFloat(extra);
-        //console.log(totalAmount);
+        let grossAmount = convertNumberToCurrency($('#gross-amount').val()) || 0;
+        let dc = convertNumberToCurrency($('#discount_annalink_receipt').val()) || 0;
+        let bn = convertNumberToCurrency($('#pay_agent_bonus').val()) || 0;
+
+        let totalAmount = parseFloat(amountCom) + parseFloat(grossAmount - dc) * parseFloat(bn / 100) + parseFloat(extra);
+
         $('#pay_agent_total_amount').val(convertNumberToCurrency(totalAmount));
     }
 
@@ -629,11 +631,16 @@
         if(gstStatus == gstInclude){
             // amountCom = (net_amount-discount) *(comRate/100+bonus/100);
             amountCom = ( net_amount - discount ) * (comRate / 100);
+
         }else if (gstStatus == gstNotInclude){
             // amountCom = ((net_amount-discount) *(comRate/100+bonus/100))/1.1;
             amountCom = (( net_amount - discount ) * (comRate / 100) / 1.1);
         }
-        $('#pay_agent_amount_comm').val(amountCom.toFixed(2)); //
+
+        if (!amountCom && amountCom !== NaN && amountCom !== undefined)
+        {
+            $('#pay_agent_amount_comm').val(amountCom.toFixed(2)); //
+        }
         loadProfit();
         callTotalAmount();
         callTotalAmountVnd();
@@ -669,12 +676,12 @@
 
         $('#profit_total').val(totat_profit1 / 1.1);
 
-        var  profit_total = parseFloat(convertStringCurrencyToNumber($('#profit_total').val()));
+        var profit_total = parseFloat(convertStringCurrencyToNumber($('#profit_total').val())).toFixed(2);
+        console.log(profit_total);
         var vnd = parseFloat(convertStringCurrencyToNumber($('#vnd').val()));
         var pay_provider_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#pay_provider_exchange_rate').val()));
 
-
-        _profit_VN = (profit_total * pay_provider_exchange_rate) - (vnd);
+        _profit_VN = parseFloat(profit_total * pay_provider_exchange_rate) - (vnd);
 
         var gst = $('#profit_total').val() * (10 / 100);
         $('#gst').val(gst.toFixed(2));
