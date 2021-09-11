@@ -22,17 +22,12 @@ class CalendarController extends Controller
     {
         $this->middleware(function ($request, $next) use ($client) {
             $token = \Session::get('google_token');
-            if (!empty($token)) {
+            if(!empty(Auth::user()->google_token)){
+                $token = Auth::user()->google_token;
                 $this->client = $client->getClient($token);
                 return $next($request);
-            } else {
-                if(!empty(Auth::user()->google_token)){
-                    $token = Auth::user()->google_token;
-                    $this->client = $client->getClient($token);
-                    return $next($request);
-                }else{
-                    return redirect()->route('crm.dashboard');
-                }
+            }else{
+                return redirect()->route('crm.dashboard');
             }
         });
     }
@@ -62,7 +57,6 @@ class CalendarController extends Controller
                 $optParams['privateExtendedProperty'] = 'agent_id=' . $request->get('agent_appointment_filter');
             }
             $events = $calendarService->events->listEvents('primary', $optParams);
-//            dd($events);
             $nextPageToken = $events->getNextPageToken();
             return response()->json([
                 'nextToken' => $nextPageToken,
@@ -136,9 +130,6 @@ class CalendarController extends Controller
                 'dateTime' => $end_date->format(\DateTime::RFC3339),
                 'timeZone' => $request->get('utc_end_time'),
             ),
-            // 'recurrence' => array(
-            //     'RRULE:FREQ=DAILY;COUNT=2'
-            // ),
             'colorId' => $request->get('color_id'),
             'attendees' => $arrAttendees,
             'reminders' => array(
@@ -152,8 +143,6 @@ class CalendarController extends Controller
                 ],
             ]
         ));
-//            $event->setStart($google_start_time);
-//            $event->setEnd($google_end_time);
 
         $calendarId = 'primary';
         $optParam = [];
