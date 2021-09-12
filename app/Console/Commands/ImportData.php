@@ -41,6 +41,7 @@ class ImportData extends Command
     public function handle()
     {
         //
+        ini_set('memory_limit', '-1');
         $files = Storage::disk('data')->allFiles($this->argument('table'));
         foreach ($files as $key => $path){
             $this->import($path);
