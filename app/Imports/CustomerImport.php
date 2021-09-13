@@ -73,11 +73,14 @@ class CustomerImport implements ToCollection
                     'extend_fee' => $row[35],
                     'exchange_rate' => $row[43] ?? 0,
                 ]);
+
             }catch (\Exception $e)
             {
                 echo $e->getMessage();
                 die();
             }
         }
+        return 'Done!';
+
     }
 }

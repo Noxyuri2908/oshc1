@@ -37,8 +37,9 @@
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
                                     <select class="form-control" id="account_bank_hh">
-                                        @foreach(config('bank_account') as $key=>$value)
-                                            <option value="{{$key}}">{{$key}} ({{$value['code']}})</option>
+                                        <option label=""></option>
+                                        @foreach(getBank() as $key => $item)
+                                            <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -155,8 +156,9 @@
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
                                     <select class="form-control" id="account_bank_hh">
-                                        @foreach(config('bank_account') as $key=>$value)
-                                            <option value="{{$key}}" {{$hh->account_bank == $key ? 'selected' : ''}}>{{$key}} ({{$value['code']}})</option>
+                                        <option label=""></option>
+                                        @foreach(getBank() as $key => $item)
+                                            <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
                                         @endforeach
                                     </select>
                                 </div>

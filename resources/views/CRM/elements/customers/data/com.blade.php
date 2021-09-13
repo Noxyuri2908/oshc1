@@ -6,6 +6,9 @@
             $donvi = isset(config('myconfig.donvi')[$commission->donvi]) ? config('myconfig.donvi')[$commission->donvi] : '%';
             $val_comm = $commission->comm.$donvi;
         }
+
+        $bank = !empty($tmp->account_bank) ? getBank($tmp->account_bank) : '';
+
     @endphp
     <tr class="data-commission" id="data-commission_{{$tmp->id}}" data-id="{{$tmp->invoice->id}}">
         <td class="sticky-col">
@@ -46,8 +49,8 @@
         <td class="">{{(!empty($tmp->invoice))?convert_price_float($tmp->invoice->promotion_amount):''}}</td>
         <td class="">{{ !empty($tmp->invoice) && isset(config('myconfig.bank_fee')[$tmp->invoice->bank_fee])? convert_price_float($tmp->invoice->net_amount*$tmp->invoice->bank_fee) : ''}}</td>
         <td class="">{{ !empty($tmp->customers) ? convert_price_float($tmp->customers->extend_fee) : ''}}</td>
-        <td class="">{{ !empty($tmp)? $tmp->gst : ''}}</td>
-        <td class="">{{ !empty($tmp->invoice)? convert_price_float($tmp->surcharge) : ''}}</td>
+        <td class="">{{ !empty($tmp->invoice)? $tmp->invoice->gst : ''}}</td>
+        <td class="">{{ !empty($tmp->invoice)? convert_price_float($tmp->invoice->surcharge) : ''}}</td>
         <td class="">{{(!empty($tmp->invoice))?convert_price_float($tmp->invoice->total):''}}</td>
         <td class="">{{(!empty($tmp->invoice)) && !empty($tmp->invoice->provider) ? $tmp->invoice->provider->name : ''}}</td>
         <td class="">{{!empty($tmp->invoice) && isset(config('myconfig.status_invoice')[$tmp->invoice->status]) ? config('myconfig.status_invoice')[$tmp->invoice->status] : ''}}</td>
@@ -57,7 +60,7 @@
         <td class="">{{$tmp->hoahong_month}}</td>
         <td class="">{{$tmp->hoahong_year}}</td>
         <td class="">{{!empty($tmp->date_payment_provider)?\Carbon::parse($tmp->date_payment_provider)->format('d/m/Y'):''}}</td>
-        <td class="">{{$tmp->account_bank}}</td>
+        <td class="">{{!empty($bank) ? "$bank->account $bank->code" : ''}}</td>
         <td class="">{{!empty($tmp->date_payment_agent)?\Carbon::parse($tmp->date_payment_agent)->format('d/m/Y'):''}}</td>
         <td class="">{{$tmp->policy_no}}</td>
         <td class="">{{$val_comm}}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Imports\CommImport;
 use App\Imports\CustomerImport;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,10 @@ class ImportData extends Command
      *
      * @return void
      */
+
+    protected $table = '';
+
+
     public function __construct()
     {
         parent::__construct();
@@ -41,8 +46,9 @@ class ImportData extends Command
     public function handle()
     {
         //
+        $this->table = $this->argument('table');
         ini_set('memory_limit', '-1');
-        $files = Storage::disk('data')->allFiles($this->argument('table'));
+        $files = Storage::disk('data')->allFiles($this->table);
         foreach ($files as $key => $path){
             $this->import($path);
         }
@@ -51,8 +57,18 @@ class ImportData extends Command
 
     public function import($path){
         try {
-            Excel::import(new CustomerImport(), storage_path('app/data/'.$path));
-            return 'Done!';
+            switch ($this->table)
+            {
+                case 'customers':
+                    Excel::import(new CustomerImport(), storage_path('app/data/'.$path));
+                    break;
+                case 'comms':
+                    Excel::import(new CommImport(), storage_path('app/data/'.$path));
+                    break;
+                default:
+                    echo 'table not found';
+                    break;
+            }
 
         }catch (\Exception $exception){
             echo $exception->getMessage();

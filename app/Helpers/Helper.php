@@ -2033,8 +2033,8 @@ if (!function_exists('getBank'))
     {
         if (!empty($id))
         {
-            $banks = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->where('id', $id)->first();
-            return $banks;
+            $bank = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->where('id', $id)->first();
+            return !empty($bank) ? $bank : '';
         }
 
         $banks = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->get();
