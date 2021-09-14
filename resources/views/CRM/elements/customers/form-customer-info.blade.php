@@ -68,6 +68,7 @@
                 <div class="form-group">
                     <label for="country">Nationality</label>
                     <select class="form-control" id="country" name="country" required>
+                        <option value=""></option>
                         @foreach(config('country.list') as $key=>$value)
                             @if(!isset($cus))
                                 <option value="{{$key}}" {{request()->get('country') == $key ? 'selected' : ''}}>{{$value}}</option>
