@@ -22,12 +22,17 @@ class CalendarController extends Controller
     {
         $this->middleware(function ($request, $next) use ($client) {
             $token = \Session::get('google_token');
-            if(!empty(Auth::user()->google_token)){
-                $token = Auth::user()->google_token;
+            if (!empty($token)) {
                 $this->client = $client->getClient($token);
                 return $next($request);
-            }else{
-                return redirect()->route('crm.dashboard');
+            } else {
+                if(!empty(Auth::user()->google_token)){
+                    $token = Auth::user()->google_token;
+                    $this->client = $client->getClient($token);
+                    return $next($request);
+                }else{
+                    return redirect()->route('crm.dashboard');
+                }
             }
         });
     }
