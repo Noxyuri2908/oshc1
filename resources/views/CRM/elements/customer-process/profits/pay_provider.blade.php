@@ -89,11 +89,9 @@
                 <label class="control-label">Bank account</label>
                 <div class="input-contenr">
                     <select class="form-control text-right" id="pay_provider_bank_account">
-                        @foreach(config('bank_account') as $key=>$value)
-                            <option
-                                value="{{$key}}" {{$profit != null && $profit->pay_provider_bank_account == $key ? 'selected' : ''}}>{{$key}}
-                                ({{$value['code']}})
-                            </option>
+                        <option label=""></option>
+                        @foreach(getBank() as $key => $item)
+                            <option value="{{$item->id}}" {{$profit != null && $profit->pay_provider_bank_account == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
                         @endforeach
                     </select>
                 </div>

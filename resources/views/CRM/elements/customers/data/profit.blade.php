@@ -10,6 +10,7 @@
         $sum_bank_fee =  !empty($tmp->invoice) && $tmp->invoice->phieuthus != null ?$tmp->invoice->phieuthus->sum('bank_fee'):'';
         $_total_amount = !empty($invoice) ? $invoice->total : '';
         $difference = !empty($invoice) ? $invoice->difference : '';
+        $bank = getBank($tmp->pay_provider_bank_account);
 
         $phieuthu_old_exchange_rate = (!empty($invoice) && floatval($invoice->net_amount + $sum_bank_fee) != 0)?round(floatval((floatval($sum_amount)/floatval($invoice->net_amount + $sum_bank_fee))), 2):0;
         $cus =$tmp->invoice->customers->first();
@@ -208,7 +209,7 @@
             title="Pay for provider">{{ !empty($payment_note) && !empty(config('myconfig.payment_note_provider')[$payment_note]) ? config('myconfig.payment_note_provider')[$payment_note] : ''}}</td>
         <td style="background-color: #81d881"
             title="Pay for provider">{{ !empty($tmp->pay_provider_date)?\Carbon::parse($tmp->pay_provider_date)->format('d/m/Y'):'' }}</td>
-        <td style="background-color: #81d881" title="Pay for provider">{{ $tmp->pay_provider_bank_account }}</td>
+        <td style="background-color: #81d881" title="Pay for provider">{{!empty($tmp->pay_provider_bank_account) && !empty($bank) ? $bank->account . ' ' . $bank->code : ''}}</td>
     </tr>
 @endforeach
 

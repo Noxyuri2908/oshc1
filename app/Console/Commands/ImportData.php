@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Imports\CommImport;
 use App\Imports\CustomerImport;
+use App\Imports\ProfitImport;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -64,6 +65,9 @@ class ImportData extends Command
                     break;
                 case 'comms':
                     Excel::import(new CommImport(), storage_path('app/data/'.$path));
+                    break;
+                case 'profits':
+                    Excel::import(new ProfitImport(), storage_path('app/data/'.$path));
                     break;
                 default:
                     echo 'table not found';
