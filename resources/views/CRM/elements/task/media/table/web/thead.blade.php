@@ -5,8 +5,8 @@
     <th class="width-220">Lên lịch hẹn đăng bài</th>
     <th class="width-170">Ngày đăng</th>
     <th class="width-100">CHUYÊN MỤC</th>
-    <th class="width-170">BÀI POST</th>
-    <th class="width-500">LINK POST</th>
+    <th class="width-500">BÀI POST</th>
+    <th class="width-170">LINK POST</th>
     <th class="width-120">Nguồn bài</th>
     <th class="width-200">Chi tiết nguồn bài</th>
     <th class="width-200">Loại bài DV</th>
