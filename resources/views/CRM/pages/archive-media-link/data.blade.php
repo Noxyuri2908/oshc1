@@ -19,7 +19,7 @@
         <td class="white-space-preline-report">{{$data->name}}</td>
         <td class="white-space-preline-report">{{$data->getCountryName()}}</td>
 {{--        <td class="white-space-preline-report">{{$data->source_id}}</td>--}}
-        <td class="white-space-preline-report">{{$data->link}}</td>
+        <td class="white-space-preline-report"><a href="{{$data->link}}" target="_blank">{{$data->link}}</a></td>
         <td class="white-space-preline-report">{{$data->getTypeName()}}</td>
         <td class="white-space-preline-report">{{$data->getHotNewName()}}</td>
         <td class="white-space-preline-report">{{$data->getInformationFocusName()}}</td>
