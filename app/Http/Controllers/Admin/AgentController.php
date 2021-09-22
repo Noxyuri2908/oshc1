@@ -532,6 +532,7 @@ class AgentController extends Controller
             "rating",
             "potential_service",
             "type_id",
+            "staff_id"
         ]);
         $validator = Validator::make($data_login,[
             "email"=>'sometimes|required|email|unique:users,email,'.$id
