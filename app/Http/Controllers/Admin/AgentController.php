@@ -492,13 +492,15 @@ class AgentController extends Controller
         $status = config('admin.status');
         $services = Service::where('status', 1)->get();
         $flag = 'agent.index';
+        $action = 'edit';
         return view('CRM.pages.edit-agent')->with(compact(
             'flag',
             'staffs',
             'status',
             'services',
             'obj',
-            'comms'
+            'comms',
+            'action'
         ));
     }
 

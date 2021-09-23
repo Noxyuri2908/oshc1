@@ -199,7 +199,11 @@
                         <select name="staff_id" id="staff_id" class="form-control">
                             <option label=""></option>
                             @foreach($staffs as $staff)
-                                <option value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id?'selected':''}}>{{$staff->admin_id}}</option>
+                                @if($action == 'edit')
+                                    <option value="{{$staff->id}}" {{$obj->staff_id == $staff->id ? 'selected' : '' }} >{{$staff->admin_id}}</option>
+                                @else
+                                    <option value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id?'selected':''}}>{{$staff->admin_id}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
