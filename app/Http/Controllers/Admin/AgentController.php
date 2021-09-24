@@ -342,7 +342,7 @@ class AgentController extends Controller
     public function showData(Request $request, $id)
     {
         $user = User::with(['info'])->findOrFail($id);
-        $users = [$user];
+        $users = $user;
         return response()->json([
             'view' => view('CRM.elements.agents.data', compact(
                 'users'
@@ -368,6 +368,30 @@ class AgentController extends Controller
         }
         $flag = 'agent.index';
         $data = $request->all();
+        $data = $request->except(
+            'contact_name',
+            'contact_position',
+            'contact_phone',
+            'contact_birthday',
+            'contact_email',
+            'contact_skype',
+            'contact_facebook',
+            'contact_note',
+            'contact_is_receive_comm',
+            'contact_acc_name',
+            'contact_bank',
+            'contact_currency',
+            'contact_bank_address',
+            'contact_receiver_address',
+            'contact_swift_code',
+            'type_service',
+            'type',
+            'comm',
+            'date',
+            'donvi',
+            'gst',
+            'type_payment'
+        );
         $validator = Validator::make($data,[
             "email"=>'sometimes|required|email|unique:users,email'
         ]);
@@ -386,7 +410,14 @@ class AgentController extends Controller
         $data['country'] = $data['country_id'];
         $data['registered_date'] = date('Y-m-d');
         $data['date_of_contract'] = convert_date_to_db($data['date_of_contract']);
-        $new_account = User::create($data);
+        try {
+            $new_account = User::create($data);
+        }catch (\Exception $e)
+        {
+            echo $e->getMessage();
+            echo $e->getLine();
+            die();
+        }
 
         //Create contact person
         $data_contact = $request->only(
@@ -407,43 +438,57 @@ class AgentController extends Controller
             'contact_swift_code'
         );
         if (!empty($data_contact['contact_name'])) {
-            foreach ($data_contact['contact_name'] as $keyContact => $value) {
-                $_arr_contact = [];
-                $_arr_contact['user_id'] = $new_account->id;
-                $_arr_contact['name'] = $data_contact['contact_name'][$keyContact];
-                $_arr_contact['position'] = $data_contact['contact_position'][$keyContact];
-                $_arr_contact['phone'] = $data_contact['contact_phone'][$keyContact];
-                $_arr_contact['birthday'] = $data_contact['contact_birthday'][$keyContact];
-                $_arr_contact['email'] = $data_contact['contact_email'][$keyContact];
-                $_arr_contact['skype'] = $data_contact['contact_skype'][$keyContact];
-                $_arr_contact['facebook'] = $data_contact['contact_facebook'][$keyContact];
-                $_arr_contact['note'] = $data_contact['contact_note'][$keyContact];
-                $_arr_contact['is_receive_comm'] = $data_contact['contact_is_receive_comm'][$keyContact];
-                $_arr_contact['acc_name'] = $data_contact['contact_acc_name'][$keyContact];
-                $_arr_contact['bank'] = $data_contact['contact_bank'][$keyContact];
-                $_arr_contact['currency'] = $data_contact['contact_currency'][$keyContact];
-                $_arr_contact['bank_address'] = $data_contact['contact_bank_address'][$keyContact];
-                $_arr_contact['receiver_address'] = $data_contact['contact_receiver_address'][$keyContact];
-                $_arr_contact['swift_code'] = $data_contact['contact_swift_code'][$keyContact];
-                Person::create($_arr_contact);
+            try {
+                foreach ($data_contact['contact_name'] as $keyContact => $value) {
+                    $_arr_contact = [];
+                    $_arr_contact['user_id'] = $new_account->id;
+                    $_arr_contact['name'] = $data_contact['contact_name'][$keyContact];
+                    $_arr_contact['position'] = $data_contact['contact_position'][$keyContact];
+                    $_arr_contact['phone'] = $data_contact['contact_phone'][$keyContact];
+                    $_arr_contact['birthday'] = $data_contact['contact_birthday'][$keyContact];
+                    $_arr_contact['email'] = $data_contact['contact_email'][$keyContact];
+                    $_arr_contact['skype'] = $data_contact['contact_skype'][$keyContact];
+                    $_arr_contact['facebook'] = $data_contact['contact_facebook'][$keyContact];
+                    $_arr_contact['note'] = $data_contact['contact_note'][$keyContact];
+                    $_arr_contact['is_receive_comm'] = $data_contact['contact_is_receive_comm'][$keyContact];
+                    $_arr_contact['acc_name'] = $data_contact['contact_acc_name'][$keyContact];
+                    $_arr_contact['bank'] = $data_contact['contact_bank'][$keyContact];
+                    $_arr_contact['currency'] = $data_contact['contact_currency'][$keyContact];
+                    $_arr_contact['bank_address'] = $data_contact['contact_bank_address'][$keyContact];
+                    $_arr_contact['receiver_address'] = $data_contact['contact_receiver_address'][$keyContact];
+                    $_arr_contact['swift_code'] = $data_contact['contact_swift_code'][$keyContact];
+                    Person::create($_arr_contact);
+                }
+            }catch (\Exception $e)
+            {
+                echo $e->getMessage();
+                echo $e->getLine();
+                die();
             }
         }
 
         //Create agent commission
         $data_comm = $request->only('type_service', 'type', 'comm', 'date', 'donvi', 'gst', 'type_payment');
         if (isset($data_comm['type_service'])) {
-            foreach ($data_comm['type_service'] as $key => $value) {
-                $_data = [];
-                $_data['type_service'] = $value;
-                $_data['type'] = $data_comm['type'][$key];
-                $_data['comm'] = $data_comm['comm'][$key];
-                $_data['date'] = $data_comm['date'][$key];
-                $_data['donvi'] = $data_comm['donvi'][$key];
-                $_data['gst'] = $data_comm['gst'][$key];
-                $_data['type_payment'] = $data_comm['type_payment'][$key];
-                $_data['user_id'] = $new_account->id;
-                $_data['status'] = 1;
-                Commission::create($_data);
+            try {
+                foreach ($data_comm['type_service'] as $key => $value) {
+                    $_data = [];
+                    $_data['type_service'] = $value;
+                    $_data['type'] = $data_comm['type'][$key];
+                    $_data['comm'] = $data_comm['comm'][$key];
+                    $_data['date'] = $data_comm['date'][$key];
+                    $_data['donvi'] = $data_comm['donvi'][$key];
+                    $_data['gst'] = $data_comm['gst'][$key];
+                    $_data['type_payment'] = $data_comm['type_payment'][$key];
+                    $_data['user_id'] = $new_account->id;
+                    $_data['status'] = 1;
+                    Commission::create($_data);
+                }
+            }catch (\Exception $e)
+            {
+                echo $e->getMessage();
+                echo $e->getLine();
+                die();
             }
         }
         cache()->forget('getAllAgentComm');

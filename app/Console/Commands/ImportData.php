@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Imports\CommImport;
 use App\Imports\CustomerImport;
+use App\Imports\ImportAgentForCustomers;
 use App\Imports\ProfitImport;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -68,6 +69,9 @@ class ImportData extends Command
                     break;
                 case 'profits':
                     Excel::import(new ProfitImport(), storage_path('app/data/'.$path));
+                    break;
+                case 'agents':
+                    Excel::import(new ImportAgentForCustomers(), storage_path('app/data/'.$path));
                     break;
                 default:
                     echo 'table not found';
