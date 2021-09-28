@@ -104,9 +104,11 @@ class CustomerController extends Controller
                     ->orderby('created_at', 'desc')
                     ->paginate(20);
                 $lastPage = $data->lastPage();
+                $totalData = $data->total();
                 return response()->json([
                     'view' => view('CRM.elements.customers.data.com', compact('data'))->render(),
                     'last_page' => $lastPage,
+                    'total_data' => $totalData
                 ]);
                 break;
             case 'profit':
