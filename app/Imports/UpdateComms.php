@@ -16,9 +16,9 @@ class UpdateComms implements ToCollection
         //
         foreach ($rows as $row)
         {
-            $user_id = DB::table('users')->select('id')->where('name', $row[0])->first()->id ?? '';
-            DB::table('commissions')
-                ->where('user_id', $user_id)
+            $apply_id = DB::table('applies')->select('id')->where('ref_no', $row[0])->first()->id ?? '';
+            DB::table('hoahongs')
+                ->where('apply_id', $apply_id)
                 ->update([
                         'visa_status' => getKeyConfigByValue(config('myconfig.status_visa'), $row[1])
                     ]);
