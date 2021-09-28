@@ -37,6 +37,7 @@ class CommImport implements ToCollection
                 ]);
             }catch(\Exception $e)
             {
+                echo $row;
                 echo $e->getMessage() . ' ===== ';
                 echo $e->getLine() . ' ===== ';
                 echo $e->getTrace() . ' ===== ';

@@ -1911,16 +1911,25 @@ if (!function_exists('getKeyConfigByValue'))
 {
     function getKeyConfigByValue($config, $value)
     {
-        if (!empty($value))
-        {
-            $result = array_keys($config, $value);
-            if (count($result) > 0)
+        try {
+            if (!empty($value))
             {
-                return $result[0];
+                $result = array_keys($config, $value);
+                if (count($result) > 0)
+                {
+                    return $result[0];
+                }
             }
+
+            return "";
+        }catch (\Exception $e)
+        {
+            echo $e->getMessage() . ' ===== ';
+            echo $e->getLine() . ' ===== ';
+            echo $e->getTrace() . ' ===== ';
+            return;
         }
 
-        return "";
     }
 }
 
