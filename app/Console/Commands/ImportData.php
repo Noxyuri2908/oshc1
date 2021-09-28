@@ -6,6 +6,7 @@ use App\Imports\CommImport;
 use App\Imports\CustomerImport;
 use App\Imports\ImportAgentForCustomers;
 use App\Imports\ProfitImport;
+use App\Imports\UpdateComms;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -72,6 +73,9 @@ class ImportData extends Command
                     break;
                 case 'agents':
                     Excel::import(new ImportAgentForCustomers(), storage_path('app/data/'.$path));
+                    break;
+                case 'update_comms':
+                    Excel::import(new UpdateComms(), storage_path('app/data/'.$path));
                     break;
                 default:
                     echo 'table not found';

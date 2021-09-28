@@ -69,7 +69,7 @@
         <td class="">{{isset(config('myconfig.payment_note_provider')[$tmp->payment_note_provider]) ? config('myconfig.payment_note_provider')[$tmp->payment_note_provider] : ''}}</td>
         <td class="">{{(!empty($tmp->invoice))?convert_price_float($tmp->invoice->phieuthus->sum('amount')):''}}</td>
         <td class="">{{$tmp->note}}</td>
-        <td class="">{{$tmp->creater != null ? $tmp->creater->username : ''}}</td>
+        <td class="">{{$tmp->creater != null ? $tmp->creater->admin_id : ''}}</td>
         <td class="">{{!empty($tmp->created_at)?Carbon::parse($tmp->created_at)->format('d/m/Y'):''}}</td>
     </tr>
 @endforeach
