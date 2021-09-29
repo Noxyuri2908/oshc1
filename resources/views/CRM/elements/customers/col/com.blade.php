@@ -102,9 +102,9 @@
     <th class="width-115">Visa status</th>
     <th class="width-115">Month</th>
     <th class="width-115">Year</th>
-    <th class="width-115">Date of payment provider</th>
+    <th class="width-150">Date of payment provider</th>
     <th class="width-115">Bank account</th>
-    <th class="width-115">Date of payment agent</th>
+    <th class="width-150">Date of payment agent</th>
     <th class="width-115">Policy No</th>
     <th class="width-115">Agent com</th>
     <th class="width-115">Issue Date</th>
