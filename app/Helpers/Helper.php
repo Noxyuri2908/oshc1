@@ -331,6 +331,9 @@ if (!function_exists('convert_scope_to_scale')) {
         if ($scope == 'Couple') {
             $sc = 'D';
         }
+        if ($scope == 'Single Parents') {
+            $sc = 'P';
+        }
         return $sc;
     }
 }
@@ -341,11 +344,6 @@ if (!function_exists('convert_scale_to_number_person')) {
         if ($scope == 'Family') {
             $sc['adult'] = 2;
             $sc['child'] = 1;
-
-            if (count($singleParents) > 0){
-                $sc['adult'] = $singleParents[0];
-                $sc['child'] = $singleParents[1];
-            }
         }
         if ($scope == 'Single') {
             $sc['adult'] = 1;
@@ -355,6 +353,11 @@ if (!function_exists('convert_scale_to_number_person')) {
         if ($scope == 'Couple') {
             $sc['adult'] = 2;
             $sc['child'] = 0;
+        }
+        if ($scope == 'Single Parents')
+        {
+            $sc['adult'] = $singleParents[0];
+            $sc['child'] = $singleParents[1];
         }
         return $sc;
     }
@@ -834,19 +837,22 @@ if (!function_exists('get_price')) {
             $numdom3 = 1;
             $type = 1;
             //////////////////////////////////////////////////////////////////////////////////////////////
-            if ($no_of_adults == 2 && $no_of_children > 0 || $no_of_adults == 1 && $no_of_children > 0) {
+            if ($no_of_adults == 2 && $no_of_children > 0) {
                 $cover = 'Family';
-                $singleParents = [$no_of_adults, $no_of_children];
                 $type = 3;
             } else if ($no_of_adults == 2 || ($no_of_children == 1 && $no_of_adults == 1)) {
                 $cover = 'Couple';
                 $type = 2;
-            } else if ($no_of_adults == 1) {
+            } else if ($no_of_adults == 1 && $no_of_children == 0) {
                 $cover = 'Single';
+            } else if ($no_of_adults == 1 && $no_of_children > 0) {
+                $cover = 'Single Parents';
+                $type = 3;
+                $singleParents = [$no_of_adults, $no_of_children];
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////////
-            $ahm_mdb_nib = get_arr_price_qa($start, $end, $cover, $singleParents, $oshcStatusId,$serviceProviders);
+            $ahm_mdb_nib = get_arr_price_qa($start, $end, $cover, $singleParents, $oshcStatusId, $serviceProviders);
             $services = Service::where('status', 1)->whereIn('dichvu_id', $serviceProviders)->whereNotNull('link')->where('price_type', 0)->get();
             if ($numDays > 0) $numMonths = $numMonths + 1;
             foreach ($services as $service) {
