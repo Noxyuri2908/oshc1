@@ -379,6 +379,17 @@ if (!function_exists('get_arr_price_qa')) {
             if ($service->slug == 'nib') {
                 $start_date = convert_format_date_qa($start_date);
                 $end_date = convert_format_date_qa($end_date);
+                if (count($singleParents) > 0)
+                {
+                    if ($singleParents[0] == 1 && $singleParents[0] == 0)
+                    {
+                        $scale = 'Single';
+                    }else if ($singleParents[0] == 2 && $singleParents[0] == 0){
+                        $scale = 'Couple';
+                    }else if ($singleParents[0] >= 1 && $singleParents[0] >= 1){
+                        $scale = 'Family';
+                    }
+                }
             } else {
                 $start_date = $tmp_start_date;
                 $end_date = $tmp_end_date;
