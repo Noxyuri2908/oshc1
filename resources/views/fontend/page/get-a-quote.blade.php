@@ -153,9 +153,9 @@
                     </div> <!-- end on-destop -->
 
                     <div id="table-bank-content" class="banner-price on-destop ">
-                        @if(!empty($get_a_quote_banner_deskop_1->image))
-                            <img src="{{$get_a_quote_banner_deskop_1->image}}">
-                        @endif
+{{--                        @if(!empty($get_a_quote_banner_deskop_1->image))--}}
+{{--                            <img src="{{$get_a_quote_banner_deskop_1->image}}">--}}
+{{--                        @endif--}}
                     </div><!--  end banner -->
 
                     @include("fontend.partials.destop-get-quote")
