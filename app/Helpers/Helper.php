@@ -335,12 +335,17 @@ if (!function_exists('convert_scope_to_scale')) {
     }
 }
 if (!function_exists('convert_scale_to_number_person')) {
-    function convert_scale_to_number_person($scope)
+    function convert_scale_to_number_person($scope, $singleParents = null)
     {
         $sc = [];
         if ($scope == 'Family') {
             $sc['adult'] = 2;
             $sc['child'] = 1;
+
+            if (count($singleParents) > 0){
+                $sc['adult'] = $singleParents[0];
+                $sc['child'] = $singleParents[1];
+            }
         }
         if ($scope == 'Single') {
             $sc['adult'] = 1;
@@ -356,7 +361,7 @@ if (!function_exists('convert_scale_to_number_person')) {
 }
 if (!function_exists('get_arr_price_qa')) {
 
-    function get_arr_price_qa($start_date, $end_date, $scale, $service_id,$serviceProviders)
+    function get_arr_price_qa($start_date, $end_date, $scale, $singleParents = null, $service_id, $serviceProviders)
     {
 //        $serviceProviders = Dichvu::where('service_id', $service_id)->get()->pluck('id')->toArray();
 
@@ -385,7 +390,7 @@ if (!function_exists('get_arr_price_qa')) {
             $data[$i]['slug'] = $service->slug;
             $data[$i]['start_date'] = convert_date_to_db($start_date);
             $data[$i]['end_date']= convert_date_to_db($end_date);
-            $data[$i]['number_person']= convert_scale_to_number_person($scale);
+            $data[$i]['number_person']= convert_scale_to_number_person($scale, $singleParents);
             $i++;
         }
 //        dd($data);
@@ -829,8 +834,9 @@ if (!function_exists('get_price')) {
             $numdom3 = 1;
             $type = 1;
             //////////////////////////////////////////////////////////////////////////////////////////////
-            if ($no_of_adults == 2 && $no_of_children > 0) {
+            if ($no_of_adults == 2 && $no_of_children > 0 || $no_of_adults == 1 && $no_of_children > 0) {
                 $cover = 'Family';
+                $singleParents = [$no_of_adults, $no_of_children];
                 $type = 3;
             } else if ($no_of_adults == 2 || ($no_of_children == 1 && $no_of_adults == 1)) {
                 $cover = 'Couple';
@@ -840,7 +846,7 @@ if (!function_exists('get_price')) {
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////////
-            $ahm_mdb_nib = get_arr_price_qa($start, $end, $cover, $oshcStatusId,$serviceProviders);
+            $ahm_mdb_nib = get_arr_price_qa($start, $end, $cover, $singleParents, $oshcStatusId,$serviceProviders);
             $services = Service::where('status', 1)->whereIn('dichvu_id', $serviceProviders)->whereNotNull('link')->where('price_type', 0)->get();
             if ($numDays > 0) $numMonths = $numMonths + 1;
             foreach ($services as $service) {
