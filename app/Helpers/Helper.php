@@ -381,12 +381,12 @@ if (!function_exists('get_arr_price_qa')) {
                 $end_date = convert_format_date_qa($end_date);
                 if (count($singleParents) > 0)
                 {
-                    if ($singleParents[0] == 1 && $singleParents[0] == 0)
+                    if ($singleParents[0] == 1 && $singleParents[1] == 0)
                     {
                         $scale = 'Single';
-                    }else if ($singleParents[0] == 2 && $singleParents[0] == 0){
+                    }else if ($singleParents[0] == 2 && $singleParents[1] == 0){
                         $scale = 'Couple';
-                    }else if ($singleParents[0] >= 1 && $singleParents[0] >= 1){
+                    }else if ($singleParents[0] >= 1 && $singleParents[1] >= 1){
                         $scale = 'Family';
                     }
                 }
@@ -837,6 +837,7 @@ if (!function_exists('get_price')) {
         $numdom1 = 0;
         $numdom2 = 0;
         $ahm_mdb_nib = [];
+        $singleParents = array();
         if (sizeof($sDay) == 3 && sizeof($eDay) == 3) {
             $numdom1 = get_num_day_of_month($eDay[1], $eDay[2]);
             $numdom2 = get_num_day_of_month($eDay[1] - 1, $eDay[2]);
