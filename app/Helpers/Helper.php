@@ -868,7 +868,13 @@ if (!function_exists('get_price')) {
             $services = Service::where('status', 1)->whereIn('dichvu_id', $serviceProviders)->whereNotNull('link')->where('price_type', 0)->get();
             if ($numDays > 0) $numMonths = $numMonths + 1;
             foreach ($services as $service) {
-                $price = Price::where('status', 1)->where('type', $type)->where('service_id', $service->id)->where('num_month', $numMonths)->first();
+
+                if ($service->slug == 'bupa' && $no_of_children == 1 && $no_of_adults == 1){
+                    $price = Price::where('status', 1)->where('type', 3)->where('service_id', $service->id)->where('num_month', $numMonths)->first();
+                }else{
+                    $price = Price::where('status', 1)->where('type', $type)->where('service_id', $service->id)->where('num_month', $numMonths)->first();
+                }
+
                 if ($price == null) $price = 0;
                 else $price = $price->price;
                 $ahm_mdb_nib[$service->slug] = $price;
