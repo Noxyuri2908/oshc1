@@ -70,14 +70,19 @@ class CustomerImport implements ToCollection
                     'student_id' => $row[29],
                     'phone' => $row[30],
                     'fb' => $row[31],
-                    'extend_fee' => $row[35],
+                    'extend_fee' => 0,
+//                    'extend_fee' => $row[35],
                     'exchange_rate' => $row[43] ?? 0,
                 ]);
 
             }catch (\Exception $e)
             {
-                echo $e->getMessage();
-                die();
+                // do something
+//                echo $e->getMessage() . ' ===== ';
+//                echo $e->getLine() . ' ===== ';
+//                echo $e->getTrace() . ' ===== ';
+                echo count($row);
+                return;
             }
         }
         return 'Done!';
