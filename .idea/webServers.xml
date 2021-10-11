@@ -5,7 +5,7 @@
       <webServer id="f191ab51-da8d-443e-8f13-d4a627ebb790" name="oshcglobal" url="http://112.213.86.48">
         <fileTransfer rootFolder="/home/annalinkto/domains/oshcglobal.com.au/public_html" accessType="SFTP" host="112.213.86.48" port="22" sshConfigId="37dc8cac-3639-4ae5-b9d3-e26e307f3d9a" sshConfig="root@112.213.86.48:22 password">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+            <advancedOptions dataProtectionLevel="Private" maxConnections="60000" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>

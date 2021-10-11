@@ -97,7 +97,8 @@ return [
         5 => 'Paid com',
         6 => 'Refund - Paid ',
         7 => 'Hold',
-        6 => 'Pending',
+        8 => 'Pending',
+        9 => 'Defer'
     ],
     'type_payment' => [
         1 => 'Monthly',
@@ -111,7 +112,7 @@ return [
         5 => 'Paid com',
         6 => 'Refund - Paid ',
         7 => 'Hold',
-        6 => 'Pending',
+        8 => 'Pending',
     ],
     'status_visa' => [
         1 => 'Granted',
