@@ -1839,7 +1839,7 @@ class CustomerController extends Controller
             $dataInvoice['company_website'] = ($templateConfig->company_website) ?? '';
         }
 
-        if ($template_id == 1 || $template_id == 2 || $template_id == 3 || $template_id == 4 || $template_id == 5 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15)
+        if ($template_id == 1 || $template_id == 2 || $template_id == 3 || $template_id == 4 || $template_id == 5 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16)
         {
             $dataInvoice['agentName'] = $obj->getAgentName();
             $dataInvoice['ref_no'] = ($obj->ref_no) ?? '';

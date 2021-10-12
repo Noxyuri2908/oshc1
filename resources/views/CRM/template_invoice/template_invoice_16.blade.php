@@ -9,7 +9,12 @@
     tr    { vertical-align: top; }
     td    { vertical-align: top; }
     h1,h2{margin: 0;}
-    p{margin: 1px 0px; color: #222; font-size: 12px}
+    p{margin: 1px 0px; color: #222; font-size: 14px}
+
+    #mainContent{
+        width: 806px;
+        margin: auto !important;
+    }
 
     table#table-2,#table-2 th,#table-2 td {
         border: none;
@@ -17,35 +22,30 @@
     }
     #table-2 th,#table-2 td {
         padding: 10px 15px;
+        padding-bottom: 0;
     }
-    .td-content-info{
-        width: 100%;
-    }
-    /*.border-td{*/
-    /*    border-style: dashed !important;*/
-    /*    border-bottom: 1px !important;*/
-    /*    border-left: none !important;*/
-    /*    border-right: none !important;*/
-    /*    color: #4682b4 !important;*/
-    /*    border-collapse : unset !important;*/
-    /*}*/
-
-    .bank label span{
-        padding-bottom: 2px;
-    }
-
     page{
         width: 100%;
         float: left;
         padding: 0px 85px;
         height: 1000px;
-        margin-top: 30px;
+        color: black;
+    }
+
+    tfoot:before {
+        content: '';
+        display: block;
+        height: 53px;
+    }
+
+    body{
+        color: black !important;
     }
 </style>
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')
 
-<page backcolor="#fff" id="example" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="68px" backright="16px" backbottom="42px" footer="page" style="font-family: cambria;font-size: 12pt">
+<page backcolor="#fff" id="example" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="68px" backright="16px" backbottom="42px" footer="page" style="font-family: cambria;font-size: 12pt;background-color: #fff">
     <bookmark title="Lettre" level="0" ></bookmark>
     <table cellspacing="0" style="width: 100%; text-align: center; font-size: 10px;">
         <tr>
@@ -110,4 +110,5 @@
         {{decode_html($dataInvoice['content'])}}
     </div>
 </page>
+    @include('CRM.template_invoice.script_export_to_pdf')
 @stop
