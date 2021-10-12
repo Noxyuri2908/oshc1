@@ -77,6 +77,9 @@ class ImportData extends Command
                 case 'update_comms':
                     Excel::import(new UpdateComms(), storage_path('app/data/'.$path));
                     break;
+                case 'update_status_cus':
+                    Excel::import(new UpdateComms(), storage_path('app/data/'.$path));
+                    break;
                 default:
                     echo 'table not found';
                     break;
