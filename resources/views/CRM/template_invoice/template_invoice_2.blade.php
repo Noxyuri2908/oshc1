@@ -24,6 +24,9 @@
         padding: 10px 15px;
         padding-bottom: 0;
     }
+    table td, table th{
+        background-color: unset !important;
+    }
     page{
         width: 100%;
         float: left;
