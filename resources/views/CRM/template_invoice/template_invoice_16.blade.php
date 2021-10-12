@@ -44,12 +44,13 @@
 </style>
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')
+
 <page backcolor="#fff" id="example" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="68px" backright="16px" backbottom="42px" footer="page" style="font-family: cambria;font-size: 12pt">
     <bookmark title="Lettre" level="0" ></bookmark>
     <table cellspacing="0" style="width: 100%; text-align: center; font-size: 10px;">
         <tr>
             <td rowspan="2" style="width: 50%;">
-                <p style="text-align: left;"><b style="font-size: 15px">{{$dataInvoice['company_name']}}</b></p>
+                <p style="text-align: left;"><b style="font-size: 15px">{{ $dataInvoice['company_name'] }}</b></p>
                 <p style="text-align: left;">{{$dataInvoice['company_address']}}</p>
                 <p style="text-align: left;">{{$dataInvoice['company_phone']}}</p>
                 <p style="text-align: left;">{{$dataInvoice['company_website']}}</p>
