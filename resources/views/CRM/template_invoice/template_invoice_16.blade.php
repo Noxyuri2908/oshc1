@@ -44,8 +44,7 @@
 </style>
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')
-
-<page backcolor="#fff" id="example" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="68px" backright="16px" backbottom="42px" footer="page" style="font-family: cambria;font-size: 12pt;background-color: #fff">
+        <page id="page" backcolor="#fff" id="example" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="68px" backright="16px" backbottom="42px" footer="page" style="font-family: cambria;font-size: 12pt;background-color: #fff">
     <bookmark title="Lettre" level="0" ></bookmark>
     <table cellspacing="0" style="width: 100%; text-align: center; font-size: 10px;">
         <tr>
