@@ -25,7 +25,7 @@
         padding-bottom: 0;
     }
     table td, table th{
-        background-color: unset !important;
+        /*background-color: unset !important;*/
     }
     page{
         width: 100%;
@@ -33,6 +33,10 @@
         padding: 0px 85px;
         height: 1000px;
         color: black;
+    }
+
+    .bh-light{
+        background-color: #f8f4fc;
     }
 
     tfoot:before {

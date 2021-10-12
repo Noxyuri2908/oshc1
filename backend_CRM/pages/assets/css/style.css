@@ -312,7 +312,7 @@
 }
 
 table td, table th {
-    background-color: #f8f4fc;
+    /*background-color: #f8f4fc;*/
     border: 1px solid #fff;
     /*text-align: center;*/
 }
