@@ -87,6 +87,8 @@ class ImportData extends Command
 
         }catch (\Exception $exception){
             echo $exception->getMessage();
+            echo $exception->getLine();
+            print_r($exception->getTraceAsString());
             die();
         }
     }

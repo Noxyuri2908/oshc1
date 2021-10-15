@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Validators\ValidationException;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class CustomerImport implements ToCollection
@@ -75,17 +76,17 @@ class CustomerImport implements ToCollection
                     'exchange_rate' => $row[43] ?? 0,
                 ]);
 
-            }catch (\Exception $e)
-            {
-                // do something
-//                echo $e->getMessage() . ' ===== ';
-//                echo $e->getLine() . ' ===== ';
-//                echo $e->getTrace() . ' ===== ';
-                echo count($row);
-                return;
+            }catch (\ValidationException $e){
+                $failures = $e->failures();
+
+                foreach ($failures as $failure) {
+                    $failure->row(); // row that went wrong
+                    $failure->attribute(); // either heading key (if using heading row concern) or column index
+                    $failure->errors(); // Actual error messages from Laravel validator
+                    $failure->values(); // The values of the row that has failed.
+                }
             }
         }
         return 'Done!';
-
     }
 }
