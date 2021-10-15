@@ -103,7 +103,7 @@
             <div class="col-lg-2">
                 <label for="comm">Total ($)</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" id="total" name="total" value="{{isset($obj) ? $obj->total : 0}}" type="text" placeholder="" >
+                    <input class="form-control" id="total" name="total" value="{{isset($obj) ? $obj->total : 0}}" data-check="{{isset($obj) ? $obj->total : 0}}" type="text" placeholder="" >
                     <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>

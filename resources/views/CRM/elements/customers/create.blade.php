@@ -525,7 +525,10 @@
             }else if(type_payment == 2){
                 total = parseFloat(parseFloat(amount) - parseFloat(_promotion) - parseFloat(extra) + parseFloat(extra_fee) + parseFloat(bank_fee) - parseFloat(comm)).toFixed(2);
             }
-            $('#total').val(total);
+
+            if (total != 0){
+                $('#total').val(total);
+            }
         }
 
         jQuery(document).ready(function ($) {
