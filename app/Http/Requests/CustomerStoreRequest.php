@@ -57,7 +57,7 @@ class CustomerStoreRequest extends FormRequest
             "promotion_amount" => "nullable",
             "bank_fee" => "nullable",
             "bank_fee_number" => "nullable",
-            "payment_method" => "required",
+            "payment_method" => "nullable",
             "gst" => "nullable",
             "surcharge" => "nullable",
             "extra" => "nullable",

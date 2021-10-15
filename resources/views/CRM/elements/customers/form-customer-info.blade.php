@@ -67,7 +67,7 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="country">Nationality</label>
-                    <select class="form-control" id="country" name="country" required>
+                    <select class="form-control" id="country" name="country">
                         <option value=""></option>
                         @foreach(config('country.list') as $key=>$value)
                             @if(!isset($cus))
