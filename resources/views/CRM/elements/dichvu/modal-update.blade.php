@@ -37,7 +37,7 @@
           <div class="col-md-6 content-table fill_content">
               <div class="form-group">
                   <label class="control-label">Short name:</label>
-                  <input type="text" id="viettat" name="viettat" class="form-control" required>
+                  <input type="text" id="viettat" value="{{$obj->pos}}" name="viettat" class="form-control" required>
 
               </div>
           </div>
