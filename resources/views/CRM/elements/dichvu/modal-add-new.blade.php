@@ -33,7 +33,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-12 content-table fill_content">
+            <div class="col-md-6 content-table fill_content">
               <div class="form-group">
                 <label class="control-label">Type Form:</label>
                 <select name="type_form" class="form-control" required>
@@ -44,6 +44,13 @@
                 </select>
               </div>
             </div>
+              <div class="col-md-6 content-table fill_content">
+                  <div class="form-group">
+                      <label class="control-label">Short name:</label>
+                      <input type="text" id="viettat" name="viettat" class="form-control" required>
+
+                  </div>
+              </div>
             <div class="col-md-6 content-table fill_content">
               <div class="form-group">
                 <label class="control-label">Position:</label>
