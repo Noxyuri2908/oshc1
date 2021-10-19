@@ -129,7 +129,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="type_visa">Type of visa</label>
-                    <select class="form-control" id="type_visa" name="type_visa" required>
+                    <select class="form-control" id="type_visa" name="type_visa">
                         <option label=""></option>
                         @foreach(config('myconfig.type_visa') as $key=>$value)
                             @if(!isset($obj))

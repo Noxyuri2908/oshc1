@@ -60,7 +60,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="payment_method">Payment method</label>
-                    <select class="form-control" id="payment_method" name="payment_method" required>
+                    <select class="form-control" id="payment_method" name="payment_method">
                         <option label=""></option>
                         @foreach(config('myconfig.payment_method') as $key=>$value)
                         @if(!isset($obj))
