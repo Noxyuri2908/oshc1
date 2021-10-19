@@ -194,6 +194,10 @@
                 <label for="">Months</label>
                 <input type="text" class="form-control" id="count_months" name="count_month" value="{{!empty($obj)?count(convertDateRangeToMonth($obj->start_date,$obj->end_date)):''}}" readonly>
             </div>
+            <div class="col-lg-3">
+                <label for="">Ref No</label>
+                <input type="text" class="form-control" id="ref_no" name="ref_no" value="{{($flag == 'edit' && $obj->ref_no) ? $obj->ref_no : ''}}">
+            </div>
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-10">

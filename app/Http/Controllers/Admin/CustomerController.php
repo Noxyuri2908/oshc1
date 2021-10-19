@@ -1195,7 +1195,11 @@ class CustomerController extends Controller
         }
         $invoice = Apply::find($id);
         $invoice_code = $dichvu->viettat.$country.date("y").str_pad($id, 6, 0, STR_PAD_LEFT);
+
         $data['ref_no'] = $invoice_code;
+        $invoice->ref_no = $request->ref_no;
+        $invoice->update();
+
         //Update apply
         $data['start_date'] = convert_date_to_db($request->get('start_date'));
         $data['end_date'] = convert_date_to_db($request->get('end_date'));
