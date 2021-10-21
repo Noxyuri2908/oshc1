@@ -37,6 +37,7 @@ class AgentController extends Controller
             'tel_2'=> $input['mobile_no'],
             'country'=> $input['country'],
             'note'=> $input['q_c'],
+            'agent_code' => $input['agent_code'],
             'status'=> 7,
             'department'=> 3
         ];
