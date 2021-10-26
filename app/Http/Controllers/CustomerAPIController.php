@@ -22,8 +22,8 @@ class CustomerAPIController extends Controller
                 'agent_id' => User::getAgentIdByAgentCode($input['agent_code']),
                 'provider_id' => Service::getProviderIDByName($input['provider']),
                 'policy' => $input['policy'],
-                'start_date' =>  !empty($input['start_date']) ? convert_date_to_db(Carbon::parse(Date::excelToDateTimeObject((int) $input['start_date']))->format('d/m/Y')) : null,
-                'end_date' =>  !empty($input['end_date']) ? convert_date_to_db(Carbon::parse(Date::excelToDateTimeObject((int) $input['end_date']))->format('d/m/Y')) : null,
+                'start_date' =>  !empty($input['start_date']) ? convert_date_to_db($input['start_date']) : null,
+                'end_date' =>  !empty($input['end_date']) ? convert_date_to_db($input['end_date']) : null,
                 'no_of_adults' =>  $input['no_of_adults'],
                 'no_of_children' =>  $input['no_of_children'],
                 'net_amount' =>  (int) $input['price'],
@@ -44,7 +44,6 @@ class CustomerAPIController extends Controller
             $applies['type_visa'] = 1;
             $applies['status'] = 8;
             $applies['type_get_data_payment'] = 1;
-//            dd($applies);
 
             $idApply = DB::table('applies')->insertGetId($applies);
 

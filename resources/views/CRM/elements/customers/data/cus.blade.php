@@ -95,7 +95,7 @@
         <td class="align-middle">{{!empty($tmp->getCountDay())?$tmp->getCountDay():''}}</td>
         <td class="align-middle">{{!empty($tmp->start_date) && !empty($tmp->end_date) && !empty($tmp->count_month)?$tmp->count_month.' months':''}}</td>
         <td class="align-middle">{{$tmp->staff != null ? $tmp->staff->admin_id : ''}}</td>
-        <td class="align-middle text-overflow">{{$tmp->note}}</td>
+        <td class="align-middle text-overflow">{{decode_html($tmp->note)}}</td>
         <td class="align-middle">{{(!empty(\Config::get('location_australia')[$tmp->location_australia]))?\Config::get('location_australia')[$tmp->location_australia]:''}}</td>
         <td class="align-middle">{{$tmp->getDestination()}}</td>
         <td class="align-middle">{{!empty($tmp->registerCus())?$tmp->registerCus()->provider_of_school:''}}</td>

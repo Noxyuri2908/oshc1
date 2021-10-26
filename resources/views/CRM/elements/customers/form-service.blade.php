@@ -204,7 +204,7 @@
                         <div class="form-group">
                             <label for="ref_no">Note</label>
                             <textarea class="form-control" id="note" name="note"
-                                      rows="3">{{isset($obj) ? $obj->note : old('note')}}</textarea>
+                                      rows="3">{{isset($obj) ? decode_html($obj->note) : decode_html(old('note'))}}</textarea>
                         </div>
                     </div>
                     <div class="col-lg-2">
