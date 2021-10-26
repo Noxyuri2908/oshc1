@@ -30,3 +30,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 /* CRM agent */
 Route::get('crm/get_agent_actived', [\App\Http\Controllers\Api\AgentController::class, 'getAgent']);
 Route::post('crm/register_agent', [\App\Http\Controllers\Api\AgentController::class, 'registerAgent']);
+
+
+Route::post('crm/register_customer', [\App\Http\Controllers\CustomerAPIController::class, 'registerCustomer']);

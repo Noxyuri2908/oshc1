@@ -506,5 +506,12 @@ class User extends Authenticatable implements JWTSubject
 //        DB::table('users')->where('name', "$agentName")->update(['email' => $email]);
     }
 
+    static function getAgentIdByAgentCode($agent_code)
+    {
+        $agent_code = !empty($agent_code) ?? 'E4PHGY';
+        $agent = DB::table('users')->select('id')->where('agent_code', $agent_code)->first();
+        return $agent->id;
+    }
+
 
 }

@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Service extends Model
 {
@@ -70,5 +71,11 @@ class Service extends Model
     		$tmp = config('admin.base_url').$tmp;
     	}
     	return $tmp;
+    }
+
+    static function getProviderIDByName($name){
+        $provider = DB::table('services')->select('id')->where('name', $name)->first();
+        return !empty($provider) ? $provider->id : '';
+
     }
 }
