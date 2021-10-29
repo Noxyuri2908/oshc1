@@ -1844,14 +1844,20 @@ if (!function_exists('showDataReportForHTMLReport'))
     function showDataReportForHTMLReportEn($countQuarter, $getQuarterId, $totalQuarter)
     {
         $countQuarter = array_unique($countQuarter);
-        foreach ($countQuarter as $quarter => $value)
+        if (count($countQuarter) > 0)
         {
-            if ($getQuarterId == $value){
-                echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index='.$quarter.' data-total-quarter-'.$value.'="'.$totalQuarter.'"><span >'.convert_price_float($totalQuarter).'</span ></td >';
-            }else{
-                echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" ><span ></span ></td >';
+
+            foreach ($countQuarter as $quarter => $value)
+            {
+
+                if ($getQuarterId == $value){
+                    echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index='.$quarter.' data-total-quarter-'.$value.'="'.$totalQuarter.'"><span >'.convert_price_float($totalQuarter).'</span ></td >';
+                }else{
+                    echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
+                }
             }
         }
+        echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" ><span ></span ></td >';
     }
 }
 
@@ -1861,14 +1867,18 @@ if (!function_exists('showDataReportForHTMLReport'))
     {
         $countQuarter = array_unique($countQuarter);
         $totalQuarterAfterConvert = convert_price_float($totalQuarter, 0, 'VND');
-       foreach ($countQuarter as $quarter => $value)
-       {
-           if ($getQuarterId == $value){
-               echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index='.$quarter.' data-total-quarter-'.$value.'="'.$totalQuarter.'"><span face="Times New Roman" style="font-size: 12.0pt;">'.$totalQuarterAfterConvert.'</span ></td >';
-           }else{
-               echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
-           }
-       }
+        if (count($countQuarter) > 0)
+        {
+            foreach ($countQuarter as $quarter => $value)
+            {
+                if ($getQuarterId == $value){
+                    echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index='.$quarter.' data-total-quarter-'.$value.'="'.$totalQuarter.'"><span face="Times New Roman" style="font-size: 12.0pt;">'.$totalQuarterAfterConvert.'</span ></td >';
+                }else{
+                    echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
+                }
+            }
+        }
+        echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
     }
 }
 
