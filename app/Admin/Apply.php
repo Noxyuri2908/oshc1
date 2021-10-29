@@ -750,6 +750,7 @@ class Apply extends Model
             'applies.ref_no',
             'applies.amount_to',
             'applies.amount_to_unit',
+            'applies.amount_from_unit',
             'applies.payment_method',
             'applies.type_get_data_payment',
             'customers.full_name',

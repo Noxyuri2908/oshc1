@@ -328,15 +328,16 @@
             @foreach($flywire as $items)
                 @php
                     $comstatus = '';
+                    $unitEquals = ($items->amount_to_unit == $items->amount_from_unit) ? true : false;
                     $getQuarterId = Carbon::parse($items->delivered_date)->quarter;
                     $getYearQuarter = Carbon::parse($items->delivered_date)->format('Y'); // get year quarter
                     $initiated_date = convert_date_form_db($items->initiated_date);
                     $delivered_date = convert_date_form_db($items->delivered_date);
                     $amount_to = convert_price_float($items->amount_to);
                     $amount_to_unit = getCurrency($items->amount_to_unit);
-                    $commission = $items->amount_to * ($items->comm /100);
+                    $commission = $unitEquals ? 0 : $items->amount_to * ($items->comm /100);
                     $exchange_to_AUD = ExchangeToAUDForFlywire($items);
-                    $commission_aud = convert_price_float($commission * $exchange_to_AUD);
+                    $commission_aud = $unitEquals ? 0 : convert_price_float($commission * $exchange_to_AUD);
                     $comstatus = array_get(\Config::get('myconfig.com_status'), ((int)$items->com_status_cp == 0) ? 1 : (int)$items->com_status_cp);
                     $totalQuarter = $commission_aud + $items->amount;
                     $totalPromotion_AUD += $items->amount;
@@ -349,7 +350,7 @@
                     <td colspan=2 align=center class="width-5 td_table_export_excel"><span >{{$items->ref_no}}</td>  {{--payment id--}}
                     <td colspan=2 align=center class="width-4 td_table_export_excel"><span >{{$amount_to}}</span></td>    {{--amount--}}
                     <td colspan=2 align=center class="width-3 td_table_export_excel"><span >{{$amount_to_unit}}</span></td>   {{--Currency--}}
-                    <td colspan=2 align=center class="width-6 td_table_export_excel"><span >{{$items->comm}}</span></td>  {{--commission rate--}}
+                    <td colspan=2 align=center class="width-6 td_table_export_excel"><span >{{$unitEquals ? 0 : $items->comm}}</span></td>  {{--commission rate--}}
                     <td colspan=2 align=center class="width-5 td_table_export_excel"><span >{{convert_price_float($commission)}}</span></td> {{--commission %--}}
                     <td colspan=2 align=center class="width-3 td_table_export_excel"><span >{{$amount_to_unit}}</span></td>   {{--currency--}}
                     <td colspan=2 align=center class="width-5 td_table_export_excel"><span >{{$exchange_to_AUD}}</span></td>    {{--exchange to aud--}}

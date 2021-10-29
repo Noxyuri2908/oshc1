@@ -1856,8 +1856,9 @@ if (!function_exists('showDataReportForHTMLReport'))
                     echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
                 }
             }
+        }else{
+            echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" ><span ></span ></td >';
         }
-        echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" ><span ></span ></td >';
     }
 }
 
@@ -1877,8 +1878,9 @@ if (!function_exists('showDataReportForHTMLReport'))
                     echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
                 }
             }
+        }else{
+            echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
         }
-        echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
     }
 }
 
