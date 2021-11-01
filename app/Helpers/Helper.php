@@ -1627,7 +1627,7 @@ if (!function_exists('getQuarter'))
                 $result[1] = $quarter_2;
 
 
-            }elseif (substr($items, 0, 2) == '07' || substr($items, 0, 2) == '09' || substr($items, 0, 2) == '09')
+            }elseif (substr($items, 0, 2) == '07' || substr($items, 0, 2) == '08' || substr($items, 0, 2) == '09')
             {
                 $a = substr($items,3);
                 $quarter_3 = "<td colspan=2 class='width-4 th_table_export_excel'><b>Quarter III / $a</b></td>";
@@ -1711,7 +1711,6 @@ if (!function_exists('getQuarterDataReport'))
         sort($sortQuarter);
         array_push($sortQuarter, $sortNewQuarter);
         $sortQuarter = array_flatten($sortQuarter);
-
         foreach ($sortQuarter as $items){
             if (substr($items, 0, 2) == '01' || substr($items, 0, 2) == '02' || substr($items, 0, 2) == '03')
             {
