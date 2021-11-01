@@ -365,17 +365,18 @@
             @foreach($flywire as $items)
                 @php
                     $comstatus = '';
+                    $unitEquals = ($items->amount_to_unit == $items->amount_from_unit) ? true : false;
                     $getQuarterId = Carbon::parse($items->delivered_date)->quarter;
                     $getYearQuarter = Carbon::parse($items->delivered_date)->format('Y'); // get year quarter
                     $initiated_date = convert_date_form_db($items->initiated_date);
                     $delivered_date = convert_date_form_db($items->delivered_date);
                     $amount_to = convert_price_float($items->amount_to);
                     $amount_to_unit = getCurrency($items->amount_to_unit);
-                    $commission = $items->amount_to * ($items->comm /100); // commission $
+                    $commission = $unitEquals ? 0 : $items->amount_to * ($items->comm /100);; // commission
                     $exchange_to_AUD = ExchangeToAUDForFlywire($items);
                     $exchange_to_VND = ExchangeToVNDForFlywire(Carbon::parse($items->delivered_date)->quarter, $getYearQuarter);
                     $exchange = $exchange_to_AUD * $exchange_to_VND;
-                    $commission_vnd = $commission * $exchange;
+                    $commission_vnd = $unitEquals ? 0 : $commission * $exchange;
                     $comstatus = array_get(\Config::get('myconfig.com_status'), (!empty((int)$items->com_status_cp)) ? (int)$items->com_status_cp : 1);
                     $promotion_vnd = $items->amount * $exchange_to_VND;
                     $totalQuarter = $commission_vnd + $promotion_vnd;
@@ -388,7 +389,7 @@
                     <td colspan=2 align=center class="width-5 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{$items->ref_no}}</td>  {{--payment id--}}
                     <td colspan=2 align=center class="width-4 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{$amount_to}}</span></td>    {{--amount--}}
                     <td colspan=2 align=center class="width-3 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{$amount_to_unit}}</span></td>   {{--Currency--}}
-                    <td colspan=2 align=center class="width-6 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{$items->comm}}</span></td>  {{--commission rate--}}
+                    <td colspan=2 align=center class="width-6 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{$unitEquals ? 0 : $items->comm}}</span></td>  {{--commission rate--}}
                     <td colspan=2 align=center class="width-5 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{convert_price_float($commission)}}</span></td> {{--commission %--}}
                     <td colspan=2 align=center class="width-3 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{$amount_to_unit}}</span></td>   {{--currency--}}
                     <td colspan=2 align=center class="width-5 td_table_export_excel" style='font-family: "Times New Roman"'><span face="Times New Roman" style="font-size: 12.0pt;">{{convert_price_float($exchange, 0, 'VND')}}</span></td>    {{--exchange--}}
