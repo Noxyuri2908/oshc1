@@ -30,20 +30,46 @@ class CustomerAPIController extends Controller
                 'ref_no' =>  $input['ref_no'],
             );
 
-            $applies['note'] = 'Where is the student studying (instituation)* : ' .$input['witss']. '<br>' .
-                ' My current or future location in Australia (campus)* : ' .$input['my']. '<br>' .
-                'Street address : ' .$input['sa']. '<br>' .
-                'City / Suburb : ' .$input['cs']. '<br>' .
-                'State : ' .$input['s']. '<br>' .
-                'Postcode : ' .$input['p']. '<br>';
+            if ($input['type'] == 'oshc')
+            {
+                $applies['type_visa'] = 1;
+                $applies['note'] =
+                    'Where is the student studying (instituation)* : ' .$input['witss']. '<br>' .
+                    'My current or future location in Australia (campus)* : ' .$input['my']. '<br>' .
+                    'Street address : ' .$input['sa']. '<br>' .
+                    'City / Suburb : ' .$input['cs']. '<br>' .
+                    'State : ' .$input['s']. '<br>' .
+                    'Postcode : ' .$input['p']. '<br>';
+            }else if ($input['type'] == 'ovhc'){
+                $applies['type_visa'] = $input['type_visa'];
+                $applies['note'] =
+                    'Cover : ' .$input['c']. '<br>' .
+                    'Street address : ' .$input['sa']. '<br>' .
+                    'City / Suburb : ' .$input['cs']. '<br>' .
+                    'State : ' .$input['s']. '<br>' .
+                    'Postcode : ' .$input['p']. '<br>';
+            }else if ($input['type'] == 'si'){
+                $applies['type_visa'] = $input['type_visa'];
+                $applies['note'] =
+                    'Cover : ' .$input['c']. '<br>' .
+                    'Student/Scholar Status : ' .$input['sss']. '<br>' .
+                    'Name of school or organization : ' .$input['nosoo']. '<br>' .
+                    'Beneficiary : ' .$input['b']. '<br>';
+            }else if ($input['type'] == 'vi'){
+                $applies['note'] =
+                    'Coverage area : ' .$input['ca']. '<br>' .
+                    'Overall maximum coverage : ' .$input['omc']. '<br>' .
+                    'Deductible choices : ' .$input['dc']. '<br>' .
+                    'Beneficiary : ' .$input['b']. '<br>';
+            }
 
             // param default
             $applies['service_country'] = 'AU';
             $applies['type_service'] = 2;
             $applies['type_invoice'] = 1;
-            $applies['type_visa'] = 1;
             $applies['status'] = 8;
             $applies['type_get_data_payment'] = 1;
+            $applies['created_at'] = convert_date_to_db(date('d-m-Y'));
 
             $idApply = DB::table('applies')->insertGetId($applies);
 
@@ -53,7 +79,7 @@ class CustomerAPIController extends Controller
                 'first_name' => $input['first_name'],
                 'last_name' => $input['last_name'],
                 'gender' => $input['gender'],
-                'birth_of_date' => !empty($input['birth_of_date']) ? convert_date_to_db(Carbon::parse(Date::excelToDateTimeObject((int) $input['birth_of_date']))->format('d/m/Y')) : null,
+                'birth_of_date' => !empty($input['birth_of_date']) ? convert_date_to_db($input['birth_of_date']) : null,
                 'passport' => $input['passport'],
                 'country' => $input['country'],
                 'email' => $input['email'],
