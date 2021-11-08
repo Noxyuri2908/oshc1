@@ -28,4 +28,13 @@ class CoverController extends Controller
         return response()->json(['message' => 'successfully', 'view' => view('back-end.cover.tbody-data', ['covers' => $covers])->render()]);
 
     }
+
+    function delete(Request $request){
+        $id = $request->get('id');
+        $deletedRows = Cover::where('id', $id)->delete();
+        if ($deletedRows == 0) return response()->json(['error' => 'Error : please call admin check code']);
+
+        return response()->json(['message' => 'successfully']);
+
+    }
 }

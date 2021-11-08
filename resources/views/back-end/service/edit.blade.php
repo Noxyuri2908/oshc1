@@ -105,19 +105,36 @@ Thay đổi dịch vụ
         })
 
         // click action edit cover
-        $('#click-edit').on('click', function (){
-            alert(1);
+        function btnEdit(obj)
+        {
             $('#covers').modal('show');
 
-            var cover = $('#click-edit').parent().prev('#cover').text(); // get cover
-            var policy = $('#click-edit').parent().prev('#policy').attr('data-policy'); // get policy
+            var cover = obj.parentElement.previousElementSibling.textContent;
+            var policy = obj.parentElement.previousElementSibling.previousElementSibling.getAttribute('data-policy');
 
             $('#cover-input').val(cover); // set cover
             $('#policy-cover').val(policy).change(); // set policy
-            $('#contain-cover-id').val($(this).attr('data-id')); // get and set id cover
+            $('#contain-cover-id').val(obj.getAttribute('data-id')); // get and set id cover
+        }
 
-        })
+        // click action remove cover
+        function btnRemove(obj){
+            var coverId = obj.parentElement.getAttribute('data-id');
+            $.ajax({
+                url : '{{route('removeCoverById')}}',
+                type : 'POST',
+                data : {
+                    _token: "{{ csrf_token() }}",
+                    id : coverId
+                },
+                success : function (data){
+                    if (data.error) return alert(data.error);
 
+                    return obj.parentElement.parentElement.remove();
+                }
+            });
+
+        }
 
         function cancleFormSubmit()
         {

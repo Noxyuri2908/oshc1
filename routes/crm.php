@@ -567,9 +567,8 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('/ajax/deleteCommentTasks', [\App\Http\Controllers\Admin\CommentTaksController::class, 'deleteCommentTasks'])->name('deleteCommentTasks');
     Route::post('/ajax/updateSeeCommentTasks', [\App\Http\Controllers\Admin\CommentTaksController::class, 'updateSeeCommentTasks'])->name('updateSeeCommentTasks');
 
-
-
     Route::post('/cover/pushStore/', [\App\Http\Controllers\CoverController::class, 'pushStore'])->name('pushStoreCover');
+    Route::post('/cover/delete', [\App\Http\Controllers\CoverController::class, 'delete'])->name('removeCoverById');
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {
     Route::get('/',[\App\Http\Controllers\LuckyDrawController::class,'show'])->name('lucky.show');
