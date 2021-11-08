@@ -241,6 +241,13 @@ class AddColumn extends Migration
                 $table->double('total_amount_pay_back_student_refund', 8, 2)->nullable()->default(0.00)->after('std_refund_VND');
             });
         }
+
+        if (!Schema::hasColumn('customers', 'cover_id'))
+        {
+            Schema::table('customers', function(Blueprint $table) {
+                $table->integer('cover_id')->nullable()->after('provider_of_school');
+            });
+        }
     }
 
     /**

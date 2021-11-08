@@ -31,11 +31,11 @@ class CreateCustomersTable extends Migration
             $table->integer('type');
             $table->string('education_agent')->nullable();
             $table->string('agent_code')->nullable();
-            $table->timestamps();
             $table->string('fb', 255)->nullable();
             $table->string('full_name', 255)->nullable();
             $table->string('destination', 11)->nullable();
             $table->string('provider_of_school', 255)->nullable();
+            $table->timestamps();
         });
     }
 

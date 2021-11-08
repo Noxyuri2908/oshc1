@@ -18,7 +18,7 @@ Thay đổi dịch vụ
 			</div>
 			<div class="ibox-content">
 				@include('back-end.partials.alert-msg')
-				<form id="form" class="form-horizontal" role="form" action="{{route('service.update',['id'=>$obj->id])}}" 
+				<form id="form" class="form-horizontal" role="form" action="{{route('service.update',['id'=>$obj->id])}}"
 				enctype="multipart/form-data" method="POST">
 				@method('PATCH')
 				@csrf
@@ -30,11 +30,127 @@ Thay đổi dịch vụ
 						</div>
 					</div>
 				</form>
+                <div class="form-group">
+                    <a class="covers" data-toggle="modal" id="click-modal" data-target="#covers" style="text-decoration: underline">Config Covers</a>
+                    <div class="inner wrapper-cover">
+                        <table class="table-cover">
+                            <thead>
+                            <tr>
+                                <th>Policys</th>
+                                <th>Covers</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody id="body-data-cover">
+                                @include('back-end.cover.tbody-data', ['covers' => $covers])
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="modal fade" id="covers" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Config Covers</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="wrapper-modal-cover">
+                                        <div class="option">
+                                            <label for="" class="control-label">Policy</label>
+                                            <select name="policy-cover" id="policy-cover">
+                                                @foreach(config('myconfig.policy') as $key => $item)
+                                                    <option value="{{$key}}">{{$item}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="option">
+                                            <label for="" class="control-label">Cover</label>
+                                            <input type="text" name="cover-input" id="cover-input" style="width: 300px">
+                                        </div>
+
+                                        <input type="hidden" value="update" id="action-modal">
+                                        <input type="hidden" value="" id="contain-cover-id">
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="status">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
-	</div>		
+	</div>
 </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(document).on('keypress', function (e){
+            var cover = $('#cover-input').val();
+            var policy = $('#policy-cover').val();
+            if (e.which == 13){
+                if (policy == 'null') return alert('bạn chưa chọn policy');
+                cancleFormSubmit();
+                ajaxPushStoreCover(cover, policy);
+
+            }
+        })
+
+        // click action edit cover
+        $('#click-edit').on('click', function (){
+            alert(1);
+            $('#covers').modal('show');
+
+            var cover = $('#click-edit').parent().prev('#cover').text(); // get cover
+            var policy = $('#click-edit').parent().prev('#policy').attr('data-policy'); // get policy
+
+            $('#cover-input').val(cover); // set cover
+            $('#policy-cover').val(policy).change(); // set policy
+            $('#contain-cover-id').val($(this).attr('data-id')); // get and set id cover
+
+        })
+
+
+        function cancleFormSubmit()
+        {
+            $("form#form").submit(function(e){
+                e.preventDefault();
+            });
+        }
+
+        function ajaxPushStoreCover(cover, policy)
+        {
+            $.ajax({
+                url : '{{route('pushStoreCover')}}',
+                type : 'POST',
+                data : {
+                    _token: "{{ csrf_token() }}",
+                    service_id : {{$obj->id}},
+                    policy,
+                    cover
+                },
+                success : function (data){
+                    if (data.error) return alert('Error : please call admin check code');
+
+                    $('#cover-input').val('');
+                    $('.status').text(data.message).fadeIn(2000, function (){
+                        $(this).fadeOut(4000);
+                    });
+                    return $('#body-data-cover').html(data.view);
+                }
+                });
+        }
+    </script>
+@endpush
+
 @section('js')
 <script src="{{asset('js/slug.js')}}"></script>
 <script src="{{asset('backend/js/plugins/chosen/chosen.jquery.js')}}"></script>

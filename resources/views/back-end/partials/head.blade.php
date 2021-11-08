@@ -6,8 +6,8 @@
     <title>@yield('title')</title>
 
     <link href="{{asset('backend/css/bootstrap.min.css')}}" rel="stylesheet">
-    
-    <link href="{{asset('backend/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="{{asset('backend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('backend/css/style.css')}}" rel="stylesheet">

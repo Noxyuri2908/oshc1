@@ -8571,3 +8571,42 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 .mt-50{
     margin-top: 50px;
 }
+
+.table-cover {
+    width: 100%;
+}
+
+
+.table-cover td, .table-cover th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.table-cover tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.table-cover thead tr th{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #fff;
+}
+
+.table-cover thead tr th:nth-child(1){
+    width: 30%;
+}
+
+.wrapper-cover{
+    width: 100%;
+    float: left;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.wrapper-modal-cover .option{
+    width: 100%;
+    text-align: left;
+}
+

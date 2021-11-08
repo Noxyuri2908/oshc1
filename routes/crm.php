@@ -105,8 +105,6 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
         Route::post('/destroy/{id}', [\App\Http\Controllers\Admin\CommissionController::class, 'destroy'])->name('destroy');
     });
 
-
-
     Route::get('/ajax/editCom', 'Admin\CommissionController@editCom')->name('crm.editCom');
     Route::post('/delete/deleteComm', 'Admin\CommissionController@deleteComm')->name('crm.editComm.delete');
     Route::get('/ajax/getCom', 'Admin\CommissionController@getCom')->name('crm.getCom');
@@ -568,6 +566,10 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('/ajax/updateComment', [\App\Http\Controllers\Admin\CommentTaksController::class, 'updateCommentTasks'])->name('updateCommentTasks');
     Route::post('/ajax/deleteCommentTasks', [\App\Http\Controllers\Admin\CommentTaksController::class, 'deleteCommentTasks'])->name('deleteCommentTasks');
     Route::post('/ajax/updateSeeCommentTasks', [\App\Http\Controllers\Admin\CommentTaksController::class, 'updateSeeCommentTasks'])->name('updateSeeCommentTasks');
+
+
+
+    Route::post('/cover/pushStore/', [\App\Http\Controllers\CoverController::class, 'pushStore'])->name('pushStoreCover');
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {
     Route::get('/',[\App\Http\Controllers\LuckyDrawController::class,'show'])->name('lucky.show');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Cover;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest as ServiceRequest;
@@ -69,12 +70,13 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $obj = Service::find($id);
+        $covers = Cover::where('service_id', $id)->get();
         if($obj == null){
-            Session::flash('error-service', 'Không tìm thấy dữ liệu.');  
-            return redirect()->route('service.index');  
+            Session::flash('error-service', 'Không tìm thấy dữ liệu.');
+            return redirect()->route('service.index');
         }
         $dichvus = Dichvu::where('status',1)->orderby('name')->get();
-        return view('back-end.service.edit',['obj'=>$obj, 'dichvus'=>$dichvus]);
+        return view('back-end.service.edit',['obj'=>$obj, 'dichvus'=>$dichvus, 'covers' => $covers]);
     }
 
     /**
@@ -88,8 +90,8 @@ class ServiceController extends Controller
     {
         $obj = Service::find($id);
         if($obj == null){
-            Session::flash('error-service', 'Không tìm thấy dữ liệu.');  
-            return redirect()->route('service.index');  
+            Session::flash('error-service', 'Không tìm thấy dữ liệu.');
+            return redirect()->route('service.index');
         }
         $arr_data = $request->all();
         $arr_data['created_by'] = \Auth::user()->id;
@@ -108,12 +110,12 @@ class ServiceController extends Controller
     {
         $obj = Service::find($id);
         if($obj == null){
-            Session::flash('error-service', 'Không tìm thấy dữ liệu.');  
-            return redirect()->route('service.index');  
+            Session::flash('error-service', 'Không tìm thấy dữ liệu.');
+            return redirect()->route('service.index');
         }
         $obj->delete();
-        Session::flash('success-service', 'Xóa thông tin thành công.');  
-        return redirect()->route('service.index');  
+        Session::flash('success-service', 'Xóa thông tin thành công.');
+        return redirect()->route('service.index');
     }
 
     public function mutileUpdate(Request $request)
@@ -141,7 +143,7 @@ class ServiceController extends Controller
                     $obj->delete();
                 }
             }
-        }       
+        }
         Session::flash('success-service', 'Update đồng loạt thành công.');
         return redirect()->route('service.index');
     }
