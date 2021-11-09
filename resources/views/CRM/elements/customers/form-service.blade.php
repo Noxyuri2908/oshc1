@@ -1,3 +1,6 @@
+@php
+    $cover = getCoverByServiceAndPolicy($obj->provider_id, $obj->policy);
+@endphp
 <div class="card mb-3">
     <div class="card-header">
         <div class="chevron-down-up">
@@ -84,6 +87,19 @@
                                 <option value="{{$key}}" {{$obj->policy == $key ? 'selected' : ''}}>{{$value}}</option>
                             @endif
                         @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="policy">Cover</label>
+                    <select class="form-control" id="cover_id" name="cover_id">
+                        @if(count($cover) > 0)
+                            <option value=""></option>
+                            @foreach($cover as $key => $item)
+                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
@@ -279,5 +295,39 @@
                 $('#provider_id').html(html)
             })
         }
+
+        $('#policy, #provider_id').on('change', function (){
+            var service = $('#provider_id').val();
+            var policy = $('#policy').val();
+
+            $.ajax({
+                url : '{{route('getCoverByServiceAndPolicy')}}',
+                type : 'POST',
+                data : {
+                    _token: "{{ csrf_token() }}",
+                    service,
+                    policy
+                },
+                success : function (data){
+                    if (data.error) {
+                        removeElementChildCover();
+                        alert(data.message);
+                        return;
+                    }
+
+                    var html = '<option label=""></option>';
+                    data.result.map(function (obj){
+                        html += `<option label="" data-id="${obj.id}">${obj.cover}</option>`;
+                    });
+                    $('#cover_id').html(html);
+                }
+            });
+        });
+
+        function removeElementChildCover()
+        {
+            $('#cover_id').html('');
+        }
+
     </script>
 @endpush

@@ -2092,5 +2092,12 @@ if (!function_exists('getBank'))
     }
 }
 
+if (!function_exists('getCoverByServiceAndPolicy')){
+    function getCoverByServiceAndPolicy($service, $policy){
+        $cover = \App\Cover::getCover($service, $policy);
+
+        return $cover;
+    }
+}
 
 

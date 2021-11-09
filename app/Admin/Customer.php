@@ -28,7 +28,8 @@ class Customer extends Model
         'provider_of_school',
         'destination',
         'exchange_rate',
-        'extend_fee'
+        'extend_fee',
+        'cover_id'
     ];
 
     protected $append = ['dateB', 'monthB', 'yearB'];

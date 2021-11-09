@@ -37,4 +37,16 @@ class CoverController extends Controller
         return response()->json(['message' => 'successfully']);
 
     }
+
+    public function getCoverByServiceAndPolicy(Request $request){
+        $service = $request->get('service');
+        $policy = $request->get('policy');
+
+        $cover = Cover::getCover($service, $policy);
+
+        if (count($cover) <= 0) return response()->json(['message' => 'Service data for covers is blank, please double check', 'error' => 'ghost']);
+
+        return response()->json(['result' => $cover]);
+
+    }
 }

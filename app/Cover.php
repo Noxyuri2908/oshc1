@@ -4,6 +4,7 @@ namespace App;
 
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Cover extends Model
 {
@@ -14,4 +15,14 @@ class Cover extends Model
       'policy',
       'cover'
     ];
+
+    public static function getCover($service, $policy)
+    {
+        $cover = DB::table('covers')->select('cover', 'id')->where([
+            ['service_id', '=', $service],
+            ['policy', '=', $policy]
+        ])->get();
+
+        return $cover;
+    }
 }

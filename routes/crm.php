@@ -569,6 +569,8 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
     Route::post('/cover/pushStore/', [\App\Http\Controllers\CoverController::class, 'pushStore'])->name('pushStoreCover');
     Route::post('/cover/delete', [\App\Http\Controllers\CoverController::class, 'delete'])->name('removeCoverById');
+    Route::post('/cover/getCover', [\App\Http\Controllers\CoverController::class, 'getCoverByServiceAndPolicy'])->name('getCoverByServiceAndPolicy');
+
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {
     Route::get('/',[\App\Http\Controllers\LuckyDrawController::class,'show'])->name('lucky.show');
