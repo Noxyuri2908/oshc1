@@ -72,7 +72,7 @@ Thay đổi dịch vụ
                                             <input type="text" name="cover-input" id="cover-input" style="width: 300px">
                                         </div>
 
-                                        <input type="hidden" value="update" id="action-modal">
+                                        <input type="hidden" value="" id="action-modal">
                                         <input type="hidden" value="" id="contain-cover-id">
 
                                     </div>
@@ -96,10 +96,12 @@ Thay đổi dịch vụ
         $(document).on('keypress', function (e){
             var cover = $('#cover-input').val();
             var policy = $('#policy-cover').val();
+            var action = $('#action-modal').val();
+            var cover_id = $('#contain-cover-id').val();
             if (e.which == 13){
                 if (policy == 'null') return alert('bạn chưa chọn policy');
                 cancleFormSubmit();
-                ajaxPushStoreCover(cover, policy);
+                ajaxPushStoreCover(cover, policy, action, cover_id);
 
             }
         })
@@ -111,10 +113,12 @@ Thay đổi dịch vụ
 
             var cover = obj.parentElement.previousElementSibling.textContent;
             var policy = obj.parentElement.previousElementSibling.previousElementSibling.getAttribute('data-policy');
+            var cover_id = obj.parentElement.getAttribute('data-id');
 
             $('#cover-input').val(cover); // set cover
             $('#policy-cover').val(policy).change(); // set policy
-            $('#contain-cover-id').val(obj.getAttribute('data-id')); // get and set id cover
+            $('#action-modal').val('update'); // set action
+            $('#contain-cover-id').val(cover_id); // get and set id cover
         }
 
         // click action remove cover
@@ -143,7 +147,7 @@ Thay đổi dịch vụ
             });
         }
 
-        function ajaxPushStoreCover(cover, policy)
+        function ajaxPushStoreCover(cover, policy, action, cover_id)
         {
             $.ajax({
                 url : '{{route('pushStoreCover')}}',
@@ -152,7 +156,9 @@ Thay đổi dịch vụ
                     _token: "{{ csrf_token() }}",
                     service_id : {{$obj->id}},
                     policy,
-                    cover
+                    cover,
+                    action,
+                    cover_id
                 },
                 success : function (data){
                     if (data.error) return alert('Error : please call admin check code');

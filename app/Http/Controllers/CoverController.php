@@ -15,17 +15,22 @@ class CoverController extends Controller
         $service_id = $request->get('service_id');
         $policy = $request->get('policy');
         $cover = $request->get('cover');
+        $action = $request->get('action');
+        $cover_id = $request->get('cover_id');
         $data = [
           'service_id' => $service_id,
           'policy' => $policy,
           'cover' => $cover
         ];
 
-        $idCover = DB::table('covers')->insertGetId($data);
-        if (empty($idCover)) return response()->json(['error' => 'please check again']);
+        if ($action == 'update' && $cover_id){
+            $this->updateCover($cover_id, $data);
+        }else{
+            $idCover = DB::table('covers')->insertGetId($data);
+            if (empty($idCover)) return response()->json(['error' => 'please check again']);
+        }
 
-        $covers = Cover::where('service_id', $service_id)->get();
-        return response()->json(['message' => 'successfully', 'view' => view('back-end.cover.tbody-data', ['covers' => $covers])->render()]);
+        return $this->getCoverByServiceId($service_id);
 
     }
 
@@ -48,5 +53,16 @@ class CoverController extends Controller
 
         return response()->json(['result' => $cover]);
 
+    }
+
+    public function updateCover($id, $data)
+    {
+        return DB::table('covers')->where('id', $id)->update($data);
+    }
+
+    public function getCoverByServiceId($service_id)
+    {
+        $covers = Cover::where('service_id', $service_id)->get();
+        return response()->json(['message' => 'successfully', 'view' => view('back-end.cover.tbody-data', ['covers' => $covers])->render()]);
     }
 }
