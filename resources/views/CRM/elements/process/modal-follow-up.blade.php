@@ -1,10 +1,13 @@
+@php
+    $agent = $follow->agent->first();
+@endphp
 <div class="modal fade user-information" id="modal_follow_up" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"
-                    id="exampleModalLabel">{{!empty($follow)?'Update follow up':'Add new follow up'}}</h5>
+                    id="exampleModalLabel">{{!empty($follow)?"Update follow up agent : $agent->name":'Add new follow up'}}</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span class="font-weight-light" aria-hidden="true">&times;</span>
                 </button>
