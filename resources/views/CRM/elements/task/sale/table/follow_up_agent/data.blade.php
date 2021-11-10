@@ -42,13 +42,14 @@
         <td class="white-space-break-spaces text-overflow text-center">{{!empty($admins[$item->person_in_charge])?$admins[$item->person_in_charge]:''}}</td>
         <td class="white-space-break-spaces text-overflow text-center">{{getColorByDate(Carbon::parse($item->process_date)->dayOfWeek).' '.convert_date_form_db($item->process_date)}}</td>
         <td class="white-space-break-spaces text-overflow">{{$item->getContact()}}</td>
-        <td class="white-space-break-spaces text-overflow " id="modelsFL"><a href="javascript:void(0)" onclick="showModelDes(this)">{{$item->task_description}}</a></td>
+        <td class="white-space-break-spaces text-overflow " id="modelsFL"><a href="javascript:void(0)" onclick="showModelDes(this)">{{$item->des}}</a></td>
+
         <td class="white-space-break-spaces text-overflow color-white {{setLabelFlUpStatus($item->follow_up_status)}}" style="white-space: pre-line">{{getValueByIndexConfig($fl_up_status, $item->follow_up_status)}}</td>
-        <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">@if($item->hot_issue == 1)<i class="fas fa-check"></i>@else<i class="fas fa-times"></i>@endif</td>
+        <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">@if($item->hot_issue == 1)<i class="fas fa-check"></i>@elseif($item->hot_issue == 0)<i class="fas fa-times"></i>@endif</td>
         <td class="white-space-break-spaces text-overflow text-center">{{!empty($admins[$item->create_person])?$admins[$item->create_person]:''}}</td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">{{getStaffNameById($item->assigned_person)}}</td>
         <td class="white-space-break-spaces text-overflow " style="white-space: pre-line">{{$item->title_task}}</td>
-        <td class="white-space-break-spaces text-overflow " id="modelsFL"><a href="javascript:void(0)" onclick="showModelDes(this)">{{$item->des}}</a></td>
+        <td class="white-space-break-spaces text-overflow " id="modelsFL"><a href="javascript:void(0)" onclick="showModelDes(this)">{{$item->task_description}}</a></td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">{{convert_date_form_db($item->due_date)}}</td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">{{!empty($item->estimate) ? "$item->estimate days" : ''}}</td>
         <td class="white-space-break-spaces text-overflow {{setLabelStatus($item->status)}}">{{$item->getStatus()}}</td>
