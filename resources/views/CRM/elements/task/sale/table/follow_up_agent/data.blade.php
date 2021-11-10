@@ -44,7 +44,7 @@
         <td class="white-space-break-spaces text-overflow">{{$item->getContact()}}</td>
         <td class="white-space-break-spaces text-overflow " id="modelsFL"><a href="javascript:void(0)" onclick="showModelDes(this)">{{$item->des}}</a></td>
 
-        <td class="white-space-break-spaces text-overflow color-white {{setLabelFlUpStatus($item->follow_up_status)}}" style="white-space: pre-line">{{getValueByIndexConfig($fl_up_status, $item->follow_up_status)}}</td>
+        <td class="white-space-break-spaces text-overflow color-white {{setLabelFlUpStatus($item->follow_up_status)}} text-center" style="white-space: pre-line">{{getValueByIndexConfig($fl_up_status, $item->follow_up_status)}}</td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">@if($item->hot_issue == 1)<i class="fas fa-check"></i>@elseif($item->hot_issue == 0)<i class="fas fa-times"></i>@endif</td>
         <td class="white-space-break-spaces text-overflow text-center">{{!empty($admins[$item->create_person])?$admins[$item->create_person]:''}}</td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">{{getStaffNameById($item->assigned_person)}}</td>
@@ -52,7 +52,7 @@
         <td class="white-space-break-spaces text-overflow " id="modelsFL"><a href="javascript:void(0)" onclick="showModelDes(this)">{{$item->task_description}}</a></td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">{{convert_date_form_db($item->due_date)}}</td>
         <td class="white-space-break-spaces text-overflow text-center" style="white-space: pre-line">{{!empty($item->estimate) ? "$item->estimate days" : ''}}</td>
-        <td class="white-space-break-spaces text-overflow {{setLabelStatus($item->status)}}">{{$item->getStatus()}}</td>
+        <td class="white-space-break-spaces text-overflow {{setLabelStatus($item->status)}} text-center">{{$item->getStatus()}}</td>
         <td class="white-space-break-spaces text-overflow">{{$item->getPotentialService($dichvu)}}</td>
         <td class="white-space-break-spaces text-overflow">{{!empty($item->agent)?$item->agent->rating:''}}</td>
         <td class="white-space-break-spaces text-overflow " style="white-space: pre-line"></td>
