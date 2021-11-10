@@ -167,6 +167,7 @@ Thay đổi dịch vụ
                     $('.status').text(data.message).fadeIn(2000, function (){
                         $(this).fadeOut(4000);
                     });
+                    $('#covers').modal('hide');
                     return $('#body-data-cover').html(data.view);
                 }
                 });
