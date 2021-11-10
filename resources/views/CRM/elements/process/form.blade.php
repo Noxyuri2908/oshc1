@@ -102,7 +102,7 @@
 
                                 <div class="d-flex" style="justify-content: center;align-items: center;">
                                     <a href="#" class="btn btn-link" is-click='false'
-                                       id='delete_all_appointment_fillter' style="color: black"><span class="filter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Clear
+                                       id='delete_all_appointment_fillter' style="color: black">Clear
                                         filter</a>
                                     <a href="{{route('event.create',['submit_form'=>'task_sale'])}}" class="btn btn btn-link" is-click='false' id='btn_add_new_appointment'
                                        style="color: black; padding-bottom: 0">
@@ -125,7 +125,7 @@
 
                                 <div class="d-flex" style="justify-content: center;align-items: center;">
                                     <a href="#" class="btn btn-link" is-click='false'
-                                       id='delete_all_market_feedback_fillter' style="color: black"><span class="filter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Clear
+                                       id='delete_all_market_feedback_fillter' style="color: black">Clear
                                         filter</a>
                                     <a href="#" class="btn btn btn-link" is-click='false' id='btn_add_new_market_feedback'
                                        style="color: black; padding-bottom: 0">
@@ -149,7 +149,7 @@
 
                                 <div class="d-flex" style="justify-content: center;align-items: center;">
                                     <a href="#" class="btn btn-link" is-click='false'
-                                       id='delete_all_competitor_feedback_fillter' style="color: black"><span class="filter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Clear
+                                       id='delete_all_competitor_feedback_fillter' style="color: black">Clear
                                         filter</a>
                                     <a href="#" class="btn btn btn-link" is-click='false' id='btn_add_new_competition_feedback'
                                        style="color: black; padding-bottom: 0">
@@ -174,7 +174,7 @@
 
                                     <div class="d-flex" style="justify-content: center;align-items: center;">
                                         <a href="#" class="btn btn-link" is-click='false'
-                                           id='delete_all_{{$type}}_fillter' style="color: black"><span class="filter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Clear
+                                           id='delete_all_{{$type}}_fillter' style="color: black">Clear
                                             filter</a>
                                         <a href="#" class="btn btn btn-link" is-click='false' id='create_{{$type}}_sale'
                                            style="color: black; padding-bottom: 0">
@@ -198,7 +198,7 @@
 
                                 <div class="d-flex" style="justify-content: center;align-items: center;">
                                     <a href="#" class="btn btn-link" is-click='false'
-                                       id='delete_all_proposal_fillter' style="color: black"><span class="filter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Clear
+                                       id='delete_all_proposal_fillter' style="color: black">Clear
                                         filter</a>
                                     <a href="#" class="btn btn btn-link" is-click='false' id='btn_add_new_proposal'
                                        style="color: black; padding-bottom: 0">
@@ -221,7 +221,7 @@
 
                                 <div class="d-flex" style="justify-content: center;align-items: center;">
                                     <a href="#" class="btn btn-link" is-click='false'
-                                       id='delete_all_proposal_fillter' style="color: black"><span class="filter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Clear
+                                       id='delete_all_proposal_fillter' style="color: black">Clear
                                         filter</a>
                                     <a href="#" class="btn btn btn-link" is-click='false' id='btn_add_agent_contact'
                                        style="color: black; padding-bottom: 0">
