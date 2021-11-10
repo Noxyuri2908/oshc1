@@ -153,9 +153,9 @@
                                                     @foreach($admins as $keyAdmin=>$valueAdmin)
                                                         <option value="{{$keyAdmin}}"
                                                                 @if(!empty($saleTaskAssign) && $saleTaskAssign->assigned_person == $keyAdmin)
-                                                                selected
-                                                            @endif
-                                                        >{{$valueAdmin}}</option>
+                                                                    selected
+                                                                @endif>
+                                                            {{$valueAdmin}}</option>
                                                     @endforeach
                                                 </select>
                                                 <small id="assigned_person_task" class="text-danger"></small>
