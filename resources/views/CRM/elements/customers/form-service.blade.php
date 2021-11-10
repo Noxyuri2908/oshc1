@@ -1,5 +1,5 @@
 @php
-    $cover = getCoverByServiceAndPolicy($obj->provider_id, $obj->policy);
+    $cover = isset($obj) ? getCoverByServiceAndPolicy($obj->provider_id, $obj->policy) : [];
 @endphp
 <div class="card mb-3">
     <div class="card-header">
