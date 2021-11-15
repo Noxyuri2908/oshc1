@@ -28,10 +28,11 @@
         'due_date_task'
     ]]);
     @if(!empty($agent_id))
-    @include('CRM.elements.task.sale.table.follow_up_agent.elements.script',['agent_id'=>$agent_id])
+        @include('CRM.elements.task.sale.table.follow_up_agent.elements.script',['agent_id'=>$agent_id])
     @else
         @include('CRM.elements.task.sale.table.follow_up_agent.elements.script')
     @endif
+
     @include('CRM.partials.choose_date_onchange_call_function',[
             'idElementInputFlatpick'=>[
                 'processing_date_follow_ups_start',

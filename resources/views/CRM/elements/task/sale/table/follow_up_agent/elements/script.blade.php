@@ -152,7 +152,7 @@
         }
     }
 
-    const debounceAjaxFollowUps = debounce(ajaxFollowUps, 300)
+    var debounceAjaxFollowUps = debounce(ajaxFollowUps, 300)
 
     $(document).on('keyup','.table-follow-ups .last-row input',function(e){
         debounceAjaxFollowUps(e.target.value);

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{!empty($saleTaskAssign)?'Update':'Add new'}} {{$typeTask}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">{{!empty($saleTaskAssign)?'Update':'Add new'}} {{$typeTask}}</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span class="font-weight-light" aria-hidden="true">&times;</span>
                 </button>
@@ -90,14 +90,11 @@
                             <div class="col-md-4 content-table fill_content id="agent_selected_by_type_{{$typeTask}}">
                                 <div class="form-group">
                                     <label class="control-label">Agent:</label>
-                                    <select class="form-control" name="user_id" id="user_id_{{$typeTask}}">
-                                        <option label=""></option>
-                                        @if(!empty($agents))
-                                            @foreach($agents as $keyAgent=>$valueAgent)
-                                                <option value="{{$keyAgent}}" {{!empty($saleTaskAssign) && $saleTaskAssign->user_id == $keyAgent ?'selected':''}}>{{$valueAgent}}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
+                                    <div class="form-group agent_default_select2">
+                                        <select name="user_id" id="agent_task_assign_company user_id_{{$typeTask}}" class="form-control agent_task_assign_company">
+
+                                        </select>
+                                    </div>
                                     <small id="user_id_{{$typeTask}}_alert_message" class="text-danger"></small>
                                 </div>
                             </div>
@@ -260,6 +257,36 @@
     </div>
 </div>
 <script>
+    $('.agent_task_assign_company').select2({
+        dropdownParent: $('.agent_default_select2'),
+        ajax: {
+            url: '{{route('agent.getAgentSelect')}}',
+            type: 'GET',
+            quietMillis: 10000,
+            dataType: 'json',
+            data: function (term) {
+                var query = {
+                    name: term.term,
+                }
+                return query
+            },
+            processResults: function (data) {
+                // Transforms the top-level key of the response object from 'items' to 'results'
+
+                var results = []
+                data.forEach(e => {
+                    results.push({
+                        id: e.id,
+                        text: e.name,
+                    })
+                })
+                return {
+                    results: results,
+                }
+            },
+        },
+    })
+
     $('#deadline_task_asigned_by_company').on('change',function (){
         var due_date = $(this).val();
         var pro_date = $('#processing_date_task_asigned_by_company').val()
@@ -291,3 +318,4 @@
         return result;
     }
 </script>
+

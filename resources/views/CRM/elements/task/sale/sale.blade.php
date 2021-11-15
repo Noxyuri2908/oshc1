@@ -384,6 +384,7 @@
         'report_end_date'
     ]]);
     <script>
+        var hoverTable = '';
         $(document).on('click', '.export_to_excel_many_table', function (e) {
             e.preventDefault()
             $('#exportExcelTable').modal('toggle')
@@ -411,26 +412,7 @@
             url = url.replace('filter_date_option_data', filter_date_option)
             url = url.replace(/amp;/g, '')
             window.location.href = url
-            console.log(url)
-            {{--$.ajax({--}}
-            {{--    url:"{{route('tasks.exportExcelTaskSale')}}",--}}
-            {{--    type:'get',--}}
-            {{--    data:{--}}
-            {{--        arrChecked:arrChecked,--}}
-            {{--        @if(request()->get('report_end_date') && request()->get('report_start_date'))--}}
-            {{--        report_start_date: "{{request()->get('report_start_date')}}",--}}
-            {{--        report_end_date: "{{request()->get('report_end_date')}}",--}}
-            {{--        @endif--}}
-            {{--            @if(request()->get('filter_date_option'))--}}
-            {{--        filter_date_option:"{{request()->get('filter_date_option')}}"--}}
-            {{--        @endif--}}
-            {{--    },--}}
-            {{--    success:function(data){--}}
-            {{--        // console.log(data);--}}
-            {{--    }--}}
-            {{--})--}}
         })
-        var hoverTable = ''
         $(document).on('mouseover', '.card-table-training', function () {
             hoverTable = 'training'
         })
@@ -454,114 +436,5 @@
             hoverTable = '{{$type}}'
         })
         @endforeach
-    </script>
-    <script>
-        $.fn.select2.amd.define('CustomSelectionAdapter', [
-                'select2/utils',
-                'select2/selection/multiple',
-                'select2/selection/placeholder',
-                'select2/selection/eventRelay',
-                'select2/selection/single',
-            ],
-            function (Utils, MultipleSelection, Placeholder, EventRelay, SingleSelection) {
-
-                // Decorates MultipleSelection with Placeholder
-                let adapter = Utils.Decorate(MultipleSelection, Placeholder)
-                // Decorates adapter with EventRelay - ensures events will continue to fire
-                // e.g. selected, changed
-                adapter = Utils.Decorate(adapter, EventRelay)
-
-                adapter.prototype.render = function () {
-                    // Use selection-box from SingleSelection adapter
-                    // This implementation overrides the default implementation
-                    let $selection = SingleSelection.prototype.render.call(this)
-                    return $selection
-                }
-
-                adapter.prototype.update = function (data) {
-                    // copy and modify SingleSelection adapter
-                    this.clear()
-
-                    let $rendered = this.$selection.find('.select2-selection__rendered')
-                    let noItemsSelected = data.length === 0
-                    let formatted = ''
-
-                    if (noItemsSelected) {
-                        formatted = this.options.get('placeholder') || ''
-                    } else {
-                        let itemsData = {
-                            selected: data || [],
-                            all: this.$element.find('option') || [],
-                        }
-                        // Pass selected and all items to display method
-                        // which calls templateSelection
-                        formatted = this.display(itemsData, $rendered)
-                    }
-
-                    $rendered.empty().append(formatted)
-                    $rendered.prop('title', formatted)
-                }
-
-                return adapter
-            })//
-        $(document).on('mouseover', '.choose_multiple_select', function () {
-            let select2_class = $(this).hasClass('select2-hidden-accessible')
-            if (!select2_class) {
-                $(this).attr('multiple', '')
-                $(this).select2({
-                    closeOnSelect: false,
-                    placeholder: 'Select',
-                    allowClear: true,
-                    allowHtml: true,
-                    selectionAdapter: $.fn.select2.amd.require('CustomSelectionAdapter'),
-                    templateSelection: (data) => {
-                        return `Select ${data.selected.length} in ${data.all.length} item`
-                    },
-                })
-                $(this).on('select2:close', function (e) {
-                    let field = JSON.stringify($('.js-select2').select2('data'))
-                    // console.log(field);
-                    if (field === '[]') {
-                        $('.select2-selection__rendered').removeClass('text-dark')
-                    } else {
-                        $('.select2-selection__rendered').addClass('text-dark')
-                    }
-                })
-            }
-        })
-        // $(".choose_multiple_select").select2({
-        //     closeOnSelect : false,
-        //     placeholder : "Select",
-        //     allowClear: true,
-        //     allowHtml: true,
-        //     selectionAdapter: $.fn.select2.amd.require("CustomSelectionAdapter"),
-        //     templateSelection:(data) => {
-        //         return`Select ${data.selected.length} in ${data.all.length} item`;
-        //     }
-        // });
-        // $('.choose_multiple_select').on('select2:close',function(e){
-        //     let field =  JSON.stringify($('.js-select2').select2('data'));
-        //     // console.log(field);
-        //     if(field === '[]'){
-        //         $('.select2-selection__rendered').removeClass('text-dark');
-        //     }else{
-        //         $('.select2-selection__rendered').addClass('text-dark');
-        //     }
-        // });
-
-    </script>
-    <script>
-        $('#processing_date_follow_ups_start').val('')
-        $('#processing_date_follow_ups_end').val('')
-        $('#processing_date_appointment_start').val('')
-        $('#processing_date_appointment_end').val('')
-        $('#processing_date_market_feedback_start').val('')
-        $('#processing_date_market_feedback_end').val('')
-        $('#processing_date_competitor_feedback_start').val('')
-        $('#processing_date_competitor_feedback_end').val('')
-        {{--        @foreach($typeSaleTask as $key=>$type)--}}
-        {{--        $('#processing_date_'.$type.'_start').val('');--}}
-        {{--        $('#processing_date_'.$type.'_end').val('');--}}
-        {{--        @endforeach--}}
     </script>
 @endpush
