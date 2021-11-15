@@ -24,7 +24,7 @@
       </div>
       <div class="pat-sidebar">
         <div class="form-group custom-control custom-radio">
-          <label class="custom-control-label" for="customRadio4"> <strong>{{$fields[21]}}</strong></label><small class="form-text mt-0" style="color: #01A9DB">{{!empty($obj)  ?$obj->office:''}}</small>
+          <label class="custom-control-label" for="customRadio4"> <strong>{{$fields[21]}}</strong></label><small class="form-text mt-0" style="color: #01A9DB">{{!empty($obj) ? $obj->office : ''}}</small>
         </div>
       </div>
       <div class="pat-sidebar">
@@ -64,7 +64,7 @@
         </div>
         <div class="pat-sidebar">
             <div class="form-group custom-control custom-radio">
-                <label class="custom-control-label" for="customRadio4"> <strong>{{$fields[10]}}</strong></label><small class="form-text mt-0" style="color: #01A9DB">{{!empty($obj) ? $admins[$obj->staff_id]:''}}</small>
+                <label class="custom-control-label" for="customRadio4"> <strong>{{$fields[10]}}</strong></label><small class="form-text mt-0" style="color: #01A9DB">{{!empty($obj) && !empty($obj->staff_id) ? $admins[$obj->staff_id]:''}}</small>
             </div>
         </div>
         <div class="pat-sidebar">

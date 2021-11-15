@@ -87,13 +87,6 @@
                                 <input class="form-control" name="person_in_charge" readonly
                                        value="{{!empty($obj) ? $admins[$obj->staff_id] : $admins[\Illuminate\Support\Facades\Auth::user()->id]}}"
                                        id="person_in_charge_name_follow_up">
-
-                                {{--<select class="form-control" name="person_in_charge" id="person_in_charge_follow_up">--}}
-                                {{--                                    <option label=""></option>--}}
-                                {{--                                    @foreach($admins as $keyAdmin=>$valueAdmin)--}}
-                                {{--                                        <option value="{{$keyAdmin}}">{{$valueAdmin}}</option>--}}
-                                {{--                                    @endforeach--}}
-                                {{--                                </select>--}}
                                 <small id="person_in_charge_alert" class="text-danger"></small>
 
                             </div>
