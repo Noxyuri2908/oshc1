@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Person in charge:</label>
                                     <input class="form-control" hidden name="person_in_charge" readonly value="{{!empty($obj) ? $obj->staff_id : \Illuminate\Support\Facades\Auth::user()->id}}" id="person_in_charge">
-                                    <input class="form-control" name="person_in_charge" readonly value="{{!empty($obj) ? $admins[$obj->staff_id] : $admins[\Illuminate\Support\Facades\Auth::user()->id]}}" id="person_in_charge_name">
+                                    <input class="form-control" name="person_in_charge" readonly value="{{!empty($obj) && !empty($obj->staff_id) ? $admins[$obj->staff_id] : $admins[\Illuminate\Support\Facades\Auth::user()->id]}}" id="person_in_charge_name">
                                     <small id="person_in_charge_alert" class="text-danger"></small>
 
                                 </div>

@@ -535,7 +535,6 @@ class TaskController extends Controller
         $obj = User::find($agent_id);
         $data_type = $request->get('data_type');
         $fl_up_status = \Config::get('myconfig.task_follow_up_status');
-
         return view('CRM.elements.task.sale.table.sale_task_assign.form-modal', compact(
             'typeTask',
             'admins',
