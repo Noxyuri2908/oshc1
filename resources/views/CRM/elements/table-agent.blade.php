@@ -241,16 +241,16 @@
                 </div>
                 <div id="follow-ups-table" class="mt-1">
                     <div class="header-search" style="padding: 7px">
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="0" href="#!" onclick="searchFollowsUpStatus(this)">{{$fl_up_status[0]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="0" href="#!" id="follow_status">{{$fl_up_status[0]}}
                             <sup style="color: red" id="count_{{$fl_up_status[0]}}">{{countFlStatus_zero(0)}}</sup>
                         </a>
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="1" href="#!" onclick="searchFollowsUpStatus(this)">{{$fl_up_status[1]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="1" href="#!" id="follow_status">{{$fl_up_status[1]}}
                             <sup style="color: red" id="count_{{$fl_up_status[1]}}">{{countFlStatus_zero(1)}}</sup>
                         </a>
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="2" href="#!" onclick="searchFollowsUpStatus(this)">{{$fl_up_status[2]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="2" href="#!" id="follow_status">{{$fl_up_status[2]}}
                             <sup style="color: red" id="count_{{$fl_up_status[2]}}">{{countFlStatus_zero(2)}}</sup>
                         </a>
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="3" href="#!" onclick="searchFollowsUpStatus(this)">{{$fl_up_status[3]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="3" href="#!" id="follow_status">{{$fl_up_status[3]}}
                             <sup style="color: red" id="count_{{$fl_up_status[3]}}">{{countFlStatus_zero(3)}}</sup>
                         </a>
 
@@ -441,103 +441,62 @@
             @endif
         </div>
         @push('scripts')
-            <script>
-                $('#agent_default_id').select2({
-                    dropdownParent: $('.agent_default_select2'),
-                    ajax: {
-                        url: '{{route('agent.getAgentSelect')}}',
-                        type: 'GET',
-                        quietMillis: 10000,
-                        dataType: 'json',
-                        data: function (term) {
-                            var query = {
-                                name: term.term,
-                            }
-                            return query
-                        },
-                        processResults: function (data) {
-                            // Transforms the top-level key of the response object from 'items' to 'results'
-
-                            var results = []
-                            data.forEach(e => {
-                                results.push({
-                                    id: e.id,
-                                    text: e.name,
-                                })
-                            })
-                            return {
-                                results: results,
-                            }
-                        },
-                    },
-                })
-
-                var hoverTable = ''
-                $(document).on('mouseover', '.card-table-training', function () {
-                    hoverTable = 'training'
-                })
-                $(document).on('mouseover', '.card-table-proposal', function () {
-                    hoverTable = 'proposal'
-                })
-                $(document).on('mouseover', '.card-table-competitor-feedback', function () {
-                    hoverTable = 'competitor-feedback'
-                })
-                $(document).on('mouseover', '.card-table-market-feedback', function () {
-                    hoverTable = 'market-feedback'
-                })
-                $(document).on('mouseover', '.card-table-follow-up-agent', function () {
-                    hoverTable = 'follow-up-agent'
-                })
-                $(document).on('mouseover', '.card-table-appointment', function () {
-                    hoverTable = 'appointment'
-                })
-
-                function searchFollowsUpStatus(elm) {
-                    $('.loading-fixed-top').css('display', 'block');
-                    var follow_ups_status = elm.getAttribute('data-value');
-
-                    $.ajax({
-                        url: "{{route('tasks.getFollowUps')}}",
-                        type: 'get',
-                        data: {
-                            follow_ups_status : follow_ups_status
-                        },
-                        success: function (data) {
-                            $('#follow-ups-data-sale').html(data.view);
-                            lastPageFollowUp = data.last_page;
-                        }, complete: function () {
-                            elementDataTime = $('.data_time_color');
-                        },
-                        error: function(xhr){
-                            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-                        }
-                    })
-                }
-
-                function searchHotIssue() {
-                    $('.loading-fixed-top').css('display', 'block');
-
-                    $.ajax({
-                        url: "{{route('tasks.getFollowUps')}}",
-                        type: 'get',
-                        data: {
-                            hot_issue_follow_ups : 1
-                        },
-                        success: function (data) {
-                            $('#follow-ups-data-sale').html(data.view);
-                            lastPageFollowUp = data.last_page;
-                        }, complete: function () {
-                            elementDataTime = $('.data_time_color');
-                        },
-                        error: function(xhr){
-                            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-                        }
-                    })
-                }
-            </script>
             @if(session()->has('validation_errors') && session()->get('validation_errors') != [])
                 <script>
+                    $('#agent_default_id').select2({
+                        dropdownParent: $('.agent_default_select2'),
+                        ajax: {
+                            url: '{{route('agent.getAgentSelect')}}',
+                            type: 'GET',
+                            quietMillis: 10000,
+                            dataType: 'json',
+                            data: function (term) {
+                                var query = {
+                                    name: term.term,
+                                }
+                                return query
+                            },
+                            processResults: function (data) {
+                                // Transforms the top-level key of the response object from 'items' to 'results'
+
+                                var results = []
+                                data.forEach(e => {
+                                    results.push({
+                                        id: e.id,
+                                        text: e.name,
+                                    })
+                                })
+                                return {
+                                    results: results,
+                                }
+                            },
+                        },
+                    })
+
+                    var hoverTable = ''
+                    $(document).on('mouseover', '.card-table-training', function () {
+                        hoverTable = 'training'
+                    })
+                    $(document).on('mouseover', '.card-table-proposal', function () {
+                        hoverTable = 'proposal'
+                    })
+                    $(document).on('mouseover', '.card-table-competitor-feedback', function () {
+                        hoverTable = 'competitor-feedback'
+                    })
+                    $(document).on('mouseover', '.card-table-market-feedback', function () {
+                        hoverTable = 'market-feedback'
+                    })
+                    $(document).on('mouseover', '.card-table-follow-up-agent', function () {
+                        hoverTable = 'follow-up-agent'
+                    })
+                    $(document).on('mouseover', '.card-table-appointment', function () {
+                        hoverTable = 'appointment'
+                    })
+
+                    $('#id_agent').select2()
                     $('#validationModal').modal('show')
+
+
                 </script>
             @endif
             @include('CRM.partials.choose_date',[
@@ -581,9 +540,7 @@
                 'processing_date_marketing_support',
                 'processing_date_proposal'
             ]])
-            <script>
-                $('#id_agent').select2()
-            </script>
+
 @include('CRM.partials.fancybox-class-popup',[
 'classElements'=>[
 'agent_data_show',

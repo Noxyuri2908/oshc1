@@ -251,9 +251,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
-
-                if (result.isConfirmed && readycompetitorFeedback) {
-                    readycompetitorFeedback = false;
+                if (result.isConfirmed) {
                     $.ajax({
                         url:_url,
                         type:'post',
@@ -268,9 +266,6 @@
                                 'success'
                             )
                             $('#modal_competition_feedback').modal('hide');
-                        },
-                        complete:function(){
-                            readycompetitorFeedback = true;
                         }
                     })
                 }

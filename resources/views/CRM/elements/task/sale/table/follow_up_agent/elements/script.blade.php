@@ -20,6 +20,7 @@
     var create_by_follow_ups = '';
     var hot_issue_follow_ups = '';
     var arrData = [];
+    var followsUpStatus = '';
 
     function getAutoCommment()
     {
@@ -107,7 +108,7 @@
         due_date_follow_ups_start = $('#due_date_follow_ups_start').val();
         due_date_follow_ups_end = $('#due_date_follow_ups_end').val();
         assign_follow_ups = $('#assign_follow_ups_filter').val();
-        follow_ups_status = $('#follow_ups_status_filter').val();
+        follow_ups_status = $('#follow_ups_status_filter').val() || followsUpStatus;
         create_by_follow_ups = $('#create_by_follow_ups_filter').val();
         hot_issue_follow_ups = $('#hot_issue_follow_ups_filter').val();
 
@@ -159,6 +160,10 @@
     });
     $(document).on('change','.table-follow-ups .last-row select',function(e){
         debounceAjaxFollowUps(e.target.value);
+    });
+    $(document).on('click','#follow_status',function(e){
+        debounceAjaxFollowUps(e.target.value);
+        followsUpStatus = $(this).attr('data-value');
     });
     $(document).on('keypress', function (e) {
         if (e.keyCode == 13 && readyFollowUps) {

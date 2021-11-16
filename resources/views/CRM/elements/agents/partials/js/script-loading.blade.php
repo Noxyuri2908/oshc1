@@ -16,6 +16,27 @@
     var _time_end = '';
     var _time_start = '';
 
+    function searchHotIssue() {
+        $('.loading-fixed-top').css('display', 'block');
+
+        $.ajax({
+            url: "{{route('tasks.getFollowUps')}}",
+            type: 'get',
+            data: {
+                hot_issue_follow_ups : 1
+            },
+            success: function (data) {
+                $('#follow-ups-data-sale').html(data.view);
+                lastPageFollowUp = data.last_page;
+            }, complete: function () {
+                elementDataTime = $('.data_time_color');
+            },
+            error: function(xhr){
+                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+            }
+        })
+    }
+
     function getCustomerTab(page) {
         if (!page) {
             page = 1;

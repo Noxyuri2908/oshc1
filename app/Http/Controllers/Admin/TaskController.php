@@ -142,6 +142,9 @@ class TaskController extends Controller
             $user_ids = [];
         }
 
+        $flagStatus =  !empty($request->get('follow_ups_status')) || $request->get('follow_ups_status') == '0' ? true : false;
+        $followUpsStatus = (int)$request->get('follow_ups_status');
+
         $followUps = Follow::when($request->get('agent_follow_ups_filter'), function ($query) use ($request, $startDate, $endDate, $hotIssue) {
             $query->whereHas('agent', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->get('agent_follow_ups_filter') . '%');
@@ -193,11 +196,8 @@ class TaskController extends Controller
             ->when($request->get('assign_follow_ups'), function ($query) use ($request) {
                 $query->where('assigned_person', $request->get('assign_follow_ups'));
             })
-            ->when($request->get('follow_ups_status'), function ($query) use ($request) {
-                if (!empty($request->get('follow_ups_status')))
-                {
-                    $query->where('follow_up_status', $request->get('follow_ups_status'));
-                }
+            ->when($flagStatus, function ($query) use ($request, $followUpsStatus) {
+                $query->where('follow_up_status', $followUpsStatus);
             })
             ->when($request->get('create_by_follow_ups'), function ($query) use ($request) {
                 $query->where('create_person', $request->get('create_by_follow_ups'));
