@@ -158,17 +158,19 @@ AGENT PROCESS
     @include('CRM.elements.process.form')
   </div>
 </div>
-<script>
-  $(document).on('change','#is_receive_comm',function(e){
-    e.preventDefault();
-    if(this.checked == true){
-      $('.info_bank').css('display','block');
-    }else if(this.checked == false){
-      $('.info_bank').css('display','none');
-    }
-  })
-</script>
 @stop
+@push('scripts')
+    <script>
+        $(document).on('change','#is_receive_comm',function(e){
+            e.preventDefault();
+            if(this.checked == true){
+                $('.info_bank').css('display','block');
+            }else if(this.checked == false){
+                $('.info_bank').css('display','none');
+            }
+        })
+    </script>
+@endpush
 
 
 

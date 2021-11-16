@@ -606,7 +606,6 @@ class TaskController extends Controller
             ->paginate(20);
         $lastPage = $dataSaleTaskAssign->lastPage();
         $fl_up_status = \Config::get('myconfig.task_follow_up_status');
-
         return response()->json([
             'view' => view('CRM.elements.task.sale.table.sale_task_assign.data', compact(
                 'dataSaleTaskAssign',

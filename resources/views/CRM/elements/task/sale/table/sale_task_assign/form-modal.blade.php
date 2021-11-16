@@ -91,7 +91,8 @@
                                 <div class="form-group">
                                     <label class="control-label">Agent:</label>
                                     <div class="form-group agent_default_select2">
-                                        <select name="user_id" id="agent_task_assign_company user_id_{{$typeTask}}" class="form-control agent_task_assign_company">
+                                        <select name="user_id" id="agent_task_assign_comp
+                                        any user_id_{{$typeTask}}" class="form-control agent_task_assign_company">
 
                                         </select>
                                     </div>

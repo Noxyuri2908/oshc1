@@ -372,16 +372,15 @@
             var des_item_{{$typeTask}} = $('#des_item_{{$typeTask}}').val()
             var des_note_{{$typeTask}} = $('#des_note_{{$typeTask}}').val()
             var user_id_{{$typeTask}} = $('#user_id_{{$typeTask}}').val()
-            var user_id_{{$typeTask}} = $('#user_id_{{$typeTask}}').val()
             var person_in_charge = $('#person_in_charge').val()
             var hotissue = $('#hotissue:checked').val();
             var assigned_person = $('#assigned_person_task').val();
             var follow_up_status = $('#follow_up_status_task').val();
             var time_estitmate = $('#time_estitmate_task').val();
             var id = $(this).attr('data-id');
-            var type_of_status_choose_agent_id = {{$saleTaskAssignType->where('is_success',1)->pluck('id')->first()}};
+            var type_of_status_choose_agent_id = {{$saleTaskAssignType->where('is_success',1)->pluck('id')}};
             var validationForm = false
-            if (type_{{$typeTask}} == type_of_status_choose_agent_id) {
+            if (type_of_status_choose_agent_id.indexOf(type_{{$typeTask}}) !== -1) {
                 if (user_id_{{$typeTask}}) {
                     validationForm = true
                     $('#user_id_{{$typeTask}}_alert_message').text('')
@@ -485,7 +484,7 @@
             } else {
                 $('#agent_selected_by_type_{{$typeTask}}').removeClass('d-block').addClass('d-none');
             }
-            $('#user_id_{{$typeTask}}').val('');
+{{--            $('#user_id_{{$typeTask}}').val('');--}}
         })
     </script>
     @include('CRM.partials.choose_date_onchange_call_function',[
