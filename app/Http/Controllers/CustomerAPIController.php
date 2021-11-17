@@ -14,7 +14,7 @@ class CustomerAPIController extends Controller
 {
     //
 
-    function registerCustomer(){
+    function registerCustomer(Request $request){
         try {
             $input = Input::all();
             $applies = $this->processDataApply($input);
@@ -44,7 +44,7 @@ class CustomerAPIController extends Controller
     public function processDataApply($input)
     {
         $applies = array(
-            'agent_id' => User::getAgentIdByAgentCode($input['agent_code']),
+            'agent_id' => User::getAgentIdByAgentCode(isset($input['agent_code']) ? $input['agent_code'] : ""),
             'provider_id' => Service::getProviderIDByName($input['provider']),
             'policy' => $input['policy'],
             'start_date' =>  !empty($input['start_date']) ? convert_date_to_db($input['start_date']) : null,
