@@ -1834,6 +1834,7 @@ class CustomerController extends Controller
         $dataInvoice['amount'] = (convert_price_float($obj->net_amount)) ?? '';
         $dataInvoice['template_id'] = ($template_id) ?? '';
         $dataInvoice['apply_id'] = ($apply_id) ?? '';
+        $dataInvoice['service'] = ($obj->service->name) ?? '';
 
         if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14 || $template_id == 16)
         {
