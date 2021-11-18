@@ -12,8 +12,13 @@
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
     #mainContent{
-        width: 806px;
+        width: 643px;
         margin: auto !important;
+    }
+
+    #more-imf>p>img{
+        width: 100%;
+        float: left;
     }
 
     table#table-2,#table-2 th,#table-2 td {
@@ -27,7 +32,7 @@
     page{
         width: 100%;
         float: left;
-        padding: 0px 85px;
+        padding: 0px 38px;
         height: 1000px;
         color: black;
     }
@@ -52,8 +57,8 @@
                 <td rowspan="4" style="width: 20%;    padding-top: 45px;">
                     <img style="width:185px;float: left" src="{{$dataInvoice['logo']}}" alt="Logo" id="img" border="none">
                 </td>
-                <td rowspan="4" style="width: 62%;vertical-align:bottom; background: rgb(234,235,237);padding-bottom: 10px;">
-                    <b style="text-align: center;color: black; font-size: 20px;">INVOICE</b>
+                <td rowspan="4" style="width: 62%;vertical-align:bottom; text-align: right;padding-bottom: 10px;">
+                    <b style="text-align: center;color: black; font-size: 22px;">TAX INVOICE</b>
                 </td>
             </tr>
             </tbody>
@@ -61,36 +66,47 @@
             <tfoot>
             <tr style=" border-bottom: 9px solid white;">
                 <td style="width: 40%; text-align: left">
-                    <b style="text-align: left; font-size: 9px;margin-bottom: 2px; color: black">{{$dataInvoice['company_name']}}</b>
-                </td>
-            </tr>
-            <tr style=" border-bottom: 9px solid white;" >
-                <td style=" padding-right: 60px;">
-                    <p style="text-align: left; font-size: 9px;margin-bottom: 2px">{{$dataInvoice['company_address']}}</p>
-                    <p style="text-align: left; font-size: 9px;margin-bottom: 2px">{{$dataInvoice['company_phone']}}</p>
+                    <b style="text-align: left; font-size: 10px;margin-bottom: 2px; color: black">{{$dataInvoice['company_name']}}</b>
+                    <p style="text-align: left; font-size: 10px;margin-bottom: 2px">{{$dataInvoice['company_address']}}</p>
+                    <p style="text-align: left; font-size: 10px;margin-bottom: 2px">{{$dataInvoice['company_phone']}}</p>
                 </td>
                 <td style="">
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px;    padding-right: 177.5px;">BILLING ADDRESS: GLOBAL ONE VISA-HCM
-                        20 Nguyen Thi Minh Khai, Da Kao Ward, District 1, HCMC
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">BILLING ADDRESS:
+                        <span style="font-weight: normal; font-size: 9px">GLOBAL ONE VISA-HCM 20 Nguyen Thi Minh Khai, Da Kao Ward, District 1, HCMC</span>
+                    </p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Invoice No:
+                        <span style="font-weight: normal; font-size: 9px">{{ $dataInvoice['ref_no']}}</span>
+                    </p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Date:
+                        <span style="font-weight: normal; font-size: 9px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
+                    </p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term:
+                        <span style="font-weight: normal; font-size: 9px">Immediate Payment</span>no
                     </p>
                 </td>
-                <td></td>
+
             </tr>
             <tr style="">
                 <td style="width: 40%;">
                 </td>
                 <td>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px">Invoice No: {{ $dataInvoice['ref_no']}}</p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px">Date: {{ convert_date_form_db($dataInvoice['date'])}}</p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px">Term: Immediate Payment</p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Invoice No:
+                        <span style="font-weight: normal; font-size: 9px">{{ $dataInvoice['ref_no']}}</span>
+                    </p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Date:
+                        <span style="font-weight: normal; font-size: 9px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
+                    </p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term:
+                        <span style="font-weight: normal; font-size: 9px">Immediate Payment</span>no
+                    </p>
                 </td>
             </tr>
             <tr style="border-top: 9px solid white;">
                 <td style="width: 40%;">
                 </td>
                 <td style="width: 20%;text-align: left">
-                    <p style="color: black; font-size: 10px;margin: 0; ">REFERENCE</p>
-                    <b style="color: black;font-size: 13px; ">{{$dataInvoice['cusName']}}</b>
+                    <span style="color: black; font-size: 10px;margin: 0; ">Reference : </span>
+                    <span style="color: black;font-size: 12px; ">{{$dataInvoice['cusName']}}</span>
                 </td>
             </tr>
             </tfoot>
@@ -105,35 +121,43 @@
         <table id="table-2" cellspacing="0" style="width: 100%;">
 
             <tr id="th-header">
+                <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">SERVICE</th>
                 <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">PROVIDER</th>
                 <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">POLICY</th>
                 <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">START DATE</th>
                 <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">END DATE</th>
-                <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">AMOUNT</th>
+                <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px;width: 88px">AMOUNT</th>
             </tr>
             <tr>
-                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">{{$dataInvoice['provider_name']}}</td>
-                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">{{$dataInvoice['policy']}}</td>
-                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
-                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
-                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
-                <td style=" text-align:left; font-size: 9px; padding: 5px 15px"></td>
+                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">{{$dataInvoice['service']}}</td>
+                <td style=" text-align:left; font-size: 9px; padding: 5px 15px">
+                    <p style="font-size: 9px;">{{$dataInvoice['provider_name']}}</p>
+                    <p style="font-size: 9px;">{{ !empty($dataInvoice['cover']) ? '('.$dataInvoice['cover'].')' : '' }}</p>
+                </td>
+                <td style=" text-align:left; font-size: 9px; padding: 5px 9px">{{$dataInvoice['policy']}}</td>
+                <td style=" text-align:left; font-size: 9px; padding: 5px 9px">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
+                <td style=" text-align:left; font-size: 9px; padding: 5px 9px">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
+                <td style=" text-align:left; font-size: 9px; padding: 5px 9px">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr >
-                <td colspan="5" style="padding-left: 0 !important;padding-right: 0 !important;"><hr style="border-style: dashed; border-width: 1px; color: #4682b4; margin: 0;"></td>
+                <td colspan="6" style="padding-left: 0 !important;padding-right: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>
             </tr>
             <tr style=" text-align:center;">
                 <th></th>
                 <th></th>
-                <th colspan="2"  style="color: #fff; text-align:left; font-size: 9px; padding: 5px 15px; font-size: 9px;background-color: rgb(220,87,134)" >TOTAL AMOUNT PAYABLE</th>
-                <th style=" color: #fff;text-align: left; padding: 5px 15px; font-size: 9px;background-color: rgb(220,87,134)">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</th>
+                <th></th>
+                <th colspan="2"  style="color: black; text-align:center; font-size: 9px; padding: 5px 0px; background-color: #D3D3D3" >
+                    <p style="color: black; text-align:left; font-size: 9px; padding: 5px 15px; margin-bottom: 0;letter-spacing: 0.5px" >TOTAL AMOUNT PAYABLE</p>
+                    <p style="color: black; text-align:left; font-size: 9px; padding: 5px 15px; margin-bottom: 0" >(GST inclusive)</p>
+                </th>
+                <th style=" color: black;text-align: left; padding: 5px 9px; font-size: 9px;background-color: #D3D3D3">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</th>
             </tr>
             <tr>
+                <td></td>
                 <td colspan="5" style="    text-align: right;padding-right: 0; padding-top: 5px !important;">
                     <i style="font-size: 8px; color: black;padding-left: 39px;text-align: right;">Note: If you hold a student dependent visa, you must be insured under the same policy as the main</i><br>
                     <i style="font-size: 8px; color: black; padding-left: 136px;text-align: right;">student visa holder. You are only eligible to hold a single policy if you are the primary visa holder.</i>
                 </td>
-                <td></td>
             </tr>
         </table>
         <br />

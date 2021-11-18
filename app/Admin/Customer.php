@@ -39,6 +39,10 @@ class Customer extends Model
         return $this->belongsTo('App\Admin\Apply');
     }
 
+    public function cover(){
+        return $this->hasOne('App\Cover', 'id', 'cover_id');
+    }
+
     public function getDateBAttribute()
     {
         $tmp = $this->attributes['birth_of_date'];

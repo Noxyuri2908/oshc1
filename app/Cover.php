@@ -25,4 +25,5 @@ class Cover extends Model
 
         return $cover;
     }
+
 }
