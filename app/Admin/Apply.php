@@ -133,6 +133,12 @@ class Apply extends Model
         return (!empty($agent_id)) ? User::findOrFail($agent_id)->name : '';
     }
 
+    public function getAddressAgent()
+    {
+        $agent_id = $this->agent_id;
+        return (!empty($agent_id)) ? User::findOrFail($agent_id)->office : '';
+    }
+
     public function getOfficeAgent()
     {
         $agent_id = $this->agent_id;

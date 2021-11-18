@@ -27,7 +27,7 @@
     page{
         width: 100%;
         float: left;
-        padding: 0px 120px;
+        padding: 0px 78px;
         height: 1000px;
         color: black;
     }
@@ -67,33 +67,29 @@
             <tr style=" border-bottom: 9px solid white;">
                 <td style="width: 40%; text-align: left">
                     <b style="text-align: left; font-size: 9px;margin-bottom: 2px; color: black">{{$dataInvoice['companyNameVi']}}</b>
-                </td>
-            </tr>
-            <tr style=" border-bottom: 9px solid white;" >
-                <td style=" padding-right: 60px;">
-                    <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px">{{$dataInvoice['companyAddressVi1']}}</p>
+                    <br>
+                    <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;margin-top: 8px">{{$dataInvoice['companyAddressVi1']}}</p>
                     <p style="text-align: left; font-size: 9px;margin-bottom: 2px">{{$dataInvoice['companyPhoneVi1']}}</p>
-                </td>
-                <td style="">
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 5px; font-weight: bold">Bên nhận: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['agentName']}}</span></p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 5px; font-weight: bold">Số hóa đơn: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal; padding-left: 51px;">{{ $dataInvoice['ref_no']}}</span></p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 5px; font-weight: bold">Ngày: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal; padding-left: 80px;">{{ convert_date_form_db($dataInvoice['date'])}}</span></p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 5px; font-weight: bold">Nội dung chuyển khoản: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['cusContent']}}</span></p>
-                </td>
-            </tr>
-            <tr style="">
-                <td style="width: 40%;">
+                    <br>
                     <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;padding-right: 60px;">{{$dataInvoice['companyAddressVi2']}}</p>
                     <p style="text-align: left; font-size: 9px;margin-bottom: 2px">{{$dataInvoice['companyPhoneVi2']}}</p>
                 </td>
-                <td></td>
+                <td style="">
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 18px; font-weight: bold">Bên nhận:
+                        <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['agentName']}}</span><br>
+                        <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['address_agent']}}</span>
+                    </p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 8px; font-weight: bold">Số hóa đơn: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal; padding-left: 51px;">{{ $dataInvoice['ref_no']}}</span></p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 8px; font-weight: bold">Ngày: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal; padding-left: 80px;">{{ convert_date_form_db($dataInvoice['date'])}}</span></p>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 5px; font-weight: bold">Nội dung chuyển khoản: <span style="text-align: left; font-size: 9px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['cusContent']}}</span></p>
+                </td>
             </tr>
             <tr style="border-top: 9px solid white;">
                 <td style="width: 40%;">
                     <p style="text-align: left; font-size: 9px;margin-bottom: 2px">Email: {{$dataInvoice['companyEmailVi1']}}</p>
                 </td>
                 <td style="width: 20%;text-align: left">
-                    <span style="color: black; font-size: 10px;margin: 0; ">KHÁCH HÀNG : </span>
+                    <span style="color: black; font-size: 10px;margin: 0; ">Khách hàng : </span>
                     <b style="color: black;font-size: 13px; ">{{$dataInvoice['cusName']}}</b>
                 </td>
             </tr>
@@ -141,7 +137,7 @@
             @endif
         </tr>
         <tr >
-            <td colspan="6" style="padding-left: 0 !important;padding-right: 0 !important;"><hr style="border-style: dashed; border-width: 1px; color: #4682b4; margin: 0;"></td>
+            <td colspan="6" style="padding-left: 0 !important;padding-right: 0 !important;"><hr style="border-style: solid;border-width: 1px;color: #5c5c5c;margin: 0;"></td>
         </tr>
         <tr style=" text-align:center;">
             <th></th>
