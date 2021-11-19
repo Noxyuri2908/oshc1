@@ -57,7 +57,7 @@
                 <td rowspan="4" style="width: 20%;    padding-top: 45px;">
                     <img style="width:185px;float: left" src="{{$dataInvoice['logo']}}" alt="Logo" id="img" border="none">
                 </td>
-                <td rowspan="4" style="width: 62%;vertical-align:bottom;padding-bottom: 10px;font-size: 18px;text-align: right">
+                <td rowspan="4" style="width: 62%;vertical-align:bottom;padding-bottom: 10px;font-size: 18px;text-align: center">
                     <b style="text-align: center;color: black; font-size: 20px;">PHIẾU ĐỀ NGHỊ THANH TOÁN</b>
                 </td>
             </tr>
@@ -110,7 +110,7 @@
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">hãng bảo hiểm</th>
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">chương trình</th>
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">ngày bắt đầu</th>
-            <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">ngày kết thúc</th>
+            <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px;width: 90px">ngày kết thúc</th>
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 9px;padding: 10px">số tiền</th>
         </tr>
         <tr>
