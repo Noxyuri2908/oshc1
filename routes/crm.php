@@ -238,7 +238,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('customer/update/post', 'Admin\CustomerController@updateCustomer')->name('customer.update.post');
     Route::get('/applies/{tab}', 'Admin\CustomerController@getCommAplly')->name('customer.getCommAplly');
 
-    Route::post('/export/invoice', [\App\Http\Controllers\Admin\CustomerController::class,'exportIflywirenvoice'])->name('invoice.export');
+    Route::post('/export/invoice', [\App\Http\Controllers\Admin\CustomerController::class,'exportInvoice'])->name('invoice.export');
     Route::post('/export/Exportinvoice', [\App\Http\Controllers\Admin\CustomerController::class,'exportInvoiceWithBalde'])->name('invoice.export.with.blade');
     Route::get('/view/invoice', [\App\Http\Controllers\Admin\CustomerController::class,'viewInvoice'])->name('invoice.view');
     Route::get('/ajax/formPartner', 'Admin\CustomerController@formPartner')->name('customer.formPartner');
