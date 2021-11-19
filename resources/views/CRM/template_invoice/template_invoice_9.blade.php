@@ -71,35 +71,20 @@
                     <p style="text-align: left; font-size: 10px;margin-bottom: 2px">{{$dataInvoice['company_phone']}}</p>
                 </td>
                 <td style="">
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">BILLING ADDRESS:
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 10px; font-weight: bolder;padding-right: 31px;">BILLING ADDRESS :
                         <span style="font-weight: normal; font-size: 9px">GLOBAL ONE VISA-HCM 20 Nguyen Thi Minh Khai, Da Kao Ward, District 1, HCMC</span>
                     </p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Invoice No:
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Invoice No :
                         <span style="font-weight: normal; font-size: 9px">{{ $dataInvoice['ref_no']}}</span>
                     </p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Date:
-                        <span style="font-weight: normal; font-size: 9px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Date :
+                        <span style="font-weight: normal; font-size: 9px;padding-left: 25px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
                     </p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term:
-                        <span style="font-weight: normal; font-size: 9px">Immediate Payment</span>no
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term :
+                        <span style="font-weight: normal; font-size: 9px;padding-left: 25px">Immediate Payment</span>
                     </p>
                 </td>
 
-            </tr>
-            <tr style="">
-                <td style="width: 40%;">
-                </td>
-                <td>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Invoice No:
-                        <span style="font-weight: normal; font-size: 9px">{{ $dataInvoice['ref_no']}}</span>
-                    </p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Date:
-                        <span style="font-weight: normal; font-size: 9px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
-                    </p>
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term:
-                        <span style="font-weight: normal; font-size: 9px">Immediate Payment</span>
-                    </p>
-                </td>
             </tr>
             <tr style="border-top: 9px solid white;">
                 <td style="width: 40%;">
