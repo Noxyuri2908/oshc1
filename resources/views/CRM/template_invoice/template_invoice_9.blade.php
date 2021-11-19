@@ -97,7 +97,7 @@
                         <span style="font-weight: normal; font-size: 9px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
                     </p>
                     <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term:
-                        <span style="font-weight: normal; font-size: 9px">Immediate Payment</span>no
+                        <span style="font-weight: normal; font-size: 9px">Immediate Payment</span>
                     </p>
                 </td>
             </tr>
