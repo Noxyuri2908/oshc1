@@ -1903,9 +1903,11 @@ if (!function_exists('getComm'))
 
 if (!function_exists('decode_html'))
 {
-    function decode_html($content)
+    function decode_html($content, $table = false)
     {
-        return html_entity_decode($content);
+        if ($table == true) return html_entity_decode($content);
+
+        echo html_entity_decode($content);
     }
 }
 
