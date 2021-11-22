@@ -73,7 +73,7 @@
                 <td style="width: 40%; text-align: left">
                     <b style="text-align: left; font-size: 10px;margin-bottom: 2px; color: black">{{$dataInvoice['companyNameVi']}}</b>
                     <br>
-                    <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;margin-top: 8px;padding-right: 10px;">{{$dataInvoice['companyAddressVi1']}}</p>
+                    <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;margin-top: 8px;padding-right: 60px;">{{$dataInvoice['companyAddressVi1']}}</p>
                     <p style="text-align: left; font-size: 10px;margin-bottom: 2px">{{$dataInvoice['companyPhoneVi1']}}</p>
                     <br>
                     <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;padding-right: 60px;">{{$dataInvoice['companyAddressVi2']}}</p>
