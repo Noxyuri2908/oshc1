@@ -12,7 +12,7 @@
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
     #mainContent{
-        width: 643px;
+        width: 806px;
         margin: auto !important;
     }
 
@@ -32,7 +32,7 @@
     page{
         width: 100%;
         float: left;
-        padding: 0px 38px;
+        padding: 0px 78px;
         height: 1000px;
         color: black;
     }
