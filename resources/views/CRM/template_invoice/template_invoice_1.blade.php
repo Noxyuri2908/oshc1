@@ -32,7 +32,7 @@
     page{
         width: 100%;
         float: left;
-        padding: 0px 78px;
+        padding: 0px 38px;
         height: 1000px;
         color: black;
     }

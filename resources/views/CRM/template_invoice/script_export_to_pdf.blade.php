@@ -3,7 +3,7 @@
         var opt = {
             filename:     'myfile.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
+            html2canvas:  { width : 794},
             jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
         $('.btn').on('click', function (){
