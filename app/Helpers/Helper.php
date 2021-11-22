@@ -1905,7 +1905,7 @@ if (!function_exists('decode_html'))
 {
     function decode_html($content)
     {
-        echo html_entity_decode($content);
+        return html_entity_decode($content);
     }
 }
 

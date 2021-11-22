@@ -73,7 +73,7 @@
                 <td style="width: 40%; text-align: left">
                     <b style="text-align: left; font-size: 10px;margin-bottom: 2px; color: black">{{$dataInvoice['companyNameVi']}}</b>
                     <br>
-                    <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;margin-top: 8px">{{$dataInvoice['companyAddressVi1']}}</p>
+                    <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;margin-top: 8px;padding-right: 10px;">{{$dataInvoice['companyAddressVi1']}}</p>
                     <p style="text-align: left; font-size: 10px;margin-bottom: 2px">{{$dataInvoice['companyPhoneVi1']}}</p>
                     <br>
                     <p style="text-align: left; font-size: 8.5px;margin-bottom: 2px;padding-right: 60px;">{{$dataInvoice['companyAddressVi2']}}</p>
@@ -84,8 +84,8 @@
                         <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['agentName']}}</span><br>
                         <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['address_agent']}}</span>
                     </p>
-                    <p style="text-align: left; font-size: 10px; margin-bottom: 8px; font-weight: bold">Số hóa đơn: <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal; padding-left: 51px;">{{ $dataInvoice['ref_no']}}</span></p>
-                    <p style="text-align: left; font-size: 10px; margin-bottom: 8px; font-weight: bold">Ngày: <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal; padding-left: 80px;">{{ convert_date_form_db($dataInvoice['date'])}}</span></p>
+                    <p style="text-align: left; font-size: 10px; margin-bottom: 8px; font-weight: bold">Số hóa đơn: <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal; padding-left: 56px;">{{ $dataInvoice['ref_no']}}</span></p>
+                    <p style="text-align: left; font-size: 10px; margin-bottom: 8px; font-weight: bold">Ngày: <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal; padding-left: 88px;">{{ convert_date_form_db($dataInvoice['date'])}}</span></p>
                     <p style="text-align: left; font-size: 10px; margin-bottom: 5px; font-weight: bold">Nội dung chuyển khoản: <span style="text-align: left; font-size: 10px; margin-bottom: 2px;font-weight: normal;">{{ $dataInvoice['cusContent']}}</span></p>
                 </td>
             </tr>
@@ -115,7 +115,7 @@
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 10px;padding: 10px">hãng bảo hiểm</th>
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 10px;padding: 10px">chương trình</th>
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 10px;padding: 10px">ngày bắt đầu</th>
-            <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 10px;padding: 10px;width: 95px">ngày kết thúc</th>
+            <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 10px;padding: 10px;width: 107px">ngày kết thúc</th>
             <th style="text-align:left; background-color: rgb(234,235,237); text-transform: uppercase; font-size: 10px;padding: 10px;width: 87px;">số tiền</th>
         </tr>
         <tr>
@@ -138,8 +138,8 @@
             <th></th>
             <th></th>
             @if($dataInvoice['exchange_rate'] != 0 || !empty($dataInvoice['exchange_rate']))
-                <th colspan="2" style="padding: 5px 15px; font-size: 11px;">Tổng số tiền phải thu</th>
-                <td style="padding: 5px 9px; font-size: 10px;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
+                <th colspan="2" style="padding: 5px 15px; font-size: 12px;">Tổng số tiền phải thu</th>
+                <td style="padding: 5px 9px; font-size: 12px;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
             @endif
         </tr>
         <tr >
@@ -150,11 +150,11 @@
             <th></th>
             <th></th>
             @if($dataInvoice['exchange_rate'] == 0 || empty($dataInvoice['exchange_rate']))
-                <th colspan="2" style="color: #000; text-align:left; font-size: 10px; padding: 5px 15px; font-size: 11px;	background-color: 	#D3D3D3;" >Tổng số tiền phải thu</th>
-                <th style=" color: #000;text-align: left; padding: 5px 9px; font-size: 10px;background-color: 	#D3D3D3;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                <th colspan="2" style="color: #000; text-align:left; font-size: 10px; padding: 5px 15px; font-size: 12px;	background-color: 	#D3D3D3;" >Tổng số tiền phải thu</th>
+                <th style=" color: #000;text-align: left; padding: 5px 9px; font-size: 12px;background-color: 	#D3D3D3;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
             @else
-                <th colspan="2"  style="color: #000; text-align:left; font-size: 10px; padding: 5px 15px; font-size: 11px;background-color: 	#D3D3D3;" >TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                <th style=" color: #000;text-align: left; padding: 5px 9px; font-size: 10px;background-color: 	#D3D3D3;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                <th colspan="2"  style="color: #000; text-align:left; font-size: 10px; padding: 5px 15px; font-size: 12px;background-color: 	#D3D3D3;" >TỔNG SỐ TIỀN PHẢI THU (VND)</th>
+                <th style=" color: #000;text-align: left; padding: 5px 9px; font-size: 12px;background-color: 	#D3D3D3;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
             @endif
         </tr>
     </table>

@@ -71,7 +71,7 @@
                     <p style="text-align: left; font-size: 10px;margin-bottom: 2px">{{$dataInvoice['company_phone']}}</p>
                 </td>
                 <td style="">
-                    <p style="text-align: left; font-size: 9px; margin-bottom: 10px; font-weight: bolder;padding-right: 31px;">BILLING ADDRESS :
+                    <p style="text-align: left; font-size: 9px; margin-bottom: 10px; font-weight: bolder;padding-right: 31px;">Billing address :
                         <span style="font-weight: normal; font-size: 9px">GLOBAL ONE VISA-HCM 20 Nguyen Thi Minh Khai, Da Kao Ward, District 1, HCMC</span>
                     </p>
                     <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Invoice No :
@@ -81,7 +81,7 @@
                         <span style="font-weight: normal; font-size: 9px;padding-left: 25px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
                     </p>
                     <p style="text-align: left; font-size: 9px; margin-bottom: 2px; font-weight: bolder">Term :
-                        <span style="font-weight: normal; font-size: 9px;padding-left: 25px">Immediate Payment</span>
+                        <span style="font-weight: normal; font-size: 9px;padding-left: 23px">Immediate Payment</span>
                     </p>
                 </td>
 
@@ -132,8 +132,8 @@
                 <th></th>
                 <th></th>
                 <th colspan="2"  style="color: black; text-align:center; font-size: 9px; padding: 5px 0px; background-color: #D3D3D3" >
-                    <p style="color: black; text-align:left; font-size: 9px; padding: 5px 15px; margin-bottom: 0;letter-spacing: 0.5px" >TOTAL AMOUNT PAYABLE</p>
-                    <p style="color: black; text-align:left; font-size: 9px; padding: 5px 15px; margin-bottom: 0" >(GST inclusive)</p>
+                    <p style="color: black; text-align:left; font-size: 9px; padding: 2px 15px; margin-bottom: 0;letter-spacing: 0.5px" >TOTAL AMOUNT PAYABLE</p>
+                    <p style="color: black; text-align:left; font-size: 9px; padding: 2px 15px; margin-bottom: 0" >(GST inclusive)</p>
                 </th>
                 <th style=" color: black;text-align: left; padding: 5px 9px; font-size: 9px;background-color: #D3D3D3">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</th>
             </tr>
@@ -141,7 +141,7 @@
                 <td></td>
                 <td colspan="5" style="    text-align: right;padding-right: 0; padding-top: 5px !important;">
                     <i style="font-size: 8px; color: black;padding-left: 39px;text-align: right;">Note: If you hold a student dependent visa, you must be insured under the same policy as the main</i><br>
-                    <i style="font-size: 8px; color: black; padding-left: 136px;text-align: right;">student visa holder. You are only eligible to hold a single policy if you are the primary visa holder.</i>
+                    <i style="font-size: 8px; color: black; padding-left: 91px;text-align: right;">student visa holder. You are only eligible to hold a single policy if you are the primary visa holder.</i>
                 </td>
             </tr>
         </table>
