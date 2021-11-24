@@ -49,6 +49,18 @@
         font-weight: bolder;
     }
 
+    tfoot>tr>td:nth-child(2)>p>span{
+        font-weight: normal;
+    }
+
+    .pl-64{
+        padding-left: 64px;
+    }
+
+    .pl-99{
+        padding-left: 99px;
+    }
+
     #total-rate{
         text-align:left;
         font-size: 13px;
@@ -122,17 +134,17 @@
                 </td>
                 <td style="">
                     <p style="margin-bottom: 18px">Bên nhận :
-                        <span style="font-weight: normal;">{{ $dataInvoice['agentName']}}</span><br>
-                        <span style="font-weight: normal;">{{ $dataInvoice['address_agent']}}</span>
+                        <span >{{ $dataInvoice['agentName']}}</span><br>
+                        <span >{{ $dataInvoice['address_agent']}}</span>
                     </p>
                     <p style="">Số hóa đơn :
-                        <span>{{ $dataInvoice['ref_no']}}</span>
+                        <span class="pl-64">{{ $dataInvoice['ref_no']}}</span>
                     </p>
                     <p style="">Ngày :
-                        <span style="font-weight: normal;">{{ convert_date_form_db($dataInvoice['date'])}}</span>
+                        <span class="pl-99">{{ convert_date_form_db($dataInvoice['date'])}}</span>
                     </p>
                     <p style="">Nội dung chuyển khoản :
-                        <span style="font-weight: normal;">{{ $dataInvoice['cusContent']}}</span>
+                        <span >{{ $dataInvoice['cusContent']}}</span>
                     </p>
                 </td>
             </tr>

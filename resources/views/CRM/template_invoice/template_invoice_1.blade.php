@@ -49,6 +49,18 @@
         font-weight: bolder;
     }
 
+    tfoot>tr>td:nth-child(2)>p>span{
+        font-weight: normal;
+    }
+
+    .pl-64{
+        padding-left: 64px;
+    }
+
+    .pl-99{
+        padding-left: 99px;
+    }
+
     #total-rate{
         text-align:left;
         font-size: 13px;
@@ -123,14 +135,14 @@
                 </td>
                 <td style="">
                     <p style="margin-bottom: 18px">Bên nhận :
-                        <span style="font-weight: normal;">{{ $dataInvoice['agentName']}}</span><br>
-                        <span style="font-weight: normal;">{{ $dataInvoice['address_agent']}}</span>
+                        <span >{{ $dataInvoice['agentName']}}</span><br>
+                        <span >{{ $dataInvoice['address_agent']}}</span>
                     </p>
-                    <p style="font-weight: bold">Số hóa đơn :
-                        <span style="font-weight: normal; padding-left: 54px;">{{ $dataInvoice['ref_no']}}</span>
+                    <p >Số hóa đơn :
+                        <span class="pl-64">{{ $dataInvoice['ref_no']}}</span>
                     </p>
-                    <p style="font-weight: bold">Ngày : <span style="font-weight: normal; padding-left: 87px;">{{ convert_date_form_db($dataInvoice['date'])}}</span></p>
-                    <p style="">Nội dung chuyển khoản : <span style="font-weight: normal;">{{ $dataInvoice['cusContent']}}</span></p>
+                    <p >Ngày : <span class="pl-99">{{ convert_date_form_db($dataInvoice['date'])}}</span></p>
+                    <p style="">Nội dung chuyển khoản : <span >{{ $dataInvoice['cusContent']}}</span></p>
                 </td>
             </tr>
             <tr style="border-top: 9px solid white;">
