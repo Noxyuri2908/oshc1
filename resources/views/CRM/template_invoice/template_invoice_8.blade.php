@@ -64,7 +64,6 @@
 
     #total-rate{
         text-align:left;
-        font-size: 13px;
         padding: 5px 15px;
         font-size: 13px;
         background-color: #D3D3D3;
@@ -165,7 +164,7 @@
                 </td>
                 <td style="width: 20%;text-align: left">
                     <span style="font-size: 11px;margin: 0;">Khách hàng : </span>
-                    <b style="font-size: 14px; ">{{$dataInvoice['cusName']}}</b>
+                    <b style="font-size: 14px;">{{$dataInvoice['cusName']}}</b>
                 </td>
             </tr>
             </tfoot>

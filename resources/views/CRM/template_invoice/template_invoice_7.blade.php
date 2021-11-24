@@ -111,8 +111,8 @@
         padding-right: 0;
         padding-top: 5px !important;
     }
-    .sub-des i{
-        font-size: 9.5px;
+    .sub-des>i{
+        font-size: 10px;
     }
 </style>
 @section('content')
@@ -227,10 +227,10 @@
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
+{{--                <td></td>--}}
+{{--                <td></td>--}}
 
-                <td colspan="6" class="sub-des">
+                <td colspan="5" class="sub-des">
                     <i>Áp dụng tỷ giá bán {{$dataInvoice['currency']}}/VND của ngân Vietcombank tại thời điểm thanh toán.</i><br>
                 </td>
             </tr>
