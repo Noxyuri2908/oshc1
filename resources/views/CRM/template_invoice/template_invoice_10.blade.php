@@ -66,6 +66,7 @@
         padding: 5px 0px;
         background-color: #D3D3D3;
         color: #000;
+        font-weight: bolder;
     }
 
     #total-rate>p{
