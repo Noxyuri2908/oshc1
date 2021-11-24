@@ -104,6 +104,15 @@
     body{
         color: black !important;
     }
+
+    .sub-des{
+        text-align: right !important;
+        padding-right: 0;
+        padding-top: 5px !important;
+    }
+    .sub-des i{
+        font-size: 9.5px;
+    }
 </style>
 
 @section('content')
@@ -220,8 +229,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td colspan="6" style=" text-align: right !important;padding-right: 0; padding-top: 5px !important;">
-                    <i style="font-size: 9.5px;">Áp dụng tỷ giá bán {{$dataInvoice['currency']}}/VND của ngân Vietcombank tại thời điểm thanh toán.</i><br>
+                <td colspan="6" class="sub-des">
+                    <i >Áp dụng tỷ giá bán {{$dataInvoice['currency']}}/VND của ngân Vietcombank tại thời điểm thanh toán.</i><br>
                 </td>
             </tr>
         </table>

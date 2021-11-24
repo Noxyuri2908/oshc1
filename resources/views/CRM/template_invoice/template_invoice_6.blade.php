@@ -177,7 +177,7 @@
                 <th style="">ngày kết thúc</th>
                 <th style="width: 100px">số tiền</th>
             </tr>
-            <tr>
+            <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>
                 <td style=" ">{{$dataInvoice['provider_name']}}</td>
                 <td style=" ">{{$dataInvoice['policy']}}</td>
