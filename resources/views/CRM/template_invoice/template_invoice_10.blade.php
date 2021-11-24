@@ -190,7 +190,7 @@
                 <th style="">POLICY</th>
                 <th style="">START DATE</th>
                 <th style="width: 100px">END DATE</th>
-                <th style="">AMOUNT</th>
+                <th style="width: 100px">AMOUNT</th>
             </tr>
             <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>
@@ -201,7 +201,7 @@
                 <td style="">{{$dataInvoice['policy']}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
-                <th style="">{{convert_price_float($dataInvoice['amount'])}}</th>
+                <td style="">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr>
                 <th></th>
