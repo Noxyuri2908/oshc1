@@ -208,7 +208,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="pl-29">Commission (include GST)</th>
-                <td style="text-align: center">{{$dataInvoice['comm']}}</td>
+                <td style="text-align: center">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>
@@ -218,7 +218,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2"  id="total-rate">TOTAL AMOUNT PAYABLE</th>
-                <th id="total-rate">{{convert_price_float($dataInvoice['total'])}}</th>
+                <th id="total-rate">{{convert_price_float($dataInvoice['total'])}} {{$dataInvoice['currency']}}</th>
             </tr>
             <tr>
                 <td></td>
