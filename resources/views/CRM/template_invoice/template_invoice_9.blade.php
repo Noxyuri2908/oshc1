@@ -204,7 +204,7 @@
                     <p >TOTAL AMOUNT PAYABLE</p>
                     <p >(GST inclusive)</p>
                 </th>
-                <th id="total-rate">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</th>
+                <th id="total-rate" >{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</th>
             </tr>
             <tr>
                 <td></td>

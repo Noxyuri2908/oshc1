@@ -206,7 +206,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" id="total-rate">Tổng số tiền phải thu</th>
-                <td id="total-rate">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
+                <th id="total-rate" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
             </tr>
         </table>
         <br />

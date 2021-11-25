@@ -219,10 +219,10 @@
                 <th></th>
                 @if($dataInvoice['exchange_rate'] == 0 || empty($dataInvoice['exchange_rate']))
                     <th colspan="2" id="total-rate" >Tổng số tiền phải thu</th>
-                    <th id="total-rate">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                    <th id="total-rate" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
                 @else
                     <th colspan="2"  id="total-rate" >TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                    <th id="total-rate">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                    <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
                 @endif
             </tr>
             <tr>

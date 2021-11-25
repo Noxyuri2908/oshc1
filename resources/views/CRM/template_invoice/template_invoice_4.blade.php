@@ -201,7 +201,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2"  id="total-rate">Tổng số tiền phải thu</th>
-                <td id="total-rate">{{convert_price_float($dataInvoice['total'], 0)}} {{$dataInvoice['currency']}}</td>
+                <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['total'], 0)}} {{$dataInvoice['currency']}}</th>
             </tr>
         </table>
         <br />
