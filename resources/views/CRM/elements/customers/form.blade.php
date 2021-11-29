@@ -1,7 +1,7 @@
 @if(!isset($obj))
     <form action="{{route('customer.store')}}" method="POST" role="form">
         @else
-            <form action="{{route('customer.update',['id' => $obj->id,'page'=>$page])}}" method="POST" role="form">
+            <form action="{{route('customer.update',['id' => $obj->id])}}" method="POST" role="form">
                 {{ method_field('PUT') }}
                 @endif
                 @csrf

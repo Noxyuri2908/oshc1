@@ -42,7 +42,7 @@ class UserController extends Controller
         $user = User::find(\Auth::user()->id);
         $tmp = $request->all();
         if(isset($tmp['password_new']) && $tmp['password_new'] != ""){
-            $tmp['password'] = bcrypt($tmp['password_new']);   
+            $tmp['password'] = bcrypt($tmp['password_new']);
         }
         $user->update($tmp);
         Session::flash('success-user', 'Thay đổi thông tin thành công.');
@@ -88,8 +88,8 @@ class UserController extends Controller
     {
         $obj = User::find($id);
         if($obj == null){
-            Session::flash('error-user', 'Không tìm thấy dữ liệu.');  
-            return redirect()->route('user.index');  
+            Session::flash('error-user', 'Không tìm thấy dữ liệu.');
+            return redirect()->route('user.index');
         }
         return view('back-end.users.edit',['obj'=>$obj]);
     }
@@ -110,10 +110,10 @@ class UserController extends Controller
         }
         $tmp = $request->all();
         if(isset($tmp['password_new']) && $tmp['password_new'] != ""){
-            $tmp['password'] = bcrypt($tmp['password_new']);   
+            $tmp['password'] = bcrypt($tmp['password_new']);
         }
-        if(isset($tmp['authorization'])) 
-        $tmp['authorization'] =  implode(';', $tmp['authorization']);   
+        if(isset($tmp['authorization']))
+        $tmp['authorization'] =  implode(';', $tmp['authorization']);
         $user->update($tmp);
         Session::flash('success-user', 'Thay đổi thông tin thành công.');
         return redirect(route('user.edit', ['id' => $id]));
@@ -129,12 +129,12 @@ class UserController extends Controller
     {
         $obj = User::find($id);
         if($obj == null){
-            Session::flash('error-user', 'Không tìm thấy dữ liệu.');  
-            return redirect()->route('user.index');  
+            Session::flash('error-user', 'Không tìm thấy dữ liệu.');
+            return redirect()->route('user.index');
         }
         $obj->delete();
-        Session::flash('success-user', 'Xóa người dùng thành công.');  
-        return redirect()->route('user.index');  
+        Session::flash('success-user', 'Xóa người dùng thành công.');
+        return redirect()->route('user.index');
     }
 
     public function mutileUpdate(Request $request)
@@ -162,7 +162,7 @@ class UserController extends Controller
                     $user->delete();
                 }
             }
-        }       
+        }
         Session::flash('success-user', 'Update đồng loạt thành công.');
         return redirect()->route('user.index');
     }

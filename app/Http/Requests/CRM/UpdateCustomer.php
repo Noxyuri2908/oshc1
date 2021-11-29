@@ -39,7 +39,7 @@ class UpdateCustomer extends FormRequest
             "net_amount" => 'required|min:0|not_in:0',
             "status" => 'required',
             "note" => 'nullable',
-            "staff_id" => 'required|exists:admins,id',
+//            "staff_id" => 'required|exists:admins,id',
             "prefix_name" => 'required',
             "first_name" => 'required',
             "last_name" => 'required',

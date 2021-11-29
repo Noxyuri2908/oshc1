@@ -55,7 +55,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="start_date">Date of birth</label>
-                    <input class="form-control open-jquery-date" autocomplete="off" id="birth_of_date" name="birth_of_date" value="{{!empty($cus) ? $cus->birth_of_date : request()->get('birth_of_date')}}" data-options='{"dateFormat":"d/m/Y"}'>
+                    <input class="form-control open-jquery-date" autocomplete="off" id="birth_of_date" name="birth_of_date" value="{{!empty($cus) ? convert_date_form_db($cus->birth_of_date) : request()->get('birth_of_date')}}" data-options='{"dateFormat":"d/m/Y"}'>
                 </div>
             </div>
             <div class="col-lg-3">

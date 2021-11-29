@@ -314,7 +314,7 @@ class MediaWebsiteExport implements FromCollection,WithHeadings,ShouldAutoSize
                 $mediaPosts = $mediaPosts->whereNotNull('post_date_newletter')->where('type_media_post', 4)->orderBy('id', 'desc')->get();
                 foreach ($mediaPosts as $data) {
                     $media[] = array(
-                        convert_date_form_db($data->post_date_newletter),
+                        convert_date_form_db($data->typeMediaPosts->count()>0 ? $data->typeMediaPosts->where('type_id',$getMediaPost)->first()->post_date : ''),
                         $categoryEmailMarketing->where('id',$data->category_email_marketing)->pluck('name')->first(),
                         !empty($services->where('id',$data->service_id)->pluck('name')->first())?$services->where('id',$data->service_id)->pluck('name')->first():'',
                         $data->post_title,

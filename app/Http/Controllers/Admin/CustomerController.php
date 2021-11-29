@@ -819,29 +819,6 @@ class CustomerController extends Controller
             $template = str_replace('_invoiceEndDate', $obj->end_date, $template);
             $template = str_replace('_invoiceAmount', number_format($obj->net_amount), $template);
         }
-        //dd($template);
-        //if (
-        //    $data['type_file'] == 1 || $data['type_file'] == 6
-        //    || $data['type_file'] == 7 || $data['type_file'] == 8
-        //    || $data['type_file'] == 9 || $data['type_file'] == 10
-        //    || $data['type_file'] == 13 || $data['type_file'] == 14
-        //) {
-        //    $template = str_replace('_nameCompany', config('export_invoice.nameCompany'), $template);
-        //    $template = str_replace('_addressCompany', config('export_invoice.addressCompany'), $template);
-        //    $template = str_replace('_phoneCompany', config('export_invoice.phoneCompany'), $template);
-        //    $template = str_replace('_websiteCompany', config('export_invoice.websiteCompany'), $template);
-        //    $template = str_replace('_logoCompany', config('export_invoice.logoCompany'), $template);
-        //    $template = str_replace('_currentDate', date('d/m/Y'), $template);
-        //    $template = str_replace('_invoiceNo', $obj->ref_no, $template);
-        //    $template = str_replace('_staffCreate', $obj->invoice_code, $template);
-        //    $template = str_replace('_currencyInvoice', $provider->currency(), $template);
-        //    $template = str_replace('_providerName', $provider->name, $template);
-        //    $template = str_replace('_invoicePolicy', $obj->policyName(), $template);
-        //    $template = str_replace('_invoiceStartDate', $obj->start_date, $template);
-        //    $template = str_replace('_invoiceEndDate', $obj->end_date, $template);
-        //    $template = str_replace('_invoiceAmount', number_format($obj->net_amount), $template);
-        //}
-        //
         if ($data['type_file'] == 1 || $data['type_file'] == 6 || $data['type_file'] == 9 || $data['type_file'] == 10) {
             if ($is_gst == 1) {
                 $_tmp = "GST inclusive";
@@ -1223,6 +1200,8 @@ class CustomerController extends Controller
         ) {
             $data['has_email'] = 1;
         }
+
+
         $dataCustomerManager['full_name'] = $request->get('first_name').$request->get('last_name');
         $dataCustomerManager['source_id'] = $idStatusCRMOshc;
         $dataCustomerManager['agent_id'] = $request->get('agent_id');
@@ -1232,14 +1211,21 @@ class CustomerController extends Controller
         $dataCustomerManager['phone_number'] = $request->get('phone');
         $dataCustomerManager['country_id'] = $request->get('country');
         $dataCustomerManager['potential_service'] = $request->get('provider_id');
-        $customerDatabaseManager = Admin\CustomerDatabaseManager::findOrFail($invoice->customer_manager_id);
-        $customerDatabaseManager->update($dataCustomerManager);
+
+        if (empty($invoice->customer_manager_id)){
+            $customerDatabaseManager = Admin\CustomerDatabaseManager::create($dataCustomerManager);
+            $data['customer_manager_id'] = $customerDatabaseManager->id;
+        }else{
+            $customerDatabaseManager = Admin\CustomerDatabaseManager::find($invoice->customer_manager_id);
+            $customerDatabaseManager->update($dataCustomerManager);
+        }
         $invoice->update($data);
 
         //Create customer
         $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id');
         $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
         $data_register['extend_fee'] = convert_number_currency_to_db($request->get('extend_fee'));
+        $data_register['birth_of_date'] = convert_date_to_db($request->get('birth_of_date'));
         $apply_id = $invoice->id;
         $data_register['type'] = 1;
         $customer = Customer::where('type', 1)->where('apply_id', $apply_id)->first();
@@ -2058,4 +2044,5 @@ class CustomerController extends Controller
 
         return $dataInvoice;
     }
+
 }

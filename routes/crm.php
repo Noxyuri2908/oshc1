@@ -214,12 +214,14 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('/ajax/editTask', 'Admin\ProcessController@editTask')->name('crm.editTask');
 
 
-    Route::resource('customer', Admin\CustomerController::class);
+    Route::put('customer/update/{id}', [\App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('customer.update');
     Route::get('ajax/customer/getData/{tab}', [\App\Http\Controllers\Admin\CustomerController::class,'getData'])->name('ajax.customer.getData');
     Route::get('ajax/customer/showData/{tab}/{id}', [\App\Http\Controllers\Admin\CustomerController::class,'showData'])->name('ajax.customer.showData');
     Route::get('ajax/customer/getProvider',[\App\Http\Controllers\Admin\CustomerController::class,'getProvider'])->name('ajax.customer.getProvider');
     Route::get('ajax/customer/getPrice',[\App\Http\Controllers\Admin\CustomerController::class,'getPrice'])->name('ajax.customer.getPrice');
     Route::get('ajax/customer/getStatusFilterCustomer/{tab}',[\App\Http\Controllers\Admin\CustomerController::class,'getStatusFilterCustomer'])->name('ajax.customer.getStatusFilterCustomer');
+    Route::resource('customer', Admin\CustomerController::class);
+
 
     Route::resource('flywire', 'Admin\FlywireController');
     Route::get('ajax/flywire/getData',[\App\Http\Controllers\Admin\FlywireController::class,'getData'] )->name('ajax.flywire.getData');
@@ -235,7 +237,6 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('flywires/process/com_and_profit', [\App\Http\Controllers\Admin\FlywireController::class,'processComAndProfit'])->name('flywires.process.com_and_profit');
     Route::post('flywires/process/get_exchange_rate_date', 'Admin\FlywireController@getExchangeProvider')->name('flywires.process.get_exchange_rate_date');
     Route::post('customer/multi_delete', 'Admin\CustomerController@multiDeleteData')->name('customer.multi_delete');
-    Route::post('customer/update/post', 'Admin\CustomerController@updateCustomer')->name('customer.update.post');
     Route::get('/applies/{tab}', 'Admin\CustomerController@getCommAplly')->name('customer.getCommAplly');
 
     Route::post('/export/invoice', [\App\Http\Controllers\Admin\CustomerController::class,'exportInvoice'])->name('invoice.export');

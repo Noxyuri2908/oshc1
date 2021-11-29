@@ -63,7 +63,7 @@
                             </option>
                         @endforeach
                     </select>
-                    {{--<input class="form-control" id="comm_type_payment" type="text" placeholder="" value="{{!empty($typePayment)?$typePayment:''}}" readonly>--}}
+                    <input class="form-control" id="comm_type_payment" type="text" placeholder="" value="{{!empty($typePayment)?$typePayment:''}}" readonly>
                 </div>
             </div>
             <!-- HIDDEN DATA -->
