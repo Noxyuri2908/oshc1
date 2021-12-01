@@ -26,7 +26,7 @@
                 <label for="promotion_amount">Promotion ($)</label>
                 <div class="input-group mb-3">
                     <input type="text" onfocus="this.blur()" class="form-control" id="promotion_amount" name="promotion_amount" value="{{isset($obj) ? $obj->promotion_amount : 0}}">
-                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider) ? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
