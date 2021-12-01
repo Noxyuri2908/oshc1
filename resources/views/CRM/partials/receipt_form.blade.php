@@ -162,7 +162,7 @@
                                 value="0" step="0.01">
                             @endif
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">{{!empty($getApply)?$getApply->provider->currency():''}}</span>
+                                <span class="input-group-text" id="basic-addon1">{{!empty($getApply->provider->currency())??''}}</span>
                             </div>
                         </div>
                     </div>
