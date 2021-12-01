@@ -33,7 +33,7 @@
                 <label for="extend_fee">Extend fee</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control"  id="extend_fee" name="extend_fee" value="{{!empty($cus) ? $cus->extend_fee : 0}}">
-                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
@@ -54,7 +54,7 @@
                 <label for="fee">Bank fee ($)</label>
                 <div class="input-group mb-3">
                 <input class="form-control" onfocus="this.blur()"  id="fee" name="bank_fee_number" value="{{(!empty($obj)?$obj->bank_fee_number:'')}}" type="text" placeholder="" >
-                <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
@@ -76,7 +76,7 @@
                 <label for="gst">GST</label>
                 <div class="input-group mb-3">
                     <input class="form-control" id="gst" name="gst" value="{{isset($obj) ? $obj->gst : 0}}" type="text" placeholder="">
-                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             {{--<div class="col-lg-2">--}}
@@ -90,21 +90,21 @@
                 <label for="extra">Discount $</label>
                 <div class="input-group mb-3">
                     <input class="form-control" id="extra" name="extra" value="{{isset($obj) ? $obj->extra : 0}}" type="text" placeholder="">
-                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
                 <label for="comm">Commission ($)</label>
                 <div class="input-group mb-3">
                     <input class="form-control" id="comm" name="comm" value="{{isset($obj) ? $obj->comm : 0}}" type="text" placeholder="">
-                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
                 <label for="comm">Total ($)</label>
                 <div class="input-group mb-3">
                     <input class="form-control" id="total" name="total" value="{{isset($obj) ? $obj->total : 0}}" data-check="{{isset($obj) ? $obj->total : 0}}" type="text" placeholder="" >
-                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                    <div class="input-group-append"><span class="input-group-text">{{!empty($obj->provider)? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
@@ -139,5 +139,5 @@
     'exchange_rate',
     'net_amount',
 
-], 'currency' => !empty($obj) ? $obj->provider->currency() : ''])
+], 'currency' => !empty($obj->provider) ? $obj->provider->currency() : ''])
 @endpush
