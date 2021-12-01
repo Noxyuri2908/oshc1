@@ -184,7 +184,7 @@
                     <input class="form-control" id="net_amount" name="net_amount"
                            value="{{isset($obj) ? $obj->net_amount : 0}}" type="text" step="0.01">
                     <div class="input-group-append">
-                        <span class="input-group-text">{{!empty($obj)? $obj->provider->currency() : ''}}</span></div>
+                        <span class="input-group-text">{{!empty($obj->provider) ? $obj->provider->currency() : ''}}</span></div>
                 </div>
             </div>
             <div class="col-lg-2">
