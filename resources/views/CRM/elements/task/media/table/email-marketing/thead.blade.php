@@ -3,9 +3,9 @@
         <th class="width-80">Action</th>
         <th class="width-200">Ngày gửi</th>
         <th class="width-200">Ngày ngày dự kiến gửi</th>
-        <th class="width-170">Hạng mục email MKT</th>
-        <th class="width-170">Dịch vụ</th>
-        <th class="width-200">Tiêu đề</th>
+        <th class="width-130">Hạng mục email MKT</th>
+        <th class="width-120">Dịch vụ</th>
+        <th class="width-350">Tiêu đề</th>
         <th class="width-170">Đối tượng gửi</th>
         <th class="width-170">Lượt mở email</th>
         <th class="width-200">Lượt click link</th>

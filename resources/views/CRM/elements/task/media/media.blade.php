@@ -85,6 +85,18 @@
             width: 220px;
         }
 
+        .width-250 {
+            width: 250px;
+        }
+
+        .width-300 {
+            width: 300px;
+        }
+
+        .width-350 {
+            width: 350px;
+        }
+
         .width-170 {
             width: 170px;
         }
@@ -107,6 +119,10 @@
 
         .width-100 {
             width: 100px;
+        }
+
+        .width-130 {
+            width: 130px;
         }
 
         .white-space-break-spaces {
