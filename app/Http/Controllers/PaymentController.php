@@ -223,12 +223,17 @@ class PaymentController extends Controller
         $template = str_replace('_enddate', ($obj->end_date) ?? '', $template);
         $template = str_replace('_amount', $obj->net_amount, $template);
         $template = str_replace('_content', $templateConfig->content, $template);
+        $template = str_replace('_service', $templateConfig->content, ($obj->service->name) ?? '');
+        $template = str_replace('_cover', $templateConfig->content, ($cus->cover->cover) ?? '');
+        $template = str_replace('_agentName', $templateConfig->content, ($obj->getAgentName()) ?? '');
+        $template = str_replace('_agentAddress', $templateConfig->content, ($obj->getAddressAgent()) ?? '');
+
         foreach (\Session::get('type_file') as $type) {
             if ($type == 1) {
-                $nameFile = ($type == 1) ? 'Invoice -' . md5(uniqid()) : 'PhieuDeNghiChuyenTien -' . md5(uniqid());
+                $nameFile = ($type == 1) ? 'Invoice - ' . md5(uniqid()) : 'PhieuDeNghiChuyenTien -' . md5(uniqid());
                 $apiKey = 'api_696BA4651A40413B869C0C3E6DA4D99C';
                 $url = "https://api.sejda.com/v2/html-pdf";
-                $content = json_encode(array('htmlCode' => $template, 'pageSize' => 'a4'));
+                $content = json_encode(array('htmlCode' => $template, 'pageSize' => 'a4', 'url' => \Config::get('admin.base_url')));
 
                 $curl = curl_init($url);
                 curl_setopt($curl, CURLOPT_HEADER, false);

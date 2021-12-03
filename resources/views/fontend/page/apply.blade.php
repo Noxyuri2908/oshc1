@@ -84,6 +84,10 @@
                                 <div class="col-md-6">
                                     @include("fontend.partials.apply.row-register", ['data'=>!empty($main_customer)?$main_customer:[]])
                                     {{--                                    //add--}}
+                                    @php
+                                        $adults = $adults ?? '';
+                                        $childs = $childs ?? '';
+                                    @endphp
                                     @if($adults == 1 && $childs == 0)
                                         @include("fontend.partials.apply.agent-info",['data'=>!empty($main_customer)?$main_customer:[]])
                                         <div class="list-check-submit">

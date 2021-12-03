@@ -34,7 +34,7 @@ class PaymentCustomerMail extends Mailable
     {
         if(!empty($this->data_email_payment_customer['list_file'])){
             foreach ($this->data_email_payment_customer['list_file'] as $one) {
-                $this->attach(public_path('/storage/pdf') . '/' . $one);
+                $this->attach(\Config::get('admin.base_url').'storage/app/public/pdf/'.$one);
             }
         }
         return $this->view('fontend.mail.payment.payment_customer');

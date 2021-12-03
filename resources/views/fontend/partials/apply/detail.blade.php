@@ -34,14 +34,14 @@
                 <span>{{(!empty($end_date))?\Carbon::parse($end_date)->format('d/m/Y'):''}}</span>
             </div>
             <div class="col col-md-2 pd0 flex">
-                <span>{{$adults}}</span>
+                <span>{{($adults) ?? ''}}</span>
             </div>
             <div class="col col-md-2 pd0 flex">
-                <span>{{$childs}}</span>
+                <span>{{$childs ?? ''}}</span>
             </div>
 
             <div class="col col-md-2 pd0 flex">
-                <span class="price-total">{{convert_price_float($price)}}</span>
+                <span class="price-total">{{convert_price_float($price ?? '')}}</span>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
                     <strong>@lang('header.no_of_adults')</strong>
                 </td>
                 <td width="50%">
-                    <span>{{$adults}}</span>
+                    <span>{{$adults ?? ''}}</span>
                 </td>
             </tr>
             <tr>
@@ -91,7 +91,7 @@
                     <strong>@lang('header.no_of_child')</strong>
                 </td>
                 <td width="50%">
-                    <span>{{$childs}}</span>
+                    <span>{{$childs ?? ''}}</span>
                 </td>
             </tr>
             <tr>
@@ -99,7 +99,7 @@
                     <strong>@lang('header.price')</strong>
                 </td>
                 <td width="50%">
-                    <span class="price-total">{{convert_price_float($price)}}</span>
+                    <span class="price-total">{{convert_price_float($price ?? '')}}</span>
                 </td>
             </tr>
         </table>

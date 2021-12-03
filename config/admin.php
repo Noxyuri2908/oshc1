@@ -5,6 +5,7 @@ return [
     'admin_url' => 'https://oshcglobal.com.au/',
     'ajax_url' => 'https://oshcglobal.com.au/',
     'ajax_crm_url' => 'https://oshcglobal.com.au/crm/',
+    'local_url' => 'http://oshcglobal/',
     'role' => [
         1 => 'Create User',
         2 => 'Edit User',

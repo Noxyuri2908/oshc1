@@ -22,10 +22,6 @@ Route::get('lucky-draw', 'TestController@index');
 Route::get('/oauth2callback', 'TestController@googleCallBack')->name('calendar.callback');
 Route::post('/flywire/store',[\App\Http\Controllers\Admin\FlywireController::class,'storeFlywireApi'])->middleware('corstest');
 
-Route::get('test', function () {
-
-    dd($paymentIds);
-});
 Route::get('/getCustomer', 'TestController@getCustomer')->name('getCustomerTest');
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

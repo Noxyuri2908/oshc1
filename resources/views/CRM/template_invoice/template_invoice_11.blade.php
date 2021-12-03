@@ -152,7 +152,8 @@
                 </td>
                 <td style="padding-right: 31px">
                     <p style="">BILLING ADDRESS :
-                        <span style="">GLOBAL ONE VISA-HCM 20 Nguyen Thi Minh Khai, Da Kao Ward, District 1, HCMC</span>
+                        <span >{{ $dataInvoice['agentName']}}</span><br>
+                        <span >{{ $dataInvoice['address_agent']}}</span>
                     </p>
                     <p style="">Invoice No :
                         <span style="">{{ $dataInvoice['ref_no']}}</span>
