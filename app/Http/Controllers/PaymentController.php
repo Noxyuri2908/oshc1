@@ -223,10 +223,10 @@ class PaymentController extends Controller
         $template = str_replace('_enddate', ($obj->end_date) ?? '', $template);
         $template = str_replace('_amount', $obj->net_amount, $template);
         $template = str_replace('_content', $templateConfig->content, $template);
-        $template = str_replace('_service', ($obj->service->name) ?? '', $templateConfig->content);
-        $template = str_replace('_cover', ($cus->cover->cover) ?? '',  $templateConfig->content);
-        $template = str_replace('_agentName', ($obj->getAgentName()) ?? '',  $templateConfig->content);
-        $template = str_replace('_agentAddress', ($obj->getAddressAgent()) ?? '',  $templateConfig->content);
+        $template = str_replace('_service', ($obj->service->name) ?? '', $template);
+        $template = str_replace('_cover', ($cus->cover->cover) ?? '',  $template);
+        $template = str_replace('_agentName', ($obj->getAgentName()) ?? '',  $template);
+        $template = str_replace('_agentAddress', ($obj->getAddressAgent()) ?? '',  $template);
 
         foreach (\Session::get('type_file') as $type) {
             if ($type == 1) {

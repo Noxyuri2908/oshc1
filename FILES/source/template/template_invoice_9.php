@@ -138,18 +138,18 @@
         <tfoot>
         <tr style=" border-bottom: 9px solid white;">
             <td style="width: 40%; text-align: left">
-                <b >_company_name</b>
-                <p >_company_address</p>
-                <p >_company_phone</p>
+                <b>_company_name</b>
+                <p>_company_address</p>
+                <p>_company_phone</p>
             </td>
             <td style="padding-right: 31px">
-                <p >BILLING ADDRESS:
-                    <span >_agentName</span><br>
-                    <span >_agentAddress</span>
+                <p>BILLING ADDRESS:
+                    <span>_agentName</span><br>
+                    <span>_agentAddress</span>
                 </p>
-                <p >Invoice No: _ref_no</p>
-                <p >Date: _date</p>
-                <p >Term: Immediate Payment</p>
+                <p>Invoice No: _ref_no</p>
+                <p>Date: _date</p>
+                <p>Term: Immediate Payment</p>
             </td>
         </tr>
         <tr style="color: #000">

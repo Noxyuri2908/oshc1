@@ -141,8 +141,8 @@
                         </td>
                 <td style="padding-right: 31px">
                     <p style="">BILLING ADDRESS :
-                        <span >{{ $dataInvoice['agentName']}}</span><br>
-                        <span >{{ $dataInvoice['address_agent']}}</span>
+                        <span>{{ $dataInvoice['agentName']}}</span><br>
+                        <span>{{ $dataInvoice['address_agent']}}</span>
                     </p>
                     <p style="">Invoice No :
                         <span style="">{{ $dataInvoice['ref_no']}}</span>

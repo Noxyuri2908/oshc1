@@ -1822,6 +1822,7 @@ class CustomerController extends Controller
         $dataInvoice['apply_id'] = ($apply_id) ?? '';
         $dataInvoice['service'] = ($obj->service->name) ?? '';
         $dataInvoice['address_agent'] = ($obj->getAddressAgent()) ?? '';
+        $dataInvoice['agentName'] = $obj->getAgentName();
         $dataInvoice['cover'] = ($cus->cover->cover) ?? '';
 
         if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14 || $template_id == 16)
@@ -1834,7 +1835,6 @@ class CustomerController extends Controller
 
         if ($template_id == 1 || $template_id == 2 || $template_id == 3 || $template_id == 4 || $template_id == 5 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16)
         {
-            $dataInvoice['agentName'] = $obj->getAgentName();
             $dataInvoice['ref_no'] = ($obj->ref_no) ?? '';
             $dataInvoice['cusContent'] = $obj->ref_no .' '. $cus->first_name." ".$cus->last_name;
             $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
