@@ -118,6 +118,7 @@
         font-size: 10px;
     }
 </style>
+<div class="content mt-0 mt-lg-3 mt-md-3" id="mainContent">
     <page id="page" backcolor="#fff" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="16px" backright="16px" backbottom="42px" footer="page" style="background: #fff;">
         <table cellspacing="0" style="width: 100%">
             <tbody style=" ">
@@ -213,5 +214,6 @@
         </div>
 
     </page>
+</div>
 </body>
 </html>
