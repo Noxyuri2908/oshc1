@@ -15,7 +15,7 @@
     h1,h2{margin: 0;}
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
-    #mainContent{
+    .page{
         width: 606px;
         margin: auto !important;
         overflow: hidden;
@@ -121,7 +121,7 @@
         font-size: 10px;
     }
 </style>
-<div class="content mt-0 mt-lg-3 mt-md-3" id="mainContent">
+<div class="content mt-0 mt-lg-3 mt-md-3 page" id="mainContent">
     <page id="page" backcolor="#fff" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="16px" backright="16px" backbottom="42px" footer="page" style="background: #fff;">
         <table cellspacing="0" style="width: 100%">
             <tbody style=" ">
