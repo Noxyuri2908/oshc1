@@ -16,7 +16,7 @@
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
     #mainContent{
-        width: 806px;
+        width: 706px;
         margin: auto !important;
     }
 
@@ -97,7 +97,7 @@
     /*}*/
     page{
         width: 100%;
-        padding: 0px 80px;
+        padding: 0px 65px;
         height: 1000px;
     }
 
