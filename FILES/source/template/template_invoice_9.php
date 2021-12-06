@@ -16,11 +16,8 @@
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
     .page{
-        width: 606px;
-        margin: auto !important;
-        overflow: hidden;
-        margin: 0;
-        position: relative;
+        width: 706px;
+        margin: 0 auto !important;
     }
 
     tfoot>tr>td:nth-child(1)>p,
@@ -99,8 +96,8 @@
     /*    padding-bottom: 0;*/
     /*}*/
     page{
-        width: 606px;
-        padding: 0px 45px;
+        width: 100%;
+        /*padding: 0px 45px;*/
         height: 1000px;
     }
 
@@ -122,7 +119,7 @@
     }
 </style>
 <div class="content mt-0 mt-lg-3 mt-md-3 page" id="mainContent">
-    <page id="page" backcolor="#fff" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="16px" backright="16px" backbottom="42px" footer="page" style="background: #fff;">
+    <page id="page" backcolor="#fff" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backbottom="42px" footer="page" style="background: #fff;">
         <table cellspacing="0" style="width: 100%">
             <tbody style=" ">
             <tr>
