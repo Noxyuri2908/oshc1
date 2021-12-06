@@ -18,6 +18,9 @@
     #mainContent{
         width: 606px;
         margin: auto !important;
+        overflow: hidden;
+        margin: 0;
+        position: relative;
     }
 
     tfoot>tr>td:nth-child(1)>p,
