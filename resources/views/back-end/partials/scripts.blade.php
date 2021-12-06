@@ -15,7 +15,7 @@
 <script src="{{asset('backend/js/plugins/iCheck/icheck.min.js')}}"></script>
 <script src="{{asset('backend/js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-<script src="{{asset('js/filemanage.js')}}"></script>
+<script src="{{asset('public/js/filemanage.js')}}"></script>
 
 {{-- fontawesome--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js" integrity="sha512-cyAbuGborsD25bhT/uz++wPqrh5cqPh1ULJz4NSpN9ktWcA6Hnh9g+CWKeNx2R0fgQt+ybRXdabSBgYXkQTTmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
