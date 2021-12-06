@@ -233,7 +233,7 @@ class PaymentController extends Controller
                 $nameFile = ($type == 1) ? 'Invoice - ' . md5(uniqid()) : 'PhieuDeNghiChuyenTien -' . md5(uniqid());
                 $apiKey = 'api_696BA4651A40413B869C0C3E6DA4D99C';
                 $url = "https://api.sejda.com/v2/html-pdf";
-                $content = json_encode(array('htmlCode' => $template, 'pageSize' => 'a4', 'url' => \Config::get('admin.base_url'), 'viewportWidth' => '806'));
+                $content = json_encode(array('htmlCode' => $template, 'pageSize' => 'legal', 'url' => \Config::get('admin.base_url'), 'viewportWidth' => '806'));
 
                 $curl = curl_init($url);
                 curl_setopt($curl, CURLOPT_HEADER, false);
