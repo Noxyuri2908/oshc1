@@ -96,7 +96,6 @@
         float: left;
         padding: 0px 78px;
         height: 1000px;
-        ;
     }
 
     tfoot:before {
@@ -133,36 +132,36 @@
             </tbody>
 
             <tfoot>
-            <tr style=" border-bottom: 9px solid white;">
-                <td style="width: 40%; text-align: left">
-                            <b style="">{{$dataInvoice['company_name']}}</b>
-                            <p style="">{{$dataInvoice['company_address']}}</p>
-                            <p style="">{{$dataInvoice['company_phone']}}</p>
-                        </td>
-                <td style="padding-right: 31px">
-                    <p style="">BILLING ADDRESS :
-                        <span>{{ $dataInvoice['agentName']}}</span><br>
-                        <span>{{ $dataInvoice['address_agent']}}</span>
-                    </p>
-                    <p style="">Invoice No :
-                        <span style="">{{ $dataInvoice['ref_no']}}</span>
-                    </p>
-                    <p style="">Date :
-                        <span style="padding-left: 32px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
-                    </p>
-                    <p style="">Term :
-                        <span style="padding-left: 31px">Immediate Payment</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="color: #000">
-                <td style="width: 40%;">
-                </td>
-                <td style="width: 20%;text-align: left">
-                    <span style="font-size: 11px;margin: 0; ">Reference : </span>
-                    <span style="font-size: 14px; font-weight: bolder">{{$dataInvoice['cusName']}}</span>
-                </td>
-             </tr>`
+                <tr style=" border-bottom: 9px solid white;">
+                    <td style="width: 40%; text-align: left">
+                        <b style="">{{$dataInvoice['company_name']}}</b>
+                        <p style="">{{$dataInvoice['company_address']}}</p>
+                        <p style="">{{$dataInvoice['company_phone']}}</p>
+                    </td>
+                    <td style="padding-right: 31px">
+                        <p style="">BILLING ADDRESS :
+                            <span>{{ $dataInvoice['agentName']}}</span><br>
+                            <span>{{ $dataInvoice['address_agent']}}</span>
+                        </p>
+                        <p style="">Invoice No :
+                            <span style="">{{ $dataInvoice['ref_no']}}</span>
+                        </p>
+                        <p style="">Date :
+                            <span style="padding-left: 32px">{{ convert_date_form_db($dataInvoice['date'])}}</span>
+                        </p>
+                        <p style="">Term :
+                            <span style="padding-left: 31px">Immediate Payment</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr style="color: #000">
+                    <td style="width: 40%;">
+                    </td>
+                    <td style="width: 20%;text-align: left">
+                        <span style="font-size: 11px;margin: 0; ">Reference : </span>
+                        <span style="font-size: 14px; font-weight: bolder">{{$dataInvoice['cusName']}}</span>
+                    </td>
+                </tr>
             </tfoot>
         </table>
         <br>

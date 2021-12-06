@@ -15,11 +15,6 @@
     h1,h2{margin: 0;}
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
-    #mainContent{
-        width: 806px;
-        margin: auto !important;
-    }
-
     tfoot>tr>td:nth-child(1)>p,
     tfoot>tr>td:nth-child(1)>b{
         text-align: left;
@@ -98,9 +93,7 @@
     page{
         width: 100%;
         float: left;
-        padding: 0px 78px;
         height: 1000px;
-    ;
     }
 
     tfoot:before {
@@ -120,17 +113,15 @@
         font-size: 10px;
     }
 </style>
-
 <page id="page" backcolor="#fff" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="16px" backright="16px" backbottom="42px" footer="page" style="background: #fff;">
-    <bookmark title="Lettre" level="0" ></bookmark>
-    <table cellspacing="0" style="width: 100%; text-align: center; border-collapse: collapse">
+    <table cellspacing="0" style="width: 100%">
         <tbody style=" ">
         <tr>
             <td rowspan="4" style="width: 20%; padding-top: 45px;">
-                <img style="width:185px;float: left" src="_logo" alt="Logo" id="img" border="none">
+                <img style="width:185px;float: left" src="_logo" alt="Logo" id="img">
             </td>
-            <td rowspan="4" style="width: 62%;vertical-align:bottom; text-align: right;padding-bottom: 10px;">
-                <b style="text-align: center;color: black; font-size: 20px;">INVOICE</b>
+            <td rowspan="4" style="width: 22%;vertical-align:bottom; padding-bottom: 10px;">
+                <b  style="font-size: 22px;color: #000">INVOICE</b>
             </td>
         </tr>
         </tbody>
@@ -153,8 +144,7 @@
             </td>
         </tr>
         <tr style="color: #000">
-            <td style="width: 40%;">
-            </td>
+            <td style="width: 40%;"></td>
             <td style="width: 20%;text-align: left">
                 <p style="font-size: 11px;margin: 0; ">REFERENCE</p>
                 <b style="font-size: 14px; font-weight: bolder">_cusName</b>
@@ -169,8 +159,7 @@
         </div>
     </div>
 
-    <table id="table-2" cellspacing="0" style="width: 100%;">
-
+    <table id="table-2" cellspacing="0" style="width: 100%; padding-right : 100px">
         <tr id="th-header">
             <th style="">SERVICE</th>
             <th >PROVIDER</th>
@@ -189,10 +178,11 @@
             <td >_startdate</td>
             <td >_enddate</td>
             <td >_amount _currency</td>
-            <td ></td>
         </tr>
         <tr >
-            <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>
+            <td colspan="6" style="padding: 0 !important;">
+                <hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;">
+            </td>
         </tr>
         <tr style=" text-align:center;">
             <th></th>
@@ -205,7 +195,7 @@
             <th id="total-rate" >_amount _currency</th>
         </tr>
         <tr>
-            <td colspan="5" style="    text-align: right;padding-right: 0; padding-top: 5px !important;">
+            <td colspan="5" style=" text-align: right;padding-right: 0; padding-top: 5px !important;">
                 <i style="font-size: 8px; color: black;padding-left: 39px;text-align: right;">Note: If you hold a student dependent visa, you must be insured under the same policy as the main</i><br>
                 <i style="font-size: 8px; color: black; padding-left: 136px;text-align: right;">student visa holder. You are only eligible to hold a single policy if you are the primary visa holder.</i>
             </td>
@@ -218,6 +208,5 @@
     </div>
 
 </page>
-
 </body>
 </html>
