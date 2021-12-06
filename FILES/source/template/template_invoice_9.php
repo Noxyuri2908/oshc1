@@ -16,7 +16,7 @@
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
     #mainContent{
-        width: 506px;
+        width: 606px;
         margin: auto !important;
     }
 
@@ -96,8 +96,8 @@
     /*    padding-bottom: 0;*/
     /*}*/
     page{
-        width: 706px;
-        padding: 0px 65px;
+        width: 100%;
+        padding: 0px 45px;
         height: 1000px;
     }
 
