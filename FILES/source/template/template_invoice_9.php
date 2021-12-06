@@ -16,7 +16,7 @@
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
     #mainContent{
-        width: 706px;
+        width: 506px;
         margin: auto !important;
     }
 
