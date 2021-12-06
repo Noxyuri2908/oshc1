@@ -96,7 +96,7 @@
     /*    padding-bottom: 0;*/
     /*}*/
     page{
-        width: 100%;
+        width: 706px;
         padding: 0px 65px;
         height: 1000px;
     }
