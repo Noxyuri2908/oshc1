@@ -84,16 +84,16 @@
         <input id="master" class="ml-3" type="checkbox" aria-label="Checkbox for this table"/>
     </th>
     <th class="width-50">Action</th>
-    <th class="width-100">Invoice</th>
-    <th class="width-150">Agent</th>
+    <th class="width-100">Ref No</th>
+    <th class="width-200">Agent</th>
     <th class="width-100">Country</th>
     <th class="width-150">Register</th>
-    <th class="width-115">Gross amount</th>
-    <th class="width-115">Promotion $</th>
-    <th class="width-115">Bank fee $</th>
-    <th class="width-115">Extend fee</th>
-    <th class="width-115">GST</th>
-    <th class="width-115">Discount</th>
+    <th class="width-110">Gross amount</th>
+    <th class="width-90">Promotion $</th>
+    <th class="width-90">Bank fee $</th>
+    <th class="width-90">Extend fee</th>
+    <th class="width-80">GST</th>
+    <th class="width-100">Discount</th>
     <th class="width-115">Total $</th>
     <th class="width-115">Provider</th>
     <th class="width-115">Status</th>
