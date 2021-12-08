@@ -19084,4 +19084,5 @@ div#info-table_length {
 }
 .text-overflow{
     overflow: hidden;
+    text-overflow: ellipsis;
 }

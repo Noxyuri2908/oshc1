@@ -95,7 +95,26 @@
         <td class="align-middle">{{!empty($tmp->getCountDay())?$tmp->getCountDay():''}}</td>
         <td class="align-middle">{{!empty($tmp->start_date) && !empty($tmp->end_date) && !empty($tmp->count_month)?$tmp->count_month.' months':''}}</td>
         <td class="align-middle">{{$tmp->staff != null ? $tmp->staff->admin_id : ''}}</td>
-        <td class="align-middle text-overflow">{{decode_html($tmp->note, true)}}</td>
+        <td class="align-middle text-overflow">
+            <a href="#" data-toggle="modal" data-target="#note_data{{$tmp->id}}">{{decode_html($tmp->note, true)}}</a>
+            <div class="modal fade" id="note_data{{$tmp->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <p style="white-space: pre-wrap;">{{decode_html($tmp->note, false)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
         <td class="align-middle">{{(!empty(\Config::get('location_australia')[$tmp->location_australia]))?\Config::get('location_australia')[$tmp->location_australia]:''}}</td>
         <td class="align-middle">{{$tmp->getDestination()}}</td>
         <td class="align-middle">{{!empty($tmp->registerCus())?$tmp->registerCus()->provider_of_school:''}}</td>

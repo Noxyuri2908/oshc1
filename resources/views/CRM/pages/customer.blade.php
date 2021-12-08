@@ -39,8 +39,10 @@
             position: -webkit-sticky; /* for Safari */
             position: sticky;
             top: 0;
-            background: #007bff;
+            background: #ef4b88;
             color: #fff;
+            font-family: 'roboto', sans-serif !important;
+            font-size: 13px;
         }
 
         thead.customer-thead .last-row th {
@@ -193,8 +195,20 @@
             width: 100px;
         }
 
+        .width-90{
+            width: 90px;
+        }
+
         .width-120 {
             width: 120px;
+        }
+
+        .width-125 {
+            width: 125px;
+        }
+
+        .width-110{
+            width: 110px;
         }
 
         .white-space-break-spaces {
@@ -233,6 +247,16 @@
 
         .max-width-70 {
             max-width: 70%;
+        }
+
+        .font-roboto{
+            font-family: 'roboto', sans-serif !important;
+            font-size: 14px;
+        }
+
+        .table-main-customer .select2-container .select2-selection--single,
+        .table-main-customer .form-control{
+            background-color: #f8f4fc !important;
         }
     </style>
     @include('CRM.partials.loading-css')

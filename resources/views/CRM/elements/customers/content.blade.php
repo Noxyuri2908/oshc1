@@ -2,7 +2,7 @@
     <div class="card-header pb-1">
         <div class="row align-items-center px-2">
             <div class="d-flex w-100 justify-content-between align-items-center">
-                <h5 class="fs-0 mb-0">{{!isset($tab_name) ? 'CUSTOMER' : $tab_name}}</h5>
+                <h5 class="fs-0 mb-0 font-roboto">{{!isset($tab_name) ? 'CUSTOMER' : $tab_name}}</h5>
                 @if(!empty($tab_name) && $tab_name == 'EXTEND')
                     <div>
                         <a class="btn btn-primary remind-extend-invoice" href="#">Extend</a>
