@@ -193,11 +193,11 @@
         </th>
         <th class="align-middle fixed-side">Action</th>
         <th class="align-middle fixed-side">Ref No.</th>
-        <th class="align-middle fixed-side">Agent</th>
+        <th class="align-middle fixed-side width-200">Agent</th>
         <th class="align-middle fixed-side">Country</th>
-        <th class="align-middle fixed-side">Name in full</th>
+        <th class="align-middle fixed-side">Register</th>
         <th class="align-middle fixed-side">Provider</th>
-        <th class="align-middle ">Status</th>
+        <th class="align-middle width-80">Status</th>
         <th class="align-middle ">Policy Number</th>
         <th class="align-middle ">Type of Service</th>
         <th class="align-middle ">Type of visa</th>
@@ -205,8 +205,8 @@
         <th class="align-middle ">Start Date</th>
         <th class="align-middle ">End Date</th>
         <th class="align-middle ">Visa status</th>
-        <th class="align-middle ">Months</th>
-        <th class="align-middle ">Year</th>
+        <th class="align-middle width-80">Months</th>
+        <th class="align-middle width-80">Year</th>
 
         <!-- Profit 1 -->
         <th>Profit $</th>
@@ -215,27 +215,27 @@
         <th>Revenue from Ex rate (VND)</th>
         <th>Profit VND</th>
         <th>Bank fee (VND)</th>
-        <th>GST</th>
+        <th class="width-80">GST</th>
         <th>Profit status</th>
         <th>Com payment status</th>
         <!-- Profit 1 -->
 
         <!-- Annalink received -->
-        <th>Gross amount</th>
-        <th>Promotion ($)</th>
-        <th>Surcharge fee</th>
-        <th>Discount</th>
+        <th class="width-110">Gross amount</th>
+        <th class="width-90">Promotion ($)</th>
+        <th class="width-80">Surcharge fee</th>
+        <th class="width-100">Discount</th>
         <th>Total amount ($)</th>
-        <th>Exchange rate</th>
+        <th class="width-80">Exchange rate</th>
         <th>Total amount receive</th>
         <th>Difference ($)</th>
         <!-- Annalink received -->
 
         <!-- Pay commission for User/Cousellor -->
         <th>Commission rate</th>
-        <th>Bonus %</th>
+        <th class="width-80">Bonus %</th>
         <th>Amount com</th>
-        <th>+/- ($)</th>
+        <th class="width-80">+/- ($)</th>
         <th>Total amount com ($)</th>
         <th>Exchange rate</th>
         <th>+ / - VND</th>
@@ -260,11 +260,11 @@
         <th>% Paid</th>
         <th>Amount</th>
         <th>Extend fee</th>
-        <th>Bank fee</th>
-        <th>Total amount</th>
+        <th class="width-80">Bank fee</th>
+        <th class="width-110">Total amount</th>
         <th>Exchange rate</th>
         <th>Total amount VND</th>
-        <th>Provider</th>
+        <th class="width-125">Provider</th>
         <th>Payment note</th>
         <th>Date of payment</th>
         <th>Bank account</th>
