@@ -151,12 +151,14 @@
                         <tr class="first-row">
                             <th class="width-80">Action</th>
                             <th class="width-200">Category</th>
+                            <th class="width-200">Type</th>
                             <th class="width-200">Content</th>
                             <th class="width-200">Use for</th>
                             <th class="width-200">Target</th>
                             <th class="width-200">Sub target</th>
                             <th class="width-200">File attachment</th>
                             <th class="width-200">Created at</th>
+                            <th class="width-200">Note</th>
                         </tr>
                         @include('CRM.pages.marketing-material.filter')
                         </thead>

@@ -15,6 +15,7 @@
             </div>
         </th>
         <td class="white-space-preline-report">{{!empty($data->getCategory())?$data->getCategory():''}}</td>
+        <td class="white-space-preline-report">{{!empty($data->getType())?$data->getType():''}}</td>
         <td class="white-space-preline-report">{{!empty($data->content)?$data->content:''}}</td>
         <td class="white-space-preline-report">{{!empty($data->getUseFor())?$data->getUseFor():''}}</td>
         <td class="white-space-preline-report">{{!empty($data->getTarget())?$data->getTarget():''}}</td>
@@ -23,5 +24,6 @@
             <a href="{{!empty($data->link_download())?$data->link_download():''}}">{{$data->file_attachment}}</a>
         </td>
         <td>{{!empty($data->created_at)?\Carbon\Carbon::parse($data->created_at)->format('d/m/Y'):''}}</td>
+        <td>{{!empty($data->note) ? $data->note : ''}}</td>
     </tr>
 @endforeach

@@ -15,7 +15,9 @@ class MarketingMaterialList extends Model
         'target',
         'file_attachment',
         'created_by',
-        'sub_target'
+        'sub_target',
+        'type',
+        'note'
     ];
 
     public function link_download()
@@ -29,6 +31,16 @@ class MarketingMaterialList extends Model
         if (!empty($category_id)) {
             $category_id = Status::where('id', $category_id)->first();
             return (!empty($category_id)) ? $category_id->name : '';
+        }
+        return '';
+    }
+
+    public function getType()
+    {
+        $type = $this->type;
+        if (!empty($type)) {
+            $type = Status::where('id', $type)->first();
+            return (!empty($type)) ? $type->name : '';
         }
         return '';
     }
@@ -71,7 +83,7 @@ class MarketingMaterialList extends Model
         $sub_target = $this->sub_target;
         if (!empty($target)) {
             $target = Status::where('id', $target)->first()->value;
-            return \GuzzleHttp\json_decode($target,true);
+            if (!empty($target))  return \GuzzleHttp\json_decode($target,true);
         }
         return '';
     }

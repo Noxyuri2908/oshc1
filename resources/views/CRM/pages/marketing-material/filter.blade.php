@@ -12,6 +12,17 @@
         </select>
     </th>
     <th>
+        <select class="form-control" name="category_id_filter" id="category_id_filter">
+            <option label=""></option>
+            @if(!empty($type))
+                @foreach($type as $keyType => $valueType)
+                    <option
+                        value="{{$valueType->id}}" {{!empty($marketingMaterialData) && $marketingMaterialData->type == $valueType->id ?'selected':''}}>{{$valueType->name}}</option>
+                @endforeach
+            @endif
+        </select>
+    </th>
+    <th>
 
     </th>
     <th>
@@ -47,5 +58,8 @@
     <th>
 {{--        <input class="form-control" value=""--}}
 {{--               name="created_at_filter" id="created_at_filter" type="text" required>--}}
+    </th>
+    <th>
+
     </th>
 </tr>

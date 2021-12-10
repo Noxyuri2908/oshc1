@@ -32,6 +32,7 @@ class Status extends Model
         'category_marketing_material',
         'use_for_marketing_material',
         'target_marketing_material',
+        'type_marketing_material',
         'department_staff',
         'branch_staff',
         'position_staff',

@@ -22,10 +22,13 @@ class MarketingMaterialController extends Controller
             $query->where('use_for',$request->get('use_for'));
         })->when($request->get('target'),function($query) use ($request){
             $query->where('target',$request->get('target'));
-        })->when($request->get('sub_target'),function($query) use ($request){
-            $query
-                ->where('target',$request->get('target'))
-                ->where('sub_target',$request->get('sub_target'));
+        })->when($request->get('type'),function($query) use ($request){
+            $query->where('type',$request->get('type'));
+        })
+        ->when($request->get('sub_target'),function($query) use ($request){
+        $query
+            ->where('target',$request->get('target'))
+            ->where('sub_target',$request->get('sub_target'));
         })->orderBy('id', 'desc')->paginate(15);
         $lastPage = $marketingMaterialDatas->lastPage();
         return response()->json([

@@ -19,7 +19,7 @@
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Category:</label>
+                                    <label class="control-label">Category :</label>
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option label=""></option>
                                         @if(!empty($categories))
@@ -34,7 +34,22 @@
                             </div>
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Use for:</label>
+                                    <label class="control-label">Type :</label>
+                                    <select class="form-control" name="type" id="type">
+                                        <option label=""></option>
+                                        @if(!empty($type))
+                                            @foreach($type as $keyType=>$valueType)
+                                                <option
+                                                    value="{{$valueType->id}}" {{!empty($marketingMaterialData) && $marketingMaterialData->type == $valueType->id ?'selected':''}}>{{$valueType->name}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    <small id="category_id_div_alert" class="form-text text-danger"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-4 content-table fill_content">
+                                <div class="form-group">
+                                    <label class="control-label">Use for :</label>
                                     <select class="form-control" name="use_for" id="use_for">
                                         <option label=""></option>
                                         @if(!empty($use_fors))
@@ -49,7 +64,7 @@
                             </div>
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Target:</label>
+                                    <label class="control-label">Target :</label>
                                     <select class="form-control" name="target" id="target">
                                         <option label=""></option>
                                         @if(!empty($targets))
@@ -65,7 +80,7 @@
                             </div>
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Sub target:</label>
+                                    <label class="control-label">Sub target :</label>
                                     @if(!empty($marketingMaterialData))
                                         <select class="form-control" name="sub_target" id="sub_target">
                                             @if($marketingMaterialData->getSubTarget())
@@ -85,7 +100,7 @@
                             </div>
                             <div class="col-md-12 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Note:</label>
+                                    <label class="control-label">Content :</label>
                                     <textarea name="content" id="content" cols="20" class="form-control"
                                               rows="10">{{!empty($marketingMaterialData)?$marketingMaterialData->content:''}}</textarea>
                                 </div>
@@ -98,6 +113,12 @@
                                     @if(!empty($marketingMaterialData))
                                         <a href="{{!empty($marketingMaterialData->link_download())?$marketingMaterialData->link_download():''}}">File: {{!empty($marketingMaterialData)?$marketingMaterialData->file_attachment:''}}</a>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="col-md-12 content-table fill_content">
+                                <div class="form-group">
+                                    <label class="control-label">Note :</label>
+                                    <textarea name="note"  class="form-control" id="note" cols="20" rows="10">{{!empty($marketingMaterialData->note) ? $marketingMaterialData->note : ''}}</textarea>
                                 </div>
                             </div>
                         </div>

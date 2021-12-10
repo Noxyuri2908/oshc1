@@ -30,6 +30,8 @@ class MarketingMaterialListRequest extends FormRequest
             'use_for'=>'nullable',
             'target'=>'nullable',
             'sub_target'=>'nullable',
+            'type'=>'nullable',
+            'note'=>'nullable',
             'file_attachment'=>'nullable|max:10000|mimes:jpeg,bmp,png,gif,svg,pdf,jpg,xlsx,xls,txt'
         ];
     }

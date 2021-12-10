@@ -47,5 +47,6 @@ return [
     'domain_mail_skype'=>'Mail Skype (Domain Hosting)',
     'sale_task_assign_type'=>'Type (TASKS ASIGNED)',
     'checklist_type'=>'Type (CheckList)',
-    'solution_it_checklist' => 'Solution (IT Checklists)'
+    'solution_it_checklist' => 'Solution (IT Checklists)',
+    'type_marketing_material' => 'Type (Marketing Material)'
 ];

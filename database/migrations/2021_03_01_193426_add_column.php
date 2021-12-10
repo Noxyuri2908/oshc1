@@ -21,9 +21,9 @@ class AddColumn extends Migration
             });
         }
 
-        Schema::table('check_lists', function(Blueprint $table) {
-            $table->text('person_id')->change();
-        });
+//        Schema::table('check_lists', function(Blueprint $table) {
+//            $table->text('person_id')->change();
+//        });
 
         if (!Schema::hasColumn('customers', 'exchange_rate'))
         {
@@ -248,6 +248,20 @@ class AddColumn extends Migration
                 $table->integer('cover_id')->nullable()->after('provider_of_school');
             });
         }
+
+        if (!Schema::hasColumn('marketing_material_lists', 'type'))
+        {
+            Schema::table('marketing_material_lists', function(Blueprint $table) {
+                $table->integer('type')->nullable()->after('use_for');
+            });
+        }
+
+        if (!Schema::hasColumn('marketing_material_lists', 'note'))
+        {
+            Schema::table('marketing_material_lists', function(Blueprint $table) {
+                $table->longText('note')->nullable()->after('type');
+            });
+        }
     }
 
     /**
@@ -406,31 +420,45 @@ class AddColumn extends Migration
             });
         }
 
-        if (!Schema::hasColumn('refunds', 'commission'))
+        if (Schema::hasColumn('refunds', 'commission'))
         {
             Schema::table('refunds', function(Blueprint $table) {
                 $table->dropColumn('commission')->after('refund_bank_pp');
             });
         }
 
-        if (!Schema::hasColumn('refunds', 'extra_fee'))
+        if (Schema::hasColumn('refunds', 'extra_fee'))
         {
             Schema::table('refunds', function(Blueprint $table) {
                 $table->dropColumn('extra_fee')->after('commission');
             });
         }
 
-        if (!Schema::hasColumn('refunds', 'bank_fee'))
+        if (Schema::hasColumn('refunds', 'bank_fee'))
         {
             Schema::table('refunds', function(Blueprint $table) {
                 $table->dropColumn('bank_fee')->after('extra_fee');
             });
         }
 
-        if (!Schema::hasColumn('refunds', 'balance'))
+        if (Schema::hasColumn('refunds', 'balance'))
         {
             Schema::table('refunds', function(Blueprint $table) {
                 $table->dropColumn('balance')->after('bank_fee');
+            });
+        }
+
+        if (Schema::hasColumn('marketing_material_lists', 'type'))
+        {
+            Schema::table('marketing_material_lists', function(Blueprint $table) {
+                $table->dropColumn('type')->after('use_for');
+            });
+        }
+
+        if (Schema::hasColumn('marketing_material_lists', 'note'))
+        {
+            Schema::table('marketing_material_lists', function(Blueprint $table) {
+                $table->dropColumn('note')->after('type');
             });
         }
     }
