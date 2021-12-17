@@ -13,11 +13,11 @@ AGENT PROCESS
     height: 28px;
   }
   .table-div {
-    max-width: 100%;
-    position: relative;
-    overflow: scroll;
-    height: 32em;
-    max-height: 32em;
+      max-width: 100%;
+      position: relative;
+      overflow: scroll;
+      height: 116em;
+      max-height: 35em;
   }
 
   .table-main-agent table,.table-div table {

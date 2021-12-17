@@ -69,6 +69,7 @@
 	}
 	#customer_detail {
 		padding: 30px 0;
+        padding-top: 0px;
 	}
 	#customer_detail .nav-tabs .nav-link {
 		border: 1px solid transparent;
