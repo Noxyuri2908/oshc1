@@ -15,8 +15,8 @@ class CreateTailieusTable extends Migration
     {
         Schema::create('tailieus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('apply_id');
-            $table->integer('admin_id');
+            $table->integer('apply_id')->nullable();
+            $table->integer('admin_id')->nullable();
             $table->string('name')->nullable();
             $table->text('link')->nullable();
             $table->string('type_file')->nullable();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin\MarketingMaterialList;
+use App\Admin\Tailieu;
 use App\Http\Requests\MarketingMaterialListRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,13 +49,23 @@ class MarketingMaterialController extends Controller
     public function store(MarketingMaterialListRequest $request)
     {
         $data = $request->validated();
-        $file = (!empty($data['file_attachment']))?$data['file_attachment']:null;
-        if(!empty($file)){
-            $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
-            $file->move('tailieus', $name);
-            $data['file_attachment'] = $name;
+        $files = (!empty($data['file_attachment']))?$data['file_attachment']:null;
+        $arrayId = [];
+
+        foreach ($files as $file)
+        {
+            if(!empty($file)){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
+                $file->move('tailieus', $name);
+                $id = Tailieu::insertGetId([
+                    'link' => $name
+                ]);
+                array_push($arrayId, $id);
+            }
         }
+
+        $data['file_attachment'] = json_encode($arrayId);
         MarketingMaterialList::create($data);
         $marketingMaterialDatas = MarketingMaterialList::orderBy('id', 'desc')->paginate(15);
         $lastPage = $marketingMaterialDatas->lastPage();
@@ -80,16 +91,28 @@ class MarketingMaterialController extends Controller
     public function update(MarketingMaterialListRequest $request, $id)
     {
         $data = $request->validated();
-        $file = (!empty($data['file_attachment']))?$data['file_attachment']:null;
-        if(!empty($file)){
-            $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
-            $file->move('tailieus', $name);
-            $data['file_attachment'] = $name;
-        }else{
-            unset($data['file_attachment']);
+        $files = (!empty($data['file_attachment']))?$data['file_attachment']:null;
+        $arrayId = [];
+
+        foreach ($files as $file)
+        {
+            if(!empty($file)){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
+                $file->move('tailieus', $name);
+
+                $idTaiLieus = Tailieu::insertGetId([
+                    'link' => $name
+                ]);
+                array_push($arrayId, $idTaiLieus);
+
+            }else{
+                unset($data['file_attachment']);
+            }
         }
-        $marketingMaterialData = MarketingMaterialList::findOrFail($id);
+
+        $data['file_attachment'] = json_encode($arrayId);
+        $marketingMaterialData = MarketingMaterialList::find($id);
         $marketingMaterialData->update($data);
         $marketingMaterialDatas = [$marketingMaterialData];
         return response()->json([

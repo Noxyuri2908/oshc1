@@ -108,10 +108,11 @@
                             <div class="col-md-12 content-table fill_content">
                                 <div class="form-group">
                                     <label for="fileAttactment">File attachment</label>
-                                    <input type="file" class="form-control-file" name="file_attachment"
+                                    <input type="file" class="form-control-file" multiple="multiple" name="file_attachment[]"
                                            id="fileAttactment">
                                     @if(!empty($marketingMaterialData))
-                                        <a href="{{!empty($marketingMaterialData->link_download())?$marketingMaterialData->link_download():''}}">File: {{!empty($marketingMaterialData)?$marketingMaterialData->file_attachment:''}}</a>
+{{--                                        <a href="{{!empty($marketingMaterialData->link_download())?$marketingMaterialData->link_download():''}}">File: {{!empty($marketingMaterialData)?$marketingMaterialData->file_attachment:''}}</a>--}}
+                                        {{decode_html(getFileAttachById($marketingMaterialData->id), 'array')}}
                                     @endif
                                 </div>
                             </div>

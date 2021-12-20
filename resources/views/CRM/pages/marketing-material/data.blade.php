@@ -21,9 +21,29 @@
         <td class="white-space-preline-report">{{!empty($data->getTarget())?$data->getTarget():''}}</td>
         <td class="white-space-preline-report">{{!empty($data->target)?$data->getSubTargetName():''}}</td>
         <td class="white-space-preline-report">
-            <a href="{{!empty($data->link_download())?$data->link_download():''}}">{{$data->file_attachment}}</a>
+            <a href="" data-toggle="modal" data-target="#modal-{{$data->id}}">{{getFileAttachById($data->id)}}</a>
+            <div class="modal fade" id="modal-{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-{{$data->id}}">Link</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{decode_html(getFileAttachById($data->id), 'array')}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </td>
         <td>{{!empty($data->created_at)?\Carbon\Carbon::parse($data->created_at)->format('d/m/Y'):''}}</td>
         <td>{{!empty($data->note) ? $data->note : ''}}</td>
     </tr>
 @endforeach
+

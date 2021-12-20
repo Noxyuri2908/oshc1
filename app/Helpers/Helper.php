@@ -1903,11 +1903,28 @@ if (!function_exists('getComm'))
 
 if (!function_exists('decode_html'))
 {
-    function decode_html($content, $table = false)
+    function decode_html($content, $break = false)
     {
-        if ($table == true) return html_entity_decode($content);
+        if ($break == 'array'){
+            $ar = explode(',', $content);
+            $length = count($ar);
+            $content = '';
+            for ($i = 0; $i < $length; $i++){
 
-        echo html_entity_decode($content);
+                $content .= "<a
+                            href=' ".config('admin.base_url').'tailieus/'.$ar[$i]." '> $ar[$i]
+                        </a>" . '</br>';
+
+            }
+//            $content = implode('</br>', $ar);
+            echo html_entity_decode($content);
+        }
+
+        if ($break == true && $break != 'array') return html_entity_decode($content);
+
+        if ($break == false){
+            echo html_entity_decode($content);
+        }
     }
 }
 
@@ -2101,5 +2118,26 @@ if (!function_exists('getCoverByServiceAndPolicy')){
         return $cover;
     }
 }
+
+if (!function_exists('getFileAttachById')){
+    function getFileAttachById($id){
+        $mkt = DB::table('marketing_material_lists')->select('file_attachment')->where('id', $id)->first();
+        $findText = '[';
+        $fileName = '';
+        if ($findText == substr($mkt->file_attachment, 0, 1))
+        {
+            $listFiles = json_decode($mkt->file_attachment, true);
+            $lengthListFile = count($listFiles);
+            for ($i = 0; $i < $lengthListFile; $i ++){
+                $Tailieu = DB::table('tailieus')->select('link')->where('id', $listFiles[$i])->first();
+                $fileName .= $Tailieu->link . ',';
+            }
+            return $fileName;
+        }
+
+        return  $mkt->file_attachment;
+    }
+}
+
 
 
