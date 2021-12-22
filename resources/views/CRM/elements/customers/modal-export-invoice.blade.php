@@ -5,7 +5,7 @@
       @csrf
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Chọn mẫu file export</h5>
+          <h5 class="modal-title" id="exampleModalLabel"> Export Invoices </h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span class="font-weight-light" aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
@@ -21,8 +21,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-          <button class="btn btn-success" type="button" id="viewInvoice"><a href="{{route('invoice.view')}}" target="_blank">View</a></button>
-          <button type="submit" class="btn btn-primary">Export</button>
+          <button class="btn btn-success" type="button" id="viewInvoice"><a href="{{route('invoice.view')}}" style="color: #fff" target="_blank">View</a></button>
         </div>
       </div>
     </form>

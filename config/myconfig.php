@@ -90,6 +90,7 @@ return [
         3 => 'Revise',
     ],
     'status_invoice' => [
+        8 => 'Pending',
         1 => 'Done',
         2 => 'Cancel',
         3 => 'Visa',
@@ -97,7 +98,6 @@ return [
         5 => 'Paid com',
         6 => 'Refund - Paid ',
         7 => 'Hold',
-        8 => 'Pending',
         9 => 'Defer'
     ],
     'type_payment' => [

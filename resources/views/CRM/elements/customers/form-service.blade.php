@@ -145,7 +145,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="type_visa">Type of visa</label>
-                    <select class="form-control" id="type_visa" name="type_visa">
+                    <select class="form-control" id="type_visa" name="type_visa" required>
                         <option label=""></option>
                         @foreach(config('myconfig.type_visa') as $key=>$value)
                             @if(!isset($obj))
@@ -164,7 +164,7 @@
                     <label for="start_date">Start date</label>
                     <input class="form-control open-jquery-date" id="start_date" name="start_date"
                            value="{{isset($obj) ? convert_date_form_db($obj->start_date) : old('start_date')}}" type="text"
-                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off">
+                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" required>
                     <small id="start_date_div_alert" class="text-danger text-validation"></small>
 
                 </div>
@@ -174,7 +174,7 @@
                     <label for="start_date">End date</label>
                     <input class="form-control open-jquery-date" id="end_date" name="end_date"
                            value="{{isset($obj) ? convert_date_form_db($obj->end_date) : old('end_date')}}" type="text"
-                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off">
+                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" required>
                     <small id="end_date_div_alert" class="text-danger text-validation"></small>
                 </div>
             </div>
@@ -311,7 +311,7 @@
                 success : function (data){
                     if (data.error) {
                         removeElementChildCover();
-                        alert(data.message);
+                        // alert(data.message);
                         return;
                     }
 

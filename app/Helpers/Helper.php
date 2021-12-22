@@ -1920,7 +1920,7 @@ if (!function_exists('decode_html'))
             echo html_entity_decode($content);
         }
 
-        if ($break == true && $break != 'array') return html_entity_decode($content);
+        if ($break == 'customer') return html_entity_decode($content);
 
         if ($break == false){
             echo html_entity_decode($content);
