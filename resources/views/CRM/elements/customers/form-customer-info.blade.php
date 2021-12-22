@@ -151,13 +151,25 @@
         </div>
     </div>
 </div>
-@push('script')
+@push('scripts')
     <script>
         $(document).ready(function (){
-            var destination = {{$destination ?? ''}};
-            if (!destination){
-                $('#destination').val(destination);
-            }
+            @if(isset($destination))
+                if (!destination){
+                    $('#destination').val(destination);
+                }
+            @endif
+
+            $(document).on('change', '#prefix_name', function (){
+                var valueTitle = $(this).val();
+                if (valueTitle === '2' || valueTitle === '3'){
+                    $('#gender').val('2');
+                }else{
+                    $('#gender').val('1');
+                }
+            })
         })
+
+
     </script>
 @endpush
