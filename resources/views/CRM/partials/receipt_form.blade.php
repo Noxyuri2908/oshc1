@@ -3,7 +3,7 @@
         $resCus = $getApply->registerCus();
         $sum_amount = $getApply->phieuthus->sum('amount');
         $sum_bank_fee =  $getApply->phieuthus->sum('bank_fee');
-        $comm = $getApply->getCom();
+        //$comm = $getApply->getCom();
         $amount = $getApply->net_amount ? $getApply->net_amount : 0;
         $promotion_amount = $getApply->promotion_amount ? $getApply->promotion_amount : 0;
         $extend_fee = count($getApply->customers) > 0 ? $getApply->customers->first()->extend_fee : 0;
@@ -18,7 +18,7 @@
     <input type="hidden" id="phieuthu_sum_bank_fee" value="{{(!empty($sum_bank_fee))?$sum_bank_fee:0}}">
     <input type="hidden" id="apply_net_amount" value="{{(!empty($getApply))?$getApply->net_amount:0}}">
     <input type="hidden" id="form-set-action" name="button_action" value="{{!empty($action)?$action:''}}">
-    <input type="hidden" id="id_phieuthu" value="{{(!empty($receipt))?$receipt->id:0}}">
+    <input type="hidden" id="id_phieuthu" value="{{(!empty($receipt) && isset($receipt))?$receipt->id:0}}">
     <input type="hidden" id="_id" value="{{(!empty($getApply))?$getApply->id:0}}">
     <input type="hidden" id="currency_aud_id" value="{{!empty($currencyAudId)?$currencyAudId:''}}">
     <div id="div_phieuthu_alert">
