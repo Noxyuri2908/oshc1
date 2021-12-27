@@ -444,19 +444,7 @@ return [
         12 => '12. Invoice - deduct - included GST',
         13 => '13. Invoice - deduct - excluded GST- Bank',
         14 => '14. Invoice - deduct - excluded GST',
-        15 => '15. Payment Request - TAX',
-        16 => '16. Tax Invoice AU offshore - Excluded gst',
-        17 => '17. Tax Invoice AU offshore - included gst',
-        18 => '18. Tax Invoice AU offshore',
-        19 => '19. Tax Invoice Offshore deduction com + surcharge',
-        20 => '20. Tax Invoice Offshore deduction com not surcharge',
-        21 => '21. Tax Invoice NZ SCB-EXB company',
-        22 => '22. Payment Request  SCB & EXB deduct com',
-        23 => '23. Hoa don thanh toan EXB',
-        24 => '24. Hoa don thanh toan VCB',
-        25 => '25. Payment Request AUD _ TAX',
-        26 => '26. Payment Request overseas _ TAX',
-        27 => '27. Invoice - Full payment - Paypal'
+        15 => '15. Payment Request - TAX'
     ],
 
     'type_file' => [

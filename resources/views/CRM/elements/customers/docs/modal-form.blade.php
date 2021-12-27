@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="data_ngaybatdau">Type file</label>
                             <input class="form-control" name="type_file" id="docs_type_file" placehoder="Type file"
-                                   type="text" required>
+                                   type="text">
                         </div>
                         <div class="form-group">
                             <label for="data_ngaybatdau">Note</label>
