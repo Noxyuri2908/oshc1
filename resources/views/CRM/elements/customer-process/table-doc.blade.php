@@ -6,7 +6,7 @@
         <th>Type file</th>
         <th>Note</th>
         <th>Staff</th>
-        <th>Action</th>
+        <th style="width: 150px">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -17,21 +17,24 @@
                 <td class="align-middle">{{$_tailieu->name}}</td>
                 <td class="align-middle">{{$_tailieu->type_file}}</td>
                 <td class="align-middle">{{$_tailieu->note}}</td>
-                <td class="align-middle">{{$_tailieu->staff != null ? $_tailieu->staff->username : ''}}</td>
+                <td class="align-middle">{{$_tailieu->staff != null ? $_tailieu->staff->admin_id : ''}}</td>
                 <td class="align-middle">
-                    <a href="{{$_tailieu->link_download()}}" target="_blank"><span
-                            class="fas fa-eye"></span></a>
+                    <a href="{{$_tailieu->link_download()}}" target="_blank"  class="mr-3">
+                        <span class="fas fa-eye" style="font-size: 1.25rem"></span>
+                    </a>
                     @can('customerDoc.edit')
-                        <a data-id="{{$_tailieu->id}}" style="cursor: pointer" class="edit_doc"><span
-                                class="far fa-edit"></span></a>
+                        <a data-id="{{$_tailieu->id}}" style="cursor: pointer" class="edit_doc mr-3">
+                            <span class="far fa-edit" style="font-size: 1.25rem"></span>
+                        </a>
                     @endcan
 
-                    <a href="{{$_tailieu->link_download()}}" download><span
-                            class="fas fa-cloud-download-alt"></span></a>
+                    <a href="{{$_tailieu->link_download()}}" download class="mr-3">
+                        <span class="fas fa-cloud-download-alt" style="font-size: 1.25rem"></span>
+                    </a>
                     @can('customerDoc.delete')
-                        <a style="cursor: pointer" data-url="{{route('apply.tailieu.destroy')}}"
-                           data-id="{{$_tailieu->id}}"
-                           class="delete_doc"><span class="far fa-trash-alt"></span></a>
+                        <a style="cursor: pointer" data-url="{{route('apply.tailieu.destroy')}}" data-id="{{$_tailieu->id}}" class="delete_doc mr-3" >
+                            <span class="far fa-trash-alt" style="font-size: 1.25rem"></span>
+                        </a>
                     @endcan
                 </td>
             </tr>
