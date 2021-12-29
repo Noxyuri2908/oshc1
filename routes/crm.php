@@ -230,6 +230,9 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('ajax/flywire/getTotalData', [\App\Http\Controllers\Admin\FlywireController::class,'getTotalData'])->name('ajax.flywire.getTotalData');
     Route::post('ajax/flywire/storeFlywireByPaymentId', [\App\Http\Controllers\Admin\FlywireController::class,'storeFlywireByPaymentId'])->name('ajax.flywire.storeFlywireByPaymentId');
     Route::post('/importflywire', [\App\Http\Controllers\Admin\FlywireController::class, 'importFlywirebyPaymentId'])->name('flywire.importFlywirebyPaymentId');
+    Route::post('/import/comstatus', [\App\Http\Controllers\Admin\FlywireController::class, 'importComStatus'])->name('flywire.importComStatus');
+    Route::post('/import/promotioncode', [\App\Http\Controllers\Admin\FlywireController::class, 'importPromotionCode'])->name('flywire.importPromotionCode');
+    Route::post('/import/agent', [\App\Http\Controllers\Admin\FlywireController::class, 'importAgent'])->name('flywire.importAgent');
     Route::get('/exportFlywire', [\App\Http\Controllers\Admin\FlywireController::class, 'exportFlywire'])->name('flywire.exportFlywire');
 
 

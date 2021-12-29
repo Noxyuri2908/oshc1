@@ -83,7 +83,7 @@
         <th class="white-space-break-spaces">{{(!empty($invoice))?$invoice->note:''}}</th>
         <th class="white-space-break-spaces">{{(!empty($invoice))?convert_date_form_db($invoice->created_at):''}}</th>
         <th class="white-space-break-spaces">{{$invoice->invoice_code_link}}</th>
-        <th class="white-space-break-spaces">{{!empty($invoice->promotion)?$invoice->promotion->name:''}}</th>
+        <th class="white-space-break-spaces">{{!empty($invoice->promotion) ? $invoice->promotion()->first()->name : ''}}</th>
 
         {{--        <th>{{(!empty($invoice) && !empty($invoice->profit->first()))?$invoice->profit->first()->getStaffName():''}}</th>--}}
         {{--        <th>{{(!empty($invoice) && !empty($invoice->profit->first()))?convert_date_form_db($invoice->profit->first()->created_at):''}}</th>--}}

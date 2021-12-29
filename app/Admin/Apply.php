@@ -432,8 +432,8 @@ class Apply extends Model
             $request->get('phone') ||
             $request->get('gender') ||
             $request->get('email')
-            , function ($query) use ($request) {
-            $query->join('customers', function ($customer) use ($request) {
+                , function ($query) use ($request) {
+                $query->join('customers', function ($customer) use ($request) {
                 $customer
                     ->on('applies.id', '=', 'customers.apply_id')
                     ->when($request->get('full_name'), function ($query) use ($request) {
@@ -458,7 +458,7 @@ class Apply extends Model
                         $query->where('customers.email', 'LIKE', '%'.$request->get('email').'%');
                     });
             });
-        })
+            })
             ->when(
                 $request->get('f_department') ||
                 $request->get('paid_com_date_agent_cp') ||
@@ -483,10 +483,10 @@ class Apply extends Model
                 });
             })
             ->when($request->get('comstatus'),
-            function ($query) use ($request){
-                $query->leftJoin('profits', function ($q) use ($request){
-                   $q->on('profits.apply_id', '=', 'applies.id');
-                });
+                function ($query) use ($request){
+                    $query->leftJoin('profits', function ($q) use ($request){
+                       $q->on('profits.apply_id', '=', 'applies.id');
+                    });
             })
             ->when($request->get('f_country'), function ($query) use ($request) {
                 $query->where('payment_come_from', $request->get('f_country'));
@@ -653,6 +653,15 @@ class Apply extends Model
                     convert_date_to_db($request->get('delivered_end_date')),
                 ]);
             })
+            ->when($request->get('promotion_id'), function ($query, $request){
+                $query->join('promotions', function ($user) use ($request) {
+                    $user
+                        ->on('applies.promotion_id', '=', 'promotions.id')
+                        ->when($request->get('promotion_id'), function ($query) use ($request) {
+                            $query->where('promotions.id', $request->get('promotion_id'));
+                        });
+                });
+            })
             ->with([
                 'profit' => function ($q) {
                     $q->select([
@@ -722,6 +731,7 @@ class Apply extends Model
                 'payment_method',
                 'type_get_data_payment',
                 'applies.id',
+                'promotion_id',
                 'agent_id',
                 'staff_id',
                 'initiated_date',

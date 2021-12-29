@@ -16,6 +16,9 @@ use App\Exports\ApplyExport;
 use App\Exports\UsersExport;
 use App\Imports\AgentImportAgentCode;
 use App\Imports\FlywireImport;
+use App\Imports\FlywireImportAgent;
+use App\Imports\FlywireImportComStatus;
+use App\Imports\FlywireImportPromotionCode;
 use App\Jobs\FlywireCrawlData;
 use App\Jobs\ImportExcelContactAgent;
 use Illuminate\Http\Request;
@@ -918,6 +921,46 @@ class FlywireController extends Controller
             echo "";
             echo "__toString(): " . $e->__toString();
         }
+    }
+
+    function importComStatus(Request $request)
+    {
+        if (!$request->user()->can('agent.store')) {
+            abort(403);
+        }
+
+        if ($request->hasFile('fileImportCom')) {
+            $file = $request->file('fileImportCom');
+            Excel::import(new FlywireImportComStatus(), $file);
+
+        }
+        return back()->with(['msg', 'The Message Error']);
+    }
+
+    function importPromotionCode(Request $request){
+        if (!$request->user()->can('agent.store')) {
+            abort(403);
+        }
+
+        if ($request->hasFile('fileImportPromotionCode')) {
+            $file = $request->file('fileImportPromotionCode');
+            Excel::import(new FlywireImportPromotionCode(), $file);
+
+        }
+        return back()->with(['msg', 'The Message Error']);
+    }
+
+    function importAgent(Request $request){
+        if (!$request->user()->can('agent.store')) {
+            abort(403);
+        }
+
+        if ($request->hasFile('importAgent')) {
+            $file = $request->file('importAgent');
+            Excel::import(new FlywireImportAgent(), $file);
+
+        }
+        return back()->with(['msg', 'The Message Error']);
     }
 
 }
