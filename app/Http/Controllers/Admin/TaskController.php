@@ -310,8 +310,8 @@ class TaskController extends Controller
     {
         if (!$request->user()->can('competitorUpdate.index')) return abort(403);
         $getChildUser = getChildUser('competitorUpdate');
-        $startDate = (!empty($request->processing_date_competitor_feedback_start)) ? convert_date_to_db($request->processing_date_competitor_feedback_start) : date('Y-01-01');
-        $endDate = (!empty($request->processing_date_competitor_feedback_end)) ? convert_date_to_db($request->processing_date_competitor_feedback_end) . ' 23:59:59' : date('Y-m-d 23:59:59');
+        $startDate = (!empty($request->processing_date_competitor_feedback_start)) ? convert_date_to_db($request->processing_date_competitor_feedback_start) : '';
+        $endDate = (!empty($request->processing_date_competitor_feedback_end)) ? convert_date_to_db($request->processing_date_competitor_feedback_end) . ' 23:59:59' : '';
         $competitionFeedbacks = CompetitionFeedback::when($request->get('agent_competitor_feedback_filter'), function ($query) use ($request) {
             $query->whereHas('agent', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->get('agent_competitor_feedback_filter') . '%');
@@ -325,8 +325,9 @@ class TaskController extends Controller
         })->when($request->get('agent_id'), function ($query) use ($request) {
             $query->where('user_id', $request->get('agent_id'));
         })
-            ->with(['agent'])
-            ->orderBy('processing_date', 'desc');
+        ->with(['agent'])
+        ->orderBy('processing_date', 'desc');
+
         if ($getChildUser['permissionSee']->contains(3)) {
             $competitionFeedbacks->where('person_in_charge', $getChildUser['admin']->id);
         } elseif ($getChildUser['permissionSee']->contains(2)) {

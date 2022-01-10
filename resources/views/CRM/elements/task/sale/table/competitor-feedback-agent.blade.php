@@ -305,61 +305,56 @@
             let _person_in_charge = $('#person_in_charge_competition_feedback').val();
             let _competition_feedback = $('#des_competition_feedback').val();
             let _agent_id = $('#agent_competition_feedback').val();
-            if(readycompetitorFeedback){
-                readycompetitorFeedback = false
-                $.ajax({
-                    url:_url,
-                    type:'post',
-                    data:{
-                        _token:"{{csrf_token()}}",
-                        processing_date:_processing_date,
-                        issue:_issue,
-                        person_in_charge:_person_in_charge,
-                        competition_feedback:_competition_feedback,
-                        user_id:_agent_id,
-                        submit_from:'task_sale'
-                    },
-                    success:function(data){
-                        // console.log(data);
-                        if(data.type == 'create'){
-                            pagecompetitorFeedback = 1;
-                            $('#competitor-feedback-data-sale').html(data.view);
-                            lastPagecompetitorFeedback = data.last_page;
-                        }else if(data.type == 'update'){
-                            $('#competitor-feedback-'+data.id).replaceWith(data.view);
-                        }
-                        // $('#competition-feedback-table').html(data);
-                        toastr.success('Cập nhật dữ liệu thành công', 'Success', {timeOut: 5000});
-                        $('#modal_competition_feedback').modal('hide');
-                    },
-                    complete:function(){
-                        readycompetitorFeedback = true;
+            $.ajax({
+                url:_url,
+                type:'post',
+                data:{
+                    _token:"{{csrf_token()}}",
+                    processing_date:_processing_date,
+                    issue:_issue,
+                    person_in_charge:_person_in_charge,
+                    competition_feedback:_competition_feedback,
+                    user_id:_agent_id,
+                    submit_from:'task_sale'
+                },
+                success:function(data){
+                    // console.log(data);
+                    if(data.type == 'create'){
+                        pagecompetitorFeedback = 1;
+                        $('#competitor-feedback-data-sale').html(data.view);
+                        lastPagecompetitorFeedback = data.last_page;
+                    }else if(data.type == 'update'){
+                        $('#competitor-feedback-data-sale').html(data.view);
                     }
-                })
-            }
+                    // $('#competition-feedback-table').html(data);
+                    toastr.success('Cập nhật dữ liệu thành công', 'Success', {timeOut: 5000});
+                    $('#modal_competition_feedback').modal('hide');
+                },
+                complete:function(){
+                    readycompetitorFeedback = true;
+                }
+            })
 
         })
         $(document).on('click','.edit-competition-feedback-agent',function(e){
             e.preventDefault();
             var id = $(this).attr('data-id');
             var agent_id = $(this).attr('data-agent_id');
-            if(readycompetitorFeedback){
-                readycompetitorFeedback = false;
-                $.ajax({
-                    url:"{{route('crm.ajax.editCompetitionFeedback')}}",
-                    type:'get',
-                    data:{
-                        id:id,
-                        agent_id:agent_id
-                    },
-                    success:function(data){
-                        $('#modal_competition_feedback_form').html(data);
-                        $('#modal_competition_feedback').modal('toggle');
-                    },complete:function(){
-                        readycompetitorFeedback = true;
-                    }
-                })
-            }
+            // console.log(readycompetitorFeedback);
+            $.ajax({
+                url:"{{route('crm.ajax.editCompetitionFeedback')}}",
+                type:'get',
+                data:{
+                    id:id,
+                    agent_id:agent_id
+                },
+                success:function(data){
+                    $('#modal_competition_feedback_form').html(data);
+                    $('#modal_competition_feedback').modal('toggle');
+                },complete:function(){
+                    // readycompetitorFeedback = true;
+                }
+            })
 
         })
     //end crud

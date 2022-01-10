@@ -1,4 +1,4 @@
-@if(!empty($competitionFeedbacks))
+@if(count($competitionFeedbacks) >= 0)
     @foreach($competitionFeedbacks as $item)
         <tr id="competitor-feedback-{{$item->id}}">
             <td>

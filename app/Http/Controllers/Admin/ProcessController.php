@@ -469,9 +469,9 @@ class ProcessController extends Controller
         $competitionFeedback = CompetitionFeedback::findOrFail($competition_feedback_id);
         $competitionFeedback->update($data);
         if ($request->get('submit_from') == 'task_sale') {
-            $competitionFeedbacks = [$competitionFeedback];
+            $competitionFeedbacks = CompetitionFeedback::orderBy('id', 'desc')->get();
             return response()->json([
-                'view' => view('CRM.elements.task.table.competition_feedback_agent.data', compact(
+                'view' => view('CRM.elements.task.sale.table.competition_feedback_agent.data', compact(
                     'competitionFeedbacks'
                 ))->render(),
                 'type' => 'update',

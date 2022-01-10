@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{!empty($competitionFeedback)?'Update':'Add new'}} competition feedback</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{!empty($competitionFeedback)?'Update':'Add new'}} Competitor feedback {{ !empty($obj) ? $obj->name : '' }}</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span class="font-weight-light" aria-hidden="true">&times;</span>
                 </button>
@@ -60,7 +60,7 @@
             <div class="modal-footer">
                 @if(!empty($competitionFeedback))
                     @can('competitorUpdate.update')
-                        <button class="btn btn-success mr-1 mb-1 btn-submit-competition-feedback-form" type="submit" data-url="{{route('agent.process.competition.feedback.update', ['agent_id'=>$obj->id, 'competition_feedback_id' =>$competitionFeedback->id])}}">Update</button>
+                        <button class="btn btn-success mr-1 mb-1 btn-submit-competition-feedback-form" type="submit" data-url="{{route('agent.process.competition.feedback.update', ['agent_id'=> !empty($obj) ? $obj->id : 0, 'competition_feedback_id' =>$competitionFeedback->id])}}">Update</button>
                     @endcan
                 @else
                     @can('competitorUpdate.store')
