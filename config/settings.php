@@ -237,7 +237,7 @@ return [
             'process_date' => [
                 'value' => 'Processing date',
                 'isShow' => true,
-                'class' => 'width-120 follow_processing_date text-center',
+                'class' => 'width-180 follow_processing_date text-center',
                 'order' => 3,
                 'filter_blade' => 'CRM.elements.task.sale.table.follow_up_agent.filters.processing-date'
             ],
@@ -305,7 +305,7 @@ return [
             'assigned_person' => [
                 'value' => 'Assignee',
                 'isShow' => true,
-                'class' => 'width-80 follow_assigned_person text-center',
+                'class' => 'width-100 follow_assigned_person text-center',
                 'order' => 9,
                 'filter_blade' => 'CRM.elements.task.sale.table.follow_up_agent.filters.assignee-person'
             ],

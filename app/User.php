@@ -87,6 +87,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Admin\Support', 'agent_id');
     }
 
+    public function saleTaskAsign()
+    {
+        return $this->hasMany('App\Admin\SaleTaskAssign', 'user_id');
+    }
+
     public function follows()
     {
         return $this->hasMany('App\Admin\Follow', 'user_id');

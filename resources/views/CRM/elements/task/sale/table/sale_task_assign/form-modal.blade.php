@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">{{!empty($saleTaskAssign)?'Update':'Add new'}} {{$typeTask}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #000">{{!empty($saleTaskAssign)?'Update Marketing support ':'Add new'}} {{$agentName}}</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span class="font-weight-light" aria-hidden="true">&times;</span>
                 </button>
@@ -91,10 +91,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Agent:</label>
                                     <div class="form-group agent_default_select2">
-                                        <select name="user_id" id="agent_task_assign_comp
-                                        any user_id_{{$typeTask}}" class="form-control agent_task_assign_company">
-
-                                        </select>
+                                        <select name="user_id" id="agent_task_assign_company user_id_{{$typeTask}}" class="form-control agent_task_assign_company"></select>
                                     </div>
                                     <small id="user_id_{{$typeTask}}_alert_message" class="text-danger"></small>
                                 </div>
@@ -259,7 +256,8 @@
 </div>
 <script>
     $('.agent_task_assign_company').select2({
-        dropdownParent: $('.agent_default_select2'),
+        // dropdownParent: $('.agent_default_select2'),
+        placeholder: "{{$agentName}}",
         ajax: {
             url: '{{route('agent.getAgentSelect')}}',
             type: 'GET',

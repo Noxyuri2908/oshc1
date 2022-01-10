@@ -23,6 +23,7 @@
         <td class="white-space-break-spaces text-overflow">{{$saleTaskAssignType->where('id',$one->type)->pluck('name')->first()}}</td>
         <td class="white-space-break-spaces text-overflow">{{!empty($agents[$one->user_id])?$agents[$one->user_id]:''}}</td>
         <td class="white-space-break-spaces text-overflow">{{!empty($admins[$one->assigned_by])?$admins[$one->assigned_by]:''}}</td>
+        <td class="white-space-break-spaces text-overflow">{{!empty($admins[$one->assigned_person])?$admins[$one->assigned_person]:''}}</td>
         <th class="white-space-break-spaces text-overflow">{{\Carbon::parse($one->deadline)->format('d/m/Y')}}</th>
         <td class="white-space-break-spaces text-overflow text-left">{{$one->note}}</td>
     </tr>

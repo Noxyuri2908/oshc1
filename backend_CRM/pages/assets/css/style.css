@@ -539,3 +539,79 @@ h3 {
 .font-bold{
     font-weight: bold;
 }
+
+.agent-thead tr th:nth-child(6) {
+    left: 400px;
+    z-index: 2;
+}
+
+.agent-thead tr th:nth-child(5) {
+    left: 300px;
+    z-index: 2;
+}
+
+.agent-thead tr th:nth-child(4) {
+    left: 160px;
+    z-index: 2;
+}
+
+.agent-thead tr th:nth-child(3) {
+    left: 80px;
+    z-index: 2;
+}
+
+.agent-thead tr th:nth-child(2) {
+    left: 40px;
+    z-index: 2;
+}
+
+.agent-thead tr th:nth-child(1) {
+    left: 0px;
+    z-index: 2;
+}
+
+.table-main-agent tbody tr td:nth-child(6) {
+    left: 400px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.table-main-agent tbody tr td:nth-child(5) {
+    left: 300px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.table-main-agent tbody tr td:nth-child(4) {
+    left: 160px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.table-main-agent tbody tr td:nth-child(3) {
+    left: 80px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.table-main-agent tbody tr td:nth-child(2) {
+    left: 40px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.table-main-agent tbody tr td:nth-child(1) {
+    left: 0px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.width-45{
+    width: 45px;
+}
+
+.width-180{
+    width: 180px;
+}
+
+

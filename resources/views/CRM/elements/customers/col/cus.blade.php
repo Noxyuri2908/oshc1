@@ -3,7 +3,7 @@
     <th class="width-40">
         <input id="master" class="ml-3" type="checkbox" aria-label="Checkbox for this table"/>
     </th>
-    <th class="width-50">Action</th>
+    <th class="width-45">Action</th>
     <th class="width-100">Ref No</th>
     <th class="width-100">Creation date</th>
     <th class="width-200">Agent</th>

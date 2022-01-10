@@ -7,6 +7,7 @@
                 <th class="width-200">Item</th>
                 <th class="width-200">Type</th>
                 <th class="width-200">Agent</th>
+                <th class="width-200">Created by</th>
                 <th class="width-200">Assignee</th>
                 <th class="width-220">Deadline</th>
                 <th class="width-500">Note</th>
@@ -41,6 +42,7 @@
                         @endif
                     </select>
                 </th>
+                <th></th>
                 <th>
                     <select name="" id="asigned_{{$typeTask}}_filter" class="form-control">
                         <option value="">Asigned by</option>

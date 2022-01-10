@@ -623,13 +623,15 @@ class TaskController extends Controller
         $typeTask = (!empty($typeTableId)) ? SaleTaskAssign::$TYPE[$typeTableId] : '';
         $id = $request->get('id');
         $admins = Admin::pluck('username', 'id');
-        $saleTaskAssign = SaleTaskAssign::findOrFail($id);
+        $saleTaskAssign = SaleTaskAssign::where('id', $id)->with(['user'])->first();
+        $agentName = $saleTaskAssign->user->name;
         $fl_up_status = \Config::get('myconfig.task_follow_up_status');
         $agent_id = $request->get('agent_id');
 
         return view('CRM.elements.task.sale.table.sale_task_assign.form-modal', compact(
             'typeTask',
             'admins',
+            'agentName',
             'typeTableId',
             'saleTaskAssign',
             'admins',

@@ -1,5 +1,5 @@
 @php
-    $agent = isset($follow) ? 'agent : ' . $follow->agent->first()->name : '';
+    $agent = isset($follow) ? 'agent : ' . $follow->agent->name : '';
 @endphp
 <div class="modal fade user-information" id="modal_follow_up" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">

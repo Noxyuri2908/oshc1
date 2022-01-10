@@ -1,23 +1,18 @@
 <table class="table table-md mb-0 table-dashboard fs--1 ">
     <thead class="bg-200 text-900">
     <tr>
+        <th style="width: 150px">Action</th>
         <th>No</th>
         <th>Name</th>
         <th>Type file</th>
         <th>Note</th>
         <th>Staff</th>
-        <th style="width: 150px">Action</th>
     </tr>
     </thead>
     <tbody>
     @if(!empty($obj))
         @foreach($obj->tailieus as $_tailieu)
             <tr>
-                <td class="align-middle">{{$loop->index+1}}</td>
-                <td class="align-middle">{{$_tailieu->name}}</td>
-                <td class="align-middle">{{$_tailieu->type_file}}</td>
-                <td class="align-middle">{{$_tailieu->note}}</td>
-                <td class="align-middle">{{$_tailieu->staff != null ? $_tailieu->staff->admin_id : ''}}</td>
                 <td class="align-middle">
                     <a href="{{$_tailieu->link_download()}}" target="_blank"  class="mr-3">
                         <span class="fas fa-eye" style="font-size: 1.25rem"></span>
@@ -37,6 +32,11 @@
                         </a>
                     @endcan
                 </td>
+                <td class="align-middle">{{$loop->index+1}}</td>
+                <td class="align-middle">{{$_tailieu->name}}</td>
+                <td class="align-middle">{{$_tailieu->type_file}}</td>
+                <td class="align-middle">{{$_tailieu->note}}</td>
+                <td class="align-middle">{{$_tailieu->staff != null ? $_tailieu->staff->admin_id : ''}}</td>
             </tr>
         @endforeach
     @else

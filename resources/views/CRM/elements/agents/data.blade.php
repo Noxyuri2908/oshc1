@@ -1,11 +1,11 @@
 @foreach($users as $user)
     <tr class="btn-reveal-trigger data-agent" id="data-agent_{{$user->id}}" data-id="{{$user->id}}">
-        <td class="align-middle">
+        <td class="align-middle position-sticky">
             <input class="ml-3 sub_chk" data-id="{{$user->id}}"
                    data-email="{{!empty($user) ? $user->email:''}}"
                    data-name="{{!empty($user) ? $user->name : ''}}" type="checkbox" aria-label="Checkbox for this row" />
         </td>
-        <td class="align-middle  text-center">
+        <td class="align-middle  text-center position-sticky">
             <div class="dropdown text-sans-serif">
                 <button class="btn btn-link text-600 btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{$user->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="fas fa-ellipsis-h fs--1"></span>
@@ -25,12 +25,12 @@
                 </div>
             </div>
         </td>
-        <td class="align-middle">{{(!empty($user) && !empty($departments[$user->department]))?$departments[$user->department]:''}}</td>
-        <td class="align-middle text-overflow">
+        <td class="align-middle position-sticky">{{(!empty($user) && !empty($departments[$user->department]))?$departments[$user->department]:''}}</td>
+        <td class="align-middle text-overflow position-sticky">
             <a style="cursor: pointer; color: blue" class="agent_info" data-id="{{$user->id}}" href="{{request()->user()->can('agent.store')?route('agent.process', ['id'=>$user->id]):'#'}}">{{$user->name}}</a>
         </td>
-        <td class="align-middle text-overflow">{{(!empty($user) && !empty($countries[$user->country]))?$countries[$user->country]:''}}</td>
-        <td class="align-middle text-overflow text-center">{{$user->text_status}}</td>
+        <td class="align-middle text-overflow position-sticky">{{(!empty($user) && !empty($countries[$user->country]))?$countries[$user->country]:''}}</td>
+        <td class="align-middle text-overflow text-center position-sticky">{{$user->text_status}}</td>
         <td class="align-middle text-overflow">{{(!empty($user))?$user->text_market:''}}</td>
         <td class="align-middle text-overflow">{{$user->getPotentialService($dichvus)}}</td>
         <td class="align-middle text-center">{{(!empty($user))?$user->rating:''}}</td>
