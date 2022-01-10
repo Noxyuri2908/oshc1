@@ -220,7 +220,7 @@
                 $('#form-docs-action').val('customer_docs_receipt_create')
             });
         } else {
-            _html += '<div class="alert alert-danger">Chọn khách hàng để tạo mới</div>';
+            _html += '<div class="alert alert-danger">Please select customer to create receipt</div>';
             $('.alert-modal-receipt').html(_html);
         }
     });

@@ -2,7 +2,7 @@
     $(document).on('click','.remind-invoice',function(e){
         e.preventDefault();
         if($('#modalRemindStatus').length == 0){
-            alert('Chọn khách hàng để tạo mới');
+            alert('Please select customer to create receipt');
         }
         $('#modalRemindStatus').modal('show');
     });
