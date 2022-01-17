@@ -1,7 +1,7 @@
 <div style="font-family:UTM Avo;font-size:16px;color:#4c4c4c">
     <div><img style="width: 290px;"
-            src="{{asset('images/oshcglobalsicon.jpg')}}"
-            alt="OSHC GLOBALS" class="CToWUd a6T" tabindex="0">
+            src="https://oshcglobal.com.au/images/oshcglobalsicon.jpg"
+            alt="OSHC GLOBAL" class="CToWUd a6T" tabindex="0">
         <div class="a6S" dir="ltr" style="opacity: 0.01; left: 1072px; top: 403px;">
             <div id=":18f" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0"
                  aria-label="Tải xuống tệp đính kèm " data-tooltip-class="a1V" data-tooltip="Tải xuống">
@@ -9,8 +9,10 @@
             </div>
         </div>
     </div>
-    Hi! Admin<br>You have received an application from <a href="http://www.oshcglobal.com.au" target="_blank"
-                                                          data-saferedirecturl="https://www.google.com/url?q=http://www.oshcglobal.com.au&amp;source=gmail&amp;ust=1597824360091000&amp;usg=AFQjCNEv7I9Pw6Y_NtPUf5OYCP04qdzwQg">www.oshcglobal.com.au</a>.<br>
+    Hi! Admin
+    <br>You have received an application from
+        <a href="http://www.oshcglobal.com.au" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://www.oshcglobal.com.au&amp;source=gmail&amp;ust=1597824360091000&amp;usg=AFQjCNEv7I9Pw6Y_NtPUf5OYCP04qdzwQg">www.oshcglobal.com.au</a>.
+    <br>
     <p></p>
     <h2 style="height:auto;color:#cc2127;text-align:center">Application information</h2>
     <p></p><br><br>

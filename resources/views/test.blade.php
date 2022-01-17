@@ -273,16 +273,16 @@
         }
 
     @endphp
-    <div>
-        <div class="row">
-            <div class="col-lg-12 d-flex align-items-center justify-content-center" style="height: 80px">
-                <img class="h-100" src="/images/oshc-icon.png" alt="">
-            </div>
-            <div class="col-lg-12 mt-3 d-flex align-items-center justify-content-center">
-                <p class="text-uppercase font-weight-bold h1" style="color:hotpink;">Lucky Draw</p>
-            </div>
-        </div>
-    </div>
+{{--    <div>--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-12 d-flex align-items-center justify-content-center" style="height: 80px">--}}
+{{--                <img class="h-100" src="/images/oshc-icon.png" alt="">--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-12 mt-3 d-flex align-items-center justify-content-center">--}}
+{{--                <p class="text-uppercase font-weight-bold h1" style="color:hotpink;">Lucky Draw</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div>
         <div class="container px-4 py-4 position-relative">
             <div class="border bg-white rounded mb-3">

@@ -46,17 +46,17 @@
         <div class="row py-5 mb-5 mt-5">
             <div class="col-xs-12 col-sm-4 col-md-3 mb-3">
                 <h6 class="title text-uppercase font-weight-bold text-dark-gray text-uppercase">get in touch</h3>
-                    @if(!empty($hotline))
-                        <div class="d-flex text-dark-gray mb-2">
-                            <div>
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="ml-3 font-size-13px">
-                                <a href="tel:{{get_content($hotline)}}"
-                                   class="text-dark-gray">{{get_content($hotline)}}</a>
-                            </div>
-                        </div>
-                    @endif
+{{--                    @if(!empty($hotline))--}}
+{{--                        <div class="d-flex text-dark-gray mb-2">--}}
+{{--                            <div>--}}
+{{--                                <i class="fas fa-phone-alt"></i>--}}
+{{--                            </div>--}}
+{{--                            <div class="ml-3 font-size-13px">--}}
+{{--                                <a href="tel:{{get_content($hotline)}}"--}}
+{{--                                   class="text-dark-gray">{{get_content($hotline)}}</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                     @if(!empty($email))
                         <div class="d-flex text-dark-gray mb-2">
                             <div>

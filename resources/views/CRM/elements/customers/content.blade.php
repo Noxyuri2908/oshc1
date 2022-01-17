@@ -9,7 +9,24 @@
                         <a class="btn btn-primary remind-invoice" href="#">Remind status</a>
                     </div>
                 @endif
-                <div>
+                <div class="d-flex">
+                    <div id="btn-action" style="margin-right: 10px;display: none">
+                        <a href="#" id="edit-cus" class="edit-cus btn btn-falcon-default font-weight-normal font-size-12px">
+                            Edit
+                        </a>
+                        <a href="#" class="delete-cus btn btn-falcon-default font-weight-normal font-size-12px">
+                            Delete
+                        </a>
+                        <a href="#" class="export-invoice-cus-1 btn btn-falcon-default font-weight-normal font-size-12px">
+                            Export invoice 1
+                        </a>
+                        <a href="#" class="export-invoice-cus-2 btn btn-falcon-default font-weight-normal font-size-12px">
+                            Export invoice 2
+                        </a>
+                        <a href="#" class="process-cus btn btn-falcon-default font-weight-normal font-size-12px">
+                            Process
+                        </a>
+                    </div>
                     @can('customer.store')
                         <a href="{{route('customer.create')}}"
                            class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px">
@@ -21,46 +38,6 @@
                              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM5Ni44MTcgMzk2LjgxNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8Zz4KCQkJPHJlY3QgeD0iMCIgeT0iMzAuNDQxIiB3aWR0aD0iMzEzLjQ2OSIgaGVpZ2h0PSIyNi4xMjIiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcmVjdD4KCQkJPHBhdGggZD0iTTYuMjY5LDcyLjIzN0wxMjYuOTU1LDE5NC40OWMxLjU2NywxLjU2NywzLjY1NywzLjY1NywzLjY1Nyw1Ljc0N3YxNjYuMTM5bDUyLjI0NS0yOC4yMTJWMjAwLjIzNyAgICAgYzAtMi4wOSwyLjA5LTQuMTgsMy42NTctNS43NDdMMzA3LjIsNzIuMjM3SDYuMjY5eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzc3LjczMSwyMDIuMzI3Yy0yOS4yNzgtMjYuOTg4LTc0Ljg5LTI1LjEzMS0xMDEuODc4LDQuMTQ3Yy0yNS40NDgsMjcuNjA3LTI1LjQ0OCw3MC4xMjQsMCw5Ny43MzEgICAgIGMyOS4yNzgsMjYuOTg4LDc0Ljg5LDI1LjEzMSwxMDEuODc4LTQuMTQ3QzQwMy4xNzgsMjcyLjQ1LDQwMy4xNzgsMjI5LjkzNCwzNzcuNzMxLDIwMi4zMjd6IE0zNjUuNzE0LDI4MS4yMTYgICAgIGMzLjAzLDIuNjcyLDMuMzIsNy4yOTQsMC42NDgsMTAuMzI0Yy0wLjIwMiwwLjIyOS0wLjQxOSwwLjQ0Ni0wLjY0OCwwLjY0OGMtMS41NTQsMS40NDYtMy42MjcsMi4yLTUuNzQ3LDIuMDkgICAgIGMtMS45NjIsMC4wOTEtMy44NjctMC42NzEtNS4yMjQtMi4wOWwtMjcuNjktMjcuNjlsLTI3LjY5LDI3LjY5Yy0zLjMxNSwyLjgxMy04LjE3OSwyLjgxMy0xMS40OTQsMCAgICAgYy0yLjUyOS0zLjIyLTIuNTI5LTcuNzUxLDAtMTAuOTcxbDI3LjY5LTI3LjY5bC0yNy42OS0yNy42OWMtMi41MjktMy4yMi0yLjUyOS03Ljc1MSwwLTEwLjk3MWMzLjIyNC0zLjA1Miw4LjI3LTMuMDUyLDExLjQ5NCwwICAgICBsMjcuNjksMjcuNjlsMjcuNjktMjcuNjljMi41OTctMy40NjMsNy41MDktNC4xNjQsMTAuOTcxLTEuNTY3YzMuNDYzLDIuNTk3LDQuMTY0LDcuNTA5LDEuNTY3LDEwLjk3MSAgICAgYy0wLjQ0NSwwLjU5NC0wLjk3MywxLjEyMi0xLjU2NywxLjU2N2wtMjcuNjksMjcuNjlMMzY1LjcxNCwyODEuMjE2eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"/>
                         Delete Filter
                     </a>
-                    {{--<a href="#" class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px"><i class="fas fa-file-export"></i>Export</a>--}}
-                    {{--<a href="#" class="btn btn-falcon-default btn-sm btn_import font-weight-normal font-size-12px" data-toggle="modal" data-target="#importModal" title="Import"><i class="fas fa-file-import"></i>Import</a>--}}
-                    {{--<div class="modal fade" id="importModal" tabindex="-1" role="dialog"--}}
-                    {{--     aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">--}}
-                    {{--    <div class="modal-dialog" role="document">--}}
-                    {{--        <form id="modal-form-import"--}}
-                    {{--              action=""--}}
-                    {{--              method="POST" enctype="multipart/form-data">--}}
-                    {{--            @csrf--}}
-                    {{--            <div class="modal-content">--}}
-                    {{--                <div class="modal-header">--}}
-                    {{--                    <h5 class="modal-title" id="exampleModalLabel">Tải file bạn muốn--}}
-                    {{--                        nhập vào hệ--}}
-                    {{--                        thống!</h5>--}}
-                    {{--                    <button class="close" type="button" data-dismiss="modal"--}}
-                    {{--                            aria-label="Close">--}}
-                    {{--                        <span class="font-weight-light" aria-hidden="true">×</span>--}}
-                    {{--                    </button>--}}
-                    {{--                </div>--}}
-                    {{--                <div class="modal-body">--}}
-                    {{--                    <div class="form-group">--}}
-                    {{--                        <input class="form-control-file" name="file" id="file"--}}
-                    {{--                               type="file" required="" accept=".xlsx,.csv,.xls">--}}
-                    {{--                    </div>--}}
-                    {{--                    <input class="form-control-file" name="tmp" value="111"--}}
-                    {{--                           type="hidden">--}}
-                    {{--                </div>--}}
-                    {{--                <div class="modal-footer">--}}
-                    {{--                    <button class="btn btn-secondary" type="button"--}}
-                    {{--                            data-dismiss="modal">Close--}}
-                    {{--                    </button>--}}
-                    {{--                    <button type="submit" class="btn btn-primary">Upload</button>--}}
-                    {{--                </div>--}}
-                    {{--            </div>--}}
-                    {{--        </form>--}}
-                    {{--    </div>--}}
-                    {{--</div>--}}
-
-                    {{--                    <a href="{{route('queue_error_log.index',['model'=>\App\Admin\Customer::class])}}" class="btn btn-falcon-default btn-sm font-weight-normal font-size-12px" id="btn-show-error-log" title="Show error import"><i class="fas fa-exclamation-circle"></i>Show error import</a>--}}
-
                 </div>
 
             </div>

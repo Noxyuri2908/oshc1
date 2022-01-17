@@ -1,7 +1,7 @@
 
 <div style="font-family:UTM Avo;font-size:16px;color:#4c4c4c">
     <div><img style="width: 290px;"
-    src="{{asset('images/oshcglobalsicon.jpg')}}"
+    src="https://oshcglobal.com.au/images/oshcglobalsicon.jpg"
             alt="OSHC GLOBAL" style="width:100%" class="CToWUd a6T" tabindex="0">
         <div class="a6S" dir="ltr" style="opacity: 0.01; left: 390px; top: 238px;">
             <div id=":2oc" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0"
