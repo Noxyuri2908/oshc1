@@ -403,68 +403,39 @@
             })
         }
     })
-    $(document).on('click', '.btn_submit_{{$type}}_form', function (e) {
+    $(document).on('submit', '.btn_submit_{{$type}}_form', function (e) {
         e.preventDefault();
-        let _url = $(this).attr('data-url');
-        var _type_id{{$type}} = $('#type_id{{$type}}').val();
-        var _website_id{{$type}} = $('#website_id{{$type}}').val();
-        var _category_id{{$type}} = $('#category_id{{$type}}').val();
-        var _person_id{{$type}} = ($('#person_id{{$type}}').val());
-        var _problem{{$type}} = $('#problem{{$type}}').val();
-        var _date_of_suggestion{{$type}} = $('#date_of_suggestion{{$type}}').val();
-        var _solution_text{{$type}} = $('#solution_text{{$type}}').val();
-        var _level_of_process{{$type}} = $('#level_of_process{{$type}}').val();
-        var _result_id{{$type}} = $('#result_id{{$type}}').val();
-        var _processing_time{{$type}} = $('#processing_time{{$type}}').val();
-        var _budget{{$type}} = $('#budget{{$type}}').val();
-        var _checklist_created_at{{$type}} = $('#checklist_created_at{{$type}}').val();
-        var _detail{{$type}} = $('#detail{{$type}}').val();
-        console.log(_detail{{$type}});
+        let _url = $(this).attr('action');
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: _url,
+            type: 'post',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType:"json",
+            success: function (data) {
+                if (data.type == 'create') {
+                    page{{$type}} = 1;
+                    $('#checklist-table-tbody').html(data.view_checklist);
+                    $('#task-table-tbody').html(data.view_task);
 
-        if (ready{{$type}}) {
-            ready{{$type}} = false;
-            $.ajax({
-                url: _url,
-                type: 'post',
-                data: {
-                    _token: "{{csrf_token()}}",
-                    type:'{{$type}}',
-                    type_id:_type_id{{$type}},
-                    website_id: _website_id{{$type}},
-                    category_id: _category_id{{$type}},
-                    person_id: JSON.stringify(_person_id{{$type}}),
-                    problem: _problem{{$type}},
-                    date_of_suggestion: _date_of_suggestion{{$type}},
-                    detail : _detail{{$type}},
-                    solution_text: _solution_text{{$type}},
-                    level_of_process: _level_of_process{{$type}},
-                    result_id: _result_id{{$type}},
-                    processing_time: _processing_time{{$type}},
-                    budget: _budget{{$type}},
-                    checklist_created_at: _checklist_created_at{{$type}},
-                },
-                success: function (data) {
-                    // console.log(data);
-                    if (data.type == 'create') {
-                        page{{$type}} = 1;
-                        $('#checklist-table-tbody').html(data.view_checklist);
-                        $('#task-table-tbody').html(data.view_task);
+                    lastPagechecklist = data.last_page;
+                    lastPagetask = data.last_page;
 
-                        lastPagechecklist = data.last_page;
-                        lastPagetask = data.last_page;
-
-                    } else if (data.type == 'update') {
-                        console.log(data);
-                        $('#check_list_data_' + data.id).replaceWith(data.view_checklist);
-                        $('#task_data_' + data.id).replaceWith(data.view_task);
-                    }
-                    toastr.success('Cập nhật dữ liệu thành công', 'Success', {timeOut: 5000});
-                    $('#modal_checklist_task').modal('hide');
-                }, complete: function () {
-                    ready{{$type}} = true;
+                } else if (data.type == 'update') {
+                    console.log(data);
+                    $('#check_list_data_' + data.id).replaceWith(data.view_checklist);
+                    $('#task_data_' + data.id).replaceWith(data.view_task);
                 }
-            })
-        }
+                toastr.success('Cập nhật dữ liệu thành công', 'Success', {timeOut: 5000});
+                $('#modal_checklist_task').modal('hide');
+            }, complete: function () {
+                ready{{$type}} = true;
+            }
+        })
+
     })
     $(document).on('click', '.delete_check_list{{$type}}', function (e) {
         e.preventDefault();

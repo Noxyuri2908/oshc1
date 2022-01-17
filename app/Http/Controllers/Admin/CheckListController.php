@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\CheckList;
 use App\Admin\CheckListSetting;
+use App\Admin\Tailieu;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use function foo\func;
 
 class CheckListController extends Controller
@@ -108,7 +111,12 @@ class CheckListController extends Controller
             'checklist_created_at',
             'assigned_by',
             'type_id',
+            'proposer',
+            'file'
         ]);
+
+        $file = (!empty($data['file'])) ? $data['file'] : null;
+
         $arrDate = [
             'date_of_suggestion',
             'processing_time',
@@ -117,8 +125,19 @@ class CheckListController extends Controller
         foreach ($arrDate as $key) {
             $data[$key] = (!empty($data[$key])) ? convert_date_to_db($data[$key]) : null;
         }
+
+        if(!empty($file)){
+            $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
+            $file->move('tailieus', $name);
+            $data['file'] = $name;
+        }
+
+        $data['proposer'] = (int)$data['proposer'];
+
         $group_id = $request->get('group_id');
         CheckList::create($data);
+
         $checkListDatas = CheckList::where('group_id', $group_id)->orderBy('id', 'DESC')->orderByRaw("FIELD(result_id,1) desc")->paginate(10);
         $lastPage = $checkListDatas->lastPage();
         $type = $request->get('type');

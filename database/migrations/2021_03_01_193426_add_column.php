@@ -262,6 +262,20 @@ class AddColumn extends Migration
                 $table->longText('note')->nullable()->after('type');
             });
         }
+
+        if (!Schema::hasColumn('check_lists', 'proposer'))
+        {
+            Schema::table('check_lists', function(Blueprint $table) {
+                $table->integer('proposer')->nullable()->after('solution_text');
+            });
+        }
+
+        if (!Schema::hasColumn('check_lists', 'file'))
+        {
+            Schema::table('check_lists', function(Blueprint $table) {
+                $table->text('file')->nullable()->after('proposer');
+            });
+        }
     }
 
     /**
@@ -459,6 +473,20 @@ class AddColumn extends Migration
         {
             Schema::table('marketing_material_lists', function(Blueprint $table) {
                 $table->dropColumn('note')->after('type');
+            });
+        }
+
+        if (Schema::hasColumn('check_lists', 'proposer'))
+        {
+            Schema::table('check_lists', function(Blueprint $table) {
+                $table->dropColumn('proposer');
+            });
+        }
+
+        if (Schema::hasColumn('check_lists', 'file'))
+        {
+            Schema::table('check_lists', function(Blueprint $table) {
+                $table->dropColumn('file');
             });
         }
     }

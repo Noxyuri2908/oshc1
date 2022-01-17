@@ -15,6 +15,7 @@ View::composer([
     $webMedias = $statuses->where('type','web_media');
     $results = \App\Admin\CheckList::$RESULT;
     $types = \App\Admin\CheckList::$TYPE;
+    $lvprocessor = \App\Admin\CheckList::$LVPROCESSOR;
     $checklistSetting = \App\Admin\CheckListSetting::where('type','checklist_type')->get()->toTree();
     $checklistSettingType = \App\Admin\CheckListSetting::with('children')->where('type','checklist_type')->get();
     $solution_it_checklist = \App\Admin\Status::where('type','solution_it_checklist')->get();
@@ -26,6 +27,7 @@ View::composer([
         'types',
         'checklistSetting',
         'checklistSettingType',
-        'solution_it_checklist'
+        'solution_it_checklist',
+        'lvprocessor'
     ));
 });

@@ -26,7 +26,9 @@ class CheckList extends Model
         'budget',
         'checklist_created_at',
         'assigned_by',
-        'type_id'
+        'type_id',
+        'proposer',
+        'file'
     ];
     public static $RESULT = [
         1=>'Processing',
@@ -38,6 +40,11 @@ class CheckList extends Model
         1=>'Web',
         2=>'CRM',
         3=>'Email'
+    ];
+    public static $LVPROCESSOR = [
+        0 => 'A',
+        1 => 'B',
+        2 => 'C'
     ];
     public function getWebsiteName()
     {

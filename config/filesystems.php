@@ -43,6 +43,11 @@ return [
 
     'disks' => [
 
+        'tailieus' => [
+            'driver' => 'local',
+            'root' => public_path('tailieus'),
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
