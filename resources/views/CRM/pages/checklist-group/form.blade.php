@@ -10,26 +10,12 @@
             <div class="modal-body">
                 <div class="content-information">
                     <div class="row">
-
                         <div class="col-md-8 content-table fill_content">
                             <div class="form-group">
                                 <label class="control-label">Name:</label>
                                 <input class="form-control" autocomplete="off" value="{{!empty($groupData)?$groupData->group_name:''}}" name="group_name" id="group_name" type="text" required>
                             </div>
                         </div>
-{{--                        <div class="col-md-4 content-table fill_content">--}}
-{{--                            <div class="form-group">--}}
-{{--                                <label class="control-label">Type:</label>--}}
-{{--                                <select class="form-control" name="type_id" id="type_id">--}}
-{{--                                    <option label=""></option>--}}
-{{--                                    @if(!empty($typeMediaLinks))--}}
-{{--                                        @foreach($typeMediaLinks as $keyTypeMediaLink=>$value)--}}
-{{--                                            <option value="{{$value->id}}" {{!empty($groupData) && $groupData->type_id == $value->id ?'selected':''}}>{{$value->name}}</option>--}}
-{{--                                        @endforeach--}}
-{{--                                    @endif--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>

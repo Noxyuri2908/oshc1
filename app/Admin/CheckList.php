@@ -31,7 +31,8 @@ class CheckList extends Model
     public static $RESULT = [
         1=>'Processing',
         2=>'Done',
-        3=>'Cancel'
+        3=>'Cancel',
+        4=>'pending'
     ];
     public static $TYPE = [
         1=>'Web',

@@ -621,5 +621,10 @@ return [
         1 => 'Not yet',
         2 => 'Done',
         3 => 'Recall'
+    ],
+    'result_check_list' => [
+        0 => 'A',
+        1 => 'B',
+        2 => 'C'
     ]
 ];

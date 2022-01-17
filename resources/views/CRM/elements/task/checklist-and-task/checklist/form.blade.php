@@ -62,10 +62,25 @@
                                 </div>
                             </div>
                         @endif
+                        @if($type == 'checklist')
+                            <div class="col-md-4 content-table fill_content" onmouseover="hoverProposor()">
+                                <div class="form-group">
+                                    <label class="control-label">Proposer :</label>
+                                    <select class="form-control" name="proposer" id="proposer" multiple="multiple">
+                                        @if(!empty($admins))
+                                            @foreach($admins as $adminId=>$adminName)
+                                                <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->person_id == $adminId?'selected':''}}>{{$adminName}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
+
 
                         <div class="col-md-4 content-table fill_content">
                             <div class="form-group">
-                                <label class="control-label">Person in chargre:</label>
+                                <label class="control-label">Person in charge:</label>
                                 <select class="form-control" name="person_id[]" id="person_id{{$type}}" multiple="multiple">
                                     @if(!empty($admins))
                                         @foreach($admins as $adminId=>$adminName)
@@ -99,7 +114,7 @@
                         @if($type == 'checklist')
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Solution :</label>
+                                    <label class="control-label">Processor :</label>
 {{--                                    <input class="form-control"--}}
 {{--                                           value="{{!empty($checkListData)?$checkListData->solution_text:''}}"--}}
 {{--                                           name="solution_text" id="solution_text{{$type}}" type="text" required>--}}
@@ -114,9 +129,15 @@
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
                                     <label class="control-label">Level of process :</label>
-                                    <input class="form-control"
-                                           value="{{!empty($checkListData)?$checkListData->level_of_process:''}}"
-                                           name="level_of_process" id="level_of_process{{$type}}" type="number" required>
+                                    <select class="form-control" name="lv_process" id="lv_process">
+                                            <option value=""></option>
+                                        @foreach($solution_it_checklist as $solution)
+                                            <option value="{{$solution->id}}" {{(!empty($checkListData) && $checkListData->level_of_process == $solution->id)?'selected':''}}>{{$solution->name}}</option>
+                                        @endforeach
+                                    </select>
+{{--                                    <input class="form-control"--}}
+{{--                                           value="{{!empty($checkListData)?$checkListData->level_of_process:''}}"--}}
+{{--                                           name="level_of_process" id="level_of_process{{$type}}" type="number" required>--}}
                                 </div>
                             </div>
                         @endif
@@ -165,6 +186,12 @@
                                        name="checklist_created_at" id="checklist_created_at{{$type}}" type="text" required>
                             </div>
                         </div>
+                        <div class="col-md-4 content-table fill_content">
+                            <div class="form-group">
+                                <label class="control-label">File :</label>
+                                <input type="file" name="file_check_list" id="file_check_list">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,6 +213,17 @@ let activeHover = true;
                 closeOnSelect: false
             });
             activeHover = false;
+        }
+    }
+
+let activeHoverProposor = true;
+    function hoverProposor(){
+        if (activeHoverProposor)
+        {
+            $('#proposer').select2({
+                closeOnSelect: false
+            });
+            activeHoverProposor = false;
         }
     }
 
