@@ -24,6 +24,9 @@
             $('#btn-action').css('display', 'block');
             actionBtnEdit(apply_id);
             actionBtnDelete(apply_id);
+            actionCom(apply_id);
+            actionProfit(apply_id);
+            actionrRefund(apply_id);
 
             $('.remind-extend-invoice').attr('data-id',apply_id);
             $('.remind-invoice').attr('data-id',apply_id);
@@ -135,6 +138,57 @@
                     })
                 }
             })
+        })
+    }
+
+    function actionCom(apply_id)
+    {
+        $('.process-item-cus-com').attr('href', `${window.location.origin}/crm/customer/process/${apply_id}/3?tab_link=3`);
+        $('.process-item-cus-com').fancybox({
+            'width': '90%',
+            'height': 900,
+            'type': 'iframe',
+            'autoScale': false,
+            'autoSize': false,
+            helpers: {
+                title: {
+                    type: 'float',
+                },
+            },
+        })
+    }
+
+    function actionProfit(apply_id)
+    {
+        $('.process-item-cus-profit').attr('href', `${window.location.origin}/crm/customer/process/${apply_id}/4?tab_link=4`);
+        $('.process-item-cus-profit').fancybox({
+            'width': '90%',
+            'height': 900,
+            'type': 'iframe',
+            'autoScale': false,
+            'autoSize': false,
+            helpers: {
+                title: {
+                    type: 'float',
+                },
+            },
+        })
+    }
+
+    function actionrRefund(apply_id)
+    {
+        $('.process-item-cus-refund').attr('href', `${window.location.origin}/crm/customer/process/${apply_id}/5?tab_link=5`);
+        $('.process-item-cus-refund').fancybox({
+            'width': '90%',
+            'height': 900,
+            'type': 'iframe',
+            'autoScale': false,
+            'autoSize': false,
+            helpers: {
+                title: {
+                    type: 'float',
+                },
+            },
         })
     }
 </script>
