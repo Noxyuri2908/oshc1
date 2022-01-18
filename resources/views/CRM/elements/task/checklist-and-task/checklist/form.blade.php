@@ -3,7 +3,7 @@
     <div class="modal fade user-information" id="modal_checklist_task" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content" onmouseover="hoverPerson()">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{!empty($checkListData)?'Update':'Add new'}}
                         {{$type}}</h5>
@@ -80,11 +80,11 @@
                             @endif
 
 
-                            <div class="col-md-4 content-table fill_content">
+                            <div class="col-md-4 content-table fill_content" onmouseover="hoverPerson()">
                                 <div class="form-group">
                                     <label class="control-label">Person in charge:</label>
                                     <select class="form-control" name="person_id[]" id="person_id{{$type}}" multiple="multiple">
-                                        @if(!empty($admins))
+                                        @if(!empty($admins))`
                                             @foreach($admins as $adminId=>$adminName)
                                                 <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->person_id == $adminId?'selected':''}}>{{$adminName}}</option>
                                             @endforeach
@@ -193,6 +193,11 @@
                                     <div class="form-group">
                                         <label class="control-label">File :</label>
                                         <input type="file" name="file" id="file">
+                                        @if(!empty($checkListData) && $checkListData->file)
+                                            <div>
+                                                <a target="_blank" href="{{asset('tailieus/'.$checkListData->file)}}">{{asset('tailieus/'.$checkListData->file)}}</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             @endif

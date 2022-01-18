@@ -116,6 +116,9 @@ class CheckListController extends Controller
         ]);
 
         $file = (!empty($data['file'])) ? $data['file'] : null;
+        if (!empty($data['person_id'])){
+            $data['person_id'] = \GuzzleHttp\json_encode($data['person_id']);
+        }
 
         $arrDate = [
             'date_of_suggestion',

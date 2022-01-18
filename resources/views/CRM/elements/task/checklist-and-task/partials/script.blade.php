@@ -407,6 +407,7 @@
         e.preventDefault();
         let _url = $(this).attr('action');
         var formData = new FormData($(this)[0]);
+        console.log()
         $.ajax({
             url: _url,
             type: 'post',
