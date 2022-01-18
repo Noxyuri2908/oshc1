@@ -20,6 +20,10 @@
             $(this).addClass('selected_row');
             $('.alert-modal-receipt').html('');
             var apply_id = $(this).attr('data-id');
+
+            $('#btn-action').css('display', 'block');
+            actionBtnEdit(apply_id);
+
             $('.remind-extend-invoice').attr('data-id',apply_id);
             $('.remind-invoice').attr('data-id',apply_id);
             $('.remind-email-invoice').attr('data-id',apply_id);
@@ -70,4 +74,32 @@
             });
         }
     })
+
+    function actionBtnEdit(apply_id)
+    {
+        $('#edit-cus').attr('href', `${window.location.href}/${apply_id}/edit?page=1`)
+        $('#edit-cus').fancybox({
+            'width': 1200,
+            'height': 900,
+            'type': 'iframe',
+            'autoScale': false,
+            'autoSize': false,
+            helpers: {
+                title: {
+                    type: 'float'
+                }
+            },
+            afterClose: function () {
+                var id = apply_id;
+                var url = `${window.location.href}/${apply_id}/edit?page=1`;
+                $.ajax({
+                    url:url,
+                    type:'get',
+                    success:function (data){
+                        $('#edit-cus_' + data.id).replaceWith(data.view);
+                    }
+                })
+            }
+        });
+    }
 </script>

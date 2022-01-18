@@ -366,9 +366,9 @@ left: 50%;">
                 for (var i = 0; i < listitem.length; i++) {
                     if(listitem[i] != ''){
                         if (i == 0) {
-                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/550x200/FFC0CB/&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
+                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/550x200/F8F8F8/&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
                         } else {
-                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/550x200/FFC0CB&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
+                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/550x200/F8F8F8&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
                         }
                     }
                 }
