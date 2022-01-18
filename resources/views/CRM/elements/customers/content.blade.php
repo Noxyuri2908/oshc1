@@ -24,7 +24,18 @@
                             Export invoice 2
                         </a>
                         <a href="#" class="process-cus btn btn-falcon-default font-weight-normal font-size-12px">
-                            Process
+                            Process &raquo
+{{--                            <ul class="submenu-process-cus" style="">--}}
+{{--                                <li>--}}
+{{--                                    <a class="dropdown-item link-popup" href="">Commission</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a class="dropdown-item link-popup" href="">Profit</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a class="dropdown-item link-popup" href="">Refund</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
                         </a>
                     </div>
                     @can('customer.store')

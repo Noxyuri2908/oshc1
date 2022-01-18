@@ -23,6 +23,7 @@
 
             $('#btn-action').css('display', 'block');
             actionBtnEdit(apply_id);
+            actionBtnDelete(apply_id);
 
             $('.remind-extend-invoice').attr('data-id',apply_id);
             $('.remind-invoice').attr('data-id',apply_id);
@@ -90,8 +91,7 @@
                 }
             },
             afterClose: function () {
-                var id = apply_id;
-                var url = `${window.location.href}/${apply_id}/edit?page=1`;
+                var url = `${window.location.origin}/crm/customer/${apply_id}/edit?page=1`;
                 $.ajax({
                     url:url,
                     type:'get',
@@ -101,5 +101,40 @@
                 })
             }
         });
+    }
+
+    function actionBtnDelete(apply_id)
+    {
+        $(document).on('click', '.delete-cus', () => {
+            let action_url = `${window.location.origin}/crm/customer/${apply_id}`;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: action_url,
+                        type: 'post',
+                        data: {
+                            '_token': '{{csrf_token()}}',
+                            '_method': 'delete',
+                        },
+                        success: function (data) {
+                            $(`#data-customer_${apply_id}`).remove()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success',
+                            )
+                        },
+                    })
+                }
+            })
+        })
     }
 </script>

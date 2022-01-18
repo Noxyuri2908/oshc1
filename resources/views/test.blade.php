@@ -440,7 +440,7 @@ left: 50%;">
             dataid= $('#slideshow li.current').children().attr('data-id');
             delete(slides.dataid);
             arrSpecial.splice(0, 1);
-            html = '<li class="list-group-item text-center h4">'+elementRate+'</li>';
+            html = '<li class="list-group-item text-center h4" style="font-size: 20px">'+elementRate+'</li>';
             $('#listitem-con').append(html);
             $('#slideshow li.current').remove();
         }
