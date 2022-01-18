@@ -52,16 +52,19 @@ class MarketingMaterialController extends Controller
         $files = (!empty($data['file_attachment']))?$data['file_attachment']:null;
         $arrayId = [];
 
-        foreach ($files as $file)
+        if (!empty($files))
         {
-            if(!empty($file)){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
-                $file->move('tailieus', $name);
-                $id = Tailieu::insertGetId([
-                    'link' => $name
-                ]);
-                array_push($arrayId, $id);
+            foreach ($files as $file)
+            {
+                if(!empty($file)){
+                    $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
+                    $file->move('tailieus', $name);
+                    $id = Tailieu::insertGetId([
+                        'link' => $name
+                    ]);
+                    array_push($arrayId, $id);
+                }
             }
         }
 
@@ -94,20 +97,23 @@ class MarketingMaterialController extends Controller
         $files = (!empty($data['file_attachment']))?$data['file_attachment']:null;
         $arrayId = [];
 
-        foreach ($files as $file)
+        if (!empty($files))
         {
-            if(!empty($file)){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
-                $file->move('tailieus', $name);
+            foreach ($files as $file)
+            {
+                if(!empty($file)){
+                    $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
+                    $file->move('tailieus', $name);
 
-                $idTaiLieus = Tailieu::insertGetId([
-                    'link' => $name
-                ]);
-                array_push($arrayId, $idTaiLieus);
+                    $idTaiLieus = Tailieu::insertGetId([
+                        'link' => $name
+                    ]);
+                    array_push($arrayId, $idTaiLieus);
 
-            }else{
-                unset($data['file_attachment']);
+                }else{
+                    unset($data['file_attachment']);
+                }
             }
         }
 

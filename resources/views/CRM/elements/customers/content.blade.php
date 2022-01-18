@@ -23,20 +23,21 @@
                         <a href="#" class="export-invoice-cus-2 btn btn-falcon-default font-weight-normal font-size-12px">
                             Export invoice 2
                         </a>
-                        <a href="#" class="process-cus btn btn-falcon-default font-weight-normal font-size-12px">
+                        <a href="#" class="process-cus btn btn-falcon-default font-weight-normal font-size-12px position-relative">
                             Process &raquo
-{{--                            <ul class="submenu-process-cus" style="">--}}
-{{--                                <li>--}}
-{{--                                    <a class="dropdown-item link-popup" href="">Commission</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a class="dropdown-item link-popup" href="">Profit</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a class="dropdown-item link-popup" href="">Refund</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
+                            <ul class="sub-menu-process-cus position-absolute">
+                                <li class="process-item-cus-com">
+                                    <p>Commission</p>
+                                </li>
+                                <li class="process-item-cus-profit">
+                                    <p>Profit</p>
+                                </li>
+                                <li class="process-item-cus-refund">
+                                    <p>Refund</p>
+                                </li>
+                            </ul>
                         </a>
+
                     </div>
                     @can('customer.store')
                         <a href="{{route('customer.create')}}"

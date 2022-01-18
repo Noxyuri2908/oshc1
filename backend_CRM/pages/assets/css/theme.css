@@ -19086,3 +19086,34 @@ div#info-table_length {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+ul.sub-menu-process-cus.position-absolute {
+    z-index: 100000;
+    background: #fff;
+    list-style-type: none;
+    padding: 10px 0px;
+    border-radius: 6px;
+    box-shadow: 0 7px 14px 0 rgb(59 65 94 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+    left: 0;
+    top: 110%;
+    display: none;
+    text-align: left;
+    width: 120px;
+}
+
+.process-cus:hover .sub-menu-process-cus{
+    display: block;
+}
+
+.process-item-cus-com p,
+.process-item-cus-profit p,
+.process-item-cus-refund p{
+    padding: 5px 10px;
+    color: #5e6e82;
+    margin-bottom: 0px;
+}
+
+.process-item-cus-com:hover,
+.process-item-cus-profit:hover,
+.process-item-cus-refund:hover{
+    background-color: #edf2f9 !important;
+}
