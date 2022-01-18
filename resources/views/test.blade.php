@@ -313,7 +313,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <p>Configuration</p>
+                    <p>LOTTERY CODES</p>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -366,9 +366,9 @@ left: 50%;">
                 for (var i = 0; i < listitem.length; i++) {
                     if(listitem[i] != ''){
                         if (i == 0) {
-                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/400x200&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
+                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/550x200/FFC0CB/&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
                         } else {
-                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/400x200&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
+                            html += '<li><img class="w-100" data-id=\''+i+'\' src=\'https://via.placeholder.com/550x200/FFC0CB&text=' + listitem[i] + '\' alt=\'' + listitem[i] + '\'></li>'
                         }
                     }
                 }
