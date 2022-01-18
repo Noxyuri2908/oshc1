@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Website:</label>
+                                    <label class="control-label">Product:</label>
                                     @if(!empty($checkListData) && !empty($checkListData->type_id) && !empty($checklistSetting->where('id',$checkListData->type_id)->first()))
                                         <select class="form-control" name="website_id" id="website_id{{$type}}">
                                             @foreach($checklistSetting->where('id',$checkListData->type_id)->first()->children as $webMedia)
