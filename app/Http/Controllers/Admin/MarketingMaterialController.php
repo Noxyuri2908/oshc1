@@ -48,7 +48,6 @@ class MarketingMaterialController extends Controller
 
     public function store(MarketingMaterialListRequest $request)
     {
-        ini_set('memory_limit','256M');
         $data = $request->validated();
         $files = (!empty($data['file_attachment']))?$data['file_attachment']:null;
         $arrayId = [];
@@ -94,7 +93,6 @@ class MarketingMaterialController extends Controller
 
     public function update(MarketingMaterialListRequest $request, $id)
     {
-        ini_set('memory_limit','256M');
         $data = $request->validated();
         $files = (!empty($data['file_attachment']))?$data['file_attachment']:null;
         $arrayId = [];
