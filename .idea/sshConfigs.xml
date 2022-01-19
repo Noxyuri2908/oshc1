@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="13.251.211.32" id="74cae889-f5ca-47a4-9e93-bfd31ee427a6" keyPath="$USER_HOME$/Desktop/aws-ssdh.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" />
+    </configs>
+  </component>
+</project>

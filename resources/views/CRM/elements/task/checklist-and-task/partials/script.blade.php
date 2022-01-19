@@ -278,7 +278,8 @@
                 budget: budget_filter{{$type}},
                 checklist_created_at: checklist_created_at_filter{{$type}},
                 assigned_by: assigned_by_filter{{$type}},
-                type:type
+                type:type,
+                proposer : $('#proposer').val()
             },
             success: function (data) {
                 if (isAppend == 0) {

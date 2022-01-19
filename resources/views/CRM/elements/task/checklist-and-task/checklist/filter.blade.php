@@ -1,4 +1,4 @@
-<tr class="last-row" onmouseover="hoverPersonIdFilter()">
+<tr class="last-row" >
     <th></th>
     <th>
         <select class="form-control" name="type_id_filter" id="type_id_filter{{$type_tab}}">
@@ -25,10 +25,21 @@
                 </select>
             </div>
         </th>
+        <th>
+            <div>
+                <select class="form-control" name="proposer" id="proposer" onmouseover="hoverProposerIdFilter()">
+                    @if(!empty($admins))
+                        @foreach($admins as $keyAdmin=>$valueAdmin)
+                            <option value="{{$keyAdmin}}" {{!empty($archiveMediaLinkData) && $archiveMediaLinkData->form_id == $keyAdmin ?'selected':''}}>{{$valueAdmin}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+        </th>
     @endif
     <th>
         <div>
-            <select class="form-control" name="person_id_filter[]" id="person_id_filter{{$type_tab}}" multiple>
+            <select class="form-control" onmouseover="hoverPersonIdFilter()" name="person_id_filter[]" id="person_id_filter{{$type_tab}}" multiple>
                 @if(!empty($admins))
                     @foreach($admins as $keyAdmin=>$valueAdmin)
                         <option value="{{$keyAdmin}}" {{!empty($archiveMediaLinkData) && $archiveMediaLinkData->form_id == $keyAdmin ?'selected':''}}>{{$valueAdmin}}</option>
@@ -42,12 +53,12 @@
                required>
     </th>
     <th>
-        <input class="form-control" value="" name="date_of_suggestion_filter"
-               id="date_of_suggestion_filter{{$type_tab}}" type="text" required>
-    </th>
-    <th>
         <input class="form-control" value="" name="detail_filter"
                id="detail_filter{{$type_tab}}" type="text" required>
+    </th>
+    <th>
+        <input class="form-control" value="" name="date_of_suggestion_filter"
+               id="date_of_suggestion_filter{{$type_tab}}" type="text" required>
     </th>
     @if($type_tab == 'checklist')
         <th>
@@ -100,6 +111,20 @@
                 closeOnSelect: false
             });
             activeHoverFilter = false;
+        }
+
+    }
+
+
+    var activeHoverFilterProposer = true;
+    function hoverProposerIdFilter()
+    {
+        if (activeHoverFilterProposer)
+        {
+            $('#proposer').select2({
+                closeOnSelect: false
+            });
+            activeHoverFilterProposer = false;
         }
 
     }

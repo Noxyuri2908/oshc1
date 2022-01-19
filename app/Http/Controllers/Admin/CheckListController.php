@@ -47,6 +47,9 @@ class CheckListController extends Controller
         })->when($request->get('type_id'), function ($query) use ($request) {
             $query->where('type_id', $request->get('type_id'));
         })
+        ->when($request->get('proposer'), function ($query) use ($request) {
+            $query->where('proposer', $request->get('proposer'));
+        })
             ->where('group_id', $group_id)
             ->orderByRaw("FIELD(result_id,1) desc")
             ->paginate(10);

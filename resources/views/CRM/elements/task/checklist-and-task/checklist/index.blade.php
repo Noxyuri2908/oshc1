@@ -30,8 +30,9 @@
                         <tr class="first-row">
                             <th class="width-80">Action</th>
                             <th class="width-200">Type</th>
-                            <th class="width-200">Website</th>
+                            <th class="width-200">Product</th>
                             <th class="width-200">Catergories</th>
+                            <th class="width-200">Proposer</th>
                             <th class="width-200">Person in chargre</th>
                             <th class="width-200">Issue</th>
                             <th class="width-200">Date of suggestion</th>
