@@ -105,6 +105,19 @@
             </div>
             <div class="col-lg-2">
                 <div class="form-group">
+                    <label for="policy">Hospotal access</label>
+                    <select class="form-control" id="hpt-access" name="hpt-access">
+                        @if(count($cover) > 0)
+                            <option value=""></option>
+                            @foreach($cover as $key => $item)
+                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
                     <label for="name">No of adults</label>
                     <select class="form-control" id="no_of_adults" name="no_of_adults" required>
                         @if(!empty($obj))

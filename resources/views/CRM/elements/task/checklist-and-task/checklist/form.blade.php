@@ -1,5 +1,5 @@
 <form class="btn_submit_{{$type}}_form" action="{{!empty($checkListData) ? route('check-list.update',['id'=>$checkListData->id,'group_id'=>$groupId]) : route('check-list.store',['group_id'=>$groupId])}}" method="post">
-    <input type="text" name="_token" value="{{csrf_token()}}">
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
     <div class="modal fade user-information" id="modal_checklist_task" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -49,11 +49,11 @@
                                 <div class="col-md-4 content-table fill_content">
                                     <div class="form-group">
                                         <label class="control-label">Categories:</label>
-                                        @if(!empty($checkListData) && !empty($checkListData->type_id) && !empty($checklistSettingType->where('id',$checkListData->website_id)->first()))
+                                        @if(!empty($checkListData) && !empty($checkListData->type_id) && !empty($checklistSettingType->where('id', $checkListData->website_id)->first()))
                                             <select name="category" id="category_id{{$type}}" class="form-control">
-                                                @foreach($checklistSettingType->where('id',$checkListData->website_id)->first()->children as $keyCategory=>$value)
-                                                    <option
-                                                        value="{{$value->id}}" {{$checkListData->category_id == $value->id?'selected':''}} label="{{$value->name}}">{{$value->name}}</option>
+                                                <option value=""></option>
+                                                @foreach($checklistSettingType->where('id', $checkListData->website_id)->first()->children as $keyCategory => $value)
+                                                    <option value="{{$value->id}}" {{$checkListData->category_id == $value->id ? 'selected':''}} label="{{$value->name}}">{{$value->name}}</option>
                                                 @endforeach
                                             </select>
                                         @else

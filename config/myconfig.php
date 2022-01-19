@@ -621,5 +621,11 @@ return [
         1 => 'Not yet',
         2 => 'Done',
         3 => 'Recall'
+    ],
+    'hospital_access' => [
+        0 => 0,
+        1 => 250,
+        2 => 500,
+        3 => 750
     ]
 ];

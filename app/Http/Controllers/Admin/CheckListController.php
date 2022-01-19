@@ -187,7 +187,7 @@ class CheckListController extends Controller
         $data = $request->only([
             'group_id',
             'website_id',
-            'category_id',
+            'category',
             'person_id',
             'problem',
             'date_of_suggestion',
@@ -200,6 +200,8 @@ class CheckListController extends Controller
             'checklist_created_at',
             'assigned_by',
             'type_id',
+            'proposer',
+            'file'
         ]);
         $arrDate = [
             'date_of_suggestion',
@@ -212,6 +214,17 @@ class CheckListController extends Controller
         if ($type == 'task' && $data['processing_time'] == null) {
             unset($data['processing_time']);
         }
+
+        if(!empty($file)){
+            $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $name = $fileName.'-'.time() . str_random(5) .'.' . $file->getClientOriginalExtension();
+            $file->move('tailieus', $name);
+            $data['file'] = $name;
+        }
+
+        $data['proposer'] = (int)$data['proposer'];
+        $data['category_id'] = $data['category'];
+
         $group_id = $request->get('group_id');
         $checkListData = CheckList::findOrFail($id);
         $checkListData->update($data);
