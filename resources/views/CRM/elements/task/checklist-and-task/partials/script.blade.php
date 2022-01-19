@@ -378,7 +378,7 @@
             })
         }
     })
-    $(document).on('click', '.edit_check_list{{$type}}', function (e) {
+    $(document).on('click', '.edit_check_list{{$type}}, .edit_check_list', function (e) {
         e.preventDefault();
         var id = $(this).attr('data-id');
         var agent_id = $(this).attr('data-agent_id');

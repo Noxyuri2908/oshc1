@@ -115,7 +115,8 @@ class CheckListController extends Controller
             'assigned_by',
             'type_id',
             'proposer',
-            'file'
+            'file',
+            'created_by'
         ]);
 
         $file = (!empty($data['file'])) ? $data['file'] : null;
@@ -201,7 +202,8 @@ class CheckListController extends Controller
             'assigned_by',
             'type_id',
             'proposer',
-            'file'
+            'file',
+            'created_by'
         ]);
         $arrDate = [
             'date_of_suggestion',

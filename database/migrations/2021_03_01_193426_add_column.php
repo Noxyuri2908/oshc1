@@ -283,6 +283,13 @@ class AddColumn extends Migration
                 $table->integer('hospital_access')->nullable()->after('type_visa');
             });
         }
+
+        if (!Schema::hasColumn('check_lists', 'created_by'))
+        {
+            Schema::table('check_lists', function(Blueprint $table) {
+                $table->integer('created_by')->nullable()->after('type_id');
+            });
+        }
     }
 
     /**
@@ -501,6 +508,13 @@ class AddColumn extends Migration
         {
             Schema::table('applies', function(Blueprint $table) {
                 $table->dropColumn('hospital_access');
+            });
+        }
+
+        if (Schema::hasColumn('check_lists', 'created_by'))
+        {
+            Schema::table('check_lists', function(Blueprint $table) {
+                $table->dropColumn('created_by');
             });
         }
     }

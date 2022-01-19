@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Type:</label>
+                                    <label class="control-label">Product:</label>
                                     <select class="form-control" name="type_id" id="type_id{{$type}}">
                                         <option label=""></option>
                                         @if(!empty($checklistSetting))
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
-                                    <label class="control-label">Product:</label>
+                                    <label class="control-label">Title:</label>
                                     @if(!empty($checkListData) && !empty($checkListData->type_id) && !empty($checklistSetting->where('id',$checkListData->type_id)->first()))
                                         <select class="form-control" name="website_id" id="website_id{{$type}}">
                                             @foreach($checklistSetting->where('id',$checkListData->type_id)->first()->children as $webMedia)
@@ -97,7 +97,7 @@
                                     <label class="control-label">Date of suggestion:</label>
                                     <input class="form-control"
                                            value="{{!empty($checkListData)?convert_date_form_db($checkListData->date_of_suggestion):''}}"
-                                           name="date_of_suggestion" id="date_of_suggestion{{$type}}" type="text" required>
+                                           name="date_of_suggestion" id="date_of_suggestion{{$type}}" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12 content-table fill_content">
@@ -176,7 +176,7 @@
                                         <label class="control-label">Budget :</label>
                                         <input class="form-control"
                                                value="{{!empty($checkListData)?$checkListData->budget:''}}"
-                                               name="budget" id="budget{{$type}}" type="text" required>
+                                               name="budget" id="budget{{$type}}" type="text">
                                     </div>
                                 </div>
                             @endif
@@ -200,6 +200,21 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                {{----}}
+                                <div class="col-md-4 content-table fill_content" onmouseover="hoverPerson()">
+                                    <div class="form-group">
+                                        <label class="control-label">Created By :</label>
+                                        <select class="form-control" name="created_by" id="created_by">
+                                            @if(!empty($admins))
+                                                <option value="{{\Illuminate\Support\Facades\Auth::user()->id}}">{{\Illuminate\Support\Facades\Auth::user()->admin_id}}</option>
+                                            @foreach($admins as $adminId=>$adminName)
+                                                <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->created_by == $adminId?'selected':''}}>{{$adminName}}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -215,7 +230,8 @@
 
 </form>
 <script>
-let activeHover = true;
+
+    var activeHover = true;
     function hoverPerson()
     {
         if (activeHover)
@@ -227,7 +243,7 @@ let activeHover = true;
         }
     }
 
-let activeHoverProposor = true;
+    var activeHoverProposor = true;
     function hoverProposor(){
         if (activeHoverProposor)
         {
@@ -238,21 +254,20 @@ let activeHoverProposor = true;
         }
     }
 
-function formatDate() {
-    var d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+    function formatDate() {
+        var d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
 
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
 
-    return [day, month, year].join('/');
-}
+        return [day, month, year].join('/');
+    }
 
-$('input[name="checklist_created_at"]').val(formatDate()) // add default creation date = date now
-
+    $('input[name="checklist_created_at"]').val(formatDate()) // add default creation date = date now
 
 </script>

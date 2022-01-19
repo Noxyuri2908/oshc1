@@ -105,7 +105,7 @@
             </div>
             <div class="col-lg-2">
                 <div class="form-group">
-                    <label for="policy">Hospotal access</label>
+                    <label for="policy">Hospital access</label>
                     <select class="form-control" id="hpt-access" name="hpt-access">
                         @if(count($cover) > 0)
                             <option value=""></option>

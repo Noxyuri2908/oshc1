@@ -28,7 +28,8 @@ class CheckList extends Model
         'assigned_by',
         'type_id',
         'proposer',
-        'file'
+        'file',
+        'created_by'
     ];
     public static $RESULT = [
         1=>'Processing',
