@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="910faa1f-d4c1-4ac8-8d49-5355d8e3f400" name="oshcglobal" url="http://oshcglobal.com.au/">
+        <fileTransfer rootFolder="/var/www/oshcglobal" accessType="SFTP" host="13.251.211.32" port="22" sshConfigId="ef32e549-92ce-4aa0-9a5a-d571141749bd" sshConfig="ubuntu@13.251.211.32:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

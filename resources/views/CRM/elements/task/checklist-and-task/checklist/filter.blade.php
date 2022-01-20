@@ -100,6 +100,10 @@
         <input class="form-control" value="" name="checklist_created_at_filter"
                id="checklist_created_at_filter{{$type_tab}}" type="text" required>
     </th>
+    <th>
+
+    </th>
+    <th></th>
 </tr>
 <script>
     var activeHoverFilter = true;

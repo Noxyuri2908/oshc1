@@ -40,5 +40,9 @@
         <td class="white-space-preline-report">{{convert_date_form_db($data->processing_time)}}</td>
         <td class="white-space-preline-report">{{$data->budget}}</td>
         <td class="white-space-preline-report">{{convert_date_form_db($data->checklist_created_at)}}</td>
+        <td class="white-space-preline-report">
+            <a target="_blank" href="{{asset('tailieus').'/'.$data->file}}">{{$data->file}}</a>
+        </td>
+        <td class="white-space-preline-report">{{convert_id_to_name_person_in_charge($admins, $data->created_by)}}</td>
     </tr>
 @endforeach

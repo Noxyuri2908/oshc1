@@ -29,8 +29,8 @@
                         <thead class="">
                         <tr class="first-row">
                             <th class="width-80">Action</th>
-                            <th class="width-200">Type</th>
                             <th class="width-200">Product</th>
+                            <th class="width-200">Title</th>
                             <th class="width-200">Catergories</th>
                             <th class="width-200">Proposer</th>
                             <th class="width-200">Person in chargre</th>
@@ -43,6 +43,8 @@
                             <th class="width-200">Processing Time</th>
                             <th class="width-200">Budget</th>
                             <th class="width-200">Creation date</th>
+                            <th class="width-200">File</th>
+                            <th class="width-200">Created by</th>
                         </tr>
                         @include('CRM.elements.task.checklist-and-task.checklist.filter',compact('type_tab'))
                         </thead>
