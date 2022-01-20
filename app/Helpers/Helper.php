@@ -1436,7 +1436,7 @@ if (!function_exists('getSchoolFlywire')) {
                     'sec-fetch-site: same-origin',
                     'sec-fetch-mode: cors',
                     'sec-fetch-dest: empty',
-                    'referer: https://agents.flywire.com/',
+//                    'referer: https://agents.flywire.com/',
                     'accept-language: en-US,en;q=0.9,vi;q=0.8',
                     'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca'
                 ],
