@@ -1407,58 +1407,59 @@ if (!function_exists('getSchoolFlywire')) {
     function getSchoolFlywire()
     {
 
-        //cache()->forget('school_api_flywire');
-        $schools = cache()->rememberForever('school_api_flywire',function(){
-            $cookie = getLoginFlywire();
-            $scCookie = $cookie['sc'];
-            $peer_session_id = $cookie['peer_session_id'];
-            $XSRF_TOKEN = $cookie['XSRF_TOKEN'];
-            $curl = curl_init();
-
-            curl_setopt_array($curl, [
-                CURLOPT_URL => 'https://agents.flywire.com/rest/payex/recipient',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'GET',
-                CURLOPT_HTTPHEADER => [
-                    'authority: agents.flywire.com',
-                    'pragma: no-cache',
-                    'cache-control: no-cache',
-                    'sec-ch-ua: "Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"',
-                    'accept: application/json, text/plain, */*',
-                    'x-xsrf-token: TI0Sy983LCzaQitDknUnl6IGIOiE4P7vVX5l7Xqd6R7fk2wWYzGPm2WFS24UCMTifDSbpvwfl3PsH69GtIjDNCYY6H8NtmnqojZz',
-                    'sec-ch-ua-mobile: ?0',
-                    'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',
-                    'sec-fetch-site: same-origin',
-                    'sec-fetch-mode: cors',
-                    'sec-fetch-dest: empty',
-//                    'referer: https://agents.flywire.com/',
-                    'accept-language: en-US,en;q=0.9,vi;q=0.8',
-                    'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca'
-                ],
-            ]);
-
-            $response = curl_exec($curl);
-
-            curl_close($curl);
-
-            return json_decode($response);
-        });
-        $object1 = (object) [
-            'id' => 'CHS',
-            'name' => "Canada Homestay Network"
-        ];
-
-        $object2 = (object) [
-            'id' => 'OPP',
-            'name' => 'Central Okanagan Public Schools - Domestic'
-        ];
-
-        array_push($schools, $object1, $object2);
+//        //cache()->forget('school_api_flywire');
+//        $schools = cache()->rememberForever('school_api_flywire',function(){
+//            $cookie = getLoginFlywire();
+//            $scCookie = $cookie['sc'];
+//            $peer_session_id = $cookie['peer_session_id'];
+//            $XSRF_TOKEN = $cookie['XSRF_TOKEN'];
+//            $curl = curl_init();
+//
+//            curl_setopt_array($curl, [
+//                CURLOPT_URL => 'https://agents.flywire.com/rest/payex/recipient',
+//                CURLOPT_RETURNTRANSFER => true,
+//                CURLOPT_ENCODING => '',
+//                CURLOPT_MAXREDIRS => 10,
+//                CURLOPT_TIMEOUT => 0,
+//                CURLOPT_FOLLOWLOCATION => true,
+//                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//                CURLOPT_CUSTOMREQUEST => 'GET',
+//                CURLOPT_HTTPHEADER => [
+//                    'authority: agents.flywire.com',
+//                    'pragma: no-cache',
+//                    'cache-control: no-cache',
+//                    'sec-ch-ua: "Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"',
+//                    'accept: application/json, text/plain, */*',
+//                    'x-xsrf-token: TI0Sy983LCzaQitDknUnl6IGIOiE4P7vVX5l7Xqd6R7fk2wWYzGPm2WFS24UCMTifDSbpvwfl3PsH69GtIjDNCYY6H8NtmnqojZz',
+//                    'sec-ch-ua-mobile: ?0',
+//                    'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',
+//                    'sec-fetch-site: same-origin',
+//                    'sec-fetch-mode: cors',
+//                    'sec-fetch-dest: empty',
+////                    'referer: https://agents.flywire.com/',
+//                    'accept-language: en-US,en;q=0.9,vi;q=0.8',
+//                    'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca'
+//                ],
+//            ]);
+//
+//            $response = curl_exec($curl);
+//
+//            curl_close($curl);
+//
+//            return json_decode($response);
+//        });
+//        $object1 = (object) [
+//            'id' => 'CHS',
+//            'name' => "Canada Homestay Network"
+//        ];
+//
+//        $object2 = (object) [
+//            'id' => 'OPP',
+//            'name' => 'Central Okanagan Public Schools - Domestic'
+//        ];
+//
+//        array_push($schools, $object1, $object2);
+        $schools = config('schools');
         return collect($schools)->pluck('name','id');
     }
 }
