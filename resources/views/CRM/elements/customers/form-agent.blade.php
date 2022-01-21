@@ -12,7 +12,7 @@
             <div class="col-lg-4">
                 <div class="form-group agent_id_select2">
                     <label for="agent_id">Agent</label>
-                    <select class="form-control" id="agent_id" name="agent_id" required onmouseover="callAgentCustomerForm()">
+                    <select class="form-control" id="agent_id" name="agent_id" required>
                     </select>
                 </div>
             </div>

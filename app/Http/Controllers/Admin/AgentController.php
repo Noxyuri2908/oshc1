@@ -308,7 +308,7 @@ class AgentController extends Controller
 
     public function getAgentSelect(Request $request){
         $agents = User::when($request->get('name'),function($query) use ($request){
-            $query->where('name','LIKE',$request->get('name').'%');
+            $query->where('name','LIKE','%'.$request->get('name').'%');
         })->get(['id','name','country'])->take(5)->map(function($agent){
             $agent['country']= $agent->country();
             return $agent;

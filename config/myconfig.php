@@ -82,22 +82,21 @@ return [
         'A' => 'AU',
         'U' => 'US',
         'N' => 'NZ',
-        'V' => 'VN'
+        'V' => 'VN',
+        'C' => 'CA'
     ],
     'type_invoice' => [
         1 => 'New',
         2 => 'Extension',
         3 => 'Revise',
+        4 => 'Upgrade'
     ],
     'status_invoice' => [
         8 => 'Pending',
         1 => 'Done',
         2 => 'Cancel',
-        3 => 'Visa',
         4 => 'Refund',
-        5 => 'Paid com',
         6 => 'Refund - Paid ',
-        7 => 'Hold',
         9 => 'Defer'
     ],
     'type_payment' => [

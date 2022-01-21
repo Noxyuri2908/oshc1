@@ -1,14 +1,14 @@
 @foreach($data as $tmp)
     @php
         $invoice = $tmp->invoice;
-        $agent = $invoice->agent;
-        $profit = $invoice->profit->first();
-        $refund = $invoice->refund->first();
-        $cus = $invoice->customers->first();
+        $agent = (!empty($invoice->agent)) ? $invoice->agent : '';
+        $profit = (!empty($invoice->profit)) ? $invoice->profit->first() : '';
+        $refund = (!empty($invoice->refund)) ? $invoice->refund->first() : '';
+        $cus = (!empty($invoice->customers)) ? $invoice->customers->first() : '';
         $difference = !empty($invoice) ? $invoice->difference : '';
 
 
-        $providerCom = $invoice->getProviderCom();
+        $providerCom = (!empty($invoice)) ? $invoice->getProviderCom() : '';
         if($profit != null && $agent != null && $providerCom != null && $refund != null){
         $_total_amount = !empty($invoice) ? $invoice->total : '';
         $sum_amount = $invoice->phieuthus->sum('amount');

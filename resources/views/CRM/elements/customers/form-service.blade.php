@@ -103,19 +103,19 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="policy">Hospital access</label>
-                    <select class="form-control" id="hpt-access" name="hpt-access">
-                        @if(count($cover) > 0)
-                            <option value=""></option>
-                            @foreach($cover as $key => $item)
-                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-            </div>
+{{--            <div class="col-lg-2">--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="policy">Hospital access</label>--}}
+{{--                    <select class="form-control" id="hpt-access" name="hpt-access">--}}
+{{--                        @if(count($cover) > 0)--}}
+{{--                            <option value=""></option>--}}
+{{--                            @foreach($cover as $key => $item)--}}
+{{--                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        @endif--}}
+{{--                    </select>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="name">No of adults</label>
@@ -260,6 +260,17 @@
 </div>
 @push('scripts')
     <script>
+
+        $(document).on('change', '#service_country', () => {
+            var value = $(this).val();
+            if (value == 'A')
+            {
+                $('#type_service').val('9');
+            }
+            else{
+
+            }
+        });
         $(document).ready(function (){
             @if(request()->get('type_invoice'))
                 $('#type_invoice').val('2');
