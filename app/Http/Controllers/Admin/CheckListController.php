@@ -50,9 +50,12 @@ class CheckListController extends Controller
         ->when($request->get('proposer'), function ($query) use ($request) {
             $query->where('proposer', $request->get('proposer'));
         })
-            ->where('group_id', $group_id)
-            ->orderByRaw("FIELD(result_id,1) desc")
-            ->paginate(10);
+        ->when($request->get('level_of_process'), function ($query) use ($request) {
+            $query->where('level_of_process', $request->get('level_of_process'));
+        })
+        ->where('group_id', $group_id)
+        ->orderByRaw("FIELD(result_id,1) desc")
+        ->paginate(10);
         $lastPage = $checkListDatas->lastPage();
         $type = $request->get('type');
         if ($type == 'checklist') {

@@ -37,7 +37,7 @@
                             <th class="width-200">Issue</th>
                             <th class="width-200">Detail</th>
                             <th class="width-200">Date of suggestion</th>
-                            <th class="width-200">Solution</th>
+                            <th class="width-200">Processor</th>
                             <th class="width-200">Level of process</th>
                             <th class="width-200">Result</th>
                             <th class="width-200">Processing Time</th>

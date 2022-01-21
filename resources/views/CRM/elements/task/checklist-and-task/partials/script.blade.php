@@ -279,7 +279,8 @@
                 checklist_created_at: checklist_created_at_filter{{$type}},
                 assigned_by: assigned_by_filter{{$type}},
                 type:type,
-                proposer : $('#proposer').val()
+                proposer : $('#proposer').val(),
+                level_of_process : $('#level_of_process').val(),
             },
             success: function (data) {
                 if (isAppend == 0) {

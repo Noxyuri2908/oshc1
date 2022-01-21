@@ -71,7 +71,14 @@
                 @endif
             </select>
         </th>
-        <th></th>
+        <th>
+            <select class="form-control" name="level_of_process" id="level_of_process">
+                <option value=""></option>
+                @foreach($lvprocessor as $lv => $value)
+                    <option value="{{$lv}}" {{(!empty($checkListData) && $checkListData->level_of_process == $lv)?'selected':''}}>{{$value}}</option>
+                @endforeach
+            </select>
+        </th>
     @endif
     <th>
         <div>
