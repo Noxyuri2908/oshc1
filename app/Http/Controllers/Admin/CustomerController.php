@@ -682,7 +682,8 @@ class CustomerController extends Controller
 
     public function getCommAplly($tab)
     {
-        $alls = Apply::where('type_get_data_payment', '=', 1)->get();
+//        $alls = Apply::where('type_get_data_payment', '=', 1)->limit(1)->get();
+
         switch ($tab) {
             case 'com':
                 $tab_name = 'COMMISSION';
@@ -701,7 +702,7 @@ class CustomerController extends Controller
                 break;
         }
         return view('CRM.pages.customer', [
-            'alls' => $alls,
+//            'alls' => $alls,
             'flag' => 'customer',
             'tab' => $tab,
         ], compact('tab_name'));
