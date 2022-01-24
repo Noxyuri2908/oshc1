@@ -151,6 +151,14 @@
         .font-size-12px{
             font-size: 12px;
         }
+
+        .bg-pink{
+            background-color: #ef4b88 !important;
+        }
+
+        .width-125{
+            width: 125px;
+        }
     </style>
 @stop
 @section('content')

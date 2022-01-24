@@ -213,6 +213,11 @@ class CheckListController extends Controller
             'processing_time',
             'checklist_created_at',
         ];
+
+        if (!empty($data['person_id'])){
+            $data['person_id'] = \GuzzleHttp\json_encode($data['person_id']);
+        }
+
         foreach ($arrDate as $key) {
             $data[$key] = (!empty($data[$key])) ? convert_date_to_db($data[$key]) : null;
         }

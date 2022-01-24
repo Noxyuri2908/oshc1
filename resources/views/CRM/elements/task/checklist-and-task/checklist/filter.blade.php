@@ -60,6 +60,33 @@
         <input class="form-control" value="" name="date_of_suggestion_filter"
                id="date_of_suggestion_filter{{$type_tab}}" type="text" required>
     </th>
+    <th>
+        <select class="form-control" name="level_of_process" id="level_of_process">
+            <option value=""></option>
+            @foreach($lvprocessor as $lv => $value)
+                <option value="{{$lv}}" {{(!empty($checkListData) && $checkListData->level_of_process == $lv)?'selected':''}}>{{$value}}</option>
+            @endforeach
+        </select>
+    </th>
+    <th>
+        <div>
+            <select class="form-control" name="result_id_filter" onmouseover="hoverResultIdFilter()" id="result_id_filter{{$type_tab}}" multiple>
+                @if(!empty($results))
+                    @foreach($results as $keyResult=>$value)
+                        <option
+                            value="{{$keyResult}}" {{!empty($archiveMediaLinkData) && $archiveMediaLinkData->country_id == $keyResult ?'selected':''}}>{{$value}}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+    </th>
+    <th>
+        <input class="form-control" value="" name="processing_time_filter" id="processing_time_filter{{$type_tab}}"
+               type="text" required>
+    </th>
+    <th>
+
+    </th>
     @if($type_tab == 'checklist')
         <th>
             <select class="form-control" name="solution_text_filter" id="solution_text_filter{{$type_tab}}">
@@ -71,32 +98,10 @@
                 @endif
             </select>
         </th>
-        <th>
-            <select class="form-control" name="level_of_process" id="level_of_process">
-                <option value=""></option>
-                @foreach($lvprocessor as $lv => $value)
-                    <option value="{{$lv}}" {{(!empty($checkListData) && $checkListData->level_of_process == $lv)?'selected':''}}>{{$value}}</option>
-                @endforeach
-            </select>
-        </th>
     @endif
-    <th>
-        <div>
-            <select class="form-control" name="result_id_filter" id="result_id_filter{{$type_tab}}" multiple>
-                @if(!empty($results))
-                    @foreach($results as $keyResult=>$value)
-                        <option
-                            value="{{$keyResult}}" {{!empty($archiveMediaLinkData) && $archiveMediaLinkData->country_id == $keyResult ?'selected':''}}>{{$value}}</option>
-                    @endforeach
-                @endif
-            </select>
-        </div>
-    </th>
+
     @if($type_tab == 'checklist')
-        <th>
-            <input class="form-control" value="" name="processing_time_filter" id="processing_time_filter{{$type_tab}}"
-                   type="text" required>
-        </th>
+
 
         <th>
             <input class="form-control" value="" name="budget_filter" id="budget_filter{{$type_tab}}" type="text"
@@ -106,9 +111,6 @@
     <th>
         <input class="form-control" value="" name="checklist_created_at_filter"
                id="checklist_created_at_filter{{$type_tab}}" type="text" required>
-    </th>
-    <th>
-
     </th>
     <th></th>
 </tr>
@@ -122,6 +124,19 @@
                 closeOnSelect: false
             });
             activeHoverFilter = false;
+        }
+
+    }
+
+    var activeHoverResultFilter = true;
+    function hoverResultIdFilter()
+    {
+        if (activeHoverResultFilter)
+        {
+            $('#result_id_filterchecklist').select2({
+                closeOnSelect: false
+            });
+            activeHoverResultFilter = false;
         }
 
     }
