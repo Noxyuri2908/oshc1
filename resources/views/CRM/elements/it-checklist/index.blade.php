@@ -159,6 +159,10 @@
         .width-125{
             width: 125px;
         }
+
+        .width-50{
+            width: 50px;
+        }
     </style>
 @stop
 @section('content')

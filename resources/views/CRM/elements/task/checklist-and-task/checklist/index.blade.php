@@ -28,23 +28,23 @@
                     <table class="">
                         <thead class="">
                         <tr class="first-row">
-                            <th class="width-80 bg-pink">Action</th>
-                            <th class="width-125 bg-pink">Product</th>
-                            <th class="width-125 bg-pink">Title</th>
-                            <th class="width-125 bg-pink">Catergories</th>
-                            <th class="width-125 bg-pink">Proposer</th>
-                            <th class="width-125 bg-pink">Person in chargre</th>
-                            <th class="width-300 bg-pink">Issue</th>
-                            <th class="width-125 bg-pink">Detail</th>
-                            <th class="width-125 bg-pink">Date of suggestion</th>
-                            <th class="width-125 bg-pink">Level of process</th>
-                            <th class="width-125 bg-pink">Result</th>
-                            <th class="width-125 bg-pink">Processing Time</th>
-                            <th class="width-125 bg-pink">File</th>
-                            <th class="width-125 bg-pink">Processor</th>
-                            <th class="width-200 bg-pink">Budget</th>
-                            <th class="width-125 bg-pink">Creation date</th>
-                            <th class="width-125 bg-pink">Created by</th>
+                            <th class="width-50 bg-pink text-center">Action</th>
+                            <th class="width-125 bg-pink text-center">Product</th>
+                            <th class="width-125 bg-pink text-center">Title</th>
+                            <th class="width-125 bg-pink text-center">Catergories</th>
+                            <th class="width-50 bg-pink text-center">Level of process</th>
+                            <th class="width-125 bg-pink text-center">Result</th>
+                            <th class="width-125 bg-pink text-center">Start date</th>
+                            <th class="width-300 bg-pink text-center">Issue</th>
+                            <th class="width-50 bg-pink text-center">Detail</th>
+                            <th class="width-125 bg-pink text-center">File</th>
+                            <th class="width-125 bg-pink text-center">Proposer</th>
+                            <th class="width-125 bg-pink text-center">Person in chargre</th>
+                            <th class="width-125 bg-pink text-center">End date</th>
+                            <th class="width-125 bg-pink text-center">Processor</th>
+                            <th class="width-100 bg-pink text-center">Budget</th>
+                            <th class="width-125 bg-pink text-center">Creation date</th>
+                            <th class="width-125 bg-pink text-center">Created by</th>
                         </tr>
                         @include('CRM.elements.task.checklist-and-task.checklist.filter',compact('type_tab'))
                         </thead>

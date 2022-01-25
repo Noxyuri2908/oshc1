@@ -24,8 +24,9 @@
         <td class="white-space-preline-report">{{$checklistSettingType->where('id',$data->type_id)->pluck('name')->first()}}</td>
         <td class="white-space-preline-report">{{(!empty($data->type_id))?$checklistSettingType->where('id',$data->website_id)->pluck('name')->first():''}}</td>
         <td class="white-space-preline-report">{{(!empty($data->website_id))?$checklistSettingType->where('id',$data->category_id)->pluck('name')->first():''}}</td>
-        <td class="white-space-preline-report">{{convert_id_to_name_person_in_charge($admins, $data->proposer)}}</td>
-        <td class="white-space-preline-report">{{convert_id_to_name_person_in_charge($admins, $data->person_id)}}</td>
+        <td class="white-space-preline-report">{{getValueByIndexConfig(\App\Admin\CheckList::$LVPROCESSOR, $data->level_of_process)}}</td>
+        <td class="white-space-preline-report">{{$data->getResult()}}</td>
+        <td class="white-space-preline-report">{{convert_date_form_db($data->processing_time)}}</td>
         <td class="white-space-preline-report">{{substr($data->problem, 0, 100)}}...</td>
         <td class="white-space-preline-report">
             <a href="#view-detail-{{$data->id}}" class="show-view-detail">{{($data->detail) ? 'View' : ''}}</a>
@@ -33,13 +34,13 @@
                 <pre >{{$data->detail}}</pre>
             </div>
         </td>
-        <td class="white-space-preline-report">{{convert_date_form_db($data->date_of_suggestion)}}</td>
-        <td class="white-space-preline-report">{{getValueByIndexConfig(\App\Admin\CheckList::$LVPROCESSOR, $data->level_of_process)}}</td>
-        <td class="white-space-preline-report">{{$data->getResult()}}</td>
-        <td class="white-space-preline-report">{{convert_date_form_db($data->processing_time)}}</td>
         <td class="white-space-preline-report">
             <a target="_blank" href="{{asset('tailieus').'/'.$data->file}}">{{substr($data->file, 0, 20)}}</a>
         </td>
+        <td class="white-space-preline-report">{{convert_id_to_name_person_in_charge($admins, $data->proposer)}}</td>
+        <td class="white-space-preline-report">{{convert_id_to_name_person_in_charge($admins, $data->person_id)}}</td>
+        <td class="white-space-preline-report">{{convert_date_form_db($data->date_of_suggestion)}}</td>
+
         <td class="white-space-preline-report">{{$solution_it_checklist->where('id', $data->solution_text)->pluck('name')->first()}}</td>
         <td class="white-space-preline-report">{{$data->budget}}</td>
         <td class="white-space-preline-report">{{convert_date_form_db($data->checklist_created_at)}}</td>

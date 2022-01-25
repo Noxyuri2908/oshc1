@@ -84,20 +84,12 @@
                                 <div class="form-group">
                                     <label class="control-label">Person in charge:</label>
                                     <select class="form-control" name="person_id[]" id="person_id{{$type}}" multiple="multiple">
-                                        @if(!empty($admins))`
+                                        @if(!empty($admins))
                                             @foreach($admins as $adminId=>$adminName)
                                                 <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->person_id == $adminId?'selected':''}}>{{$adminName}}</option>
                                             @endforeach
                                         @endif
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4 content-table fill_content">
-                                <div class="form-group">
-                                    <label class="control-label">Date of suggestion:</label>
-                                    <input class="form-control"
-                                           value="{{!empty($checkListData)?convert_date_form_db($checkListData->date_of_suggestion):''}}"
-                                           name="date_of_suggestion" id="date_of_suggestion{{$type}}" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12 content-table fill_content">
@@ -163,10 +155,18 @@
                             @if($type == 'checklist')
                                 <div class="col-md-4 content-table fill_content">
                                     <div class="form-group">
-                                        <label class="control-label">Processing Time :</label>
+                                        <label class="control-label">Start date :</label>
                                         <input class="form-control"
                                                value="{{!empty($checkListData)?convert_date_form_db($checkListData->processing_time):''}}"
                                                name="processing_time" id="processing_time{{$type}}" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 content-table fill_content">
+                                    <div class="form-group">
+                                        <label class="control-label">End date:</label>
+                                        <input class="form-control"
+                                               value="{{!empty($checkListData)?convert_date_form_db($checkListData->date_of_suggestion):''}}"
+                                               name="date_of_suggestion" id="date_of_suggestion{{$type}}" type="text">
                                     </div>
                                 </div>
                             @endif
