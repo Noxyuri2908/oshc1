@@ -7,10 +7,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithheadingRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class FlywireImportComStatus implements ToCollection, WithheadingRow
+class FlywireImportComStatus implements ToCollection, WithHeadingRow
 {
     /**
     * @param Collection $collection
