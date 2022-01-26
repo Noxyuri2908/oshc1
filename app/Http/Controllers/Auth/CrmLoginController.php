@@ -62,12 +62,8 @@ class CrmLoginController extends Controller
 
     function test()
     {
-//        $file = Storage::disk('local')->get('settings/style-setting.txt');
-////        $contents = file_get_contents(asset('backend_CRM/pages/assets/css/style-setting.css'));
-//        $contentsReplace = str_replace('{color}', 'black !important', $file);
-//        file_put_contents('backend_CRM/pages/assets/css/style-setting.css', $contentsReplace);
-        echo 'test';
-
-//        Storage::disk('local')->append('settings/style-setting.txt', $content);
+        $file = Storage::disk('local')->get('settings/style-setting.txt');
+        $contents = 'Anthony /n';
+        Storage::disk('local')->append('settings/style-setting.txt', $contents);
     }
 }
