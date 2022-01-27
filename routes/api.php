@@ -33,3 +33,5 @@ Route::post('crm/register_agent', [\App\Http\Controllers\Api\AgentController::cl
 
 
 Route::post('crm/register_customer', [\App\Http\Controllers\CustomerAPIController::class, 'registerCustomer']);
+
+Route::get('flywire', [\App\Http\Controllers\Admin\FlywireController::class, 'getAllData']);
