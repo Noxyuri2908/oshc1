@@ -980,7 +980,7 @@ class FlywireController extends Controller
         //end login
         //start crawl
         $totalData = $this->getTotalFlywire($scCookie,$XSRF_TOKEN,$peer_session_id);
-        $totalLocal = Apply::where('type_get_data_payment',2)->count();
+        $totalLocal = Apply::where('type_get_data_payment',2)->whereDate('initiated_date',Carbon::now()->format('Y-m-d'))->count();
         $getNumberDataCrawl = $totalData-$totalLocal;
 
         if($getNumberDataCrawl > 0){
