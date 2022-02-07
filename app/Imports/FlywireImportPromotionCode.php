@@ -8,10 +8,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\withHeadingRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class FlywireImportPromotionCode implements ToCollection, withHeadingRow
+class FlywireImportPromotionCode implements ToCollection, WithHeadingRow
 {
     /**
     * @param Collection $collection
