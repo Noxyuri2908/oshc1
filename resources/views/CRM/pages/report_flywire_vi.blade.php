@@ -378,7 +378,7 @@
                     $exchange = $exchange_to_AUD * $exchange_to_VND;
                     $commission_vnd = $unitEquals ? 0 : $commission * $exchange;
                     $comstatus = array_get(\Config::get('myconfig.com_status'), (!empty((int)$items->com_status_cp)) ? (int)$items->com_status_cp : 1);
-                    $promotion_vnd = $items->amount * $exchange_to_VND;
+                    $promotion_vnd = $items->amount_from_unit == 156 ? $items->amount : $items->amount * $exchange_to_VND;
                     $totalQuarter = $commission_vnd + $promotion_vnd;
                     $countQuarter = getQuarter($flywire, 'dataQuarter');
                 @endphp
