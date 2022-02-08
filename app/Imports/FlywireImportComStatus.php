@@ -23,12 +23,16 @@ class FlywireImportComStatus implements ToCollection, WithHeadingRow
                 if (!empty($cl['payment_id']))
                 {
                     $id = DB::table('applies')->select('id')->where('ref_no', $cl['payment_id'])->first();
-                    $data = [
-                        'apply_id' => $id->id,
+                    $conditions = [
+                        'apply_id' => $id->id
+                    ];
+
+                    $value = [
                         'com_status_cp' => getKeyConfigByValue(config('myconfig.com_status'), $cl['com_status']),
                         'paid_com_date_agent_cp' => !empty($cl['paid_com_date_agent']) ? convert_date_to_db(Carbon::parse(Date::excelToDateTimeObject($cl['paid_com_date_agent']))->format('d/m/Y')) : null
                     ];
-                    DB::table('profits')->updateOrInsert($data);
+
+                    DB::table('profits')->updateOrInsert($conditions, $value);
                 }
             }catch (Exception $er)
             {
