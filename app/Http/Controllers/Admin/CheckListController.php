@@ -54,9 +54,7 @@ class CheckListController extends Controller
             $query->where('level_of_process', $request->get('level_of_process'));
         })
         ->where('group_id', $group_id)
-        ->orderByRaw("FIELD(result_id,1) desc")
-        ->paginate(10);
-        $lastPage = $checkListDatas->lastPage();
+        ->orderByRaw("FIELD(result_id,1) desc");
         $type = $request->get('type');
         if ($type == 'checklist') {
             return response()->json([
@@ -64,7 +62,6 @@ class CheckListController extends Controller
                     'checkListDatas',
                     'type'
                 ))->render(),
-                'last_page' => $lastPage,
                 'type' => $type,
             ]);
         } else {
@@ -74,7 +71,6 @@ class CheckListController extends Controller
                         'checkListDatas',
                         'type'
                     ))->render(),
-                    'last_page' => $lastPage,
                     'type' => $type,
                 ]);
             }
