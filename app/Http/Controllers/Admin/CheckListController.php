@@ -54,7 +54,7 @@ class CheckListController extends Controller
             $query->where('level_of_process', $request->get('level_of_process'));
         })
         ->where('group_id', $group_id)
-        ->orderByRaw("FIELD(result_id,1) desc");
+        ->orderByRaw("FIELD(result_id,1) desc")->get();
         $type = $request->get('type');
         if ($type == 'checklist') {
             return response()->json([
