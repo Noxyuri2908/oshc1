@@ -66,6 +66,7 @@
         <div>
             <select class="form-control" name="proposer" id="proposer" onmouseover="hoverProposerIdFilter()">
                 @if(!empty($admins))
+                    <option value=""></option>
                     @foreach($admins as $keyAdmin=>$valueAdmin)
                         <option value="{{$keyAdmin}}" {{!empty($archiveMediaLinkData) && $archiveMediaLinkData->form_id == $keyAdmin ?'selected':''}}>{{$valueAdmin}}</option>
                     @endforeach
