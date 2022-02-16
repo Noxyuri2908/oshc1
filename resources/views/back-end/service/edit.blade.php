@@ -186,25 +186,22 @@ Thay đổi dịch vụ
         // add new hospital
         $('#submit_add_hospital').on('click', () => {
             let hospital = $('#hospital_input').val();
-            if (hospital > 0)
-            {
-                $.ajax({
-                    url : '{{route('hospital.add')}}',
-                    type : 'POST',
-                    data : {
-                        _token: "{{ csrf_token() }}",
-                        service_id : {{$obj->id}},
-                        hospital
-                    },
-                    success : function (data){
-                        $('#hospital_acc').append($('<option>', {
-                            value: data.id,
-                            text: data.hostpital_access
-                        }));
-                        $('#hospital_input').val('');
-                    }
-                });
-            }
+            $.ajax({
+                url : '{{route('hospital.add')}}',
+                type : 'POST',
+                data : {
+                    _token: "{{ csrf_token() }}",
+                    service_id : {{$obj->id}},
+                    hospital
+                },
+                success : function (data){
+                    $('#hospital_acc').append($('<option>', {
+                        value: data.id,
+                        text: data.hostpital_access
+                    }));
+                    $('#hospital_input').val('');
+                }
+            });
         });
 
         // on change select hospital
@@ -220,28 +217,26 @@ Thay đổi dịch vụ
         // update hospital
         $('#submit_update_hospital').on('click', () => {
             let hospital = $('#hospital_input').val();
-            if (hospital > 0) {
-                $.ajax({
-                    url: '{{route('hospital.update')}}',
-                    type: 'POST',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        hospital: $('#hospital_del').val(),
-                        value: hospital
-                    },
-                    success: function (data) {
-                        if (data === '1') {
-                            $('#hospital_input').val('');
-                            $('#submit_remove_hospital').css('display', 'none')
-                            $('#submit_add_hospital').css('display', 'inline-block')
-                            $('#hospital_acc').find(":selected").html($('<option>', {
-                                value: $('#hospital_del').val(),
-                                text: hospital
-                            }));
-                        }
+            $.ajax({
+                url: '{{route('hospital.update')}}',
+                type: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    hospital: $('#hospital_del').val(),
+                    value: hospital
+                },
+                success: function (data) {
+                    if (data === '1') {
+                        $('#hospital_input').val('');
+                        $('#submit_remove_hospital').css('display', 'none')
+                        $('#submit_add_hospital').css('display', 'inline-block')
+                        $('#hospital_acc').find(":selected").html($('<option>', {
+                            value: $('#hospital_del').val(),
+                            text: hospital
+                        }));
                     }
-                });
-            }
+                }
+            });
         });
 
         // del hospital
