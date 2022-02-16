@@ -38,6 +38,7 @@ return [
         1 => 'Single',
         2 => 'Couple',
         3 => 'Family',
+        4 => 'Single parent'
     ],
     'status' => [
         1 => 'Active',
