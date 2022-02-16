@@ -220,6 +220,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('ajax/customer/getProvider',[\App\Http\Controllers\Admin\CustomerController::class,'getProvider'])->name('ajax.customer.getProvider');
     Route::get('ajax/customer/getPrice',[\App\Http\Controllers\Admin\CustomerController::class,'getPrice'])->name('ajax.customer.getPrice');
     Route::get('ajax/customer/getStatusFilterCustomer/{tab}',[\App\Http\Controllers\Admin\CustomerController::class,'getStatusFilterCustomer'])->name('ajax.customer.getStatusFilterCustomer');
+    Route::post('ajax/customer/udpateMultipleStaff',[\App\Http\Controllers\Admin\CustomerController::class,'udpateMultipleStaff'])->name('ajax.customer.udpateMultipleStaff');
     Route::resource('customer', Admin\CustomerController::class);
 
     // hospital

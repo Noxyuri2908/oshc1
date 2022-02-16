@@ -25,6 +25,7 @@ use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Exception;
+use Google\Service\AdMob\App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -2046,6 +2047,14 @@ class CustomerController extends Controller
         }
 
         return $dataInvoice;
+    }
+
+    public function udpateMultipleStaff(Request $request)
+    {
+        $apply_ids = $request->apply_ids;
+        $staff_id = $request->staff_id;
+        $check = Apply::whereIn('id', $apply_ids)->update(['staff_id' => $staff_id]);
+        return response()->json($check);
     }
 
 }

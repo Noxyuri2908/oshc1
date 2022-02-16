@@ -85,7 +85,31 @@
                         @can('customer.sendEmail')
                             <a class="send_email btn btn-default"><span><i class="fas fa-envelope"></i></span></a>
                         @endcan
-
+                        <a href="#" class="btn btn-primary" data-toggle="modal" id="onEventPersonInCharge"  data-target="#modalAgentPersonCharge">Person in charge</a>
+                        <!-- Modal persion in charge -->
+                        <div class="modal fade" id="modalAgentPersonCharge" tabindex="-1" role="dialog" aria-labelledby="modalAgentPersonCharge" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <select name="persion_in_charge_update_add" id="persion_in_charge_update_add" style="width: 100%">
+                                            <option value=""></option>
+                                            @foreach($staffs as $item)
+                                                <option value="{{$item->id}}">{{$item->admin_id}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="UpdateMultipleStaff">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @if($tab == 'profit')
                             <a href="javascript:void(0);" data-toggle="modal" class="btn-update-all-date" data-target="#modalSelectDate">
                                 Update all date

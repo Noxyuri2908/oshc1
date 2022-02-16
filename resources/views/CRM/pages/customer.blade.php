@@ -467,6 +467,40 @@
                 }
             })
 
+            function checkBox() {
+                var checkBoxLength = $('.sub_chk:checked').length
+                if (checkBoxLength > 0) {
+                    $('#modalAgentPersonCharge').modal('hide')
+                    $('.sub_chk').prop('checked', false)
+                    $('#multi_action').hide()
+                }
+            }
+
+            // update all persion in charge
+            $('#UpdateMultipleStaff').on('click', function(e) {
+                var allVals = [];
+                $(".sub_chk:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
+
+                var staff_id = $('#persion_in_charge_update_add').find(':selected').val();
+
+                $.ajax({
+                    url: "{{route('ajax.customer.udpateMultipleStaff')}}",
+                    data: {
+                        apply_ids: allVals,
+                        staff_id : staff_id,
+                        _token: "{{csrf_token()}}",
+                    },
+                    type: 'post',
+                    success: function (data) {
+                        checkBox();
+                        console.log(data);
+                    },
+                })
+
+            });
+
             $(document).on('click', '.sub_chk', function (e) {
                 var checkBoxLength = $('.sub_chk:checked').length
                 if (checkBoxLength > 0) {
