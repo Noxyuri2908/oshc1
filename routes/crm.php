@@ -222,6 +222,12 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('ajax/customer/getStatusFilterCustomer/{tab}',[\App\Http\Controllers\Admin\CustomerController::class,'getStatusFilterCustomer'])->name('ajax.customer.getStatusFilterCustomer');
     Route::resource('customer', Admin\CustomerController::class);
 
+    // hospital
+    Route::post('hospital/add', [\App\Http\Controllers\HospitalAccessController::class, 'add'])->name('hospital.add');
+    Route::post('hospital/remove', [\App\Http\Controllers\HospitalAccessController::class, 'remove'])->name('hospital.remove');
+    Route::post('hospital/update', [\App\Http\Controllers\HospitalAccessController::class, 'update'])->name('hospital.update');
+    Route::get('hospital/get', [\App\Http\Controllers\HospitalAccessController::class, 'get'])->name('hospital.get');
+
 
     Route::resource('flywire', 'Admin\FlywireController');
     Route::get('ajax/flywire/getData',[\App\Http\Controllers\Admin\FlywireController::class,'getData'] )->name('ajax.flywire.getData');

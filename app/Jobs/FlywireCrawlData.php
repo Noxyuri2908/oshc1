@@ -88,6 +88,7 @@ class FlywireCrawlData implements ShouldQueue
                     $check = Apply::where('ref_no', $invoiceData['ref_no'])
                         ->where('type_get_data_payment', 2)
                         ->count();
+                    var_dump($invoiceData);
                     if ($check == 0) {
                         $invoice = \App\Admin\Apply::create($invoiceData);
                         $place_study = collect($schoolConfig)->filter(function ($item, $key) use ($data) {

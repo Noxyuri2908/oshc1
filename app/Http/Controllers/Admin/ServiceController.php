@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin\HospitalAccess;
 use App\Cover;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -71,12 +72,13 @@ class ServiceController extends Controller
     {
         $obj = Service::find($id);
         $covers = Cover::where('service_id', $id)->get();
+        $hospitals = HospitalAccess::where('service_id', $id)->get();
         if($obj == null){
             Session::flash('error-service', 'Không tìm thấy dữ liệu.');
             return redirect()->route('service.index');
         }
         $dichvus = Dichvu::where('status',1)->orderby('name')->get();
-        return view('back-end.service.edit',['obj'=>$obj, 'dichvus'=>$dichvus, 'covers' => $covers]);
+        return view('back-end.service.edit',['obj'=>$obj, 'dichvus'=>$dichvus, 'covers' => $covers, 'hospitals' => $hospitals]);
     }
 
     /**

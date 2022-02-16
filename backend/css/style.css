@@ -8610,3 +8610,8 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
     text-align: left;
 }
 
+.hospital_input{
+    padding: 5px 0;
+    width: 20%;
+    margin-right: 10px;
+}

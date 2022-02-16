@@ -1,5 +1,6 @@
 @php
     $cover = isset($obj) ? getCoverByServiceAndPolicy($obj->provider_id, $obj->policy) : [];
+    $hospitals = isset($obj) ? getHospitalByService($obj->provider_id) : [];
 @endphp
 <div class="card mb-3">
     <div class="card-header">
@@ -73,6 +74,19 @@
                         @endif
                     </select>
                     <small id="provider_id_div_alert" class="text-danger text-validation"></small>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="policy">Hospital access</label>
+                    <select class="form-control" id="hpt_access" name="hospital_id">
+                        @if(count($hospitals) > 0)
+                            <option value=""></option>
+                            @foreach($hospitals as $key => $item)
+                                <option value="{{$item->id}}" {{$obj->hospital_id == $item->id ? 'selected' : ''}}>{{$item->hostpital_access}}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
             </div>
             <div class="col-lg-2">
@@ -346,11 +360,40 @@
                     $('#cover_id').html(html);
                 }
             });
+
+            // get hospital
+            $.ajax({
+                url : '{{route('hospital.get')}}',
+                type : 'GET',
+                data : {
+                    _token: "{{ csrf_token() }}",
+                    service,
+                },
+                success : function (data){
+                    console.log(data);
+                    if (data.error) {
+                        removeElementChildHospital();
+                        // alert(data.message);
+                        return;
+                    }
+
+                    var html = '<option label=""></option>';
+                    data.map(function (obj){
+                        html += `<option label="" data-id="${obj.id}">${obj.hostpital_access}</option>`;
+                    });
+                    $('#hpt_access').html(html);
+                }
+            });
         });
 
         function removeElementChildCover()
         {
             $('#cover_id').html('');
+        }
+
+        function removeElementChildHospital()
+        {
+            $('#hpt_access').html('');
         }
 
     </script>

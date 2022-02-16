@@ -2120,6 +2120,13 @@ if (!function_exists('getCoverByServiceAndPolicy')){
     }
 }
 
+if (!function_exists('getHospitalByService')){
+    function getHospitalByService($service){
+        $hospital = Admin\HospitalAccess::where('service_id', $service)->get();
+        return $hospital;
+    }
+}
+
 if (!function_exists('getFileAttachById')){
     function getFileAttachById($id){
         $mkt = DB::table('marketing_material_lists')->select('file_attachment')->where('id', $id)->first();

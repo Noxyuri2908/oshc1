@@ -73,7 +73,8 @@ class Apply extends Model
         'type_payment_agent_id',
         'gst_agent_id',
         'count_month',
-        'count_day'
+        'count_day',
+        'hospital_id'
     ];
 
     public function flywireColumn()

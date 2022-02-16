@@ -985,6 +985,7 @@ class CustomerController extends Controller
         $dataCustomerManager['phone_number'] = $request->get('phone');
         $dataCustomerManager['country_id'] = $request->get('country');
         $dataCustomerManager['potential_service'] = $request->get('provider_id');
+        $data['hospital_id'] = (int)$request->get('hospital_id');
         $customerDatabaseManager = Admin\CustomerDatabaseManager::create($dataCustomerManager);
         $data['customer_manager_id'] = $customerDatabaseManager->id;
 
@@ -1220,6 +1221,7 @@ class CustomerController extends Controller
             $customerDatabaseManager = Admin\CustomerDatabaseManager::find($invoice->customer_manager_id);
             $customerDatabaseManager->update($dataCustomerManager);
         }
+        $data['hospital_id'] = (int)$request->get('hospital_id');
         $invoice->update($data);
 
         //Create customer

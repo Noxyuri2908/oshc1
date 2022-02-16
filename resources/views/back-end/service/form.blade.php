@@ -158,5 +158,21 @@
 			@endif
 		</div>
 	</div>
+    <div class="form-group">
+        <label class="control-label">Hospital access</label>
+        <select class="form-control m-b" name="hospital_acc" id="hospital_acc">
+            @foreach($hospitals as $item)
+                <option value="{{$item->id}}">{{$item->hostpital_access}}</option>
+            @endforeach
+        </select>
+        <input type="number" class="hospital_input" name="hospital" id="hospital_input">
+        <input type="hidden" class="hospital_input" name="hospital" id="hospital_del">
+
+        <a class="btn btn-primary" id="submit_add_hospital" >Add New Hospital</a>
+
+        <a class="btn btn-primary" id="submit_update_hospital"  style="display: none">Update</a>
+        <a class="btn btn-primary" id="submit_remove_hospital"  style="display: none">Remove</a>
+
+    </div>
 </div>
 
