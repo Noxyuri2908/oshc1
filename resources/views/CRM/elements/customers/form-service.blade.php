@@ -276,13 +276,22 @@
     <script>
 
         $(document).on('change', '#service_country', () => {
-            var value = $(this).val();
+            var value = $('#service_country').find(':selected').val();
             if (value == 'A')
             {
-                $('#type_service').val('9');
+                // $('#type_service').val('9');
+                var html = '<option value=""></option>';
+                html += '<option value="2">OSHC</option>';
+                html += '<option value="3">OVHC</option>';
+                html += '<option value="9">OVHC / OSHC</option>';
+                $('#type_service').html(html);
             }
             else{
-
+                var html = '<option value=""></option>';
+                html += '<option value="10">PTE</option>';
+                html += '<option value="4">Student Insurance</option>';
+                html += '<option value="6">Visitor Insurance</option>';
+                $('#type_service').html(html);
             }
         });
         $(document).ready(function (){
