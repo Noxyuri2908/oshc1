@@ -11,7 +11,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="prefix_name">Title</label>
-                    <select class="form-control" id="partner_prefix_name_{{$i}}" name="partner_prefix_name[]" required>
+                    <select class="form-control" id="partner_prefix_name_{{$i}}" name="partner_prefix_name[]" >
                         @foreach(config('myconfig.title') as $key=>$value)
                             <option value="{{$key}}" {{(!empty($partners) && $partners['prefix_name'] == $key)?'selected':''}}>{{$value}}</option>
                         @endforeach
@@ -21,19 +21,19 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="first_name">First name</label>
-                    <input class="form-control" autocomplete="off" value="{{(!empty($partners))?$partners['first_name']:''}}" id="first_name_{{$i}}" name="partner_first_name[]" type="text" placeholder="" required>
+                    <input class="form-control" autocomplete="off" value="{{(!empty($partners))?$partners['first_name']:''}}" id="first_name_{{$i}}" name="partner_first_name[]" type="text" placeholder="" >
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="first_name">Last name</label>
-                    <input class="form-control" autocomplete="off" value="{{(!empty($partners))?$partners['last_name']:''}}" id="last_name_{{$i}}" name="partner_last_name[]" type="text" placeholder="" required>
+                    <input class="form-control" autocomplete="off" value="{{(!empty($partners))?$partners['last_name']:''}}" id="last_name_{{$i}}" name="partner_last_name[]" type="text" placeholder="" >
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="prefix_name">Gender</label>
-                    <select class="form-control" id="gender_{{$i}}" name="partner_gender[]" required>
+                    <select class="form-control" id="gender_{{$i}}" name="partner_gender[]" >
                         @foreach(config('myconfig.gender') as $key=>$value)
                             <option value="{{$key}}" {{(!empty($partners) && $partners['gender'] == $key)?'selected':''}}>{{$value}}</option>
                         @endforeach
@@ -43,7 +43,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <label for="start_date">Date of birth</label>
-                    <input class="form-control open-jquery-date" autocomplete="off" value="{{(!empty($partners))?$partners['birth_of_date']:''}}" id="birth_of_date_{{$i}}" name="partner_birth_of_date[]"  type="text" required>
+                    <input class="form-control open-jquery-date" autocomplete="off" value="{{(!empty($partners))?$partners['birth_of_date']:''}}" id="birth_of_date_{{$i}}" name="partner_birth_of_date[]"  type="text" >
                 </div>
             </div>
             <div class="col-lg-2">
