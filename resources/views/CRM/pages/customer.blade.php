@@ -470,9 +470,9 @@
             function checkBox() {
                 var checkBoxLength = $('.sub_chk:checked').length
                 if (checkBoxLength > 0) {
-                    $('#modalAgentPersonCharge').modal('hide')
-                    $('.sub_chk').prop('checked', false)
-                    $('#multi_action').hide()
+                    $('#modalAgentPersonCharge').modal('hide');
+                    $('.sub_chk').prop('checked', false);
+                    $('#multi_action').hide();
                 }
             }
 
@@ -484,6 +484,7 @@
                 });
 
                 var staff_id = $('#persion_in_charge_update_add').find(':selected').val();
+                var staff_name = $('#persion_in_charge_update_add').find(':selected').text();
 
                 $.ajax({
                     url: "{{route('ajax.customer.udpateMultipleStaff')}}",
@@ -495,7 +496,9 @@
                     type: 'post',
                     success: function (data) {
                         checkBox();
-                        console.log(data);
+                        $.each(data.apply_ids, function (index, value) {
+                            $('#data-customer_' + value + ' #staff_id').text(staff_name)
+                        })
                     },
                 })
 

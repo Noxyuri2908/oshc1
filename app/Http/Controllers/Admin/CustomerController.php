@@ -2053,8 +2053,8 @@ class CustomerController extends Controller
     {
         $apply_ids = $request->apply_ids;
         $staff_id = $request->staff_id;
-        $check = Apply::whereIn('id', $apply_ids)->update(['staff_id' => $staff_id]);
-        return response()->json($check);
+        Apply::whereIn('id', $apply_ids)->update(['staff_id' => $staff_id]);
+        return response()->json(['apply_ids' => $apply_ids]);
     }
 
 }
