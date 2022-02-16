@@ -71,7 +71,8 @@
                                         <select class="form-control" name="proposer" id="proposer">
                                             @if(!empty($admins))
                                                 @foreach($admins as $adminId => $adminName)
-                                                    <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->person_id == $adminId?'selected':''}}>{{$adminName}}</option>
+
+                                                    <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->proposer == $adminId ? 'selected':''}}>{{$adminName}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -86,7 +87,7 @@
                                     <select class="form-control" name="person_id[]" id="person_id{{$type}}" multiple="multiple">
                                         @if(!empty($admins))
                                             @foreach($admins as $adminId=>$adminName)
-                                                <option value="{{$adminId}}" {{!empty($checkListData) && $checkListData->person_id == $adminId?'selected':''}}>{{$adminName}}</option>
+                                                <option value="{{$adminId}}" {{!empty($checkListData) && (int)json_decode($checkListData->person_id)[0] == $adminId?'selected':''}}>{{$adminName}}</option>
                                             @endforeach
                                         @endif
                                     </select>

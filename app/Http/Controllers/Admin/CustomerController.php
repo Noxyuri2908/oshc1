@@ -997,7 +997,7 @@ class CustomerController extends Controller
             ]);
         }
 
-        //Create customer
+        // Create customer
         $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id');
         $data_register['apply_id'] = $invoice->id;
         $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
