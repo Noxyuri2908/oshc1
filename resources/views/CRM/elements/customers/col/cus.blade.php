@@ -16,6 +16,7 @@
     <th class="width-100">Type of service</th>
     <th class="width-100">Type of invoice</th>
     <th class="width-125">Provider</th>
+    <th class="width-125">Hospital access</th>
     <th class="width-100">Policy</th>
     <th class="width-90">No of adults</th>
     <th class="width-90">No of children</th>

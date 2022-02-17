@@ -95,6 +95,10 @@ class Apply extends Model
         return $this->hasOne(static::class, 'ref_no', 'invoice_code_link');
     }
 
+    public function hospital(){
+        return $this->hasOne(HospitalAccess::class,'id', 'hospital_id');
+    }
+
     public function task()
     {
         return $this->hasMany('App\Admin\Support', 'apply_id');

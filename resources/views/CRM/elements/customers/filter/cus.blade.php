@@ -118,6 +118,7 @@
             </select>
         </div>
     </th>
+    <th></th>
     <th>
         <div>
             <select class="form-control" name="policy_filter" id="policy_filter">

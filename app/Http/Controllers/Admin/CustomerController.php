@@ -72,6 +72,7 @@ class CustomerController extends Controller
                         'provider',
                         'promotion',
                         'staff',
+                        'hospital'
                     ])
                     ->paginate(20);
                 $lastPage = $data->lastPage();

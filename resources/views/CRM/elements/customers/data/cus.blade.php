@@ -71,6 +71,7 @@
         <td class="align-middle">{{$tmp->service != null ? $tmp->service->name : ''}}</td>
         <td class="align-middle">{{isset(config('myconfig.type_invoice')[$tmp->type_invoice]) ? config('myconfig.type_invoice')[$tmp->type_invoice] : ''}}</td>
         <td class="align-middle">{{$tmp->provider != null ? $tmp->provider->name : ''}}</td>
+        <td class="align-middle">{{!empty($tmp->hospital) ? $tmp->hospital->hostpital_access : ""}}</td>
         <td class="align-middle">{{isset(config('myconfig.policy')[$tmp->policy]) ? config('myconfig.policy')[$tmp->policy] : ''}}</td>
         <td class="align-middle">{{$tmp->no_of_adults}}</td>
         <td class="align-middle">{{$tmp->no_of_children}}</td>
