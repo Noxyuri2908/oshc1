@@ -277,6 +277,25 @@
         var getSu = "{{route('customer.getSu')}}"
         var getComm = "{{route('customer.getComm')}}"
         var getBankFee = "{{route('ajax.customer.getBankFeeByPaymentMethod')}}"
+        var gstInclude = 1;
+        var gstNotInclude = 2;
+        var typePaymentDeduction = 2;
+        var typePaymentMonthly = 1;
+
+        function handleGetBankFee() {
+            let optionFee = $('#bank_fee option:selected');
+            let feeAmount = optionFee.val();
+            switch (parseInt(feeAmount)) {
+                case 6 :
+                    return 5
+                case 7 :
+                    return 3.6/100
+                case 8 :
+                    return 6/100
+                default :
+                    return parseFloat(feeAmount/100);
+            }
+        }
 
         function search(_service, _policy, myArray) {
             for (var i = 0; i < myArray.length; i++) {
@@ -301,43 +320,25 @@
         }
 
         function calFee() {
-            let optionFee = $('#bank_fee option:selected')
-            let feeAmount = optionFee.val()
+            let bankFee = handleGetBankFee();
             let net_amount = convertStringCurrencyToNumber($('#net_amount').val())
             let extra = $('#extra').val() != '' ? convertStringCurrencyToNumber($('#extra').val()) : 0;
+            let extendFee = $('#extend_fee').val();
 
             if (net_amount == '') {
                 net_amount = 0
             }
-            if (feeAmount == 6) {
-                fee = 5
+            if (bankFee == 5) { // 5 is 5 AUD
+                fee = bankFee
             } else {
-                //fee = parseFloat(feeAmount * net_amount / 100).toFixed(2)
-                fee = parseFloat((net_amount - extra) * feeAmount /100).toFixed(2);
+                fee = parseFloat((parseFloat(net_amount) + parseFloat(extendFee)) * bankFee ).toFixed(2);
             }
-            // 12,345.67
-            // .replace(/\d(?=(\d{3})+\.)/g, '$&,')
             $('#fee').val(fee);
             totalAmount()
         }
 
         function callFeeByPayment(fee) {
-            //$('#bank_fee').attr("disabled", true);
-            $('#bank_fee').val(fee)
-            feeAmount = fee
-            let net_amount = convertStringCurrencyToNumber($('#net_amount').val())
-            let extra = $('#extra').val() != '' ? convertStringCurrencyToNumber($('#extra').val()) : 0;
-            if (net_amount == '') {
-                net_amount = 0
-            }
-            if (feeAmount == 6) {
-                fee = 5
-            } else {
-                //fee = parseFloat(feeAmount * net_amount / 100).toFixed(2)
-                fee = parseFloat((net_amount - extra) * feeAmount /100).toFixed(2);
-            }  // 12,345.67
-            // .replace(/\d(?=(\d{3})+\.)/g, '$&,')
-            $('#fee').val(fee)
+            calFee();
             totalAmount()
         }
 
@@ -346,7 +347,6 @@
             _dichvu = $('#type_service').val()
             if (_country != '' && _dichvu != '') {
                 $.get(getRef, { country: _country, dichvu: _dichvu }, function (data) {
-                    // $('#ref_no').val(data);
                     totalAmount()
                 })
             }
@@ -478,10 +478,11 @@
             let comm = $('#data_comm_agent').val() != '' ? convertStringCurrencyToNumber($('#data_comm_agent').val()) : 0;
             var comValue = 0;
             var result = ( parseFloat(net_amount) - parseFloat(extra) ) * (parseFloat(comm) / 100);
-            if(gst == 1){
-                comValue = (result).toFixed(2);
-            }else if(gst == 2){
+
+            if(gst == gstInclude){
                 comValue = (result / 1.1).toFixed(2);
+            }else if(gst == gstNotInclude){
+                comValue = (result).toFixed(2);
             }
             $('#comm').val(comValue);
         }
@@ -506,24 +507,19 @@
         }
 
         function totalAmount() {
-            amount = $('#net_amount').val() != '' ? convertStringCurrencyToNumber($('#net_amount').val()) : 0
-            _promotion = $('#promotion_amount').val() != '' ? convertStringCurrencyToNumber($('#promotion_amount')
-                .val()) : 0
-            bank_fee = $('#fee').val() != '' ? convertStringCurrencyToNumber($('#fee').val()) : 0
-            //su = $('#surcharge').val() != '' ? convertStringCurrencyToNumber($('#surcharge').val()) : 0;
-            su = 0
-            comm = $('#comm').val() != '' ? convertStringCurrencyToNumber($('#comm').val()) : 0
-            gst = $('#gst').val() != '' ? convertStringCurrencyToNumber($('#gst').val()) : 0
-            extra = $('#extra').val() != '' ? convertStringCurrencyToNumber($('#extra').val()) : 0
-            extra_fee = $('#extend_fee').val() != '' ? convertStringCurrencyToNumber($('#extend_fee').val()) : 0
-            //total = parseFloat(parseFloat(amount) - parseFloat(_promotion) - parseFloat(extra) + parseFloat(bank_fee) + parseFloat(su) + parseFloat(gst) - parseFloat(comm) )
-            //    .toFixed(2)
-            type_payment = $('#type_payment_agent_id').val();
-            total = 0;
-            if(type_payment == 1){
-                total = parseFloat(parseFloat(amount) - parseFloat(_promotion) - parseFloat(extra) + parseFloat(extra_fee) + parseFloat(bank_fee)).toFixed(2);
-            }else if(type_payment == 2){
-                total = parseFloat(parseFloat(amount) - parseFloat(_promotion) - parseFloat(extra) + parseFloat(extra_fee) + parseFloat(bank_fee) - parseFloat(comm)).toFixed(2);
+            let type_payment = $('#type_payment_agent_id').val();
+            let total = 0;
+            let grossAmount = $('#net_amount').val() != '' ? convertStringCurrencyToNumber($('#net_amount').val()) : 0;
+            let extendFee = $('#extend_fee').val() != '' ? convertStringCurrencyToNumber($('#extend_fee').val()) : 0;
+            let bankFee = $('#fee').val() != '' ? convertStringCurrencyToNumber($('#fee').val()) : 0;
+            let promotion = $('#promotion_amount').val() != '' ? convertStringCurrencyToNumber($('#promotion_amount').val()) : 0
+            let discount = $('#extra').val() != '' ? convertStringCurrencyToNumber($('#extra').val()) : 0;
+            let commission = $('#comm').val() != '' ? convertStringCurrencyToNumber($('#comm').val()) : 0;
+
+            if(type_payment == typePaymentDeduction){
+                total = parseFloat(parseFloat(grossAmount) + parseFloat(extendFee) + parseFloat(bankFee) - parseFloat(promotion) - parseFloat(discount) - parseFloat(commission)).toFixed(2);
+            }else if(type_payment == typePaymentMonthly){
+                total = parseFloat(parseFloat(grossAmount) + parseFloat(extendFee) + parseFloat(bankFee) - parseFloat(promotion) - parseFloat(discount)).toFixed(2);
             }
 
             if (total != 0){
@@ -542,6 +538,11 @@
                 ajaxGetComm();
                 calcGst();
             })
+            // change discount number to calc commission
+            $('#extra').change(() => {
+                calcCom();
+            })
+
             $('#type_payment_agent_id').change(function () {
                 totalAmount();
             })
@@ -591,7 +592,7 @@
                 promotion()
             })
 
-            $('#bank_fee, #net_amount, #extra, #type_extra').change(function () {
+            $('#bank_fee, #net_amount, #extra, #type_extra, #extend_fee').change(function () {
                 calFee()
             })
 
