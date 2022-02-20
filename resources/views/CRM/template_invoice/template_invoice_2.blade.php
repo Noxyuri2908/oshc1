@@ -61,14 +61,6 @@
         padding-left: 99px;
     }
 
-    #total-rate{
-        text-align:left;
-        font-size: 13px;
-        padding: 5px 15px;
-        font-size: 13px;
-        background-color: #D3D3D3;
-    }
-
     #mainContent{
         width: 806px;
         margin: auto !important;
@@ -114,6 +106,7 @@
         font-size: 10px;
     }
 </style>
+@include('CRM.template_invoice.style')
 
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')
@@ -194,25 +187,54 @@
                 <td style=" ">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
                 <td style=" ">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th colspan="2" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
-                <td >{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                @if($dataInvoice['exchange_rate'] != 0 || !empty($dataInvoice['exchange_rate']))
-                    <th colspan="2" id="total-rate">Tổng số tiền phải thu</th>
-                    <td id="total-rate">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
-                @endif
-            </tr>
+            @if ($dataInvoice['extend_fee'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
+                    <td class="fontSize11px "  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['promotion_amount'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px" >Ưu đãi</th>
+                    <td class="fontSize11px "  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['extra'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mại</th>
+                    <td class="fontSize11px " style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['bank_fee'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
+                    <td class="fontSize11px "  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>
             </tr>
+            @if($dataInvoice['exchange_rate'] != 0 || !empty($dataInvoice['exchange_rate']))
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                    <th colspan="2" id="total-rate">Tổng số tiền phải thu</th>
+                    <td id="total-rate">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
+            </tr>
+            @endif
             <tr style=" text-align:center;">
                 <th></th>
                 <th></th>

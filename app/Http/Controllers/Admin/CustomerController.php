@@ -1852,6 +1852,9 @@ class CustomerController extends Controller
             $dataInvoice['amount_VND'] = ($obj->net_amount + $obj->bank_fee_number) * $cus->exchange_rate;
             $dataInvoice['exchange_rate'] = $cus->exchange_rate;
             $dataInvoice['date'] = ($obj->created_at) ?? '';
+            $dataInvoice['extend_fee'] = ($obj->extend_fee) ?? '';
+            $dataInvoice['promotion_amount'] = ($obj->promotion_amount) ?? '';
+            $dataInvoice['extra'] = ($obj->extra) ?? '';
         }
 
         if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14)
