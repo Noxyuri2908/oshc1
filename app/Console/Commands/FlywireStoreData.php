@@ -137,7 +137,7 @@ class FlywireStoreData extends Command
     public function crawlApiFlywire($scCookie,$XSRF_TOKEN,$peer_session_id,$numberData){
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-request/payment/search',
+            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-requests/fulfilments',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -174,7 +174,7 @@ class FlywireStoreData extends Command
     public function getTotalFlywire($scCookie,$XSRF_TOKEN,$peer_session_id){
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-request/payment/search',
+            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-requests/fulfilments',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
