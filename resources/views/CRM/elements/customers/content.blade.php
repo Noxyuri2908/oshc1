@@ -40,9 +40,32 @@
 
                     </div>
                     @can('customer.store')
-                        <a href="{{route('customer.create')}}"
-                           class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px">
+{{--                        <a href="{{route('customer.create')}}"--}}
+{{--                           class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px">--}}
+{{--                            <i class="fas fa-plus"></i> Add</a>--}}
+                        <a href="#"
+                           class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px" data-toggle="modal" data-target="#modalCreateCustomer">
                             <i class="fas fa-plus"></i> Add</a>
+                        {{-- modal create customer--}}
+                        <div class="modal fade modalCreateCustomer" id="modalCreateCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">NEW APPLICATION</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @include('CRM.elements.customers.modal-create')
+                                    </div>
+{{--                                    <div class="modal-footer">--}}
+{{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+{{--                                        <button type="button" class="btn btn-primary">Save changes</button>--}}
+{{--                                    </div>--}}
+                                </div>
+                            </div>
+                        </div>
                     @endcan
 
                     <a href="#" class="delete-filter btn btn-falcon-default font-weight-normal font-size-12px">
@@ -284,6 +307,16 @@
                     }
                 })
             }
+        })
+
+        $('#modalCreateCustomer').on('hidden.bs.modal', function (e) {
+            $.ajax({
+                url: "{{route("modal.create.customer")}}",
+                type: 'get',
+                success: function (data) {
+                    $('#modalCreateCustomer .modal-body').html(data.view);
+                },
+            })
         })
 
     </script>

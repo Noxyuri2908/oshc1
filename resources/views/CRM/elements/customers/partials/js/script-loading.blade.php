@@ -254,32 +254,20 @@
         getCustomerTab();
     })
 
-    $(document).on('mouseover','.{{$element_class_btn_row_edit}}',function (e){
+    $(document).on('click','.{{$element_class_btn_row_edit}}',function (e){
         e.preventDefault();
         var element = this;
-        $(element).fancybox({
-            'width': 1200,
-            'height': 900,
-            'type': 'iframe',
-            'autoScale': false,
-            'autoSize': false,
-            helpers: {
-                title: {
-                    type: 'float'
-                }
-            },
-            afterClose: function () {
-                var id = $(element).attr('data-id');
-                var url = $(element).attr('data-url_edit');
-                $.ajax({
-                    url:url,
-                    type:'get',
-                    success:function (data){
-                        $('#{{$element_id_row_edit}}_' + data.id).replaceWith(data.view);
-                    }
-                })
+        var id = $(element).attr('data-id');
+        $.ajax({
+            url : $(this).attr('href'),
+            id,
+            type:'get',
+            success:function (data){
+                $('#modalCreateCustomer .modal-body').html(data.view);
+                $('#modalCreateCustomer').modal('show')
+                {{--$('#{{$element_id_row_edit}}_' + data.id).replaceWith(data.view);--}}
             }
-        });
+        })
     })
 </script>
 @include('CRM.partials.choose_date_onchange_call_function',[

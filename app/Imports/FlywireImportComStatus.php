@@ -34,8 +34,9 @@ class FlywireImportComStatus implements ToCollection, WithHeadingRow
 
                     DB::table('profits')->updateOrInsert($conditions, $value);
                 }
-            }catch (Exception $er)
+            }catch (\Exception $er)
             {
+                var_dump($cl['payment_id']);die;
                 var_dump($er);die;
             }
         }

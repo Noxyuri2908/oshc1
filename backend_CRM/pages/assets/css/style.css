@@ -614,4 +614,206 @@ h3 {
     width: 180px;
 }
 
+.modalCreateCustomer .modal-dialog{
+    max-width: 790px;
+    height: 565px;
+}
 
+.modalCreateCustomer .modal-title{
+    font: normal normal bold 20px/24px Roboto;
+    letter-spacing: 0px;
+    color: #171616F7;
+    opacity: 1;
+    text-align: center;
+    flex: 1;
+}
+
+.modalCreateCustomer .close{
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    font-size: 24px;
+}
+
+.modalCreateCustomer .modal-header{
+    border-bottom: unset;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer .modal-footer{
+    border-top: unset;
+}
+
+.chevron-down-up{
+    display: flex;
+    justify-content: space-between;
+}
+
+.click-down{
+    cursor: pointer;
+}
+
+.modalCreateCustomer .card.mb-3
+{
+    border: 0.5px solid #F9FAFD;
+}
+
+.modalCreateCustomer .card-header{
+    padding: 1rem;
+    padding-bottom: 0;
+    background: #EDEFF5 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.modalCreateCustomer .bg-light{
+    background: #EDEFF5 0% 0% no-repeat padding-box !important;
+}
+
+.modalCreateCustomer h5{
+    font: normal normal bold 14px/17px Roboto;
+    letter-spacing: 0px;
+    color: #171616;
+    opacity: 1;
+}
+
+.modalCreateCustomer .form-group label,
+.modalCreateCustomer label{
+    font: normal normal normal 11px/13px Roboto;
+    letter-spacing: 0px;
+    color: #171616;
+    opacity: 1;
+}
+
+/*.modalCreateCustomer .select2.select2-container,*/
+.modalCreateCustomer .form-control{
+    border: 0.5px solid #707070;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.modalCreateCustomer #quote-price{
+    position: relative;
+    left: 54%;
+    top: 3px;
+}
+
+.modalCreateCustomer .form-group{
+    margin-bottom: 0.5rem !important;
+}
+
+.modalCreateCustomer .form-group label{
+    margin-bottom: 0px;
+    line-height: 25px;
+}
+
+.modalCreateCustomer #net_amount ~ .input-group-text{
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 29px;
+    top: 61%;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #promotion_amount ~ .input-group-text{
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 29px;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #extend_fee ~ .input-group-text {
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 28px;
+    top: 16.5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #fee ~ .input-group-text {
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 28px;
+    top: 33%;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #gst ~ .input-group-text{
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 28px;
+    top: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #extra ~ .input-group-text{
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 28px;
+    top: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #comm ~ .input-group-text{
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 28px;
+    top: 66.5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCreateCustomer #total ~ .input-group-text{
+    position: absolute;
+    right: 0;
+    width: 41px;
+    height: 28px;
+    top: 66.5%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modalCreateCustomer #net_amount,
+.modalCreateCustomer #total,
+.modalCreateCustomer #comm,
+.modalCreateCustomer #extra,
+.modalCreateCustomer #gst,
+.modalCreateCustomer #fee,
+.modalCreateCustomer #extend_fee,
+.modalCreateCustomer #promotion_amount,
+.modalCreateCustomer #net_amount
+{
+    text-align: right;
+    padding-right: 57px;
+}
+
+.dang-ky-submit{
+    margin-right: 28px;
+}
+
+.modalCreateCustomer .modal-header button{
+    position: relative;
+}
+
+.modalCreateCustomer .modal-header button span
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 17px;
+}

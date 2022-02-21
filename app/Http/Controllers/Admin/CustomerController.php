@@ -1108,17 +1108,22 @@ class CustomerController extends Controller
             $gst = '';
             $typePayment = '';
         }
-        return view('CRM.elements.customers.create', compact(
-            'obj',
-            'cus',
-            'flag',
-            'partners',
-            'childrens',
-            'page',
-            'comm',
-            'gst',
-            'typePayment'
-        ));
+
+        $result = [
+          'view' =>   view('CRM.elements.customers.modal-create', compact(
+              'obj',
+              'cus',
+              'flag',
+              'partners',
+              'childrens',
+              'page',
+              'comm',
+              'gst',
+              'typePayment'
+          ))->render(),
+        ];
+
+        return response()->json($result);
     }
 
     /**
@@ -1129,210 +1134,198 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCustomer $request, $id)
+    public function update(Request $request, $id)
     {
-        if (!auth()->user()->can('customer.update')) {
-            abort(403);
-        }
-        $data = $request->validated();
-        $statuses = cache()->remember('customer.statuses.store', 60, function () {
-            return \App\Admin\Status::whereIn('type', [
-                'customer_database_manager_type_of_customer',
-                'customer_database_manager_resource',
-                'customer_database_manager_english_center',
-                'customer_database_manager_event',
-                'customer_database_manager_study_tour',
-            ])->get();
-        });
-        $idStatusCRMOshc = $statuses->where('name', 'CRM OSHC')->first()->id;
-        $statusInvoiceDone = 1;
-        $statusInvoiceVisa = 3;
-        $statusInvoiceHold = 7;
-        $statusInvoicePaidCom = 5;
-        $request->validated();
-        $data = $request->all();
-        $page = $request->get('page');
-        if (!empty($data['net_amount'])) {
-            $data['net_amount'] = str_replace(
-                ',',
-                '',
-                $data['net_amount']
-            );
-        }
-        if (!empty($data['net_amount'])) {
-            $data['net_amount'] = str_replace(
-                ',',
-                '',
-                $data['net_amount']
-            );
-        }
-        // $data['staff_id'] = auth()->guard('admin')->user()->id;
-
-        $country = $request->input('service_country');
-        $dichvu = $request->input('type_service');
-        $dichvu = Dichvu::find($dichvu);
-        if ($dichvu == null) {
-            return '';
-        }
-        $invoice = Apply::find($id);
-        $invoice_code = $dichvu->viettat.$country.date("y").str_pad($id, 6, 0, STR_PAD_LEFT);
-
-//        $data['ref_no'] = $invoice_code;
-        $invoice->ref_no = $request->ref_no;
-        $invoice->save();
-
-        //Update apply
-        $data['start_date'] = convert_date_to_db($request->get('start_date'));
-        $data['end_date'] = convert_date_to_db($request->get('end_date'));
-        $arrayNumberCurrency = [
-            'net_amount',
-            'promotion_amount',
-            'bank_fee_number',
-            'gst',
-            'extra',
-            'comm',
-            'total',
-        ];
-        foreach ($arrayNumberCurrency as $one) {
-            $data[$one] = convert_number_currency_to_db($data[$one]);
-        }
-        if (
-            $data['status'] == $statusInvoiceDone ||
-            $data['status'] == $statusInvoiceVisa ||
-            $data['status'] == $statusInvoiceHold ||
-            $data['status'] == $statusInvoicePaidCom
-        ) {
-            $data['has_email'] = 1;
-        }
-
-
-        $dataCustomerManager['full_name'] = $request->get('first_name').$request->get('last_name');
-        $dataCustomerManager['source_id'] = $idStatusCRMOshc;
-        $dataCustomerManager['agent_id'] = $request->get('agent_id');
-        $dataCustomerManager['gender'] = $request->get('gender');
-        $dataCustomerManager['date_of_birth'] = convert_date_to_db($request->get('birth_of_date'));
-        $dataCustomerManager['mail'] = $request->get('email');
-        $dataCustomerManager['phone_number'] = $request->get('phone');
-        $dataCustomerManager['country_id'] = $request->get('country');
-        $dataCustomerManager['potential_service'] = $request->get('provider_id');
-
-        if (empty($invoice->customer_manager_id)){
-            $customerDatabaseManager = Admin\CustomerDatabaseManager::create($dataCustomerManager);
-            $data['customer_manager_id'] = $customerDatabaseManager->id;
-        }else{
-            $customerDatabaseManager = Admin\CustomerDatabaseManager::find($invoice->customer_manager_id);
-            $customerDatabaseManager->update($dataCustomerManager);
-        }
-        $data['hospital_id'] = (int)$request->get('hospital_id');
-        $invoice->update($data);
-
-        //Create customer
-        $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id');
-        $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
-        $data_register['extend_fee'] = convert_number_currency_to_db($request->get('extend_fee'));
-        $data_register['birth_of_date'] = convert_date_to_db($request->get('birth_of_date'));
-        $apply_id = $invoice->id;
-        $data_register['type'] = 1;
-        $customer = Customer::where('type', 1)->where('apply_id', $apply_id)->first();
-
-        if (!empty($customer)) {
-            $customer->update($data_register);
-        } else {
-            $data_register['apply_id'] = $apply_id;
-            Customer::create($data_register);
-        }
-
-        $data_partner = $request->only('partner_prefix_name', 'partner_first_name', 'partner_last_name', 'partner_gender', 'partner_birth_of_date', 'partner_passport');
-        $data_child = $request->only('child_prefix_name', 'child_first_name', 'child_last_name', 'child_gender', 'child_birth_of_date', 'child_passport');
-        if (isset($data_partner['partner_prefix_name'])) {
-            $tmp_prefix_name = $data_partner['partner_prefix_name'];
-            $tmp_first_name = $data_partner['partner_first_name'];
-            $tmp_last_name = $data_partner['partner_last_name'];
-            $tmp_gender = $data_partner['partner_gender'];
-            $tmp_birth_of_date = $data_partner['partner_birth_of_date'];
-            $tmp_passport = $data_partner['partner_passport'];
-            foreach ($tmp_prefix_name as $key => $value) {
-                $customerPartner = Customer::where('type', 2)->where('apply_id', $apply_id)->first();
-                if (!empty($customerPartner)) {
-                    $customerPartner->update([
-                        'apply_id' => $invoice->id,
-                        'prefix_name' => $value,
-                        'first_name' => $tmp_first_name[$key],
-                        'last_name' => $tmp_last_name[$key],
-                        'gender' => $tmp_gender[$key],
-                        'birth_of_date' => $tmp_birth_of_date[$key],
-                        'passport' => $tmp_passport[$key],
-                        'type' => 2,
-                    ]);
-                } else {
-                    Customer::create([
-                        'apply_id' => $invoice->id,
-                        'prefix_name' => $value,
-                        'first_name' => $tmp_first_name[$key],
-                        'last_name' => $tmp_last_name[$key],
-                        'gender' => $tmp_gender[$key],
-                        'birth_of_date' => $tmp_birth_of_date[$key],
-                        'passport' => $tmp_passport[$key],
-                        'type' => 2,
-                    ]);
-                }
+        try {
+            if (!auth()->user()->can('customer.update')) {
+                abort(403);
             }
-        } else {
-            $customerPartner = Customer::where('type', 2)->where('apply_id', $apply_id)->first();
-            if (!empty($customerPartner)) {
-                $customerPartner->delete();
+            $statuses = cache()->remember('customer.statuses.store', 60, function () {
+                return \App\Admin\Status::whereIn('type', [
+                    'customer_database_manager_type_of_customer',
+                    'customer_database_manager_resource',
+                    'customer_database_manager_english_center',
+                    'customer_database_manager_event',
+                    'customer_database_manager_study_tour',
+                ])->get();
+            });
+            $idStatusCRMOshc = $statuses->where('name', 'CRM OSHC')->first()->id;
+            $statusInvoiceDone = 1;
+            $statusInvoiceVisa = 3;
+            $statusInvoiceHold = 7;
+            $statusInvoicePaidCom = 5;
+//            $request->validated();
+            $data = $request->all();
+            $page = $request->get('page');
+            if (!empty($data['net_amount'])) {
+                $data['net_amount'] = str_replace(
+                    ',',
+                    '',
+                    $data['net_amount']
+                );
             }
-        }
 
-        if (isset($data_child['child_prefix_name'])) {
-            $tmp_prefix_name = $data_child['child_prefix_name'];
-            $tmp_first_name = $data_child['child_first_name'];
-            $tmp_last_name = $data_child['child_last_name'];
-            $tmp_gender = $data_child['child_gender'];
-            $tmp_birth_of_date = $data_child['child_birth_of_date'];
-            $tmp_passport = isset($data_child['child_passport']) ? $data_child['child_passport'] : '';
-            $customerChildren = Customer::where('type', 3)->where('apply_id', $apply_id)->get();
-            if ($customerChildren->isNotEmpty()) {
+            $country = $request->input('service_country');
+            $dichvu = $request->input('type_service');
+            $dichvu = Dichvu::find($dichvu);
+            if ($dichvu == null) {
+                return '';
+            }
+            $invoice = Apply::find($id);
+            $invoice_code = $dichvu->viettat.$country.date("y").str_pad($id, 6, 0, STR_PAD_LEFT);
+
+            $invoice->ref_no = $request->ref_no;
+            $invoice->save();
+
+            //Update apply
+            $data['start_date'] = convert_date_to_db($request->get('start_date'));
+            $data['end_date'] = convert_date_to_db($request->get('end_date'));
+            $arrayNumberCurrency = [
+                'net_amount',
+                'promotion_amount',
+                'bank_fee_number',
+                'gst',
+                'extra',
+                'comm',
+                'total',
+            ];
+            foreach ($arrayNumberCurrency as $one) {
+                $data[$one] = convert_number_currency_to_db($data[$one]);
+            }
+            if (
+                $data['status'] == $statusInvoiceDone ||
+                $data['status'] == $statusInvoiceVisa ||
+                $data['status'] == $statusInvoiceHold ||
+                $data['status'] == $statusInvoicePaidCom
+            ) {
+                $data['has_email'] = 1;
+            }
+
+
+            $dataCustomerManager['full_name'] = $request->get('first_name').$request->get('last_name');
+            $dataCustomerManager['source_id'] = $idStatusCRMOshc;
+            $dataCustomerManager['agent_id'] = $request->get('agent_id');
+            $dataCustomerManager['gender'] = $request->get('gender');
+            $dataCustomerManager['date_of_birth'] = convert_date_to_db($request->get('birth_of_date'));
+            $dataCustomerManager['mail'] = $request->get('email');
+            $dataCustomerManager['phone_number'] = $request->get('phone');
+            $dataCustomerManager['country_id'] = $request->get('country');
+            $dataCustomerManager['potential_service'] = $request->get('provider_id');
+
+            if (empty($invoice->customer_manager_id)){
+                $customerDatabaseManager = Admin\CustomerDatabaseManager::create($dataCustomerManager);
+                $data['customer_manager_id'] = $customerDatabaseManager->id;
+            }else{
+                $customerDatabaseManager = Admin\CustomerDatabaseManager::find($invoice->customer_manager_id);
+                $customerDatabaseManager->update($dataCustomerManager);
+            }
+            $data['hospital_id'] = (int)$request->get('hospital_id');
+            $invoice->update($data);
+
+            //Create customer
+            $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id');
+            $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
+            $data_register['extend_fee'] = convert_number_currency_to_db($request->get('extend_fee'));
+            $data_register['birth_of_date'] = convert_date_to_db($request->get('birth_of_date'));
+            $apply_id = $invoice->id;
+            $data_register['type'] = 1;
+            $customer = Customer::where('type', 1)->where('apply_id', $apply_id)->first();
+
+            if (!empty($customer)) {
+                $customer->update($data_register);
+            } else {
+                $data_register['apply_id'] = $apply_id;
+                Customer::create($data_register);
+            }
+
+            $data_partner = $request->only('partner_prefix_name', 'partner_first_name', 'partner_last_name', 'partner_gender', 'partner_birth_of_date', 'partner_passport');
+            $data_child = $request->only('child_prefix_name', 'child_first_name', 'child_last_name', 'child_gender', 'child_birth_of_date', 'child_passport');
+            if (isset($data_partner['partner_prefix_name'])) {
+                $tmp_prefix_name = $data_partner['partner_prefix_name'];
+                $tmp_first_name = $data_partner['partner_first_name'];
+                $tmp_last_name = $data_partner['partner_last_name'];
+                $tmp_gender = $data_partner['partner_gender'];
+                $tmp_birth_of_date = $data_partner['partner_birth_of_date'];
+                $tmp_passport = $data_partner['partner_passport'];
                 foreach ($tmp_prefix_name as $key => $value) {
-                    $customerChildren[$key]->update([
-                        'apply_id' => $invoice->id,
-                        'prefix_name' => $value,
-                        'first_name' => $tmp_first_name[$key],
-                        'last_name' => $tmp_last_name[$key],
-                        'gender' => $tmp_gender[$key],
-                        'birth_of_date' => $tmp_birth_of_date[$key],
-                        'passport' => isset($tmp_passport[$key]) ? $tmp_passport[$key] : '',
-                        'type' => 3,
-                    ]);
+                    $customerPartner = Customer::where('type', 2)->where('apply_id', $apply_id)->first();
+                    if (!empty($customerPartner)) {
+                        $customerPartner->update([
+                            'apply_id' => $invoice->id,
+                            'prefix_name' => $value,
+                            'first_name' => $tmp_first_name[$key],
+                            'last_name' => $tmp_last_name[$key],
+                            'gender' => $tmp_gender[$key],
+                            'birth_of_date' => $tmp_birth_of_date[$key],
+                            'passport' => $tmp_passport[$key],
+                            'type' => 2,
+                        ]);
+                    } else {
+                        Customer::create([
+                            'apply_id' => $invoice->id,
+                            'prefix_name' => $value,
+                            'first_name' => $tmp_first_name[$key],
+                            'last_name' => $tmp_last_name[$key],
+                            'gender' => $tmp_gender[$key],
+                            'birth_of_date' => $tmp_birth_of_date[$key],
+                            'passport' => $tmp_passport[$key],
+                            'type' => 2,
+                        ]);
+                    }
                 }
             } else {
-                foreach ($tmp_prefix_name as $key => $value) {
-                    Customer::create([
-                        'apply_id' => $invoice->id,
-                        'prefix_name' => $value,
-                        'first_name' => $tmp_first_name[$key],
-                        'last_name' => $tmp_last_name[$key],
-                        'gender' => $tmp_gender[$key],
-                        'birth_of_date' => $tmp_birth_of_date[$key],
-                        'passport' => isset($tmp_passport[$key]) ? $tmp_passport[$key] : '',
-                        'type' => 3,
-                    ]);
+                $customerPartner = Customer::where('type', 2)->where('apply_id', $apply_id)->first();
+                if (!empty($customerPartner)) {
+                    $customerPartner->delete();
                 }
             }
-        } else {
-            $customerChildren = Customer::where('type', 3)->where('apply_id', $apply_id)->get();
-            foreach ($customerChildren as $one) {
-                $one->delete();
-            }
-        }
-        return redirect()->back();
-    }
 
-    public
-    function updateCustomer(Request $request)
-    {
-        //        dd('a');
-        //        dd($request->all(),$id);
+            if (isset($data_child['child_prefix_name'])) {
+                $tmp_prefix_name = $data_child['child_prefix_name'];
+                $tmp_first_name = $data_child['child_first_name'];
+                $tmp_last_name = $data_child['child_last_name'];
+                $tmp_gender = $data_child['child_gender'];
+                $tmp_birth_of_date = $data_child['child_birth_of_date'];
+                $tmp_passport = isset($data_child['child_passport']) ? $data_child['child_passport'] : '';
+                $customerChildren = Customer::where('type', 3)->where('apply_id', $apply_id)->get();
+                if ($customerChildren->isNotEmpty()) {
+                    foreach ($tmp_prefix_name as $key => $value) {
+                        $customerChildren[$key]->update([
+                            'apply_id' => $invoice->id,
+                            'prefix_name' => $value,
+                            'first_name' => $tmp_first_name[$key],
+                            'last_name' => $tmp_last_name[$key],
+                            'gender' => $tmp_gender[$key],
+                            'birth_of_date' => $tmp_birth_of_date[$key],
+                            'passport' => isset($tmp_passport[$key]) ? $tmp_passport[$key] : '',
+                            'type' => 3,
+                        ]);
+                    }
+                } else {
+                    foreach ($tmp_prefix_name as $key => $value) {
+                        Customer::create([
+                            'apply_id' => $invoice->id,
+                            'prefix_name' => $value,
+                            'first_name' => $tmp_first_name[$key],
+                            'last_name' => $tmp_last_name[$key],
+                            'gender' => $tmp_gender[$key],
+                            'birth_of_date' => $tmp_birth_of_date[$key],
+                            'passport' => isset($tmp_passport[$key]) ? $tmp_passport[$key] : '',
+                            'type' => 3,
+                        ]);
+                    }
+                }
+            } else {
+                $customerChildren = Customer::where('type', 3)->where('apply_id', $apply_id)->get();
+                foreach ($customerChildren as $one) {
+                    $one->delete();
+                }
+            }
+            return redirect()->back();
+        }catch (\Exception $e)
+        {
+            dd($e);
+        }
     }
 
     /**
@@ -2059,6 +2052,16 @@ class CustomerController extends Controller
         $staff_id = $request->staff_id;
         Apply::whereIn('id', $apply_ids)->update(['staff_id' => $staff_id]);
         return response()->json(['apply_ids' => $apply_ids]);
+    }
+
+    public function modalCreate()
+    {
+        $result = [
+          'view' => view('CRM.elements.customers.modal-create', [
+              'flag' => 'customer',
+          ])->render()
+        ];
+        return response()->json($result);
     }
 
 }

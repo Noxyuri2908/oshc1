@@ -12,7 +12,7 @@ View::composer([
     'CRM.elements.customers.filter.profit',
     'CRM.elements.customers.filter.refund',
     'CRM.elements.customers.data.refund',
-    'CRM.elements.customers.filter.extend',
+    'CRM.elements.customers.filter.extend'
 ], function ($view) {
     $countries = config('country.list');
     $statuses = config('myconfig.status_invoice');
@@ -70,6 +70,8 @@ View::composer([
 });
 View::composer([
     'CRM.elements.customers.create',
+    'CRM.elements.customers.modal-create',
+    'CRM.elements.customers.content'
 ], function ($view) {
     $staffs = Admin::orderby('username')->where('status', 1)->get(['admin_id','id']);
     $dichvus = Dichvu::with(['providers'])->where('type_form',1)->orderby('name')->get(['id','type_form','name']);

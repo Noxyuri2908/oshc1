@@ -11,10 +11,13 @@
     </div>
     <div class="card-body bg-light" data-id="service">
         <div class="row">
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="agent_id">Service country</label>
-                    <select class="form-control" id="service_country" name="service_country" required>
+
+            <div class="col-md-6">
+
+                <div class="form-group row">
+
+                    <label for="agent_id" class="col-sm-4">Service country</label>
+                    <select class="form-control col-sm-8" id="service_country" name="service_country" required>
                         <option label=""></option>
                         @foreach(config('myconfig.service_country') as $key=>$value)
                             @if(!isset($obj))
@@ -26,29 +29,12 @@
                             @endif
                         @endforeach
                     </select>
+
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="type_service">Type of service</label>
-                    <select class="form-control" id="type_service" name="type_service" required>
-                        <option data-country="" label=""></option>
-                        @foreach($dichvus as $dichvu)
-                            @if(!isset($obj))
-                                <option
-                                    value="{{$dichvu->id}}" {{request()->get('type_service') == $dichvu->id ? 'selected' : ''}}>{{$dichvu->name}}</option>
-                            @else
-                                <option
-                                    value="{{$dichvu->id}}" {{$obj->type_service == $dichvu->id ? 'selected' : ''}}>{{$dichvu->name}}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="agent_id">Type of invoice</label>
-                    <select class="form-control" id="type_invoice" name="type_invoice" required>
+
+                <div class="form-group row">
+                    <label for="agent_id" class="col-sm-4">Type of invoice</label>
+                    <select class="form-control col-sm-8" id="type_invoice" name="type_invoice" required>
                         <option label=""></option>
                         @foreach(config('myconfig.type_invoice') as $key=>$value)
                             @if(!isset($obj))
@@ -61,38 +47,10 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="provider_id">Provider</label>
-                    <select class="form-control" id="provider_id" name="provider_id" required>
-                        @if(!empty($obj))
-                            <option data-country="" label=""></option>
-                            @foreach($obj->getProvidersByService() as $provider)
-                                <option value="{{$provider->id}}" data-value="{{$provider->slug}}" {{$obj->provider_id == $provider->id ? 'selected' : ''}}>{{$provider->name}}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    <small id="provider_id_div_alert" class="text-danger text-validation"></small>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="policy">Hospital access</label>
-                    <select class="form-control" id="hpt_access" name="hospital_id">
-                        @if(count($hospitals) > 0)
-                            <option value=""></option>
-                            @foreach($hospitals as $key => $item)
-                                <option value="{{$item->id}}" {{$obj->hospital_id == $item->id ? 'selected' : ''}}>{{$item->hostpital_access}}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="policy">Policy</label>
-                    <select class="form-control" id="policy" name="policy" required>
+
+                <div class="form-group row">
+                    <label for="policy" class="col-sm-4" >Policy</label>
+                    <select class="form-control col-sm-8" id="policy" name="policy" required>
                         <option label=""></option>
                         @foreach(config('myconfig.policy') as $key=>$value)
                             @if(!isset($obj))
@@ -103,37 +61,22 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="policy">Cover</label>
-                    <select class="form-control" id="cover_id" name="cover_id">
-                        @if(count($cover) > 0)
+
+                <div class="form-group row">
+                    <label for="policy" class="col-sm-4">Hospital access</label>
+                    <select class="form-control col-sm-8" id="hpt_access" name="hospital_id">
+                        @if(count($hospitals) > 0)
                             <option value=""></option>
-                            @foreach($cover as $key => $item)
-                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>
+                            @foreach($hospitals as $key => $item)
+                                <option value="{{$item->id}}" {{$obj->hospital_id == $item->id ? 'selected' : ''}}>{{$item->hostpital_access}}</option>
                             @endforeach
                         @endif
                     </select>
                 </div>
-            </div>
-{{--            <div class="col-lg-2">--}}
-{{--                <div class="form-group">--}}
-{{--                    <label for="policy">Hospital access</label>--}}
-{{--                    <select class="form-control" id="hpt-access" name="hpt-access">--}}
-{{--                        @if(count($cover) > 0)--}}
-{{--                            <option value=""></option>--}}
-{{--                            @foreach($cover as $key => $item)--}}
-{{--                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>--}}
-{{--                            @endforeach--}}
-{{--                        @endif--}}
-{{--                    </select>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="name">No of adults</label>
-                    <select class="form-control" id="no_of_adults" name="no_of_adults" required>
+
+                <div class="form-group row">
+                    <label for="name" class="col-sm-4">No of adults</label>
+                    <select class="form-control col-sm-8" id="no_of_adults" name="no_of_adults" required>
                         @if(!empty($obj))
                             <option value=1 {{!empty($obj) && $obj->no_of_adults == 1 ? 'selected' : ''}}>1</option>
                             <option value=2 {{!empty($obj) && $obj->no_of_adults == 2 ? 'selected' : ''}}>2</option>
@@ -144,11 +87,112 @@
                     </select>
                     <small id="adults_div_alert" class="text-danger text-validation"></small>
                 </div>
+
+                <div class="form-group row">
+                    <label for="start_date" class="col-md-4">Start date</label>
+                    <input class="form-control col-sm-8 open-jquery-date" id="start_date" name="start_date"
+                           value="{{isset($obj) ? convert_date_form_db($obj->start_date) : old('start_date')}}" type="text"
+                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" required>
+                    <small id="start_date_div_alert" class="text-danger text-validation" style=" position: absolute;left: 36%;top: 54%;"></small>
+                    <button id="quote-price" class="btn btn-primary">Quote price</button>
+                </div>
+
+                <div class="form-group row">
+                    <label for="status" class="col-sm-4">Status</label>
+                    <select class="form-control col-sm-8" id="status" name="status" required>
+                        <option label=""></option>
+                        @foreach(config('myconfig.status_invoice') as $key=>$value)
+                            @if(!isset($obj))
+                                <option value="{{$key}}" {{old('status') == $key ? 'selected' : ''}}>{{$value}}</option>
+                            @else
+                                <option value="{{$key}}" {{$obj->status == $key ? 'selected' : ''}}>{{$value}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="" class="col-sm-4">Months</label>
+                    <input type="text" class="form-control col-sm-8" id="count_months" name="count_month" value="{{!empty($obj)?count(convertDateRangeToMonth($obj->start_date,$obj->end_date)):''}}" readonly>
+                </div>
+
+                <div class="form-group row">
+                    <label for="" class="col-sm-4">Staff</label>
+                    <select class="form-control col-sm-8" name="staff_id" id="">
+                        <option value="">Select</option>
+                        @foreach($staffs as $staff)
+                            @if(!empty($obj))
+                                <option value="{{$staff->id}}" {{!empty($obj) && $obj->staff_id == $staff->id ? 'selected':''}}>{{$staff->admin_id}}</option>
+                            @else
+                                <option value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id ? 'selected':''}}>{{$staff->admin_id}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
             </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="name">No of children</label>
-                    <select class="form-control" id="no_of_children" name="no_of_children" required>
+
+            <div class="col-md-6">
+
+                <div class="form-group row">
+                    <label for="type_service" class="col-sm-4">Type of service</label>
+                    <select class="form-control col-sm-8" id="type_service" name="type_service" required>
+                        <option data-country="" label=""></option>
+                        @foreach($dichvus as $dichvu)
+                            @if(!isset($obj))
+                                <option
+                                    value="{{$dichvu->id}}" {{request()->get('type_service') == $dichvu->id ? 'selected' : ''}}>{{$dichvu->name}}</option>
+                            @else
+                                <option
+                                    value="{{$dichvu->id}}" {{$obj->type_service == $dichvu->id ? 'selected' : ''}}>{{$dichvu->name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="provider_id" class="col-sm-4">Provider</label>
+                    <select class="form-control col-sm-8" id="provider_id" name="provider_id" required>
+                        @if(!empty($obj))
+                            <option data-country="" label=""></option>
+                            @foreach($obj->getProvidersByService() as $provider)
+                                <option value="{{$provider->id}}" data-value="{{$provider->slug}}" {{$obj->provider_id == $provider->id ? 'selected' : ''}}>{{$provider->name}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                    <small id="provider_id_div_alert" style="position: absolute;left: 36%;top: 13%;" class="text-danger text-validation"></small>
+                </div>
+
+                <div class="form-group row">
+                    <label for="policy" class="col-sm-4">Cover</label>
+                    <select class="form-control col-sm-8" id="cover_id" name="cover_id">
+                        @if(count($cover) > 0)
+                            <option value=""></option>
+                            @foreach($cover as $key => $item)
+                                <option value="{{$item->id}}" {{$cus->cover_id == $item->id ? 'selected' : ''}}>{{$item->cover}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="type_visa" class="col-sm-4">Type of visa</label>
+                    <select class="form-control col-sm-8" id="type_visa" name="type_visa" required>
+                        <option label=""></option>
+                        @foreach(config('myconfig.type_visa') as $key=>$value)
+                            @if(!isset($obj))
+                                <option
+                                    value="{{$key}}" {{request()->get('type_visa') == $key ? 'selected' : ''}}>{{$value}}</option>
+                            @else
+                                <option
+                                    value="{{$key}}" {{$obj->type_visa == $key ? 'selected' : ''}}>{{$value}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="name" class="col-sm-4">No of children</label>
+                    <select class="form-control col-sm-8" id="no_of_children" name="no_of_children" required>
                         @if(!empty($obj))
                             <option value=0 {{!empty($obj) && $obj->no_of_children == 0 ? 'selected' : ''}}>0</option>
                             <option value=1 {{!empty($obj) &&$obj->no_of_children == 1 ? 'selected' : ''}}>1</option>
@@ -166,109 +210,42 @@
                         @endif
                     </select>
                     <small id="childs_div_alert" class="text-danger text-validation"></small>
+                </div>
 
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="type_visa">Type of visa</label>
-                    <select class="form-control" id="type_visa" name="type_visa" required>
-                        <option label=""></option>
-                        @foreach(config('myconfig.type_visa') as $key=>$value)
-                            @if(!isset($obj))
-                                <option
-                                    value="{{$key}}" {{request()->get('type_visa') == $key ? 'selected' : ''}}>{{$value}}</option>
-                            @else
-                                <option
-                                    value="{{$key}}" {{$obj->type_visa == $key ? 'selected' : ''}}>{{$value}}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="start_date">Start date</label>
-                    <input class="form-control open-jquery-date" id="start_date" name="start_date"
-                           value="{{isset($obj) ? convert_date_form_db($obj->start_date) : old('start_date')}}" type="text"
-                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" required>
-                    <small id="start_date_div_alert" class="text-danger text-validation"></small>
 
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="start_date">End date</label>
-                    <input class="form-control open-jquery-date" id="end_date" name="end_date"
+                <div class="form-group row">
+                    <label for="start_date" class="col-sm-4">End date</label>
+                    <input class="form-control col-sm-8 open-jquery-date" id="end_date" name="end_date"
                            value="{{isset($obj) ? convert_date_form_db($obj->end_date) : old('end_date')}}" type="text"
                            data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" required>
-                    <small id="end_date_div_alert" class="text-danger text-validation"></small>
+                    <small id="end_date_div_alert" style="    position: absolute;left: 36%;top: 54%;" class="text-danger text-validation"></small>
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <label for="net_amount">Gross amount ($)</label>
-                <div class="input-group mb-3">
-                    <input class="form-control" id="net_amount" name="net_amount"
-                           value="{{isset($obj) ? $obj->net_amount : 0}}" type="text" step="0.01">
-                    <div class="input-group-append">
-                        <span class="input-group-text">{{!empty($obj->provider) ? $obj->provider->currency() : ''}}</span></div>
+
+                <div class="form-group row">
+                    <label for="net_amount" class="col-sm-4">Gross amount ($)</label>
+                    <input class="form-control col-sm-8" id="net_amount" name="net_amount" value="{{isset($obj) ? $obj->net_amount : 0}}" type="text" step="0.01" required>
+                    <span class="input-group-text">{{!empty($obj->provider) ? $obj->provider->currency() : ''}}</span>
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <select class="form-control" id="status" name="status" required>
-                        <option label=""></option>
-                        @foreach(config('myconfig.status_invoice') as $key=>$value)
-                            @if(!isset($obj))
-                                <option value="{{$key}}" {{old('status') == $key ? 'selected' : ''}}>{{$value}}</option>
-                            @else
-                                <option value="{{$key}}" {{$obj->status == $key ? 'selected' : ''}}>{{$value}}</option>
-                            @endif
-                        @endforeach
-                    </select>
+
+                <div class="form-group row">
+                    <label for="" class="col-sm-4">Days</label>
+                    <input type="text" class="form-control col-sm-8" id="count_days" value="{{!empty($obj)?$obj->getCountDay():''}}" name="count_day" readonly>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <label for="">Days</label>
-                <input type="text" class="form-control" id="count_days" value="{{!empty($obj)?$obj->getCountDay():''}}" name="count_day" readonly>
-            </div>
-            <div class="col-lg-3">
-                <label for="">Months</label>
-                <input type="text" class="form-control" id="count_months" name="count_month" value="{{!empty($obj)?count(convertDateRangeToMonth($obj->start_date,$obj->end_date)):''}}" readonly>
-            </div>
-            <div class="col-lg-3">
-                <label for="">Ref No</label>
-                <input type="text" class="form-control" id="ref_no" name="ref_no" value="{{($flag == 'edit' && $obj->ref_no) ? $obj->ref_no : ''}}">
-            </div>
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <div class="form-group">
-                            <label for="ref_no">Note</label>
-                            <textarea class="form-control" id="note" name="note"
-                                      rows="3">{{isset($obj) ? decode_html($obj->note) : decode_html(old('note'))}}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label for="">Staff</label>
-                            <select class="form-control" name="staff_id" id="">
-                                <option value="">Select</option>
-                                @foreach($staffs as $staff)
-                                    @if(!empty($obj))
-                                        <option value="{{$staff->id}}" {{!empty($obj) && $obj->staff_id == $staff->id ? 'selected':''}}>{{$staff->admin_id}}</option>
-                                    @else
-                                        <option value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id ? 'selected':''}}>{{$staff->admin_id}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <button id="quote-price" class="btn btn-primary">Quote price</button>
-                    </div>
+
+                <div class="form-group row">
+                    <label for="" class="col-sm-4">Ref No</label>
+                    <input type="text" class="form-control col-sm-8" id="ref_no" name="ref_no" value="{{($flag == 'edit' && $obj->ref_no) ? $obj->ref_no : ''}}">
                 </div>
+
             </div>
 
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label for="ref_no" class="col-sm-2">Note</label>
+                    <textarea class="form-control col-sm-10" id="note" name="note"
+                              rows="3">{{isset($obj) ? decode_html($obj->note) : decode_html(old('note'))}}</textarea>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -343,7 +320,7 @@
             })
         }
 
-        $('#policy, #provider_id').on('change', function (){
+        $(document).on('change', '#policy, #provider_id', function (){
             var service = $('#provider_id').val();
             var policy = $('#policy').val();
 
@@ -379,7 +356,6 @@
                     service,
                 },
                 success : function (data){
-                    console.log(data);
                     if (data.error) {
                         removeElementChildHospital();
                         // alert(data.message);
