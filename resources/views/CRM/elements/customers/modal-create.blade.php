@@ -62,7 +62,6 @@
 
 @push('scripts')
     <script>
-
         var ajax_url = $('#ajax_crm_url').val()
         var formPartner = "{{route('customer.formPartner')}}"
         var formChild = "{{route('customer.formChild')}}"
@@ -98,6 +97,7 @@
                 });
             }
         });
+
         $(document).on('click', 'select', () => {
             $('select').next('.text-danger').text('');
         })
@@ -152,25 +152,9 @@
             totalAmount()
         }
 
-        function callFeeByPayment(fee) {
-            //$('#bank_fee').attr("disabled", true);
-            // $('#bank_fee').val(fee)
-            // feeAmount = fee
-            // let net_amount = convertStringCurrencyToNumber($('#net_amount').val())
-            // let extra = $('#extra').val() != '' ? convertStringCurrencyToNumber($('#extra').val()) : 0;
-            // if (net_amount == '') {
-            //     net_amount = 0
-            // }
-            // if (feeAmount == 6) {
-            //     fee = 5
-            // } else {
-            //     //fee = parseFloat(feeAmount * net_amount / 100).toFixed(2)
-            //     fee = parseFloat((net_amount - extra) * feeAmount /100).toFixed(2);
-            // }  // 12,345.67
-            // .replace(/\d(?=(\d{3})+\.)/g, '$&,')
-            // $('#fee').val(fee)
+        function callFeeByPayment() {
             calFee();
-            totalAmount()
+            totalAmount();
         }
 
         function ajaxGetRef() {
@@ -373,15 +357,16 @@
             totalAmount();
             ajaxGetComm();
             calcGst();
-            $('#agent_id, #provider_id, #policy, #net_amount').change(function () {
+            $(document).on('change','#agent_id, #provider_id, #policy, #net_amount',() => {
                 ajaxGetComm();
                 calcGst();
             })
-            $('#type_payment_agent_id').change(function () {
+            $(document).on('change','#type_payment_agent_id',() => {
                 totalAmount();
             })
 
-            $('#provider_id').change(function () {
+            $(document).on('change','#provider_id',() => {
+
                 let _provider_id = $(this).val()
                 $.ajax({
                     url: '{{route('ajax.getCurrency')}}',
@@ -395,28 +380,28 @@
                 })
             })
 
-            $('#service_country, #type_service').change(function () {
+            $(document).on('change','#provider_id',() => {
                 ajaxGetRef()
             })
 
-            $('#payment_method, #net_amount').change(function () {
+            $(document).on('change','#payment_method, #net_amount',() => {
                 //ajaxGetSu();
                 ajaxGetBankFee()
             })
 
-            $('#agent_id').change(function () {
+            $(document).on('change','#agent_id',() => {
                 country()
             })
 
-            $('#promotion_id').change(function () {
+            $(document).on('change','#promotion_id',() => {
                 promotion()
             })
 
-            $('#bank_fee, #net_amount, #extra, #type_extra, #extend_fee').change(function () {
+            $(document).on('change','#bank_fee, #net_amount, #extra, #type_extra, #extend_fee',() => {
                 calFee()
             })
 
-            $('#type_service').change(function (e) {
+            $(document).on('change','#type_service',() => {
                 e.preventDefault();
                 let dataId = this.value
                 $.get('http://oshcglobal/crm/ajax/customer/getProvider', { provider_id: dataId }, function (data) {
@@ -428,14 +413,13 @@
                 })
             })
 
-            $('#no_of_adults').change(function () {
+            $(document).on('change','#no_of_adults',() => {
                 _num = $(this).val()
                 $.get(formPartner, { num: _num }, function (data) {
                     $('#partner_div').html(data)
                 })
             })
-
-            $('#no_of_children').change(function () {
+            $(document).on('change','#no_of_children',() => {
                 _num = $(this).val()
                 $.get(formChild, { num: _num }, function (data) {
                     $('#child_div').html(data)
@@ -443,7 +427,8 @@
             })
 
             localStorage.removeItem('comms')
-            $('.add_new_comm').click(function () {
+
+            $(document).on('change','.add_new_comm',() => {
                 _service = $('#service').val()
                 _policy = $('#policy').val()
                 _commission = $('#commission').val()
@@ -478,12 +463,14 @@
                     }
                 }
             })
-            $('.add_contact').click(function () {
+
+            $(document).on('change','.add_contact',() => {
                 $.get(createContact, {}, function (data) {
                     $('#div_modal_contact').html(data)
                     $('#modal_create_contact').modal('toggle')
                 })
             })
+
             $('#table_contact').delegate('.edit_contact', 'click', function () {
                 _id = $(this).data('id')
                 $.get(editContact, { id: _id }, function (data) {
