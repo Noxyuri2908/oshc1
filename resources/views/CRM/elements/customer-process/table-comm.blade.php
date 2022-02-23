@@ -27,7 +27,7 @@
                 {{!empty($obj->profit->first()) ? getValueByIndexConfig(config('myconfig.status_visa'),$obj->profit->first()->visa_status) : ''}}
             </td>
             <td>
-                {{!empty($obj->profit->first()) ? $obj->profit->visa_month : ''}}
+                {{!empty($obj->profit->first()) ? $obj->profit->first()->visa_month : ''}}
             </td>
             <td>
                 {{(!empty($obj->hoahong->date_payment_provider))?convert_date_form_db($obj->hoahong->date_payment_provider):''}}
