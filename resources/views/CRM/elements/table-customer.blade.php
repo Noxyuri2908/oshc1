@@ -193,7 +193,11 @@
         <div class="fancy-tab">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 @can('customerReceipt.index')
-                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-receipt" role="tab"
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-comm" role="tab"
+                                            aria-controls="tab-comm" aria-selected="true">Commission</a></li>
+                @endcan
+                @can('customerReceipt.index')
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-receipt" role="tab"
                                             aria-controls="tab-receipt" aria-selected="true">Receipt</a></li>
                 @endcan
                 @can('customerDoc.index')
@@ -204,8 +208,14 @@
                 @endcan
             </ul>
             <div class="tab-content border-x border-bottom p-3" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-comm" role="tabpanel" aria-labelledby="home-tab">
+                        {{--                    data-toggle="modal" data-target="#myModalReceipt"--}}
+                    <div class="table-responsive apply-comm" id="apply-comm">
+                        @include('CRM.elements.customer-process.table-comm')
+                    </div>
+                </div>
                 @can('customerReceipt.index')
-                    <div class="tab-pane fade show active" id="tab-receipt" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade {{!auth()->user()->can('customerReceipt.index') && auth()->user()->can('customerDoc.index')?'show active':''}}" id="tab-receipt" role="tabpanel" aria-labelledby="home-tab">
                         <div class="alert-modal-receipt"></div>
                         <div class="d-flex">
                             @can('customerReceipt.store')

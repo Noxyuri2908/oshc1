@@ -49,6 +49,19 @@
                 }
             });
             $.ajax({
+                url: '{{route('ajax.getHH')}}',
+                data: {
+                    apply_id: apply_id
+                },
+                type: 'get',
+                success: function (data) {
+                    $('#apply-comm').html(data.view);
+                },
+                beforeSend: function () {
+                    $('.apply-comm').text('loading..');
+                }
+            });
+            $.ajax({
                 url: '{{route('ajax.createReceipt')}}',
                 data: {
                     apply_id: apply_id

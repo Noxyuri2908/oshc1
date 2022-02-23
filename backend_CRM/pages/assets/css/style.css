@@ -590,7 +590,7 @@ h3 {
 
 .table-main-agent tbody tr td:nth-child(3) {
     left: 80px;
-    z-index: 1;
+    /*z-index: 1;*/
     background-color: #fff;
 }
 
@@ -602,7 +602,7 @@ h3 {
 
 .table-main-agent tbody tr td:nth-child(1) {
     left: 0px;
-    z-index: 1;
+    /*z-index: 1;*/
     background-color: #fff;
 }
 

@@ -389,15 +389,24 @@ class CustomerProcessController extends Controller
         $getExchangeRateNum = (!empty($getExchangeRate)) ? $getExchangeRate->rate : 0;
         return $getExchangeRateNum;
     }
-    public function getComByIssueDate(Request $request){
-        $id = $request->get('id');
-        $date = $request->get('date');
-        if(!empty($date) && !empty($id)){
-            $apply = Apply::with(['comms'])->find($id);
+    public function getComByIssueDate(Request $request, $id = null, $date = null){
+        $idApply = null;
+        $issueDate = null;
+        if ($id != null && $date != null)
+        {
+            $idApply = $id;
+            $issueDate = $date;
+        }else{
+            $idApply = $request->get('id');
+            $issueDate = $request->get('date');
+        }
+
+        if(!empty($issueDate) && !empty($idApply)){
+            $apply = Apply::with(['comms'])->find($idApply);
             $com = (!empty($apply->comms)) ? $apply->comms
                 ->where('policy', $apply->policy)
                 ->where('provider_id', $apply->provider_id)
-                ->where('validity_start_date', '<', convert_date_to_db($date))
+                ->where('validity_start_date', '<', convert_date_to_db($issueDate))
                 ->sortByDesc('validity_start_date')
                 ->first() : [];
             if(!empty($com)){
@@ -406,4 +415,39 @@ class CustomerProcessController extends Controller
             return $com;
         }
     }
+     public function getHH(Request $request)
+     {
+         $obj = $obj = Apply::with([
+             'agent',
+             'customers',
+             'hoahong',
+             'provider_com',
+             'task',
+             'provider',
+             'service',
+             'phieuthus'=>function($phieuthu){
+                 $phieuthu->with([
+                     'updater',
+                     'creater'
+                 ]);
+             },
+             'comms',
+             'tailieus',
+             'staff',
+             'profit',
+             'refund'
+         ])->find($request->apply_id);
+
+         $agent = $obj->agent;
+
+         $issueDate = !empty($obj->hoahong)?$obj->hoahong->issue_date:null;
+         $comm = $this->getComByIssueDate($request, $request->apply_id, $issueDate);
+         $creater = !empty($obj->hoahong->admin_create) ? getStaffNameById($obj->hoahong->admin_create) : '';
+
+         $result = [
+             'view' => view('CRM.elements.customer-process.table-comm', ['obj' => $obj, 'agent' => $agent, 'comm' => $comm, 'issueDate' => $issueDate, 'creater' => $creater])->render(),
+         ];
+
+         return response()->json($result);
+     }
 }

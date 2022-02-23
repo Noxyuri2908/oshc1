@@ -5,7 +5,7 @@
                    data-email="{{!empty($user) ? $user->email:''}}"
                    data-name="{{!empty($user) ? $user->name : ''}}" type="checkbox" aria-label="Checkbox for this row" />
         </td>
-        <td class="align-middle  text-center position-sticky">
+        <td class="align-middle  text-centers">
             <div class="dropdown text-sans-serif">
                 <button class="btn btn-link text-600 btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{$user->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="fas fa-ellipsis-h fs--1"></span>

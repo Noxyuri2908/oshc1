@@ -278,6 +278,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('/ajax/showDocs', [\App\Http\Controllers\Admin\CustomerProcessController::class,'showDocs'])->name('ajax.showDocs');
     Route::get('/ajax/getExchangeRateByDate', 'Admin\CustomerProcessController@getExchangeRateByDate')->name('ajax.getExchangeRateByDate');
     Route::post('/ajax/sendEmailInvoice', 'Admin\CustomerController@sendEmailInvoice')->name('customer.sendEmailInvoice');
+    Route::get('/ajax/getHH', [\App\Http\Controllers\Admin\CustomerProcessController::class,'getHH'])->name('ajax.getHH');
 
     Route::get('/ajax/showDocsAndRemindForm', [\App\Http\Controllers\Admin\CustomerProcessController::class,'showDocsAndRemindForm'])->name('ajax.showDocsAndRemindForm');
     Route::post('/ajax/storeRemind/{id}', 'Admin\CustomerProcessController@storeRemind')->name('ajax.storeRemind');
