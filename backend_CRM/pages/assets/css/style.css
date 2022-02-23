@@ -711,8 +711,8 @@ h3 {
     position: absolute;
     right: 0;
     width: 41px;
-    height: 29px;
-    top: 61%;
+    height: 27px;
+    top: 61.2%;
     justify-content: center;
     align-items: center;
 }
@@ -721,10 +721,11 @@ h3 {
     position: absolute;
     right: 0;
     width: 41px;
-    height: 29px;
+    height: 27px;
     top: 0;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 .modalCreateCustomer #extend_fee ~ .input-group-text {
@@ -735,16 +736,18 @@ h3 {
     top: 16.5%;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 .modalCreateCustomer #fee ~ .input-group-text {
     position: absolute;
     right: 0;
     width: 41px;
-    height: 28px;
-    top: 33%;
+    height: 27px;
+    top: 33.5%;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 .modalCreateCustomer #gst ~ .input-group-text{
@@ -755,6 +758,7 @@ h3 {
     top: 50%;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 .modalCreateCustomer #extra ~ .input-group-text{
@@ -765,26 +769,29 @@ h3 {
     top: 50%;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 .modalCreateCustomer #comm ~ .input-group-text{
     position: absolute;
     right: 0;
     width: 41px;
-    height: 28px;
-    top: 66.5%;
+    height: 27px;
+    top: 66.7%;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 .modalCreateCustomer #total ~ .input-group-text{
     position: absolute;
     right: 0;
     width: 41px;
-    height: 28px;
-    top: 66.5%;
+    height: 27px;
+    top: 66.7%;
     justify-content: center;
     align-items: center;
+    border: 0.5px solid #707070;
 }
 
 
