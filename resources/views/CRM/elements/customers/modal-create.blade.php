@@ -303,9 +303,11 @@
             //     comValue = (result / 1.1).toFixed(2);
             // }
             if(gst == gstInclude){
-                comValue = (result / 1.1).toFixed(2);
+                // comValue = (result / 1.1).toFixed(2);
+                comValue = (net_amount - extra) * (16 / 100) / 1.1;
             }else if(gst == gstNotInclude){
-                comValue = (result).toFixed(2);
+                // comValue = (result).toFixed(2);
+                comValue = (net_amount - extra) * (16 / 100);
             }
             $('#comm').val(comValue);
         }
@@ -643,7 +645,6 @@
         })
 
         function ajaxGetComm() {
-            console.log('get Com');
             _agent = $('#agent_id').val()
             _provider = $('#provider_id').val()
             _policy = $('#policy').val()
@@ -661,16 +662,13 @@
                     $('#data_gst_agent').val(data['comm_gst']);
                     $('#data_type_payment_agent').val(data['comm_type_payment'])
                     @if(empty($obj) )
-                    $('#type_payment_agent_id').val(data['comm_type_payment'])
+                        $('#type_payment_agent_id').val(data['comm_type_payment'])
                     @elseif(!empty($obj) && empty($obj->type_payment_agent_id))
-                    $('#type_payment_agent_id').val(data['comm_type_payment'])
+                        $('#type_payment_agent_id').val(data['comm_type_payment'])
                     @endif
                     $('#comm_gst').val(data['text_comm_gst'])
                     $('#comm_type_payment').val(data['text_comm_type_payment'])
-                    console.log(data['text_comm_agent']);
                     $('#comm_agent').val(data['text_comm_agent'])
-                    //$('#gst').val(data['gst'])
-                    //$('#comm').val(data['comm'])
                     calcCom();
                     calcGst();
                     totalAmount()
