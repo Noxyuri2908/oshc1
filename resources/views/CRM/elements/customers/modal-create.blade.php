@@ -304,10 +304,10 @@
             // }
             if(gst == gstInclude){
                 // comValue = (result / 1.1).toFixed(2);
-                comValue = (net_amount - extra) * (16 / 100) / 1.1;
+                comValue = (net_amount - extra) * (comm / 100) / 1.1;
             }else if(gst == gstNotInclude){
                 // comValue = (result).toFixed(2);
-                comValue = (net_amount - extra) * (16 / 100);
+                comValue = (net_amount - extra) * (comm / 100);
             }
             $('#comm').val(comValue);
         }
