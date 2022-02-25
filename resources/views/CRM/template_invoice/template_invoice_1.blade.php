@@ -96,6 +96,10 @@
     body{
         color: black !important;
     }
+
+    .text-right{
+        text-align: right !important;
+    }
 </style>
 @include('CRM.template_invoice.style')
 @section('content')
@@ -171,17 +175,15 @@
             <td style="">{{$dataInvoice['policy']}}</td>
             <td style="">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
             <td style="">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
-            <td style="">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
+            <td style="" class="text-right">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
         </tr>
-        @if ($dataInvoice['extend_fee'])
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                <td class="fontSize11px "  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
-            </tr>
-        @endif
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
+            <td class="fontSize11px text-right"  style="padding-right: 9px !important;">5 {{$dataInvoice['currency']}}</td>
+        </tr>
         @if ($dataInvoice['promotion_amount'])
         <tr>
             <th></th>

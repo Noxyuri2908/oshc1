@@ -16,12 +16,15 @@
         text-align: center !important;
     }
 
+    .pr-25{
+        padding-right: 25px !important;
+    }
     #th-header>th{
         text-align:left;
         background-color: rgb(234,235,237);
         text-transform: uppercase;
         font-size: 11px;
-        padding: 10px;
+        padding: 5px;
     }
 
     #td-content>td,
@@ -163,19 +166,19 @@
 
             <tr id="th-header">
                 <th style="width: 105px">dịch vụ</th>
-                <th style="width: 111px">hãng bảo hiểm</th>
-                <th style="width: 111px">chương trình</th>
-                <th style="width: 105px">ngày bắt đầu</th>
-                <th style="width: 118px">ngày kết thúc</th>
-                <th style="width: 100px">số tiền</th>
+                <th style="width: 105px">hãng bảo hiểm</th>
+                <th style="width: 90px">chương trình</th>
+                <th style="width: 100px">ngày bắt đầu</th>
+                <th style="width: 100px">ngày kết thúc</th>
+                <th style="width: 150px">số tiền</th>
             </tr>
             <tr id="td-content">
-                <td style=" ">{{$dataInvoice['service']}}</td>
+                <td style="">{{$dataInvoice['service']}}</td>
                 <td style="">{{$dataInvoice['provider_name']}}</td>
                 <td style="">{{$dataInvoice['policy']}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
-                <td style="">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
+                <td style="" class="text-right pr-25">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
             @if ($dataInvoice['extend_fee'])
                 <tr>
@@ -183,7 +186,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['promotion_amount'])
@@ -192,7 +195,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" >Ưu đãi</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['extra'])
@@ -201,7 +204,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mại</th>
-                    <td class="fontSize11px " style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25" style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['bank_fee'])
@@ -210,7 +213,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             <tr>
@@ -218,7 +221,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="align-right fontSize11px pl-15px">Hoa hồng dịch vụ</th>
-                <td >{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
+                <td class="text-right pr-25">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>

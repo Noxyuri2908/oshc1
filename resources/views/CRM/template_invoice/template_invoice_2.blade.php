@@ -21,7 +21,11 @@
         background-color: rgb(234,235,237);
         text-transform: uppercase;
         font-size: 11px;
-        padding: 10px;
+        padding: 5px;
+    }
+
+    .pr-25{
+        padding-right: 25px !important;
     }
 
     #td-content>td,
@@ -172,12 +176,12 @@
         <table id="table-2" cellspacing="0" style="width: 100%;">
 
             <tr id="th-header">
-                <th style="">dịch vụ</th>
-                <th style="">hãng bảo hiểm</th>
-                <th style="">chương trình</th>
-                <th style="">ngày bắt đầu</th>
-                <th style="">ngày kết thúc</th>
-                <th style="width: 100px">số tiền</th>
+                <th style="width: 105px">dịch vụ</th>
+                <th style="width: 105px">hãng bảo hiểm</th>
+                <th style="width: 90px">chương trình</th>
+                <th style="width: 100px">ngày bắt đầu</th>
+                <th style="width: 100px">ngày kết thúc</th>
+                <th style="width: 150px">số tiền</th>
             </tr>
             <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>
@@ -185,24 +189,22 @@
                 <td style=" ">{{$dataInvoice['policy']}}</td>
                 <td style=" ">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
                 <td style=" ">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
-                <td style=" ">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
+                <td style=" " class="text-right pr-25">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
-            @if ($dataInvoice['extend_fee'])
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
-                </tr>
-            @endif
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
+                <th class="fontSize11px pr-25 text-right"  style="">5 {{$dataInvoice['currency']}}</th>
+            </tr>
             @if ($dataInvoice['promotion_amount'])
                 <tr>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" >Ưu đãi</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px pr-25 text-right"  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['extra'])
@@ -211,7 +213,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mại</th>
-                    <td class="fontSize11px " style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px pr-25 text-right" style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['bank_fee'])
@@ -220,7 +222,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px pr-25 text-right"  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             <tr >
@@ -231,8 +233,8 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                    <th colspan="2" id="total-rate">Tổng số tiền phải thu</th>
-                    <td id="total-rate">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
+                <th colspan="2" id="total-rate">Tổng số tiền phải thu</th>
+                <td id="total-rate" class="text-right pr-25">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
             </tr>
             @endif
             <tr style=" text-align:center;">
@@ -241,10 +243,10 @@
                 <th></th>
                 @if($dataInvoice['exchange_rate'] == 0 || empty($dataInvoice['exchange_rate']))
                     <th colspan="2" id="total-rate" >Tổng số tiền phải thu</th>
-                    <th id="total-rate" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                    <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
                 @else
                     <th colspan="2"  id="total-rate" >TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                    <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                    <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
                 @endif
             </tr>
             <tr>

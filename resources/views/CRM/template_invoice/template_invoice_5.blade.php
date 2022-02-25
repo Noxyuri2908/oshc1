@@ -21,7 +21,7 @@
         background-color: rgb(234,235,237);
         text-transform: uppercase;
         font-size: 11px;
-        padding: 10px;
+        padding: 5px;
     }
 
     #td-content>td,
@@ -170,12 +170,12 @@
         <table id="table-2" cellspacing="0" style="width: 100%;">
 
             <tr id="th-header">
-                <th style="">dịch vụ</th>
-                <th style="">hãng bảo hiểm</th>
-                <th style="">chương trình</th>
-                <th style="">ngày bắt đầu</th>
-                <th style="">ngày kết thúc</th>
-                <th style="width: 100px">số tiền</th>
+                <th style="width: 90px">dịch vụ</th>
+                <th style="width: 105px">hãng bảo hiểm</th>
+                <th style="width: 105px">chương trình</th>
+                <th style="width: 100px">ngày bắt đầu</th>
+                <th style="width: 100px">ngày kết thúc</th>
+                <th style="width: 150px">số tiền</th>
             </tr>
             <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>

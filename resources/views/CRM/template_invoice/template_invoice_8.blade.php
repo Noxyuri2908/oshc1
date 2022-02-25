@@ -4,7 +4,7 @@
     INVOICE
     @parent
 @stop
-<style type="text/css"<style type="text/css">
+<style type="text/css">
     table { vertical-align: top; }
     tr    { vertical-align: top; }
     td    { vertical-align: top; }
@@ -21,7 +21,7 @@
         background-color: rgb(234,235,237);
         text-transform: uppercase;
         font-size: 11px;
-        padding: 10px;
+        padding: 5px;
     }
 
     #td-content>td,
@@ -64,6 +64,7 @@
 
     #total-rate{
         text-align:left;
+        font-size: 13px;
         padding: 5px 15px;
         font-size: 13px;
         background-color: #D3D3D3;
@@ -104,17 +105,7 @@
     body{
         color: black !important;
     }
-
-    .sub-des{
-        text-align: right !important;
-        padding-right: 0;
-        padding-top: 5px !important;
-    }
-    .sub-des i{
-        font-size: 9.5px;
-    }
 </style>
-
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')
     <page id="page" backcolor="#fff" backimgx="center" backimgy="bottom" backimgw="100%" backtop="42px" backleft="16px" backright="16px" backbottom="42px" footer="page" style="background: #fff;">
@@ -143,10 +134,10 @@
                     <p style="">{{$dataInvoice['companyPhoneVi2']}}</p>
                 </td>
                 <td style="">
-                    <p style="margin-bottom: 18px">Bên nhận :
-                        <span >{{ $dataInvoice['agentName']}}</span><br>
-                        <span >{{ $dataInvoice['address_agent']}}</span>
-                    </p>
+{{--                    <p style="margin-bottom: 18px">Bên nhận :--}}
+{{--                        <span >{{ $dataInvoice['agentName']}}</span><br>--}}
+{{--                        <span >{{ $dataInvoice['address_agent']}}</span>--}}
+{{--                    </p>--}}
                     <p style="">Số hóa đơn :
                         <span class="pl-64">{{ $dataInvoice['ref_no']}}</span>
                     </p>
@@ -164,7 +155,7 @@
                 </td>
                 <td style="width: 20%;text-align: left">
                     <span style="font-size: 11px;margin: 0;">Khách hàng : </span>
-                    <b style="font-size: 14px;">{{$dataInvoice['cusName']}}</b>
+                    <b style="font-size: 14px; ">{{$dataInvoice['cusName']}}</b>
                 </td>
             </tr>
             </tfoot>
@@ -179,12 +170,12 @@
         <table id="table-2" cellspacing="0" style="width: 100%;">
 
             <tr id="th-header">
-                <th style="">dịch vụ</th>
-                <th style="">hãng bảo hiểm</th>
-                <th style="">chương trình</th>
-                <th style="">ngày bắt đầu</th>
-                <th style="">ngày kết thúc</th>
-                <th style="width: 100px">số tiền</th>
+                <th style="width: 90px">dịch vụ</th>
+                <th style="width: 105px">hãng bảo hiểm</th>
+                <th style="width: 105px">chương trình</th>
+                <th style="width: 100px">ngày bắt đầu</th>
+                <th style="width: 100px">ngày kết thúc</th>
+                <th style="width: 150px">số tiền</th>
             </tr>
             <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>

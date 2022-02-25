@@ -14,7 +14,7 @@
         text-align:right;
         font-size: 13px;
         padding: 5px 5px;
-        font-size: 13px;
+        font-size: 11px;
         background-color: #D3D3D3;
     }
 </style>

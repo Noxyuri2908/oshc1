@@ -643,45 +643,5 @@
                 })
             })
         })
-
-        {{--function ajaxGetComm() {--}}
-        {{--    _agent = $('#agent_id').val()--}}
-        {{--    _provider = $('#provider_id').val()--}}
-        {{--    _policy = $('#policy').val()--}}
-        {{--    _net_amount = $('#net_amount').val()--}}
-
-        {{--    if (_agent != '' && _provider != '' && _policy != '' && _net_amount != '') {--}}
-        {{--        $.get(getComm, {--}}
-        {{--            agent: _agent,--}}
-        {{--            provider: _provider,--}}
-        {{--            policy: _policy,--}}
-        {{--            net_amount: _net_amount,--}}
-        {{--        }, function (data) {--}}
-        {{--            $('#data_comm_agent').val(data['comm_agent'])--}}
-        {{--            $('#data_unit_comm_agent').val(data['comm_donvi'])--}}
-        {{--            $('#data_gst_agent').val(data['comm_gst']);--}}
-        {{--            $('#data_type_payment_agent').val(data['comm_type_payment'])--}}
-        {{--            @if(empty($obj) )--}}
-        {{--                $('#type_payment_agent_id').val(data['comm_type_payment'])--}}
-        {{--            @elseif(!empty($obj) && empty($obj->type_payment_agent_id))--}}
-        {{--                $('#type_payment_agent_id').val(data['comm_type_payment'])--}}
-        {{--            @endif--}}
-        {{--            $('#comm_gst').val(data['text_comm_gst'])--}}
-        {{--            $('#comm_type_payment').val(data['text_comm_type_payment'])--}}
-        {{--            $('#comm_agent').val(data['text_comm_agent'])--}}
-        {{--            calcCom();--}}
-        {{--            calcGst();--}}
-        {{--            totalAmount()--}}
-        {{--        })--}}
-        {{--    } else {--}}
-        {{--        $('#data_comm_agent').val(0)--}}
-        {{--        $('#data_unit_comm_agent').val(1)--}}
-        {{--        $('#data_gst_agent').val(0)--}}
-        {{--        $('#data_type_payment_agent').val(1)--}}
-        {{--        $('#comm_gst').val('')--}}
-        {{--        $('#comm_type_payment').val('')--}}
-        {{--        $('#comm_agent').val('')--}}
-        {{--    }--}}
-        {{--}--}}
     </script>
 @endpush
