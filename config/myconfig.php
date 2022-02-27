@@ -5,6 +5,7 @@ return [
         1 => 'Ha Noi',
         2 => 'Ho Chi Minh',
         3 => 'Overseas',
+        4 => 'Onshore',
     ],
     'market' => [
         1 => 'Australia',
