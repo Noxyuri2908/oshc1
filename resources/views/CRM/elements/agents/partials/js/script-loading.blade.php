@@ -189,7 +189,6 @@
         f_status_filter
     ) {
         $('.loading-fixed-top').css('display','block');
-
         $.ajax({
             url: "{{route('agent.getData')}}",
             type: 'get',

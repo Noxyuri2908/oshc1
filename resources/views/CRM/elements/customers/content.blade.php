@@ -309,6 +309,17 @@
             }
         })
 
+        $('#type_service_filter').on('change', () => {
+            var dataId = $('#type_service_filter').find(':selected').val();
+            $.get('{{route('ajax.customer.getProvider')}}', { provider_id: dataId }, function (data) {
+                let html = '<option value=""></option>'
+                $.each(data, function (index, value) {
+                    html += '<option value="' + value.id + '" data-value="' + value.slug + '" >' + value.name + '</option>'
+                })
+                $('#provider_id_filter').html(html)
+            })
+        })
+
         $('#modalCreateCustomer').on('hidden.bs.modal', function (e) {
             $.ajax({
                 url: "{{route("modal.create.customer")}}",
