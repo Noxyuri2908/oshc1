@@ -1823,7 +1823,13 @@ class CustomerController extends Controller
         $dataInvoice['agentName'] = $obj->getAgentName();
         $dataInvoice['cover'] = ($cus->cover->cover) ?? '';
 
-        $dataInvoice['extend_fee'] = ($obj->extend_fee) ?? '';
+        $dataInvoice['extend_fee'] = !empty($cus) ? $cus->extend_fee : '';
+        $dataInvoice['discount'] = !empty($obj->extra) ?? '';
+        $dataInvoice['promotion'] = !empty($obj->promotion_amount) ?? '';
+        $dataInvoice['surcharge'] = !empty($obj->bank_fee_number) ?? '';
+        $dataInvoice['gst'] = !empty($obj->gst) ? convert_price_float(($obj->net_amount - $obj->extra) * ($obj->comm / 100) / 11) :  '';
+        $dataInvoice['comm'] = !empty($obj->comm) ? ($obj->net_amount - $obj->extra) * ($obj->comm / 100) : '';
+
         $dataInvoice['promotion_amount'] = ($obj->promotion_amount) ?? '';
         $dataInvoice['extra'] = ($obj->extra) ?? '';
 
@@ -1866,6 +1872,10 @@ class CustomerController extends Controller
 
         }
 
+        if ($template_id == 9){
+            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number;
+        }
+
         if ($template_id == 10)
         {
             $dataInvoice['amount'] = $obj->net_amount + $obj->surcharge;
@@ -1878,8 +1888,7 @@ class CustomerController extends Controller
         {
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['comm'] = $obj->comm;
-            $dataInvoice['total'] = $obj->net_amount - $obj->comm;
-
+            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra + $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'] + $dataInvoice['gst'] ;
         }
 
         if ($template_id == 12)
@@ -1896,8 +1905,7 @@ class CustomerController extends Controller
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['comm'] = $obj->comm;
             $dataInvoice['gst'] = $obj->gst;
-            $dataInvoice['total'] = $obj->net_amount - $obj->comm + $obj->gst;
-
+            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra + $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
         }
 
         if ($template_id == 14)
@@ -1933,14 +1941,7 @@ class CustomerController extends Controller
             $dataInvoice['total'] = $obj->net_amount;
         }
 
-        if ( $template_id == 21)
-        {
-            $dataInvoice['total'] = number_format($obj->net_amount - $obj->extra);
-            $dataInvoice['discount/cashback'] = $obj->extra + $obj->promotion_amount;
-            $dataInvoice['totalAUD'] = $obj->net_amount - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number;
-            $dataInvoice['totalVND'] = convert_price_float($dataInvoice['totalAUD'] *  $obj->exchange_rate);
-            $dataInvoice['totalVND'] = ($dataInvoice['totalVND'] > 0) ? $dataInvoice['totalVND'] : '';
-        }
+
         if ($template_id == 8 || $template_id == 7 || $template_id == 6 || $template_id == 4 || $template_id == 1 || $template_id == 3 || $template_id == 5 || $template_id == 15 || $template_id == 2 || $template_id == 22 || $template_id == 23 || $template_id == 24 || $template_id == 25 || $template_id == 26)
         {
             $dataInvoice['companyNameVi'] = $templateConfig->company_name_vi;
@@ -1956,26 +1957,7 @@ class CustomerController extends Controller
             $dataInvoice['tmp'] = "GST inclusive";
             $dataInvoice['comm'] = $obj->comm;
         }
-        if ($template_id == 17 || $template_id == 19 ||  $template_id == 20)
-        {
-            $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['promotion_amount'] = $obj->promotion_amount;
-            $dataInvoice['gst'] = convert_price_float($obj->comm / 11);
-        }
 
-        if ($template_id == 22 || $template_id == 25 || $template_id == 26)
-        {
-            $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-        }
-
-        if ($template_id == 22)
-        {
-            $dataInvoice['comm'] = $obj->comm;
-            $dataInvoice['discount/cashback'] = $obj->extra + $obj->promotion_amount;
-            $dataInvoice['totalAUD'] = $obj->net_amount - $obj->extra - $obj->promotion_amount - $obj->comm + $obj->bank_fee_number;
-            $dataInvoice['totalVND'] = convert_price_float($dataInvoice['totalAUD'] *  $obj->exchange_rate);
-            $dataInvoice['totalVND'] = ($dataInvoice['totalVND'] > 0) ? $dataInvoice['totalVND'] : '';
-        }
 
         if ($template_id == 6)
         {
@@ -1989,61 +1971,12 @@ class CustomerController extends Controller
             $dataInvoice['gst'] = convert_price_float($obj->comm / 11);
         }
 
-        if ($template_id == 25 || $template_id == 26)
-        {
-            $dataInvoice['insuranceFees'] = $obj->total - $obj->bank_fee_number;
-            $dataInvoice['totalAUD'] = $obj->total;
-            $dataInvoice['agentName'] = $obj->getAgentName();
-        }
-
-        if ($template_id == 23)
-        {
-            $dataInvoice['agentName'] = $obj->getAgentName();
-            $dataInvoice['total'] = $obj->net_amount - $obj->extra;
-            $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['totalAUD'] =  $obj->net_amount +  $obj->bank_fee_number;
-            $dataInvoice['totalVND'] =  $obj->net_amount +  $obj->bank_fee_number;
-            $dataInvoice['totalVND'] = ($dataInvoice['currency'] == 'VND') ? $dataInvoice['currency'] : '';
-        }
-
-        if ($template_id == 23 || $template_id == 27 || $template_id == 18)
-        {
-            $dataInvoice['serviceCharge'] = $obj->net_amount;
-        }
 
         if ($template_id == 26 || $template_id == 1)
         {
             $dataInvoice['serviceCharge'] = $obj->total - $obj->bank_fee_number;
         }
 
-        if ($template_id == 27 || $template_id == 26)
-        {
-            $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-        }
-
-        if ($template_id == 27 || $template_id == 26)
-        {
-            $dataInvoice['totalAmountReceivable'] = $obj->net_amount + $obj->bank_fee_number;
-        }
-
-        if($template_id == 27 || $template_id == 18)
-        {
-            $dataInvoice['agentName'] = $obj->getAgentName();
-            $dataInvoice['office'] = $obj->getOfficeAgent();
-        }
-
-
-        if ($template_id == 24)
-        {
-            $dataInvoice['agentName'] = $obj->getAgentName();
-            $dataInvoice['total'] = $obj->net_amount - $obj->extra;
-        }
-
-
-        if ($template_id == 19)
-        {
-            $dataInvoice['totalPayAmountPayable'] = convert_price_float($obj->net_amount - $obj->extra - $dataInvoice['comm'] + $obj->comm / 11 + $dataInvoice['bank_fee']);
-        }
 
         return $dataInvoice;
     }

@@ -11,6 +11,10 @@
     h1,h2{margin: 0;}
     p{margin: 1px 0px; color: #222; font-size: 14px}
 
+    .c-black{
+        color: black;
+    }
+
     #mainContent{
         width: 806px;
         margin: auto !important;
@@ -216,24 +220,78 @@
                 <td style="">{{$dataInvoice['policy']}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
-                <td style="">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
+                <td style="" class="text-right">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th colspan="2" style="color: #000" class="text-right pl-29">Commission (include GST)</th>
-                <td style="text-align: center;color: #000">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
-            </tr>
+{{--            <tr>--}}
+{{--                <th></th>--}}
+{{--                <th></th>--}}
+{{--                <th></th>--}}
+{{--                <th colspan="2" style="color: #000" class="text-right pl-29">Commission (include GST)</th>--}}
+{{--                <td style="text-align: right;color: #000;padding-right: 9px">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>--}}
+{{--            </tr>--}}
+            @if ($dataInvoice['extend_fee'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Extend fee</th>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['discount'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Discount</th>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['discount']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['promotion'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Promotion</th>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['promotion']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['surcharge'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Surcharge fee</th>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['surcharge']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['gst'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-right fontSize11px pl-15px c-black" >GST</th>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['gst']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
+            @if ($dataInvoice['comm'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Commission</th>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>
             </tr>
             <tr style=" text-align:center;">
-                <th></th>s
+                <th></th>
                 <th></th>
                 <th></th>
                 <th colspan="2" class="text-right"  id="total-rate">TOTAL AMOUNT PAYABLE</th>
-                <th id="total-rate">{{convert_price_float($dataInvoice['total'])}} {{$dataInvoice['currency']}}</th>
+                <th id="total-rate" class="text-right" style="padding-right: 9px">{{convert_price_float($dataInvoice['total'])}} {{$dataInvoice['currency']}}</th>
             </tr>
             <tr>
                 <td></td>
