@@ -659,17 +659,9 @@
                     id: _id_comm,
                 },
                 success: function (data) {
+                    $('#service').val(data.comm.service.id);
+                    $('#policy').val(data.comm.policy)
 
-                    $('#service option').each(function () {
-                        if ($(this).val() == data.comm.type_service) {
-                            $(this).attr('selected', 'selected')
-                        }
-                    })
-                    $('#policy option').each(function () {
-                        if ($(this).val() == data.comm.type) {
-                            $(this).attr('selected', 'selected')
-                        }
-                    })
                     $('#donvi_comm option').each(function () {
                         if ($(this).val() == data.comm.donvi) {
                             $(this).attr('selected', 'selected')
@@ -685,8 +677,9 @@
                             $(this).attr('selected', 'selected')
                         }
                     })
+                    console.log(data.comm.validity_start_date)
                     $('#commission').val(data.comm.comm)
-                    $('#end_date').val(data.comm.date)
+                    $('#end_date').val(data.comm.validity_start_date)
                     $('.add_new_comm').text('Save')
                     $('#add_new_comm').attr('data-action', 'edit')
                     $('#add_new_comm').attr('data-id_comm', data.comm.id)

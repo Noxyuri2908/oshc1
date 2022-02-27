@@ -199,7 +199,7 @@ class CommissionController extends Controller
     public function editComAgent(Request $request)
     {
         $id_comm = $request->get('id');
-        $comm = Commission::findOrFail($id_comm);
+        $comm = Commission::where('id', $id_comm)->with('service')->first();
         return response()->json([
             'comm' => $comm,
         ]);
