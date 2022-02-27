@@ -231,7 +231,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="align-right" id="total-rate">Tổng số tiền phải thu</th>
-                <th id="total-rate" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                <th id="total-rate" class="text-right pr-25" style="width: 150px">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
             </tr>
             @if($dataInvoice['exchange_rate'] != 0 || !empty($dataInvoice['exchange_rate']))
             <tr style=" text-align:center;">
@@ -239,7 +239,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="align-right" id="total-rate">TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                <th id="total-rate" class="text-right pr-25" style="width: 150px;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
             </tr>
             @endif
         </table>

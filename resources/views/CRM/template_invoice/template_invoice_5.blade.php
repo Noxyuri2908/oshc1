@@ -16,6 +16,10 @@
         text-align: center !important;
     }
 
+    .pr-25{
+        padding-right: 25px;
+    }
+
     #th-header>th{
         text-align:left;
         background-color: rgb(234,235,237);
@@ -66,7 +70,7 @@
         text-align:left;
         font-size: 13px;
         padding: 5px 15px;
-        font-size: 13px;
+        font-size: 11px;
         background-color: #D3D3D3;
     }
 
@@ -192,8 +196,8 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th colspan="2" id="total-rate">Tổng số tiền phải thu (VND)</th>
-                <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['total'], 0)}} </th>
+                <th colspan="2" id="total-rate" class="text-right">Tổng số tiền phải thu (VND)</th>
+                <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['total'], 0)}}</th>
             </tr>
         </table>
         <br />

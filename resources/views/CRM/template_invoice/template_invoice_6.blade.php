@@ -190,7 +190,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" >Ưu đãi</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right"  style="padding-right: 9px !important;">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['extra'])
@@ -199,7 +199,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mại</th>
-                    <td class="fontSize11px " style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right" style="padding-right: 9px !important;">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['bank_fee'])
@@ -208,7 +208,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="align-right fontSize11px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
-                    <td class="fontSize11px "  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right"  style="padding-right: 9px !important;">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
 
@@ -220,8 +220,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right" id="total-rate">Tổng số tiền phải thu</th>
-                    <th id="total-rate" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                    <th colspan="2" class="text-right" id="total-rate">Tổng số tiền phải thu</th>
+                    <th id="total-rate" class="text-right" style="width: 150px;text-align: center;padding-right: 9px !important;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
                 </tr>
             @endif
             <tr style=" text-align:center;">
@@ -230,10 +230,10 @@
                 <th></th>
                 @if($dataInvoice['exchange_rate'] == 0 || empty($dataInvoice['exchange_rate']))
                     <th colspan="2" class="align-right" id="total-rate">Tổng số tiền phải thu</th>
-                    <th id="total-rate" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                    <th id="total-rate" class="text-right" style="width: 150px;text-align: center;padding-right: 9px !important;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
                 @else
                     <th colspan="2" class="align-right" id="total-rate">TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                    <th id="total-rate" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                    <th id="total-rate" class="text-right" style="width: 150px;text-align: center;padding-right: 9px !important;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
                 @endif
             </tr>
         </table>

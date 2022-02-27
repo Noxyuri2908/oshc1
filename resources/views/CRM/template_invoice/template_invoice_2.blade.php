@@ -196,7 +196,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                <th class="fontSize11px pr-25 text-right"  style="">5 {{$dataInvoice['currency']}}</th>
+                <td class="fontSize11px pr-25 text-right"  style="">5 {{$dataInvoice['currency']}}</td>
             </tr>
             @if ($dataInvoice['promotion_amount'])
                 <tr>

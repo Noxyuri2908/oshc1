@@ -30,9 +30,9 @@
 
     tfoot>tr>td:nth-child(2)>p{
         text-align: left;
-        font-size: 11px;
         margin-bottom: 2px;
         font-weight: bolder;
+        font-size: 12px;
     }
 
     tfoot>tr>td:nth-child(2)>p:nth-child(1){
@@ -48,14 +48,13 @@
         text-align:center;
         background-color: rgb(234,235,237);
         text-transform: uppercase;
-        font-size: 11px;
         padding: 10px;
         color: #000;
     }
 
     #td-content>td{
         text-align:center;
-        font-size: 10px;
+        font-size: 11px;
         padding: 5px 9px;
         color: #000;
     }
@@ -114,6 +113,31 @@
     .sub-des>i{
         font-size: 10px;
     }
+    table>tbody>tr:nth-child(1)>th:nth-child(1),
+    table>tbody>tr:nth-child(1)>th:nth-child(2)
+    {
+        width: 105px;
+    }
+
+    table>tbody>tr:nth-child(1)>th:nth-child(3)
+    {
+        width: 90px;
+    }
+    table>tbody>tr:nth-child(1)>th:nth-child(4),
+    table>tbody>tr:nth-child(1)>th:nth-child(5)
+    {
+        width: 100px;
+    }
+
+    table>tbody>tr:nth-child(1)>th:nth-child(6)
+    {
+        width: 150px;
+    }
+
+    table>tbody>tr:nth-child(1)>th{
+        font-size: 12px;
+    }
+
 </style>
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')
@@ -138,7 +162,7 @@
                         <p style="">{{$dataInvoice['company_address']}}</p>
                         <p style="">{{$dataInvoice['company_phone']}}</p>
                     </td>
-                    <td style="padding-right: 31px">
+                    <td style="padding-right: 31px; font-size: 12px">
                         <p style="">BILLING ADDRESS :
                             <span>{{ $dataInvoice['agentName']}}</span><br>
                             <span>{{ $dataInvoice['address_agent']}}</span>
@@ -158,7 +182,7 @@
                     <td style="width: 40%;">
                     </td>
                     <td style="width: 20%;text-align: left">
-                        <span style="font-size: 11px;margin: 0; ">Reference : </span>
+                        <span style="font-size: 12px;margin: 0; ">Reference : </span>
                         <span style="font-size: 14px; font-weight: bolder">{{$dataInvoice['cusName']}}</span>
                     </td>
                 </tr>
@@ -206,11 +230,11 @@
                 <th id="total-rate" >{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</th>
             </tr>
             <tr>
+                <td></td>
                 <td colspan="5" style="    text-align: right;padding-right: 0; padding-top: 5px !important;">
                     <i style="font-size: 8px; color: black;padding-left: 39px;text-align: right;">Note: If you hold a student dependent visa, you must be insured under the same policy as the main</i><br>
                     <i style="font-size: 8px; color: black; padding-left: 136px;text-align: right;">student visa holder. You are only eligible to hold a single policy if you are the primary visa holder.</i>
                 </td>
-                <td></td>
             </tr>
         </table>
         <br />

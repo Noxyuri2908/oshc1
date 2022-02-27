@@ -196,7 +196,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                <th class="fontSize11px pr-25 text-right"  style="">5 {{$dataInvoice['currency']}}</th>
+                <td class="fontSize11px pr-25 text-right"  style="">5 {{$dataInvoice['currency']}}</td>
             </tr>
             @if ($dataInvoice['promotion_amount'])
                 <tr>
@@ -234,7 +234,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" id="total-rate">Tổng số tiền phải thu</th>
-                    <td id="total-rate" class="text-right pr-25">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
+                    <td id="total-rate" class="text-right pr-25" style="padding-right: 2.75px;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             <tr style=" text-align:center;">
@@ -243,10 +243,10 @@
                 <th></th>
                 @if($dataInvoice['exchange_rate'] == 0 || empty($dataInvoice['exchange_rate']))
                     <th colspan="2" id="total-rate" >Tổng số tiền phải thu</th>
-                    <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
+                    <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center;padding-right: 2.75px;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
                 @else
                     <th colspan="2"  id="total-rate" >TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                    <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                    <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center;padding-right: 2.75px;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
                 @endif
             </tr>
             <tr>

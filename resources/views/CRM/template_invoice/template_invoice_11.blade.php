@@ -30,9 +30,9 @@
 
     tfoot>tr>td:nth-child(2)>p{
         text-align: left;
-        font-size: 11px;
         margin-bottom: 2px;
         font-weight: bolder;
+        font-size: 12px;
     }
 
     tfoot>tr>td:nth-child(2)>p:nth-child(1){
@@ -48,14 +48,13 @@
         text-align:center;
         background-color: rgb(234,235,237);
         text-transform: uppercase;
-        font-size: 11px;
         padding: 10px;
         color: #000;
     }
 
     #td-content>td{
         text-align:center;
-        font-size: 10px;
+        font-size: 11px;
         padding: 5px 9px;
         color: #000;
     }
@@ -87,12 +86,10 @@
         border: none;
         border-collapse: collapse;
     }
-
-    #table-2>tbody>tr:nth-child(3)>th,
-    #table-2>tbody>tr:nth-child(3)>td{
-        color: #000;
-    }
-
+    /*#table-2 th,#table-2 td {*/
+    /*    padding: 10px 15px;*/
+    /*    padding-bottom: 0;*/
+    /*}*/
     page{
         width: 100%;
         float: left;
@@ -116,15 +113,31 @@
     .sub-des>i{
         font-size: 10px;
     }
-
-    .pl-29{
-        padding-left: 29px;
+    table>tbody>tr:nth-child(1)>th:nth-child(1),
+    table>tbody>tr:nth-child(1)>th:nth-child(2)
+    {
+        width: 105px;
     }
 
-    .provider{
-        font-size: 10px;
-        margin-bottom: 5px;
+    table>tbody>tr:nth-child(1)>th:nth-child(3)
+    {
+        width: 90px;
     }
+    table>tbody>tr:nth-child(1)>th:nth-child(4),
+    table>tbody>tr:nth-child(1)>th:nth-child(5)
+    {
+        width: 100px;
+    }
+
+    table>tbody>tr:nth-child(1)>th:nth-child(6)
+    {
+        width: 150px;
+    }
+
+    table>tbody>tr:nth-child(1)>th{
+        font-size: 12px;
+    }
+
 </style>
 
 @section('content')
@@ -171,7 +184,7 @@
                 <td style="width: 40%;">
                 </td>
                 <td style="width: 20%;text-align: left">
-                    <span style="font-size: 11px;margin: 0; ">Reference : </span>
+                    <span style="font-size: 12px;margin: 0; ">Reference : </span>
                     <span style="font-size: 14px; font-weight: bolder">{{$dataInvoice['cusName']}}</span>
                 </td>
             </tr>
@@ -197,8 +210,8 @@
             <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>
                 <td style=" ">
-                    <p style="" class="provider">{{$dataInvoice['provider_name']}}</p>
-                    <p style="" class="provider">{{ !empty($dataInvoice['cover']) ? '('.$dataInvoice['cover'].')' : '' }}</p>
+                    <p style="font-size: 11px" class="provider">{{$dataInvoice['provider_name']}}</p>
+                    <p style="font-size: 11px" class="provider">{{ !empty($dataInvoice['cover']) ? '('.$dataInvoice['cover'].')' : '' }}</p>
                 </td>
                 <td style="">{{$dataInvoice['policy']}}</td>
                 <td style="">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
@@ -209,17 +222,17 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th colspan="2" class="pl-29">Commission (include GST)</th>
-                <td style="text-align: center">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
+                <th colspan="2" style="color: #000" class="text-right pl-29">Commission (include GST)</th>
+                <td style="text-align: center;color: #000">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>
             </tr>
             <tr style=" text-align:center;">
+                <th></th>s
                 <th></th>
                 <th></th>
-                <th></th>
-                <th colspan="2"  id="total-rate">TOTAL AMOUNT PAYABLE</th>
+                <th colspan="2" class="text-right"  id="total-rate">TOTAL AMOUNT PAYABLE</th>
                 <th id="total-rate">{{convert_price_float($dataInvoice['total'])}} {{$dataInvoice['currency']}}</th>
             </tr>
             <tr>

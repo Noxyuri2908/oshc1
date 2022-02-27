@@ -240,8 +240,8 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th colspan="2"  id="total-rate">Tổng số tiền phải thu</th>
-                <th id="total-rate" class="" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['total'], 0)}} {{$dataInvoice['currency']}}</th>
+                <th colspan="2"  class="text-right" id="total-rate" style="padding-right: 3px">Tổng số tiền phải thu</th>
+                <th id="total-rate" class="text-right pr-25" style="width: 150px;text-align: center">{{convert_price_float($dataInvoice['total'], 0)}} {{$dataInvoice['currency']}}</th>
             </tr>
         </table>
         <br />
