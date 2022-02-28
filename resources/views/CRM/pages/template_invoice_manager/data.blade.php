@@ -13,7 +13,7 @@
                 </div>
             </div>
         </th>
-        <td class="white-space-preline-report"><a href="{{route('template_invoice_manager.showTemplateInvoice',['id'=>$data->id])}}" class="show-template-btn"> {{$data->template_name}}.Show{{!empty($invoiceTypeConfig[$data->template_name])?$invoiceTypeConfig[$data->template_name]:''}}</a></td>
+        <td class="white-space-preline-report"><a href="{{route('template_invoice_manager.showTemplateInvoice',['id'=>$data->id])}}" class="show-template-btn"> {{!empty($invoiceTypeConfig[$data->template_name])?$invoiceTypeConfig[$data->template_name]:''}}</a></td>
         <td class="white-space-preline-report">{{$data->company_address}}</td>
         <td class="white-space-preline-report"><a href="{{$data->logo}}" class="show-template-btn">{{$data->logo}}</a></td>
         <td class="white-space-preline-report">{{$data->company_name}}</td>

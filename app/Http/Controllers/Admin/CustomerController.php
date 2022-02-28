@@ -1943,7 +1943,7 @@ class CustomerController extends Controller
         }
 
 
-        if ($template_id == 8 || $template_id == 7 || $template_id == 6 || $template_id == 4 || $template_id == 1 || $template_id == 3 || $template_id == 5 || $template_id == 15 || $template_id == 2 || $template_id == 22 || $template_id == 23 || $template_id == 24 || $template_id == 25 || $template_id == 26)
+        if ($template_id == 8 || $template_id == 7 || $template_id == 6 || $template_id == 4 || $template_id == 1 || $template_id == 3 || $template_id == 5 || $template_id == 15 || $template_id == 2 || $template_id == 16)
         {
             $dataInvoice['companyNameVi'] = $templateConfig->company_name_vi;
             $dataInvoice['companyAddressVi1'] = $templateConfig->company_address_vi_1;

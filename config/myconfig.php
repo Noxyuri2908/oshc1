@@ -446,7 +446,8 @@ return [
         12 => '12. Invoice - deduct - included GST',
         13 => '13. Invoice - deduct - excluded GST- Bank',
         14 => '14. Invoice - deduct - excluded GST',
-        15 => '15. Payment Request - TAX'
+        15 => '15. Payment Request - TAX',
+        16 => '16. Payment request - VND (VCB exchange rate - deduct com)'
     ],
     'template_export_1' => [
         1 => '1. Payment request - VND (Edupay exchange rate)',
