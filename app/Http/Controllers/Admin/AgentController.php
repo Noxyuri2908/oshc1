@@ -510,6 +510,7 @@ class AgentController extends Controller
         $services = Service::where('status', 1)->get();
         $flag = 'agent.index';
         $is_show = true;
+        $action = 'show';
         return view('CRM.pages.edit-agent')->with(compact(
             'flag',
             'staffs',
@@ -517,7 +518,8 @@ class AgentController extends Controller
             'services',
             'obj',
             'comms',
-            'is_show'
+            'is_show',
+            'action'
         ));
     }
 

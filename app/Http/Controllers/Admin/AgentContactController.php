@@ -68,6 +68,9 @@ class AgentContactController extends Controller
             'users.type_id'
         )
             ->join('users', 'users.id', '=', 'people.user_id')
+            ->when($request->get('agent_id'), function ($query) use ($request){
+                $query->where('users.id',$request->get('agent_id'));
+            })
             ->when($request->get('name'),function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->get('name').'%');
             })->when($request->get('type_id'),function($query) use ($request){
