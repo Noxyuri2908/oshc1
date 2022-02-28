@@ -191,13 +191,15 @@
                 <td style=" ">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
                 <td style=" " class="text-right pr-25">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                <td class="fontSize11px pr-25 text-right"  style="">5 {{$dataInvoice['currency']}}</td>
-            </tr>
+            @if ($dataInvoice['extend_fee'])
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
+                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+                </tr>
+            @endif
             @if ($dataInvoice['promotion_amount'])
                 <tr>
                     <th></th>
