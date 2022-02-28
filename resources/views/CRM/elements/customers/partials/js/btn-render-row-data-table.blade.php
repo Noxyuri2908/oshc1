@@ -22,6 +22,12 @@
             var apply_id = $(this).attr('data-id');
 
             $('#btn-action').css('display', 'block');
+
+            $('li#apply_id_template_export').each((e, obj) => {
+                var newHref = href + '?template=' + obj.getAttribute('key') + '&apply_id=' + apply_id;
+                $('li#apply_id_template_export>a')[e].setAttribute('href', newHref);
+            })
+
             actionBtnEdit(apply_id);
             actionBtnDelete(apply_id);
             actionCom(apply_id);

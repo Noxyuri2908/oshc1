@@ -448,7 +448,25 @@ return [
         14 => '14. Invoice - deduct - excluded GST',
         15 => '15. Payment Request - TAX'
     ],
-
+    'template_export_1' => [
+        1 => '1. Payment request - VND (Edupay exchange rate)',
+        2 => '2. Payment request - VND (VCB Exchange rate)',
+        3 => '3. Payment request - VND (Edupay - deduct com)',
+        4 => '4. Hoa doan thanh toan BHVN (deduct com)',
+        5 => '5. Hoa don thanh toan BHVN (full)',
+        6 => '6. Payment request - VND (Edupay Exchange rate) - no agent',
+        7 => '7. Payment request - VND (VCB Exchange rate) - no agent',
+        8 => '8. Hoa don thanh toan BHVN (full) - no agent',
+    ],
+    'template_export_2' => [
+        9 => '9. Invoice (full)',
+        10 => '10. Invoice - Full payment - Paypal',
+        11 => '11. Invoice - deduct - included GST- Bank',
+        12 => '12. Invoice - deduct - included GST',
+        13 => '13. Invoice - deduct - excluded GST- Bank',
+        14 => '14. Invoice - deduct - excluded GST',
+        15 => '15. Payment Request - TAX'
+    ],
     'type_file' => [
         1 => 'Excel',
         2 => 'Image',

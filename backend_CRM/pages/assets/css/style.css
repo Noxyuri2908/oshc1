@@ -824,3 +824,69 @@ h3 {
     top: 0;
     font-size: 17px;
 }
+
+.template_export_invoice_1,
+.template_export_invoice_2{
+    position: absolute;
+    z-index: 10000;
+    background-color: #fff;
+    width: 330px;
+    list-style-type: none;
+    padding: 10px;
+    text-align: left;
+    box-shadow: 0 0 0 1px rgb(43 45 80 / 10%), 0 2px 5px 0 rgb(43 45 80 / 8%), 0 1px 1.5px 0 rgb(0 0 0 / 7%), 0 1px 2px 0 rgb(0 0 0 / 8%);
+    border-radius: 5px;
+    top: 27.4px;
+    left: -3px;
+    display: none;
+}
+
+.template_export_invoice_1>li,
+.template_export_invoice_2>li{
+    padding-bottom: 5px;
+    border-bottom : 1px solid #ccc;
+    position: relative;
+    /*display: inline-block;*/
+
+}
+
+.template_export_invoice_1>li:after,
+.template_export_invoice_2>li:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.template_export_invoice_1>li:hover:after,
+.template_export_invoice_2>li:hover:after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.template_export_invoice_1>li:not(:nth-child(1)),
+.template_export_invoice_2>li:not(:nth-child(1))
+{
+    padding-top: 5px;
+}
+
+.export-invoice-cus-1,
+.export-invoice-cus-2{
+    position: relative;
+}
+
+.export-invoice-cus-1:hover>.template_export_invoice_1,
+.export-invoice-cus-2:hover>.template_export_invoice_2{
+    display: block;
+}
+
+#apply_id_template_export>a{
+    color: #000;
+    text-decoration: none;
+}

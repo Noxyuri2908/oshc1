@@ -10,20 +10,34 @@
                     </div>
                 @endif
                 <div class="d-flex">
-                    <div id="btn-action" style="margin-right: 10px;display: none">
-                        <a href="#" id="edit-cus" class="edit-cus btn btn-falcon-default font-weight-normal font-size-12px">
+                    <ul id="btn-action" style="margin-right: 10px;display: none">
+                        <li href="#" id="edit-cus" class="edit-cus btn btn-falcon-default font-weight-normal font-size-12px">
                             Edit
-                        </a>
-                        <a href="#" class="delete-cus btn btn-falcon-default font-weight-normal font-size-12px">
+                        </li>
+                        <li href="#" class="delete-cus btn btn-falcon-default font-weight-normal font-size-12px">
                             Delete
-                        </a>
-                        <a href="#" class="export-invoice-cus-1 btn btn-falcon-default font-weight-normal font-size-12px">
+                        </li>
+                        <li href="#" class="export-invoice-cus-1 btn btn-falcon-default font-weight-normal font-size-12px">
                             Export invoice 1
-                        </a>
-                        <a href="#" class="export-invoice-cus-2 btn btn-falcon-default font-weight-normal font-size-12px">
+                            <ul class="template_export_invoice_1">
+                                @foreach(config('myconfig.template_export_1') as $key=>$value)
+                                    <li key="{{$key}}" apply_id="" id="apply_id_template_export">
+                                        <a href="" target="_blank">{{$value}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li href="#" class="export-invoice-cus-2 btn btn-falcon-default font-weight-normal font-size-12px">
                             Export invoice 2
-                        </a>
-                        <a href="#" class="process-cus btn btn-falcon-default font-weight-normal font-size-12px position-relative">
+                            <ul class="template_export_invoice_2">
+                                @foreach(config('myconfig.template_export_2') as $key=>$value)
+                                    <li key="{{$key}}" apply_id="" id="apply_id_template_export">
+                                        <a href="" target="_blank">{{$value}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li href="#" class="process-cus btn btn-falcon-default font-weight-normal font-size-12px position-relative">
                             Process &raquo
                             <ul class="sub-menu-process-cus position-absolute">
                                 <li class="process-item-cus-com">
@@ -36,43 +50,46 @@
                                     <p>Refund</p>
                                 </li>
                             </ul>
-                        </a>
-
-                    </div>
-                    @can('customer.store')
-{{--                        <a href="{{route('customer.create')}}"--}}
-{{--                           class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px">--}}
-{{--                            <i class="fas fa-plus"></i> Add</a>--}}
-                        <a href="#"
-                           class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px" data-toggle="modal" data-target="#modalCreateCustomer">
-                            <i class="fas fa-plus"></i> Add</a>
-                        {{-- modal create customer--}}
-                        <div class="modal fade modalCreateCustomer" id="modalCreateCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">NEW APPLICATION</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                        </li>
+                    </ul>
+                    <ul>
+                        @can('customer.store')
+                            {{--                        <a href="{{route('customer.create')}}"--}}
+                            {{--                           class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px">--}}
+                            {{--                            <i class="fas fa-plus"></i> Add</a>--}}
+                            <li href="#"
+                                class="btn btn-falcon-default mr-2 font-weight-normal font-size-12px" data-toggle="modal" data-target="#modalCreateCustomer">
+                                <i class="fas fa-plus"></i> Add
+                            </li>
+                            {{-- modal create customer--}}
+                            <div class="modal fade modalCreateCustomer" id="modalCreateCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">NEW APPLICATION</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @include('CRM.elements.customers.modal-create')
+                                        </div>
+                                        {{--                                    <div class="modal-footer">--}}
+                                        {{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                                        {{--                                        <button type="button" class="btn btn-primary">Save changes</button>--}}
+                                        {{--                                    </div>--}}
                                     </div>
-                                    <div class="modal-body">
-                                        @include('CRM.elements.customers.modal-create')
-                                    </div>
-{{--                                    <div class="modal-footer">--}}
-{{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                                        <button type="button" class="btn btn-primary">Save changes</button>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
-                        </div>
-                    @endcan
+                        @endcan
 
-                    <a href="#" class="delete-filter btn btn-falcon-default font-weight-normal font-size-12px">
-                        <img style="width: 15px"
-                             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM5Ni44MTcgMzk2LjgxNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8Zz4KCQkJPHJlY3QgeD0iMCIgeT0iMzAuNDQxIiB3aWR0aD0iMzEzLjQ2OSIgaGVpZ2h0PSIyNi4xMjIiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcmVjdD4KCQkJPHBhdGggZD0iTTYuMjY5LDcyLjIzN0wxMjYuOTU1LDE5NC40OWMxLjU2NywxLjU2NywzLjY1NywzLjY1NywzLjY1Nyw1Ljc0N3YxNjYuMTM5bDUyLjI0NS0yOC4yMTJWMjAwLjIzNyAgICAgYzAtMi4wOSwyLjA5LTQuMTgsMy42NTctNS43NDdMMzA3LjIsNzIuMjM3SDYuMjY5eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzc3LjczMSwyMDIuMzI3Yy0yOS4yNzgtMjYuOTg4LTc0Ljg5LTI1LjEzMS0xMDEuODc4LDQuMTQ3Yy0yNS40NDgsMjcuNjA3LTI1LjQ0OCw3MC4xMjQsMCw5Ny43MzEgICAgIGMyOS4yNzgsMjYuOTg4LDc0Ljg5LDI1LjEzMSwxMDEuODc4LTQuMTQ3QzQwMy4xNzgsMjcyLjQ1LDQwMy4xNzgsMjI5LjkzNCwzNzcuNzMxLDIwMi4zMjd6IE0zNjUuNzE0LDI4MS4yMTYgICAgIGMzLjAzLDIuNjcyLDMuMzIsNy4yOTQsMC42NDgsMTAuMzI0Yy0wLjIwMiwwLjIyOS0wLjQxOSwwLjQ0Ni0wLjY0OCwwLjY0OGMtMS41NTQsMS40NDYtMy42MjcsMi4yLTUuNzQ3LDIuMDkgICAgIGMtMS45NjIsMC4wOTEtMy44NjctMC42NzEtNS4yMjQtMi4wOWwtMjcuNjktMjcuNjlsLTI3LjY5LDI3LjY5Yy0zLjMxNSwyLjgxMy04LjE3OSwyLjgxMy0xMS40OTQsMCAgICAgYy0yLjUyOS0zLjIyLTIuNTI5LTcuNzUxLDAtMTAuOTcxbDI3LjY5LTI3LjY5bC0yNy42OS0yNy42OWMtMi41MjktMy4yMi0yLjUyOS03Ljc1MSwwLTEwLjk3MWMzLjIyNC0zLjA1Miw4LjI3LTMuMDUyLDExLjQ5NCwwICAgICBsMjcuNjksMjcuNjlsMjcuNjktMjcuNjljMi41OTctMy40NjMsNy41MDktNC4xNjQsMTAuOTcxLTEuNTY3YzMuNDYzLDIuNTk3LDQuMTY0LDcuNTA5LDEuNTY3LDEwLjk3MSAgICAgYy0wLjQ0NSwwLjU5NC0wLjk3MywxLjEyMi0xLjU2NywxLjU2N2wtMjcuNjksMjcuNjlMMzY1LjcxNCwyODEuMjE2eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"/>
-                        Delete Filter
-                    </a>
+                        <li href="#" class="delete-filter btn btn-falcon-default font-weight-normal font-size-12px">
+                            <img style="width: 15px"
+                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM5Ni44MTcgMzk2LjgxNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8Zz4KCQkJPHJlY3QgeD0iMCIgeT0iMzAuNDQxIiB3aWR0aD0iMzEzLjQ2OSIgaGVpZ2h0PSIyNi4xMjIiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcmVjdD4KCQkJPHBhdGggZD0iTTYuMjY5LDcyLjIzN0wxMjYuOTU1LDE5NC40OWMxLjU2NywxLjU2NywzLjY1NywzLjY1NywzLjY1Nyw1Ljc0N3YxNjYuMTM5bDUyLjI0NS0yOC4yMTJWMjAwLjIzNyAgICAgYzAtMi4wOSwyLjA5LTQuMTgsMy42NTctNS43NDdMMzA3LjIsNzIuMjM3SDYuMjY5eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzc3LjczMSwyMDIuMzI3Yy0yOS4yNzgtMjYuOTg4LTc0Ljg5LTI1LjEzMS0xMDEuODc4LDQuMTQ3Yy0yNS40NDgsMjcuNjA3LTI1LjQ0OCw3MC4xMjQsMCw5Ny43MzEgICAgIGMyOS4yNzgsMjYuOTg4LDc0Ljg5LDI1LjEzMSwxMDEuODc4LTQuMTQ3QzQwMy4xNzgsMjcyLjQ1LDQwMy4xNzgsMjI5LjkzNCwzNzcuNzMxLDIwMi4zMjd6IE0zNjUuNzE0LDI4MS4yMTYgICAgIGMzLjAzLDIuNjcyLDMuMzIsNy4yOTQsMC42NDgsMTAuMzI0Yy0wLjIwMiwwLjIyOS0wLjQxOSwwLjQ0Ni0wLjY0OCwwLjY0OGMtMS41NTQsMS40NDYtMy42MjcsMi4yLTUuNzQ3LDIuMDkgICAgIGMtMS45NjIsMC4wOTEtMy44NjctMC42NzEtNS4yMjQtMi4wOWwtMjcuNjktMjcuNjlsLTI3LjY5LDI3LjY5Yy0zLjMxNSwyLjgxMy04LjE3OSwyLjgxMy0xMS40OTQsMCAgICAgYy0yLjUyOS0zLjIyLTIuNTI5LTcuNzUxLDAtMTAuOTcxbDI3LjY5LTI3LjY5bC0yNy42OS0yNy42OWMtMi41MjktMy4yMi0yLjUyOS03Ljc1MSwwLTEwLjk3MWMzLjIyNC0zLjA1Miw4LjI3LTMuMDUyLDExLjQ5NCwwICAgICBsMjcuNjksMjcuNjlsMjcuNjktMjcuNjljMi41OTctMy40NjMsNy41MDktNC4xNjQsMTAuOTcxLTEuNTY3YzMuNDYzLDIuNTk3LDQuMTY0LDcuNTA5LDEuNTY3LDEwLjk3MSAgICAgYy0wLjQ0NSwwLjU5NC0wLjk3MywxLjEyMi0xLjU2NywxLjU2N2wtMjcuNjksMjcuNjlMMzY1LjcxNCwyODEuMjE2eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"/>
+                            Delete Filter
+                        </li>
+                    </ul>
+
                 </div>
 
             </div>
@@ -232,11 +249,17 @@
         $(document).on('click', '.export_invoice', function (e){
             var apply_id = $(this).attr('data-id');
             $('select[name="type_file"]').on('change', function () {
-                console.log(apply_id);
                 var newHref = href + '?template=' + $(this).val() + '&apply_id=' + apply_id;
                 $('#viewInvoice>a').attr('href', newHref);
             })
         });
+
+        // $('#apply_id_template_export').on('click', function () {
+        //     var newHref = href + '?template=' + $(this).attr('key') + '&apply_id=' + $(this).attr('apply_id');
+        //     window.open(newHref, '_blank');
+        // })
+
+
 
         $('#exportModalInvoice').on('hidden.bs.modal', function () {
             $('select[name="type_file"]').val(''); // reset option select template invoice
