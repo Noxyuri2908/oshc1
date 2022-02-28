@@ -129,18 +129,18 @@
             <tfoot>
             <tr style=" border-bottom: 9px solid white;">
                 <td style="width: 40%; text-align: left">
-                    <b style="">{{$dataInvoice['companyNameVi']}}</b>
+                    <b style="">{{decode_html($dataInvoice['companyNameVi'])}}</b>
                     <br>
-                    <p style="">{{$dataInvoice['companyAddressVi1']}}</p>
-                    <p style="">{{$dataInvoice['companyPhoneVi1']}}</p>
+                    <p style="">{{decode_html($dataInvoice['companyAddressVi1'])}}</p>
+                    <p style="">{{decode_html($dataInvoice['companyPhoneVi1'])}}</p>
                     <br>
-                    <p style="padding-right: 60px;">{{$dataInvoice['companyAddressVi2']}}</p>
-                    <p style="">{{$dataInvoice['companyPhoneVi2']}}</p>
+                    <p style="padding-right: 60px;">{{decode_html($dataInvoice['companyAddressVi2'])}}</p>
+                    <p style="">{{decode_html($dataInvoice['companyPhoneVi2'])}}</p>
                 </td>
                 <td style="">
                     <p style="margin-bottom: 18px">Bên nhận :
-                        <span >{{ $dataInvoice['agentName']}}</span><br>
-                        <span >{{ $dataInvoice['address_agent']}}</span>
+                        <span >{{decode_html($dataInvoice['agentName'])}}</span><br>
+                        <span >{{decode_html($dataInvoice['address_agent'])}}</span>
                     </p>
                     <p style="">Số hóa đơn :
                         <span class="pl-64">{{ $dataInvoice['ref_no']}}</span>

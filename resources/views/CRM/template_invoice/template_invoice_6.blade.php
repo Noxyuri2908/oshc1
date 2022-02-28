@@ -121,13 +121,13 @@
             <tfoot>
             <tr style=" border-bottom: 9px solid white;">
                 <td style="width: 40%; text-align: left">
-                    <b>{{$dataInvoice['companyNameVi']}}</b>
+                    <b>{{decode_html($dataInvoice['companyNameVi'])}}</b>
                     <br>
-                    <p >{{$dataInvoice['companyAddressVi1']}}</p>
-                    <p>{{$dataInvoice['companyPhoneVi1']}}</p>
+                    <p >{{decode_html($dataInvoice['companyAddressVi1'])}}</p>
+                    <p>{{decode_html($dataInvoice['companyPhoneVi1'])}}</p>
                     <br>
-                    <p>{{$dataInvoice['companyAddressVi2']}}</p>
-                    <p>{{$dataInvoice['companyPhoneVi2']}}</p>
+                    <p>{{decode_html($dataInvoice['companyAddressVi2'])}}</p>
+                    <p>{{decode_html($dataInvoice['companyPhoneVi2'])}}</p>
                 </td>
                 <td style="">
 {{--                    <p style="margin-bottom: 18px">Bên nhận :--}}
@@ -189,7 +189,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px" >Ưu đãi</th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mãi</th>
                     <td class="fontSize11px text-right"  style="padding-right: 9px !important;">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
@@ -198,7 +198,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mại</th>
+                    <th colspan="2" class="align-right fontSize11px pl-15px" >Chiết Khấu</th>
                     <td class="fontSize11px text-right" style="padding-right: 9px !important;">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif

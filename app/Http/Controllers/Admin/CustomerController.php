@@ -1853,10 +1853,11 @@ class CustomerController extends Controller
             $dataInvoice['end_date'] = ($obj->end_date) ?? '';
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['amount_AUD'] = $obj->net_amount + $obj->bank_fee_number;
-            $dataInvoice['amount_VND'] = ($obj->net_amount + $obj->bank_fee_number) * $cus->exchange_rate;
+            $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number;
+            $dataInvoice['amount_VND'] = $dataInvoice['amount_AUD'] * $cus->exchange_rate;
             $dataInvoice['exchange_rate'] = $cus->exchange_rate;
             $dataInvoice['date'] = ($obj->created_at) ?? '';
+//            $dataInvoice['extend_fee'] = !empty($cus) ? $cus->extend_fee : '';
         }
 
         if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14)
@@ -1950,12 +1951,6 @@ class CustomerController extends Controller
             $dataInvoice['companyPhoneVi1'] = $templateConfig->company_phone_vi_1;
             $dataInvoice['companyPhoneVi2'] = $templateConfig->company_phone_vi_2;
             $dataInvoice['companyEmailVi1'] = $templateConfig->company_email_vi;
-        }
-        if ($template_id == 16 || $template_id == 17 || $template_id == 18 || $template_id == 19 || $template_id == 20 || $template_id == 27)
-        {
-            $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
-            $dataInvoice['tmp'] = "GST inclusive";
-            $dataInvoice['comm'] = $obj->comm;
         }
 
 

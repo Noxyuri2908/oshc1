@@ -121,18 +121,18 @@
         <tfoot>
             <tr style=" border-bottom: 9px solid white;">
                 <td style="width: 40%; text-align: left">
-                    <b>{{$dataInvoice['companyNameVi']}}</b>
+                    <b>{{decode_html($dataInvoice['companyNameVi'])}}</b>
                         <br>
-                    <p >{{$dataInvoice['companyAddressVi1']}}</p>
-                    <p>{{$dataInvoice['companyPhoneVi1']}}</p>
+                    <p >{{decode_html($dataInvoice['companyAddressVi1'])}}</p>
+                    <p>{{decode_html($dataInvoice['companyPhoneVi1'])}}</p>
                         <br>
-                    <p>{{$dataInvoice['companyAddressVi2']}}</p>
-                    <p>{{$dataInvoice['companyPhoneVi2']}}</p>
+                    <p>{{decode_html($dataInvoice['companyAddressVi2'])}}</p>
+                    <p>{{decode_html($dataInvoice['companyPhoneVi2'])}}</p>
                 </td>
                 <td style="">
                     <p style="margin-bottom: 18px">Bên nhận :
-                        <span >{{ $dataInvoice['agentName']}}</span><br>
-                        <span >{{ $dataInvoice['address_agent']}}</span>
+                        <span >{{ decode_html($dataInvoice['agentName'])}}</span><br>
+                        <span >{{ decode_html($dataInvoice['address_agent'])}}</span>
                     </p>
                     <p >Số hóa đơn :
                         <span class="pl-64">{{ $dataInvoice['ref_no']}}</span>
@@ -177,19 +177,21 @@
             <td style="">{{convert_date_form_db($dataInvoice['end_date'])}}</td>
             <td style="" class="text-right">{{convert_price_float($dataInvoice['amount'])}} {{$dataInvoice['currency']}}</td>
         </tr>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-            <td class="fontSize11px text-right"  style="padding-right: 9px !important;">5 {{$dataInvoice['currency']}}</td>
-        </tr>
+        @if ($dataInvoice['extend_fee'])
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
+                <td class="fontSize11px text-right"  style="padding-right: 9px">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+            </tr>
+        @endif
         @if ($dataInvoice['promotion_amount'])
         <tr>
             <th></th>
             <th></th>
             <th></th>
-            <th colspan="2" class="align-right fontSize11px pl-15px" >Ưu đãi</th>
+            <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mãi</th>
             <td class="fontSize11px text-right"  style="padding-right: 9px !important;">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
         </tr>
         @endif
@@ -198,7 +200,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mại</th>
+            <th colspan="2" class="align-right fontSize11px pl-15px" >Chiết khấu</th>
             <td class="fontSize11px text-right" style="padding-right: 9px !important;">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
         </tr>
         @endif
@@ -233,7 +235,7 @@
                 <th id="total-rate " class="text-right" style="padding-right: 9px !important;width: 150px;">{{$dataInvoice['amount_AUD']}}  {{$dataInvoice['currency']}}</th>
             @else
                 <th colspan="2" class="align-right" id="total-rate">TỔNG SỐ TIỀN PHẢI THU (VND)</th>
-                <th id="total-rate " class="text-right" style="padding-right: 9px !important;width: 150px;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
+                <th id="total-rate" class="text-right" style="padding-right: 9px !important;width: 150px;">{{convert_price_float($dataInvoice['amount_VND'], 0, 'VND')}}</th>
             @endif
         </tr>
     </table>
