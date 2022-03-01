@@ -1878,7 +1878,7 @@ class CustomerController extends Controller
 
         }
 
-        if ($template_id == 9){
+        if ($template_id == 9 || $template_id == 10){
             $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number;
         }
 
@@ -1886,7 +1886,6 @@ class CustomerController extends Controller
         {
             $dataInvoice['amount'] = $obj->net_amount + $obj->surcharge;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['total'] = $obj->net_amount;
 
         }
 
