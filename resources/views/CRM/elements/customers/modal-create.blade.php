@@ -185,7 +185,7 @@
             let extra = $('#extra').val() != '' ? convertStringCurrencyToNumber($('#extra').val()) : 0;
             let comm = $('#data_comm_agent').val() != '' ? convertStringCurrencyToNumber($('#data_comm_agent').val()) : 0
             var calcGstValue = 0;
-            if(parseInt(gst) == 2){
+            if(parseInt(gst) == 1){
                 calcGstValue = (parseFloat(net_amount)-parseFloat(extra)) * (parseFloat(comm) / 100) / 11;
                 $('#gst').val(calcGstValue.toFixed(2));
             }else{
