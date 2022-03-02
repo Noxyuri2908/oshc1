@@ -100,6 +100,13 @@
     .text-right{
         text-align: right !important;
     }
+    #total-rate{
+        text-align:right;
+        font-size: 13px;
+        padding: 5px 5px;
+        font-size: 11px;
+        background-color: #D3D3D3;
+    }
 </style>
 @include('CRM.template_invoice.style')
 @section('content')
