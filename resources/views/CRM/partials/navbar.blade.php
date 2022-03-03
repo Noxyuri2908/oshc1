@@ -396,10 +396,10 @@
                 <ul class="nav collapse {{in_array($flag, ['report-month','report-quarterly']) ? 'show' : ''}}"
                     id="report">
                     <li class="nav-item {{$flag == 'report-month' ? 'active' : ''}}">
-                        <a target="_blank" class="nav-link" href="{{route('reportMonthly',['start_date'=>\Carbon::now()->subMonth(12)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY REPORT</a>
+                        <a target="_blank" class="nav-link" href="{{route('reportMonthly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY REPORT</a>
                     </li>
                     <li class="nav-item {{$flag == 'report-quarterly' ? 'active' : ''}}">
-                        <a target="_blank" class="nav-link" href="{{route('reportQuarterly',['start_date'=>\Carbon::now()->subMonth(12)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">QUARTERLY REPORT</a>
+                        <a target="_blank" class="nav-link" href="{{route('reportQuarterly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">QUARTERLY REPORT</a>
                     </li>
                     <li class="nav-item {{$flag == 'report-flywire' ? 'active' : ''}}">
                         <a target="_blank" class="nav-link" href="{{route('reportFlywire', ['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">REPORT FLYWIRE</a>
