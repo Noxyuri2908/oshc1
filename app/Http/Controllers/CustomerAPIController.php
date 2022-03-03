@@ -51,7 +51,7 @@ class CustomerAPIController extends Controller
             'end_date' =>  !empty($input['end_date']) ? convert_date_to_db($input['end_date']) : null,
             'no_of_adults' =>  $input['no_of_adults'],
             'no_of_children' =>  $input['no_of_children'],
-            'net_amount' =>  (int) $input['price'],
+            'net_amount' =>  $input['price'],
             'ref_no' =>  $input['ref_no'],
         );
 
@@ -59,36 +59,36 @@ class CustomerAPIController extends Controller
         {
             $applies['type_visa'] = 1;
             $applies['note'] =
-                'Where is the student studying (instituation)* : ' .$input['witss']. '<br>' .
-                'My current or future location in Australia (campus)* : ' .$input['my']. '<br>' .
-                'Street address : ' .$input['sa']. '<br>' .
-                'City / Suburb : ' .$input['cs']. '<br>' .
-                'State : ' .$input['s']. '<br>' .
-                'Postcode : ' .$input['p']. '<br>';
+                'Where is the student studying (instituation)* : ' .$input['witss'] .PHP_EOL .
+                'My current or future location in Australia (campus)* : ' .$input['my']. PHP_EOL .
+                'Street address : ' .$input['sa']. PHP_EOL .
+                'City / Suburb : ' .$input['cs']. PHP_EOL .
+                'State : ' .$input['s']. PHP_EOL .
+                'Postcode : ' .$input['p']. PHP_EOL;
 
         }else if ($input['type'] == 'ovhc'){
 
             $applies['type_visa'] = $input['type_visa'];
             $applies['note'] =
-                'Street address : ' .$input['sa']. '<br>' .
-                'City / Suburb : ' .$input['cs']. '<br>' .
-                'State : ' .$input['s']. '<br>' .
-                'Postcode : ' .$input['p']. '<br>';
+                'Street address : ' .$input['sa']. ' \r\n   ' .
+                'City / Suburb : ' .$input['cs']. PHP_EOL .
+                'State : ' .$input['s']. PHP_EOL .
+                'Postcode : ' .$input['p']. PHP_EOL;
 
         }else if ($input['type'] == 'usa_si'){
 
             $applies['note'] =
-                'Student/Scholar Status : ' .$input['sss']. '<br>' .
-                'Name of school or organization : ' .$input['nosoo']. '<br>' .
-                'Beneficiary : ' .$input['b']. '<br>';
+                'Student/Scholar Status : ' .$input['sss']. PHP_EOL .
+                'Name of school or organization : ' .$input['nosoo']. PHP_EOL .
+                'Beneficiary : ' .$input['b']. PHP_EOL;
 
         }else if ($input['type'] == 'usa_vi'){
 
             $applies['note'] =
-                'Coverage area : ' .$input['ca']. '<br>' .
-                'Overall maximum coverage : ' .$input['omc']. '<br>' .
-                'Deductible choices : ' .$input['dc']. '<br>' .
-                'Beneficiary : ' .$input['b']. '<br>';
+                'Coverage area : ' .$input['ca']. PHP_EOL .
+                'Overall maximum coverage : ' .$input['omc']. PHP_EOL .
+                'Deductible choices : ' .$input['dc']. PHP_EOL .
+                'Beneficiary : ' .$input['b']. PHP_EOL;
 
         }
 

@@ -242,8 +242,10 @@
             <div class="col-md-12">
                 <div class="form-group row">
                     <label for="ref_no" class="col-sm-2">Note</label>
-                    <textarea class="form-control col-sm-10" id="note" name="note"
-                              rows="3">{{isset($obj) ? decode_html($obj->note) : decode_html(old('note'))}}</textarea>
+                    <textarea class="form-control col-sm-10" id="note" name="note" rows="3">
+                        {{isset($obj) ? nl2br($obj->note) : ""}}
+                    </textarea>
+
                 </div>
             </div>
         </div>
