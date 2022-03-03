@@ -1,7 +1,7 @@
 @push('scripts')
     <script>
         var opt = {
-            filename:     'myfile.pdf',
+            filename: "{{$ref_no}}.pdf",
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale : 2},
             jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }

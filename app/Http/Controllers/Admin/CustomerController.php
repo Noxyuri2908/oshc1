@@ -1811,6 +1811,7 @@ class CustomerController extends Controller
         $dataInvoice['sum_amount_receipt'] = $phieuthus->sum('amount');
         $dataInvoice['sum_exchange_rate_receipt'] = $phieuthus->sum('exchange_rate');
 
+        $dataInvoice['ref_no'] = $obj->ref_no;
         $dataInvoice['content'] = ($templateConfig->content) ?? '';
         $dataInvoice['currency'] = ($obj->provider->currency()) ?? '';
         $dataInvoice['logo'] = ($templateConfig->logo) ? asset('FILES/source/') . '/' . $templateConfig->logo : "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D";
@@ -1844,7 +1845,6 @@ class CustomerController extends Controller
 
         if ($template_id == 1 || $template_id == 2 || $template_id == 3 || $template_id == 4 || $template_id == 5 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16)
         {
-            $dataInvoice['ref_no'] = ($obj->ref_no) ?? '';
             $dataInvoice['cusContent'] = $obj->ref_no .' '. $cus->first_name." ".$cus->last_name;
             $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
             $dataInvoice['provider_name'] = ($obj->provider->name) ?? '';
@@ -1867,7 +1867,6 @@ class CustomerController extends Controller
 
         if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14)
         {
-            $dataInvoice['ref_no'] = ($obj->ref_no) ?? '';
             $dataInvoice['date'] = ($obj->created_at) ?? '';
             $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
             $dataInvoice['provider_name'] = ($obj->provider->name) ?? '';
