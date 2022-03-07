@@ -23,7 +23,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="card-body pt-0">
+            <div class="card-body pt-0 card-body-checklist">
                 <div class="table-check-list table-div">
                     <table class="">
                         <thead class="">

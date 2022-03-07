@@ -151,13 +151,13 @@
                 <table class="table">
                     <thead>
                         <tr class="first-row">
-                            <th class="width-100" scope="col">Action</th>
-                            <th class="width-100" scope="col">Service</th>
-                            <th class="width-100" scope="col">Policy</th>
-                            <th class="width-100" scope="col">Commission</th>
+                            <th class="width-40" scope="col">Action</th>
+                            <th class="width-140" scope="col">Service</th>
+                            <th class="width-80" scope="col">Policy</th>
+                            <th class="width-90" scope="col">Commission</th>
                             <th class="width-100" scope="col">GST</th>
                             <th class="width-100" scope="col">Type Payment</th>
-                            <th class="width-200" scope="col">Validity start date</th>
+                            <th class="width-130" scope="col">Validity start date</th>
                         </tr>
                     </thead>
                     <tbody id="table_comm">

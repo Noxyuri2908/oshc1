@@ -115,6 +115,7 @@
     var budget_filter{{$type}};
     var checklist_created_at_filter{{$type}};
     var assigned_by_filter{{$type}};
+
     $(document).on('mouseover','#check-list-tab-content',function(e){
         hoverTableCheckListAndTask = 'checklist';
     });
@@ -258,6 +259,7 @@
         isAppend,
         type
     ) {
+        console.log('..loading');
         $.ajax({
             url: "{{route('check-list.getData')}}",
             type: 'get',
@@ -278,11 +280,12 @@
                 budget: budget_filter{{$type}},
                 checklist_created_at: checklist_created_at_filter{{$type}},
                 assigned_by: assigned_by_filter{{$type}},
-                type:type,
+                type: type,
                 proposer : $('#proposer').val(),
                 level_of_process : $('#level_of_process').val(),
             },
             success: function (data) {
+                console.log(data)
                 if (isAppend == 0) {
                     $('#{{$type}}-table-tbody').html(data.view);
                 } else if (isAppend == 1) {
@@ -298,26 +301,32 @@
     }
 
     $('.table-check-list').scroll(function (e) {
+        console.log('...height');
+        console.log(Math.round($(this).scrollTop() + $(this).innerHeight(), 10) >= Math.round($(this)[0].scrollHeight, 10) - 80);
+
         if (ready{{$type}} && Math.round($(this).scrollTop() + $(this).innerHeight(), 10) >= Math.round($(this)[0].scrollHeight, 10) - 80) {
             ready{{$type}} = false;
             if (page{{$type}} < lastPage{{$type}}) {
                 page{{$type}}++;
                 get{{$type}}Filter(
                     page{{$type}},
-                    group_id_filter{{$type}},
-                    website_id_filter{{$type}},
-                    category_id_filter{{$type}},
-                    person_id_filter{{$type}},
-                    problem_filter{{$type}},
-                    date_of_suggestion_filter{{$type}},
-                    solution_text_filter{{$type}},
-                    level_of_process_filter{{$type}},
-                    result_id_filter{{$type}},
-                    processing_time_filter{{$type}},
-                    budget_filter{{$type}},
-                    checklist_created_at_filter{{$type}},
-                    assigned_by_filter{{$type}},
-                    1);
+                    group_id_filter{{$type}} = $('#myGroupList{{$type}} .nav-item .active').attr('data-id'),
+                    type_id_filter{{$type}} = $('#type_id_filter{{$type}}').val(),
+                    detail_filter{{$type}} = $('#detail_filter{{$type}}').val(),
+                    website_id_filter{{$type}} = $('#website_id_filter{{$type}}').val(),
+                    category_id_filter{{$type}} = $('#category_id_filter{{$type}}').val(),
+                    person_id_filter{{$type}} = $('#person_id_filter{{$type}}').val(),
+                    problem_filter{{$type}} = $('#problem_filter{{$type}}').val(),
+                    date_of_suggestion_filter{{$type}} = $('#date_of_suggestion_filter{{$type}}').val(),
+                    solution_text_filter{{$type}} = $('#solution_text_filter{{$type}}').val(),
+                    level_of_process_filter{{$type}} = $('#level_of_process_filter{{$type}}').val(),
+                    result_id_filter{{$type}} = $('#result_id_filter{{$type}}').val(),
+                    processing_time_filter{{$type}} = $('#processing_time_filter{{$type}}').val(),
+                    budget_filter{{$type}} = $('#budget_filter{{$type}}').val(),
+                    checklist_created_at_filter{{$type}} = $('#checklist_created_at_filter{{$type}}').val(),
+                    assigned_by_filter{{$type}} = $('#assigned_by_filter{{$type}}').val(),
+                    1,
+                'checklist');
             } else {
                 ready{{$type}} = true;
             }
