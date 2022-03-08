@@ -1855,11 +1855,14 @@ class CustomerController extends Controller
             $dataInvoice['end_date'] = ($obj->end_date) ?? '';
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $obj->extra;
             $dataInvoice['amount_VND'] = $dataInvoice['amount_AUD'] * $cus->exchange_rate;
             $dataInvoice['exchange_rate'] = $cus->exchange_rate;
             $dataInvoice['date'] = ($obj->created_at) ?? '';
-//            $dataInvoice['extend_fee'] = !empty($cus) ? $cus->extend_fee : '';
+        }
+
+        if ($template_id == 1 || $template_id == 2 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16)
+        {
+            $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $obj->extra;
         }
 
         if ($template_id == 3 || $template_id == 4 || $template_id == 5)
@@ -1939,7 +1942,7 @@ class CustomerController extends Controller
         if ($template_id == 4)
         {
             $dataInvoice['comm'] = $obj->comm;
-            $dataInvoice['total'] = $obj->net_amount - $obj->comm;
+            $dataInvoice['total'] = $obj->net_amount - $obj->extra + $obj->bank_fee_number - $dataInvoice['comm'];
         }
 
         if ($template_id == 5 || $template_id == 8)
