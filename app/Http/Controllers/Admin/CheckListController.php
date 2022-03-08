@@ -67,7 +67,7 @@ class CheckListController extends Controller
                 ))->render(),
                 'last_page' => $lastPage,
                 'type' => $type,
-                'total'
+                'total' => $total
             ]);
         } else {
             if ($type == 'task') {

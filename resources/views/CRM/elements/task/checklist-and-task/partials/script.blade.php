@@ -292,9 +292,10 @@
                     $('#{{$type}}-table-tbody').append(data.view);
                 }
                 lastPage{{$type}} = data.last_page;
-                $('#total').text()
+                $('#total').text(`total : ${data.total}`);
+
             },
-            complete: function () {
+            complete: function (data) {
                 ready{{$type}} = true;
             }
         })
