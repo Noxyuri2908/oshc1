@@ -297,6 +297,13 @@ class AddColumn extends Migration
                 $table->integer('hospital_id')->nullable()->after('type_visa');
             });
         }
+
+        if (!Schema::hasColumn('customers', 's_live_in_AS'))
+        {
+            Schema::table('customers', function(Blueprint $table) {
+                $table->integer('s_live_in_AS')->nullable()->comment('1 => yes, 0 => no')->after('type');
+            });
+        }
     }
 
     /**
@@ -529,6 +536,13 @@ class AddColumn extends Migration
         {
             Schema::table('applies', function(Blueprint $table) {
                 $table->dropColumn('hospital_id');
+            });
+        }
+
+        if (Schema::hasColumn('customers', 's_live_in_AS'))
+        {
+            Schema::table('customers', function(Blueprint $table) {
+                $table->dropColumn('s_live_in_AS');
             });
         }
     }

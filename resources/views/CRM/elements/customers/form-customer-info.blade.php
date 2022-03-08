@@ -153,6 +153,16 @@
                     <input class="form-control col-md-8" id="fb" autocomplete="off" name="fb" value="{{isset($cus) ? $cus->fb : request()->get('fb')}}" type="text" placeholder="">
                 </div>
 
+                <div class="form-group row">
+                    <label class="col-md-4" for="student_id">Is the student already living in Australia?</label>
+                    <select name="live_in_AS" id="live_in_AS" class="form-control col-md-8">
+                        <option value=""></option>
+                        @foreach(config('myconfig.live_in_AS') as $key => $value)
+                            <option value="{{$key}}" {{ !empty($cus) && $cus->s_live_in_AS == $key ? 'selected' : ''  }}>{{$value}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
 
             </div>
         </div>

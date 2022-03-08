@@ -29,7 +29,8 @@ class Customer extends Model
         'destination',
         'exchange_rate',
         'extend_fee',
-        'cover_id'
+        'cover_id',
+        's_live_in_AS'
     ];
 
     protected $append = ['dateB', 'monthB', 'yearB'];

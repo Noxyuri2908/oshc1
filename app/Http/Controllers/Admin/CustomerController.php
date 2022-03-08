@@ -1001,12 +1001,13 @@ class CustomerController extends Controller
         }
 
         // Create customer
-        $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id');
+        $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id', 's_live_in_AS');
         $data_register['apply_id'] = $invoice->id;
         $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
         $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
         $data_register['extend_fee'] = convert_number_currency_to_db($request->get('extend_fee'));
         $data_register['type'] = 1;
+        $data_register['s_live_in_AS'] = $request->get('live_in_AS');
         Customer::create($data_register);
         $data_partner = $request->only('partner_prefix_name', 'partner_first_name', 'partner_last_name', 'partner_gender', 'partner_birth_of_date', 'partner_passport');
         $data_child = $request->only('child_prefix_name', 'child_first_name', 'child_last_name', 'child_gender', 'child_birth_of_date', 'child_passport');
@@ -1223,12 +1224,13 @@ class CustomerController extends Controller
             $invoice->update($data);
 
             //Create customer
-            $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id');
+            $data_register = $request->only('provider_of_school', 'destination', 'prefix_name', 'first_name', 'last_name', 'gender', 'birth_of_date', 'passport', 'country', 'place_study', 'student_id', 'phone', 'email', 'fb', 'cover_id', 's_live_in_AS');
             $data_register['exchange_rate'] = convert_number_currency_to_db($request->get('exchange_rate'));
             $data_register['extend_fee'] = convert_number_currency_to_db($request->get('extend_fee'));
             $data_register['birth_of_date'] = convert_date_to_db($request->get('birth_of_date'));
             $apply_id = $invoice->id;
             $data_register['type'] = 1;
+            $data_register['s_live_in_AS'] = $request->get('live_in_AS');
             $customer = Customer::where('type', 1)->where('apply_id', $apply_id)->first();
 
             if (!empty($customer)) {
