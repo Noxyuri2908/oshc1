@@ -255,13 +255,13 @@
                     <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['promotion']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
-            @if ($dataInvoice['surcharge'])
+            @if ($dataInvoice['bank_fee'])
                 <tr>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Surcharge fee</th>
-                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['surcharge']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['comm'])
