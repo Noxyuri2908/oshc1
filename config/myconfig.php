@@ -436,7 +436,7 @@ return [
         2 => '2. Payment request - VND (VCB Exchange rate)',
         3 => '3. Payment request - VND (Edupay - deduct com)',
         4 => '4. Payment request (VN insurance - deduct com)',
-        5 => '5. Hoa don thanh toan BHVN (full)',
+        5 => '5. Payment request (VN insurance - full)',
         6 => '6. Payment request - VND (Edupay Exchange rate) - no agent',
         7 => '7. Payment request - VND (VCB Exchange rate) - no agent',
         8 => '8. Hoa don thanh toan BHVN (full) - no agent',

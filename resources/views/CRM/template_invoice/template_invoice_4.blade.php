@@ -196,7 +196,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right fontSize11px pl-15px">Phí gia hạn</th>
-                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25"  style="">{{convert_price_float($dataInvoice['extend_fee'], 0)}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['promotion_amount'])
@@ -205,7 +205,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right  fontSize11px pl-15px" >Khuyến mãi</th>
-                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25"  style="">{{convert_price_float($dataInvoice['promotion_amount'], 0)}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['extra'])
@@ -214,7 +214,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right fontSize11px pl-15px" >Chiết khấu</th>
-                    <td class="fontSize11px text-right pr-25" style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25" style="">{{convert_price_float($dataInvoice['extra'], 0)}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['bank_fee'])
@@ -223,7 +223,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right fontSize11px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
-                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px text-right pr-25"  style="">{{convert_price_float($dataInvoice['bank_fee'], 0)}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             <tr>
