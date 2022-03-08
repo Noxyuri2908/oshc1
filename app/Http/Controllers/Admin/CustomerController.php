@@ -1855,7 +1855,7 @@ class CustomerController extends Controller
             $dataInvoice['end_date'] = ($obj->end_date) ?? '';
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['amount_VND'] = $dataInvoice['amount_AUD'] * $cus->exchange_rate;
+            $dataInvoice['amount_VND'] = ($obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $obj->extra) * $cus->exchange_rate;
             $dataInvoice['exchange_rate'] = $cus->exchange_rate;
             $dataInvoice['date'] = ($obj->created_at) ?? '';
         }
