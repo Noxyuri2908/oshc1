@@ -53,6 +53,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="total-checklist-it">
+                    <p id="total">total : </p>
+                </div>
             </div>
         </div>
     </div>

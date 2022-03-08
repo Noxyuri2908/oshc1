@@ -151,5 +151,5 @@
         </div>
 
     </page>
-    @include('CRM.template_invoice.script_export_to_pdf')
+    @include('CRM.template_invoice.script_export_to_pdf', ['ref_no' => $dataInvoice['ref_no']])
 @stop

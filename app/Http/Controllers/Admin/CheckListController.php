@@ -57,6 +57,7 @@ class CheckListController extends Controller
         ->orderByRaw("FIELD(result_id,1) desc");
         $checkListDatas = $checkListDatas->paginate(10);
         $lastPage = $checkListDatas->lastPage();
+        $total = $checkListDatas->total();
         $type = $request->get('type');
         if ($type == 'checklist') {
             return response()->json([
@@ -66,6 +67,7 @@ class CheckListController extends Controller
                 ))->render(),
                 'last_page' => $lastPage,
                 'type' => $type,
+                'total'
             ]);
         } else {
             if ($type == 'task') {
