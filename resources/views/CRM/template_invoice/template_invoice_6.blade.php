@@ -100,6 +100,9 @@
     .text-right{
         text-align: right !important;
     }
+    #total-rate{
+        text-transform: uppercase;
+    }
 </style>
 @include('CRM.template_invoice.style')
 @section('content')

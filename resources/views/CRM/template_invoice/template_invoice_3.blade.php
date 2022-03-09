@@ -103,6 +103,10 @@
     .fontSize12px{
         font-size: 12px;
     }
+
+    #total-rate{
+        text-transform: uppercase;
+    }
 </style>
 @include('CRM.template_invoice.style')
 @section('content')

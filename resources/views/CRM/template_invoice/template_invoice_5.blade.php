@@ -109,6 +109,10 @@
     body{
         color: black !important;
     }
+
+    #total-rate{
+        text-transform: uppercase;
+    }
 </style>
 @section('content')
     @include('CRM.template_invoice.button_export_invoice')

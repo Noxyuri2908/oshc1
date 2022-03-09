@@ -109,6 +109,10 @@
     .sub-des i{
         font-size: 10px;
     }
+
+    #total-rate{
+        text-transform: uppercase;
+    }
 </style>
 @include('CRM.template_invoice.style')
 
