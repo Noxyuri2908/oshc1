@@ -99,6 +99,10 @@
     body{
         color: black !important;
     }
+
+    .fontSize12px{
+        font-size: 12px;
+    }
 </style>
 @include('CRM.template_invoice.style')
 @section('content')
@@ -185,8 +189,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px">Phí gia hạn</th>
-                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
+                    <th colspan="2" class="align-right fontSize12px pl-15px">Phí gia hạn</th>
+                    <td class="fontSize12px text-right pr-25"  style="">{{$dataInvoice['extend_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['promotion_amount'])
@@ -194,8 +198,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px" >Khuyến mãi</th>
-                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
+                    <th colspan="2" class="align-right fontSize12px pl-15px" >Khuyến mãi</th>
+                    <td class="fontSize12px text-right pr-25"  style="">{{$dataInvoice['promotion_amount']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['extra'])
@@ -203,8 +207,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px" >Chiết khấu</th>
-                    <td class="fontSize11px text-right pr-25" style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
+                    <th colspan="2" class="align-right fontSize12px pl-15px" >Chiết khấu</th>
+                    <td class="fontSize12px text-right pr-25" style="">{{$dataInvoice['extra']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['bank_fee'])
@@ -212,16 +216,16 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colspan="2" class="align-right fontSize11px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
-                    <td class="fontSize11px text-right pr-25"  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
+                    <th colspan="2" class="align-right fontSize12px pl-15px" style="padding-left: 15px">Phí chuyển tiền/phí dịch vụ</th>
+                    <td class="fontSize12px text-right pr-25"  style="">{{$dataInvoice['bank_fee']}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             <tr>
                 <th></th>
                 <th></th>
                 <th></th>
-                <th colspan="2" class="align-right fontSize11px pl-15px">Hoa hồng dịch vụ</th>
-                <td class="text-right pr-25">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
+                <th colspan="2" class="align-right fontSize12px pl-15px">Hoa hồng dịch vụ</th>
+                <td class="text-right pr-25">{{convert_price_float($dataInvoice['comm'])}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>

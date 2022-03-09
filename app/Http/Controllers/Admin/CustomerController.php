@@ -1865,9 +1865,14 @@ class CustomerController extends Controller
             $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $obj->extra;
         }
 
-        if ($template_id == 3 || $template_id == 4 || $template_id == 5)
+        if ($template_id == 4 || $template_id == 5)
         {
             $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
+        }
+
+        if ($template_id == 3)
+        {
+            $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
         }
 
         if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14)

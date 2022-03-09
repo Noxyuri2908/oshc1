@@ -58,6 +58,7 @@ class CustomerAPIController extends Controller
         if ($input['type'] == 'oshc')
         {
             $applies['type_visa'] = 1;
+            $applies['type_service'] = 2;
             $applies['note'] =
                 'Where is the student studying (instituation)* : ' .$input['witss'] .PHP_EOL .
                 'My current or future location in Australia (campus)* : ' .$input['my']. PHP_EOL .
@@ -67,7 +68,7 @@ class CustomerAPIController extends Controller
                 'Postcode : ' .$input['p']. PHP_EOL;
 
         }else if ($input['type'] == 'ovhc'){
-
+            $applies['type_service'] = 3;
             $applies['type_visa'] = $input['type_visa'];
             $applies['note'] =
                 'Street address : ' .$input['sa']. ' \r\n   ' .
@@ -76,36 +77,38 @@ class CustomerAPIController extends Controller
                 'Postcode : ' .$input['p']. PHP_EOL;
 
         }else if ($input['type'] == 'usa_si'){
-
+            $applies['type_service'] = 4;
             $applies['note'] =
                 'Student/Scholar Status : ' .$input['sss']. PHP_EOL .
                 'Name of school or organization : ' .$input['nosoo']. PHP_EOL .
                 'Beneficiary : ' .$input['b']. PHP_EOL;
 
         }else if ($input['type'] == 'usa_vi'){
-
+            $applies['type_service'] = 6;
             $applies['note'] =
                 'Coverage area : ' .$input['ca']. PHP_EOL .
                 'Overall maximum coverage : ' .$input['omc']. PHP_EOL .
                 'Deductible choices : ' .$input['dc']. PHP_EOL .
                 'Beneficiary : ' .$input['b']. PHP_EOL;
 
+        }else{
+            // param default
+            $applies['service_country'] = 'A';
+            $applies['type_service'] = 2;
+            $applies['type_invoice'] = 1;
+            $applies['status'] = 8;
+            $applies['created_at'] = convert_date_to_db(date('d-m-Y'));
         }
 
         // param default
-        $applies['service_country'] = 'A';
-        $applies['type_service'] = 2;
-        $applies['type_invoice'] = 1;
-        $applies['status'] = 8;
         $applies['type_get_data_payment'] = 1;
-        $applies['created_at'] = convert_date_to_db(date('d-m-Y'));
+
 
         if ($input['type'] == 'nz_si' || $input['type'] == 'nz_vi'){
             $applies['service_country'] = 'N';
             $applies['type_service'] = 4;
             $applies['type_invoice'] = 1;
             $applies['status'] = 8;
-            $applies['type_get_data_payment'] = 1;
         }
 
         return $applies;
@@ -126,6 +129,7 @@ class CustomerAPIController extends Controller
             'email' => $input['email'],
             'phone' => $input['phone'],
             'student_id' => $input['student_id'],
+//            's_live_in_AS' => $input['s_live_in_AS']
 
         );
         $customers['destination'] = 'AU';
