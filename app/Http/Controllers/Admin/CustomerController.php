@@ -1827,9 +1827,9 @@ class CustomerController extends Controller
         $dataInvoice['cover'] = ($cus->cover->cover) ?? '';
 
         $dataInvoice['extend_fee'] = !empty($cus) ? $cus->extend_fee : '';
-        $dataInvoice['discount'] = !empty($obj->extra) ?? '';
-        $dataInvoice['promotion'] = !empty($obj->promotion_amount) ?? '';
-        $dataInvoice['bank_fee'] = !empty($obj->bank_fee_number) ?? '';
+        $dataInvoice['discount'] = !empty($obj->extra) ? $obj->extra : '';
+        $dataInvoice['promotion'] = !empty($obj->promotion_amount) ? $obj->promotion_amount :  '';
+        $dataInvoice['bank_fee'] = !empty($obj->bank_fee_number) ? $obj->bank_fee_number : '';
         $dataInvoice['gst'] = !empty($obj->gst) ? convert_price_float(($obj->net_amount - $obj->extra) * ($obj->comm / 100) / 11) :  '';
         $dataInvoice['comm'] = !empty($obj->comm) ? ($obj->net_amount - $obj->extra) * ($obj->comm / 100) : '';
 
