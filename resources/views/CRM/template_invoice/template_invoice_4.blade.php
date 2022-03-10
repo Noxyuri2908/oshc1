@@ -113,6 +113,10 @@
     #total-rate{
         text-transform: uppercase;
     }
+
+    .fontSize11px{
+        font-size: 11px !important;
+    }
 </style>
 
 @section('content')
@@ -235,7 +239,7 @@
                 <th></th>
                 <th></th>
                 <th colspan="2" class="text-right" style="padding-left: 15px">Hoa hồng dịch vụ</th>
-                <td class="text-right pr-25">{{convert_price_float($dataInvoice['comm'], 0)}} {{$dataInvoice['currency']}}</td>
+                <td class="text-right pr-25 fontSize11px">{{convert_price_float($dataInvoice['comm'], 0)}} {{$dataInvoice['currency']}}</td>
             </tr>
             <tr >
                 <td colspan="6" style="padding: 0 !important;"><hr style="border-style: solid; border-width: 1px; color: #5c5c5c; margin: 0;"></td>

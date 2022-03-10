@@ -216,8 +216,8 @@
             <tr id="td-content">
                 <td style=" ">{{$dataInvoice['service']}}</td>
                 <td style=" ">
-                    <p style="font-size: 10px;margin-bottom: 5px;">{{$dataInvoice['provider_name']}}</p>
-                    <p style="font-size: 10px;">{{ !empty($dataInvoice['cover']) ? '('.$dataInvoice['cover'].')' : '' }}</p>
+                    <p style="font-size: 11px;margin-bottom: 5px;">{{$dataInvoice['provider_name']}}</p>
+                    <p style="font-size: 11px;">{{ !empty($dataInvoice['cover']) ? '('.$dataInvoice['cover'].')' : '' }}</p>
                 </td>
                 <td style=" ">{{$dataInvoice['policy']}}</td>
                 <td style=" ">{{convert_date_form_db($dataInvoice['start_date'])}}</td>
