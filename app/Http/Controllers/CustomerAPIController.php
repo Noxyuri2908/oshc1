@@ -91,6 +91,11 @@ class CustomerAPIController extends Controller
                 'Deductible choices : ' .$input['dc']. PHP_EOL .
                 'Beneficiary : ' .$input['b']. PHP_EOL;
 
+        }else if ($input['type'] == 'nz_si' || $input['type'] == 'nz_vi'){
+            $applies['service_country'] = 'N';
+            $applies['type_service'] = 4;
+            $applies['type_invoice'] = 1;
+            $applies['status'] = 8;
         }else{
             // param default
             $applies['service_country'] = 'A';
@@ -102,14 +107,6 @@ class CustomerAPIController extends Controller
 
         // param default
         $applies['type_get_data_payment'] = 1;
-
-
-        if ($input['type'] == 'nz_si' || $input['type'] == 'nz_vi'){
-            $applies['service_country'] = 'N';
-            $applies['type_service'] = 4;
-            $applies['type_invoice'] = 1;
-            $applies['status'] = 8;
-        }
 
         return $applies;
     }
