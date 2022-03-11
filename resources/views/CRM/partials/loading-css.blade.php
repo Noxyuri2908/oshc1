@@ -121,4 +121,40 @@
             transform: rotate(360deg);
         }
     }
+
+    .bottom-text .form-row > div[class*="col-"]{
+        background: #fff 0% 0% no-repeat padding-box;
+        border: 0.5px solid #707070;
+        border-radius: 5px;
+        opacity: 1;
+        margin-right: 13px;
+    }
+
+    .bottom-text .form-row > div[class*="col-"] > a{
+        text-align: left;
+        font: normal normal bold 12px/16px Segoe UI;
+        letter-spacing: 0px;
+        opacity: 1;
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    .bottom-text .form-row > div[class*="col-"]:hover,
+    .bottom-text .form-row > div.active{
+        background: #2C7BE5 0% 0% no-repeat padding-box;
+        border: 0.5px solid #2C7BE5;
+        border-radius: 5px;
+        opacity: 1;
+    }
+
+    .bottom-text .form-row > div[class*="col-"]:hover > a > span,
+    .bottom-text .form-row > div.active > a > span{
+        color: #fff !important;
+    }
+
+
+    .bottom-text .form-row > div[class*="col-"] > a > span {
+        color: #707070;
+        font-weight: normal;
+    }
 </style>

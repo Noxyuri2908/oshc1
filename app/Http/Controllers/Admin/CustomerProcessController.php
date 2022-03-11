@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Imports\AgentImportAgentCode;
+use App\Imports\ImportReceipt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Admin\Apply;
@@ -18,6 +20,7 @@ use App\Admin\ExchangRate;
 use App\Admin\ProviderCom;
 use Carbon\Carbon as CarbonCarbon;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 use Session;
 
 class CustomerProcessController extends Controller
@@ -449,5 +452,18 @@ class CustomerProcessController extends Controller
          ];
 
          return response()->json($result);
+     }
+
+     function importReceipt(Request $request)
+     {
+         ini_set('max_execution_time', 3600);
+         ini_set('memory_limit', '2048M');
+         if ($request->hasFile('file_name')) {
+             $file = $request->file('file_name');
+             Excel::import(new ImportReceipt(), $file);
+
+         }
+         ini_set('memory_limit', '-1');
+         return back()->with(['msg', 'The Message Error']);
      }
 }

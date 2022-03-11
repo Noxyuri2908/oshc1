@@ -902,3 +902,10 @@ h3 {
 .card-body-checklist{
     height: 800px;
 }
+
+.import-receipt.btn.btn-falcon-default.font-weight-normal.font-size-12px > button{
+    background-color: unset;
+    border: unset;
+    font-weight: normal;
+    color: #4d5969;
+}

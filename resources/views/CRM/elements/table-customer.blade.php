@@ -125,35 +125,35 @@
                     <div class="bottom-text">
                         <div class="form-row">
                             @can('customer.index')
-                                <div class="col-lg-2 col-md-3 col-sm-6 col-com">
-                                    <a class="form-control form-control-sm btn btn-falcon-default btn-sm sxme d-flex justify-content-center align-items-center"
-                                       href="{{route('customer.index')}}"><span class="white-space-pre-text">Cus</span></a>
+                                <div class="col-lg-2 col-md-3 col-sm-6 text-center col-cus {{request('tab') == null ? 'active' : ''}}">
+                                    <a class=""
+                                       href="{{route('customer.index')}}"><span class="white-space-pre-text">Customer</span></a>
                                 </div>
                             @endcan
                             @can('commissionInvoice.index')
-                                <div class="col-lg-2 col-md-3 col-sm-6 col-com">
-                                    <a class="form-control form-control-sm btn btn-falcon-default btn-sm sxme d-flex justify-content-center align-items-center"
+                                <div class="col-lg-2 col-md-3 col-sm-6 text-center col-com {{request('tab') == 'com' ? 'active' : ''}}">
+                                    <a class=""
                                        href="{{route('customer.getCommAplly', ['tab'=>'com'])}}"><span
-                                            class="white-space-pre-text">Com</span></a>
+                                            class="white-space-pre-text">Commisison</span></a>
                                 </div>
                             @endcan
                             @can('profitInvoice.index')
-                                <div class="col-lg-2 col-md-3 col-sm-6 col-profit">
-                                    <a class="form-control form-control-sm btn btn-falcon-default btn-sm sxme d-flex justify-content-center align-items-center"
+                                <div class="col-lg-2 col-md-3 col-sm-6 text-center col-profit {{request('tab') == 'profit' ? 'active' : ''}}">
+                                    <a class=""
                                        href="{{route('customer.getCommAplly', ['tab'=>'profit'])}}"><span
                                             class="white-space-pre-text">Profit</span></a>
                                 </div>
                             @endcan
                             @can('refundInvoice.index')
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-refund">
-                                    <a class="form-control form-control-sm btn btn-falcon-default btn-sm sxme d-flex justify-content-center align-items-center"
+                                <div class="col-lg-2 col-md-3 col-sm-6 text-center col-refund {{request('tab') == 'refund' ? 'active' : ''}}">
+                                    <a class=""
                                        href="{{route('customer.getCommAplly', ['tab'=>'refund'])}}"><span
                                             class="white-space-pre-text">Refund</span></a>
                                 </div>
                             @endcan
                             @can('extendInvoice.index')
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-extend">
-                                    <a class="form-control form-control-sm btn btn-falcon-default btn-sm sxme d-flex justify-content-center align-items-center"
+                                <div class="col-lg-2 col-md-3 col-sm-6 text-center col-extend {{request('tab') == 'extend' ? 'active' : ''}}">
+                                    <a class=""
                                        href="{{route('customer.getCommAplly', ['tab'=>'extend'])}}"><span
                                             class="white-space-pre-text">Extend</span></a>
                                 </div>

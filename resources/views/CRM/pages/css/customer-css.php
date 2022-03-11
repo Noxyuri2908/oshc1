@@ -2,10 +2,6 @@
 	.col-top.nth-ofe .form-row{
 		align-items: flex-end;
 	}
-	.contenr-header .bottom-text .form-row a.btn{
-		text-align: center;
-		/*line-height: 1.6;*/
-	}
 	.col-dns h5.fs-0{
 		float: left;
 	}

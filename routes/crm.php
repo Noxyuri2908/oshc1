@@ -271,7 +271,10 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('/ajax/saveReceipt', [\App\Http\Controllers\Admin\PhieuthuController::class,'store'])->name('ajax.saveReceipt');
     Route::get('/ajax/editReceipt', 'Admin\PhieuthuController@edit')->name('ajax.editReceipt');
     Route::get('/ajax/delReceipt', 'Admin\PhieuthuController@destroy')->name('phieuthu.del');
+
     Route::get('/ajax/getReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'getReceipt'])->name('ajax.getReceipt');
+    Route::post('/import/importReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'importReceipt'])->name('customer.importReceipt');
+
     Route::get('/ajax/createReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'createReceipt'])->name('ajax.createReceipt');
     Route::get('/ajax/showReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'showReceipt'])->name('ajax.showReceipt');
     Route::get('/ajax/deleteReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'deleteReceipt'])->name('ajax.deleteReceipt');
