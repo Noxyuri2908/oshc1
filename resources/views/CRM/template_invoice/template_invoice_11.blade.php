@@ -271,7 +271,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right fontSize11px pl-15px c-black" >GST</th>
-                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['gst']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{convert_price_float($dataInvoice['gst'])}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             @if ($dataInvoice['comm'])
@@ -280,7 +280,7 @@
                     <th></th>
                     <th></th>
                     <th colspan="2" class="text-right fontSize11px pl-15px c-black" >Commission</th>
-                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{$dataInvoice['comm']}} {{$dataInvoice['currency']}}</td>
+                    <td class="fontSize11px c-black text-right" style="padding-right: 9px !important;">{{convert_price_float($dataInvoice['comm'])}} {{$dataInvoice['currency']}}</td>
                 </tr>
             @endif
             <tr >

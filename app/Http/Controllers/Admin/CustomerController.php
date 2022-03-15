@@ -1748,6 +1748,18 @@ class CustomerController extends Controller
             'promotion'
 
         ])->find($apply_id);
+
+        $getComm = Commission::where('status', 1)
+            ->where('user_id', $obj->agent_id)
+            ->where('provider_id', $obj->provider_id)
+            ->where('policy', $obj->policy)
+            ->first();
+        if (!empty($getComm)) {
+            $comm = $getComm->comm;
+        } else {
+            $comm = '';
+        }
+
         $templateConfig = Admin\TemplateInvoiceManager::where('template_name', $template_id)->first();
 
         if ($obj == null) {
@@ -1763,7 +1775,7 @@ class CustomerController extends Controller
             return redirect()->back();
         }
 
-        $dataInvoice = $this->mappingDataInvoice($templateConfig, $obj, $template_id, $apply_id, $cus);
+        $dataInvoice = $this->mappingDataInvoice($templateConfig, $obj, $comm, $template_id, $apply_id, $cus);
 
         return view("CRM.template_invoice.template_invoice_$template_id", [
             'flag' => 'customer',
@@ -1806,7 +1818,7 @@ class CustomerController extends Controller
         }
     }
 
-    function mappingDataInvoice($templateConfig, $obj, $template_id, $apply_id, $cus)
+    function mappingDataInvoice($templateConfig, $obj, $comm, $template_id, $apply_id, $cus)
     {
         $dataInvoice = [];
         $phieuthus = $obj->phieuthus->sortByDesc('created_at');
@@ -1830,8 +1842,8 @@ class CustomerController extends Controller
         $dataInvoice['discount'] = !empty($obj->extra) ? $obj->extra : '';
         $dataInvoice['promotion'] = !empty($obj->promotion_amount) ? $obj->promotion_amount :  '';
         $dataInvoice['bank_fee'] = !empty($obj->bank_fee_number) ? $obj->bank_fee_number : '';
-        $dataInvoice['gst'] = !empty($obj->gst) ? convert_price_float(($obj->net_amount - $obj->extra) * ($obj->comm / 100) / 11) :  0;
-        $dataInvoice['comm'] = !empty($obj->comm) ? ($obj->net_amount - $obj->extra) * ($obj->comm / 100) : '';
+        $dataInvoice['gst'] = !empty($obj->gst) ? ($obj->net_amount - $obj->extra) * ($comm / 100) / 11 :  0;
+        $dataInvoice['comm'] = !empty($comm) ? ($obj->net_amount - $obj->extra) * ($comm / 100) : '';
 
         $dataInvoice['promotion_amount'] = ($obj->promotion_amount) ?? '';
         $dataInvoice['extra'] = ($obj->extra) ?? '';
@@ -1901,8 +1913,7 @@ class CustomerController extends Controller
         if ($template_id == 11)
         {
             $dataInvoice['amount'] = $obj->net_amount;
-            $dataInvoice['comm'] = $obj->comm;
-            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra + $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'] + $dataInvoice['gst'] ;
+            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'] + $dataInvoice['gst'] ;
         }
 
         if ($template_id == 12)

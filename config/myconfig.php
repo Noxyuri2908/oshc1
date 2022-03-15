@@ -440,7 +440,7 @@ return [
         6 => '6. Payment request - VND (Edupay Exchange rate) - no agent',
         7 => '7. Payment request - VND (VCB Exchange rate) - no agent',
         8 => '8. Hoa don thanh toan BHVN (full) - no agent',
-        9 => '9. Invoice (full)',
+        9 => '9. Invoice Full payment',
         10 => '10. Invoice - Full payment - Paypal',
         11 => '11. Invoice - deduct - included GST- Bank',
         12 => '12. Invoice - deduct - included GST',
