@@ -445,7 +445,7 @@ return [
         11 => '11. Invoice - deduct - included GST- Bank',
         12 => '12. Invoice - deduct - included GST',
         13 => '13. Invoice - deduct - excluded GST- Bank',
-        14 => '14. Invoice - deduct - excluded GST',
+        14 => '14. Invoice full payment - deduct com - excluded GST',
         15 => '15. Payment Request - TAX',
         16 => '16. Payment request - VND (VCB exchange rate - deduct com)'
     ],

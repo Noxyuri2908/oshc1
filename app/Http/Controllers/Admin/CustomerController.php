@@ -1936,10 +1936,7 @@ class CustomerController extends Controller
         if ($template_id == 14)
         {
             $dataInvoice['amount'] = $obj->net_amount;
-            $dataInvoice['comm'] = $obj->comm;
-            $dataInvoice['gst'] = $obj->gst;
-            $dataInvoice['bank_fee'] = $obj->bank_fee_number;
-            $dataInvoice['total'] = $obj->net_amount - $obj->comm + $obj->gst + $obj->bank_fee_number;
+            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra + $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
 
         }
 
