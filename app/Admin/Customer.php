@@ -2,10 +2,12 @@
 
 namespace App\Admin;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    use Filterable;
     protected $fillable = [
         'apply_id',
         'prefix_name',

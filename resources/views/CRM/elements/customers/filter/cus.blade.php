@@ -268,6 +268,16 @@
             </select>
         </div>
     </th>
+    <th>
+        <div>
+            <select class="form-control" name="s_live_in_AS_filter" id="s_live_in_AS_filter">
+                <option value=""></option>
+                @foreach($configLivingInA as $key => $value)
+                    <option value="{{$key}}">{{$value}}</option>
+                @endforeach
+            </select>
+        </div>
+    </th>
     <th></th>
 </tr>
 @include('CRM.partials.script-call-agent',[

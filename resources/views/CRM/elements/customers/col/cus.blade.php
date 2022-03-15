@@ -44,6 +44,7 @@
     <th class="width-500">Note</th>
     <th class="width-80">Location in AU</th>
     <th class="width-80">Destination</th>
+    <th class="width-80">Living in Australia</th>
     <th class="width-200">OSHC provider of School</th>
 </tr>
 @include('CRM.elements.customers.filter.cus')
@@ -53,32 +54,33 @@
         'elementFilterIds'=>
         [
             'ref_no',
-'created_at',
-'agent_id',
-'register',
-'status',
-'email',
-'master_agent',
-'service_country',
-'type_service',
-'type_invoice',
-'provider_id',
-'policy',
-'type_visa',
-'start_date',
-'end_date',
-'net_amount',
-'promotion_id',
-'payment_method',
-'policy_number',
-'issue_date',
-'payment_note',
-'staff_id',
-'note',
-'location_australia',
-'country_id',
-'destination',
-'month'
+            'created_at',
+            'agent_id',
+            'register',
+            'status',
+            'email',
+            'master_agent',
+            'service_country',
+            'type_service',
+            'type_invoice',
+            'provider_id',
+            'policy',
+            'type_visa',
+            'start_date',
+            'end_date',
+            'net_amount',
+            'promotion_id',
+            'payment_method',
+            'policy_number',
+            'issue_date',
+            'payment_note',
+            'staff_id',
+            'note',
+            'location_australia',
+            'country_id',
+            'destination',
+            'month',
+            's_live_in_AS'
         ],
         'tab'=>$tab,
         'element_class_btn_row_edit'=>'customer_data_edit',

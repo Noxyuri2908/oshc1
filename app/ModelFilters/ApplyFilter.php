@@ -276,6 +276,12 @@ class ApplyFilter extends ModelFilter
             $q->where('destination',$country);
         });
     }
+    public function sLiveInAS($number)
+    {
+        return $this->related('customers',function ($q) use ($number){
+            $q->where('s_live_in_AS', $number);
+        });
+    }
     public function fDepartment($department){
         return $this->related('agent',function ($q) use ($department){
             $q->where('department',$department);

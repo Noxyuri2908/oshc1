@@ -29,6 +29,7 @@ View::composer([
     $location_australia = config('location_australia');
     $visa_status = config('myconfig.status_visa');
     $policy_status = config('myconfig.policy_status');
+    $configLivingInA = config('myconfig.live_in_AS');
     $profit_status = cache()->remember('profit_status.customer', 86400, function () {
         return \App\Admin\Profit::$STATUS;
     });
@@ -65,7 +66,8 @@ View::composer([
         'visa_status',
         'policy_status',
         'gstConfig',
-        'configTypeOfRefund'
+        'configTypeOfRefund',
+        'configLivingInA'
     ));
 });
 View::composer([

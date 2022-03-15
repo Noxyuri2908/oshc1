@@ -126,7 +126,7 @@ class CustomerAPIController extends Controller
             'email' => $input['email'],
             'phone' => $input['phone'],
             'student_id' => $input['student_id'],
-//            's_live_in_AS' => $input['s_live_in_AS']
+            's_live_in_AS' => $input['s_live_in_AS']
 
         );
         $customers['destination'] = 'AU';

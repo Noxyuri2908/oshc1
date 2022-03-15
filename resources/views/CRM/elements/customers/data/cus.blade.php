@@ -1,5 +1,4 @@
 @foreach($data as $tmp)
-
     <tr class="data-customer" id="data-customer_{{$tmp->id}}" is-render='false' data-id="{{$tmp->id}}">
         <td class="align-middle sticky-col first-col" data-fixed-columns="true" data-fixed-number="1">
             <input class="ml-3 sub_chk" data-id="{{$tmp->id}}"
@@ -118,6 +117,7 @@
         </td>
         <td class="align-middle">{{(!empty(\Config::get('location_australia')[$tmp->location_australia]))?\Config::get('location_australia')[$tmp->location_australia]:''}}</td>
         <td class="align-middle">{{$tmp->getDestination()}}</td>
+        <td class="align-middle">{{!empty($tmp->customers->first()) ? getValueByIndexConfig(config('myconfig.live_in_AS'), $tmp->customers->first()->s_live_in_AS) : ''}}</td>
         <td class="align-middle">{{!empty($tmp->registerCus())?$tmp->registerCus()->provider_of_school:''}}</td>
     </tr>
 @endforeach

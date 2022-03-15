@@ -21,7 +21,7 @@
                 {{$agent->name}}
             </td>
             <td>
-                {{$comm->comm}}%
+                {{!empty($comm) ? $comm->comm.'%' : ''}}
             </td>
             <td>
                 {{!empty($obj->profit->first()) ? getValueByIndexConfig(config('myconfig.status_visa'),$obj->profit->first()->visa_status) : ''}}
