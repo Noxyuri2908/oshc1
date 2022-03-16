@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Repositories\AgentRepo\AgentRepository\AgentRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -39,7 +40,8 @@ class AgentController extends Controller
             'note'=> $input['q_c'],
             'agent_code' => $input['agent_code'],
             'status'=> 7,
-            'department'=> 3
+            'department'=> 3,
+            'created_at' => convert_date_to_db(Carbon::now())
         ];
 
         $people = [
