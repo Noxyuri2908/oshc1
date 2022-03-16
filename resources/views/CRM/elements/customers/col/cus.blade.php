@@ -81,7 +81,9 @@
             'destination',
             'month',
             's_live_in_AS',
-            'hospital_access'
+            'hospital_access',
+            'no_of_adults',
+            'no_of_children'
         ],
         'tab'=>$tab,
         'element_class_btn_row_edit'=>'customer_data_edit',

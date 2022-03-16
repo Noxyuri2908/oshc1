@@ -142,8 +142,26 @@
         </div>
     </th>
 
-    <th></th>
-    <th></th>
+    <th>
+        <div>
+            <select class="form-control" name="no_of_adults_filter" id="no_of_adults_filter">
+                <option value=""></option>
+                @for($i = 1; $i <= 2; $i++)
+                    <option value="{{$i}}">{{$i}}</option>
+                @endfor
+            </select>
+        </div>
+    </th>
+    <th>
+        <div>
+            <select class="form-control" name="no_of_children_filter" id="no_of_children_filter">
+                <option value=""></option>
+                @for($i = 1; $i <= 5; $i++)
+                    <option value="{{$i}}">{{$i}}</option>
+                @endfor
+            </select>
+        </div>
+    </th>
     <th>
         <div>
             <select class="form-control" name="type_visa_filter" id="type_visa_filter">

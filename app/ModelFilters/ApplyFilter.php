@@ -296,7 +296,13 @@ class ApplyFilter extends ModelFilter
         return $this->whereDate('end_date','>=' ,convert_date_to_db($date));
     }
     public function fCountry($country){
-        return $this->where('service_country',$country);
+        return $this->where('service_country', $country);
+    }
+    public function noOfAdults($config){
+        return $this->where('no_of_adults', $config);
+    }
+    public function noOfChildren($config){
+        return $this->where('no_of_children', $config);
     }
     public function hospitalAccess($config){
         $hospital = DB::table('hospital_accesses')->select('id')->where('hostpital_access', $config)->first()->id;
