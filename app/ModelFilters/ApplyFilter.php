@@ -2,8 +2,10 @@
 
 namespace App\ModelFilters;
 
+use App\Admin\HospitalAccess;
 use Carbon\Carbon;
 use EloquentFilter\ModelFilter;
+use Illuminate\Support\Facades\DB;
 
 class ApplyFilter extends ModelFilter
 {
@@ -295,5 +297,9 @@ class ApplyFilter extends ModelFilter
     }
     public function fCountry($country){
         return $this->where('service_country',$country);
+    }
+    public function hospitalAccess($config){
+        $hospital = DB::table('hospital_accesses')->select('id')->where('hostpital_access', $config)->first()->id;
+        return $this->where('hospital_id', $hospital);
     }
 }

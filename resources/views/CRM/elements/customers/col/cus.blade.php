@@ -80,7 +80,8 @@
             'country_id',
             'destination',
             'month',
-            's_live_in_AS'
+            's_live_in_AS',
+            'hospital_access'
         ],
         'tab'=>$tab,
         'element_class_btn_row_edit'=>'customer_data_edit',

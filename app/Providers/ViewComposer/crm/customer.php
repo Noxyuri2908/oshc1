@@ -30,6 +30,7 @@ View::composer([
     $visa_status = config('myconfig.status_visa');
     $policy_status = config('myconfig.policy_status');
     $configLivingInA = config('myconfig.live_in_AS');
+    $hospitalAccess = config('myconfig.hospital_access');
     $profit_status = cache()->remember('profit_status.customer', 86400, function () {
         return \App\Admin\Profit::$STATUS;
     });
@@ -67,7 +68,8 @@ View::composer([
         'policy_status',
         'gstConfig',
         'configTypeOfRefund',
-        'configLivingInA'
+        'configLivingInA',
+        'hospitalAccess'
     ));
 });
 View::composer([

@@ -118,7 +118,16 @@
             </select>
         </div>
     </th>
-    <th></th>
+    <th>
+        <div>
+            <select name="hospital_access_filter" id="hospital_access_filter" class="form-control">
+                <option value=""></option>
+                @foreach($hospitalAccess as $key => $item)
+                    <option value="{{$item}}">{{$item}}</option>
+                @endforeach
+            </select>
+        </div>
+    </th>
     <th>
         <div>
             <select class="form-control" name="policy_filter" id="policy_filter">
