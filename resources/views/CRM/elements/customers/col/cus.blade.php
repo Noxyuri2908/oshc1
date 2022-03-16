@@ -83,7 +83,8 @@
             's_live_in_AS',
             'hospital_access',
             'no_of_adults',
-            'no_of_children'
+            'no_of_children',
+            'bank_fee_percent'
         ],
         'tab'=>$tab,
         'element_class_btn_row_edit'=>'customer_data_edit',

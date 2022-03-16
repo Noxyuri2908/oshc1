@@ -304,6 +304,9 @@ class ApplyFilter extends ModelFilter
     public function noOfChildren($config){
         return $this->where('no_of_children', $config);
     }
+    public function bankFeePercent($config){
+        return $this->where('bank_fee', $config);
+    }
     public function hospitalAccess($config){
         $hospital = DB::table('hospital_accesses')->select('id')->where('hostpital_access', $config)->first()->id;
         return $this->where('hospital_id', $hospital);

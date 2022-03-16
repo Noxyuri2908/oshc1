@@ -205,7 +205,17 @@
     </th>
     <th></th>
     <th></th>
-    <th></th>
+    <th>
+        <div>
+            <select class="form-control" name="bank_fee_percent_filter" id="bank_fee_percent_filter">
+                <option label=""></option>
+                @foreach($bankFees as $key => $item)
+                    <option
+                        value="{{$key}}">{{$item}}</option>
+                @endforeach
+            </select>
+        </div>
+    </th>
     <th>
 
     </th>
