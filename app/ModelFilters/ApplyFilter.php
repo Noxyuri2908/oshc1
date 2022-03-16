@@ -308,7 +308,7 @@ class ApplyFilter extends ModelFilter
         return $this->where('bank_fee', $config);
     }
     public function gstNumber($config){
-        return $this->where('gst', $config);
+        return $this->where('gst', 'LIKE','%'.$config.'%');
     }
     public function oshcProviderOfSchool($config){
         return $this->related('customers',function ($q) use ($config){
