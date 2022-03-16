@@ -232,7 +232,10 @@
             </select>
         </div>
     </th>
-    <th></th>
+    <th>
+        <input class="form-control" value=""
+               name="gst_number_filter" id="gst_number_filter" type="text" required>
+    </th>
     <th></th>
     <th></th>
     <th></th>
@@ -315,7 +318,9 @@
             </select>
         </div>
     </th>
-    <th></th>
+    <th>
+        <input class="form-control" value="" name="oshc_provider_of_school_filter" id="oshc_provider_of_school_filter" type="text">
+    </th>
 </tr>
 @include('CRM.partials.script-call-agent',[
            'nameFunction'=>'hoverToLoadSelectAgentCustomer',

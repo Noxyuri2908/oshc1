@@ -307,6 +307,14 @@ class ApplyFilter extends ModelFilter
     public function bankFeePercent($config){
         return $this->where('bank_fee', $config);
     }
+    public function gstNumber($config){
+        return $this->where('gst', $config);
+    }
+    public function oshcProviderOfSchool($config){
+        return $this->related('customers',function ($q) use ($config){
+            $q->where('provider_of_school',$config);
+        });
+    }
     public function hospitalAccess($config){
         $hospital = DB::table('hospital_accesses')->select('id')->where('hostpital_access', $config)->first()->id;
         return $this->where('hospital_id', $hospital);

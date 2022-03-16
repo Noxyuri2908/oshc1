@@ -84,7 +84,9 @@
             'hospital_access',
             'no_of_adults',
             'no_of_children',
-            'bank_fee_percent'
+            'bank_fee_percent',
+            'gst_number',
+            'oshc_provider_of_school'
         ],
         'tab'=>$tab,
         'element_class_btn_row_edit'=>'customer_data_edit',
