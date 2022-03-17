@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" style="color: #000">{{!empty($saleTaskAssign)?'Update Marketing support ':'Add new'}} {{$agentName}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #000">{{!empty($saleTaskAssign)?'Update Marketing support ':'Add new'}} {{!empty($agentName) ? $agentName : ''}}</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span class="font-weight-light" aria-hidden="true">&times;</span>
                 </button>
@@ -257,7 +257,7 @@
 <script>
     $('.agent_task_assign_company').select2({
         // dropdownParent: $('.agent_default_select2'),
-        placeholder: "{{$agentName}}",
+        placeholder: "{{!empty($agentName) ? $agentName : ''}}",
         ajax: {
             url: '{{route('agent.getAgentSelect')}}',
             type: 'GET',
