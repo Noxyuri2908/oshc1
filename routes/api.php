@@ -17,9 +17,6 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 Route::post('auth/register', [\App\Http\Controllers\Api\UserController::class,'register']);
-Route::get('test',function (){
-    return response()->json(['message'=>'test']);
-});
 
 Route::post('auth/login',[\App\Http\Controllers\Api\UserController::class,'login']);
 Route::group(['middleware' => 'jwt.auth'], function () {
@@ -35,3 +32,11 @@ Route::post('crm/register_agent', [\App\Http\Controllers\Api\AgentController::cl
 Route::post('crm/register_customer', [\App\Http\Controllers\CustomerAPIController::class, 'registerCustomer']);
 
 Route::get('flywire', [\App\Http\Controllers\Admin\FlywireController::class, 'getAllData']);
+
+
+Route::get('test', function ()
+{
+    return response()->json([
+       'data' => 'do something'
+    ]);
+});

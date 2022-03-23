@@ -5,6 +5,7 @@ namespace App;
 use App\Admin\EmployeeAccessList;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
@@ -96,5 +97,16 @@ class Admin extends Authenticatable
         $roleUsers = $this->roles->pluck('id');
         $typeSeeId = EmployeeAccessList::whereIn('role_id', $roleUsers)->where('permission_type', $type)->pluck('action_id')->unique();
         return $typeSeeId;
+    }
+
+    static function getIdByName($name)
+    {
+        if (!empty($name))
+        {
+            $admin = DB::table('admins')->select('id')->where('admin_id', $name)->first();
+            return !empty($admin) ? $admin->id : '';
+        }
+
+        return '';
     }
 }

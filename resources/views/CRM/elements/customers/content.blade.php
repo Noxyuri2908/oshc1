@@ -55,6 +55,33 @@
                     </ul>
                     <ul>
                         <li href="#" class="import-receipt btn btn-falcon-default font-weight-normal font-size-12px">
+                            <button type="button" data-toggle="modal" data-target="#importInvoice">Import invoice</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="importInvoice" tabindex="-1" role="dialog" aria-labelledby="importInvoice" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('customer.importInvoice')}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="importReceipt">Import invoice </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="file" name="file_name" id="file_name" required>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Import</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        <li href="#" class="import-receipt btn btn-falcon-default font-weight-normal font-size-12px">
                             <button type="button" data-toggle="modal" data-target="#importReceipt">Import receipt</button>
 
                             <!-- Modal -->

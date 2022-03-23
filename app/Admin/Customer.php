@@ -124,4 +124,28 @@ class Customer extends Model
                 ->where('email', 'LIKE', '%'.$request->get('email').'%');
         })->pluck('apply_id')->unique();
     }
+
+    static function importDataByExcelFile($items, $idApply)
+    {
+        $data = [];
+        $data['apply_id'] = $idApply;
+        $data['prefix_name'] = $items['title'];
+        $data['first_name'] = $items['first_name'];
+        $data['last_name'] = $items['last_name'];
+        $data['gender'] = getKeyConfigByValue(config('myconfig.gender'), $items['gender']);
+        $data['birth_of_date'] = convert_date_to_db($items['date_of_birth']);
+        $data['country'] = getKeyConfigByValue(config('country.list'), $items['nationality']);
+        $data['destination'] = getKeyConfigByValue(config('country.list'), $items['destination']);
+        $data['provider_of_school'] = $items['oshc_provider_of_school'];
+        $data['email'] = $items['email'];
+        $data['school'] = $items['provider_of_school'];
+        $data['student_id'] = $items['std_id'];
+        $data['facebook'] = $items['facebook'];
+        $data['phone'] = $items['mobile_no'];
+        $data['s_live_in_AS'] = getKeyConfigByValue(config('myconfig.live_in_AS'), $items['is_the_student_already_living_in_australia']);
+        $data['location_australia'] = getKeyConfigByValue(config('location_australia'), $items['location_australia']);
+        $data['extend_fee'] = convert_price_float($items['extend_fee']);
+        Customer::insert($data);
+        return;
+    }
 }

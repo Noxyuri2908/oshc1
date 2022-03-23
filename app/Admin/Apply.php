@@ -1442,4 +1442,40 @@ class Apply extends Model
         }
         return redirect(route('crm.dashboard'));
     }
+
+    static function importDataByExcelFile($items, $promotion_id)
+    {
+        $data = [];
+        $data['ref_no'] = $items['ref_no'];
+        $data['agent_id'] = User::getAgentIdByAgentName($items['agent']);
+        $data['master_agent'] = User::getAgentIdByAgentName($items['master_agent']);
+        $data['type_payment_agent_id'] = getKeyConfigByValue(config('myconfig.type_payment'), $items['type_of_payment']);
+        $data['service_country'] = getKeyConfigByValue(config('myconfig.service_country'), $items['service_country']);
+        $data['type_service'] = Dichvu::getIdByNameService($items['type_of_service']);
+        $data['type_invoice'] = getKeyConfigByValue(config('myconfig.type_invoice'), $items['type_of_invoice']);
+        $data['provider_id'] = Service::getProviderIDByName($items['provider']);
+        $data['policy'] = getKeyConfigByValue(config('myconfig.policy'), $items['policy']);
+        $data['hospital_id'] = HospitalAccess::getIdByName($items['hospital_access']);
+        $data['type_visa'] = getKeyConfigByValue(config('myconfig.type_visa'), $items['type_of_visa']);
+        $data['no_of_adults'] = $items['no_of_adults'];
+        $data['no_of_children'] = $items['no_of_children'];
+        $data['start_date'] = !empty($items['start_date']) ? convert_date_to_db($items['start_date']) : '';
+        $data['end_date'] = !empty($items['end_date']) ? convert_date_to_db($items['end_date']) : '';
+        $data['net_amount'] = !empty($items['net_amount']) ? convert_price_float($items['gross_amount']) : '';
+        $data['status'] = !empty($items['status']) ? getKeyConfigByValue(config('myconfig.status_invoice'), $items['status']) : '';
+        $data['staff'] = Admin::getIdByName($items['staff']);
+        $data['note'] = $items['note'];
+        $data['promotion_amount'] = convert_price_float($items['promotion']);
+        $data['bank_fee'] = getKeyConfigByValue(config('myconfig.bank_fee'), $items['bank_fee']);
+        $data['bank_fee_number'] = convert_price_float($items['bank_fee']);
+        $data['payment_method'] = getKeyConfigByValue(config('myconfig.payment_method'), $items['payment_method']);
+        $data['gst'] = convert_price_float($items['gst']);
+        $data['extra'] = convert_price_float($items['discount']);
+        $data['comm'] = convert_price_float($items['commission']);
+        $data['promotion_id'] = $promotion_id;
+        $data['total'] = convert_price_float($items['total']);
+
+        $id = Apply::insertGetId($data);
+        return $id;
+    }
 }

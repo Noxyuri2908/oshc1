@@ -4,6 +4,7 @@ namespace App\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Admin\Apply;
+use Illuminate\Support\Facades\DB;
 
 class Promotion extends Model
 {
@@ -24,5 +25,16 @@ class Promotion extends Model
             return config('myconfig.currency')[$this->unit];
         }
         return ;
+    }
+
+    static function getPromotionId($name)
+    {
+        if (!empty($name))
+        {
+            $promotion = DB::table('promotions')->select('id')->where('name', $name)->first();
+            return !empty($promotion) ? $promotion->id : '';
+        }
+
+        return '';
     }
 }

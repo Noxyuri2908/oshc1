@@ -518,5 +518,24 @@ class User extends Authenticatable implements JWTSubject
         return $agent->id;
     }
 
+    static function getAgentIdByAgentName($agent_name)
+    {
+        if (!empty($agent_name))
+        {
+            $agent = DB::table('users')->select('id')->where('name', $agent_name)->first();
+            if (!empty($agent))
+            {
+                return $agent->id;
+            }
+
+            return '';
+        }
+
+        return response()->json([
+            'error' => 'not value agent name',
+            'code' => 500
+        ]);
+    }
+
 
 }

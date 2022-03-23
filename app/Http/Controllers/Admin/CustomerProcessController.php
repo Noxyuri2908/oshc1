@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Imports\AgentImportAgentCode;
+use App\Imports\ImportInvoice;
 use App\Imports\ImportReceipt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -461,6 +462,18 @@ class CustomerProcessController extends Controller
          if ($request->hasFile('file_name')) {
              $file = $request->file('file_name');
              Excel::import(new ImportReceipt(), $file);
+
+         }
+         ini_set('memory_limit', '-1');
+         return back()->with(['msg', 'The Message Error']);
+     }
+
+     function importInvoice(Request $request){
+         ini_set('max_execution_time', 3600);
+         ini_set('memory_limit', '2048M');
+         if ($request->hasFile('file_name')) {
+             $file = $request->file('file_name');
+             Excel::import(new ImportInvoice(), $file);
 
          }
          ini_set('memory_limit', '-1');

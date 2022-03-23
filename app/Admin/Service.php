@@ -74,8 +74,13 @@ class Service extends Model
     }
 
     static function getProviderIDByName($name){
-        $provider = DB::table('services')->select('id')->where('name', $name)->first();
-        return !empty($provider) ? $provider->id : '';
+        if (!empty($name))
+        {
+            $provider = DB::table('services')->select('id')->where('name', $name)->first();
+            return !empty($provider) ? $provider->id : '';
+        }
+
+        return '';
 
     }
 }

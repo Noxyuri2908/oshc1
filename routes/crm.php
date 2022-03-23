@@ -274,6 +274,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
     Route::get('/ajax/getReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'getReceipt'])->name('ajax.getReceipt');
     Route::post('/import/importReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'importReceipt'])->name('customer.importReceipt');
+    Route::post('/import/importInvoice', [\App\Http\Controllers\Admin\CustomerProcessController::class,'importInvoice'])->name('customer.importInvoice');
 
     Route::get('/ajax/createReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'createReceipt'])->name('ajax.createReceipt');
     Route::get('/ajax/showReceipt', [\App\Http\Controllers\Admin\CustomerProcessController::class,'showReceipt'])->name('ajax.showReceipt');
