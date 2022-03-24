@@ -1,4 +1,21 @@
 <script>
+
+    $(document).on('click','#edit-cus',function (e){
+        e.preventDefault();
+        var element = this;
+        var id = $(element).attr('data-id');
+        $.ajax({
+            url : $(this).attr('href'),
+            id,
+            type:'get',
+            success:function (data){
+                $('#modalCreateCustomer .modal-body').html(data.view);
+                $('#modalCreateCustomer').modal('show')
+                {{--$('#{{$element_id_row_edit}}_' + data.id).replaceWith(data.view);--}}
+            }
+        })
+    })
+
     $(document).on('click','.data-customer, .data-profit, .data-refund', function () {
         if($(this).attr('is-render') == 'false'){
             $('.data-commission td').css('background-color','');
@@ -100,29 +117,8 @@
 
     function actionBtnEdit(apply_id)
     {
-        $('#edit-cus').attr('href', `${window.location.href}/${apply_id}/edit?page=1`)
-        $('#edit-cus').fancybox({
-            'width': 1200,
-            'height': 900,
-            'type': 'iframe',
-            'autoScale': false,
-            'autoSize': false,
-            helpers: {
-                title: {
-                    type: 'float'
-                }
-            },
-            afterClose: function () {
-                var url = `${window.location.origin}/crm/customer/${apply_id}/edit?page=1`;
-                $.ajax({
-                    url:url,
-                    type:'get',
-                    success:function (data){
-                        $('#edit-cus_' + data.id).replaceWith(data.view);
-                    }
-                })
-            }
-        });
+        $('#edit-cus').attr('href', `${window.location.href}/${apply_id}/edit?page=1`);
+        $('.customer_data_edit').attr('data-id', apply_id);
     }
 
     function actionBtnDelete(apply_id)
