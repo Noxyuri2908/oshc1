@@ -37,6 +37,6 @@ Route::get('flywire', [\App\Http\Controllers\Admin\FlywireController::class, 'ge
 Route::get('test', function ()
 {
     return response()->json([
-       'data' => 'do something'
+       'data' => 'welcome to Bot from Anthony'
     ]);
 });

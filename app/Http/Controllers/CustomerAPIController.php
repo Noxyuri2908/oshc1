@@ -107,7 +107,7 @@ class CustomerAPIController extends Controller
         $applies['type_get_data_payment'] = 1;
         $applies['type_invoice'] = 1;
         $applies['status'] = 8;
-        $applies['hospital_id'] = HospitalAccess::getIdByName($input['hospital_access']);
+        $applies['hospital_id'] = !empty($input['hospital_access']) ? HospitalAccess::getIdByName($input['hospital_access']) : '';
         $applies['created_at'] = convert_date_to_db(date('d-m-Y'));
 
         return $applies;
@@ -128,7 +128,7 @@ class CustomerAPIController extends Controller
             'email' => $input['email'],
             'phone' => $input['phone'],
             'student_id' => $input['student_id'],
-            's_live_in_AS' =>  getKeyConfigByValue(config('myconfig.live_in_AS'), $input['s_live_in_AS'])
+            's_live_in_AS' =>  !empty($input['s_live_in_AS']) ? getKeyConfigByValue(config('myconfig.live_in_AS'), $input['s_live_in_AS']) : ''
     );
         $customers['destination'] = 'AU';
         if ($input['type'] == 'ovhc' || $input['type'] == 'si' || $input['type'] == 'vi' || $input['type'] == 'nz_si' || $input['type'] == 'nz_vi'){
