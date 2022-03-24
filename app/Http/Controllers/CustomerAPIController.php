@@ -101,15 +101,12 @@ class CustomerAPIController extends Controller
             $applies['type_service'] = 4;
             $applies['type_invoice'] = 1;
             $applies['status'] = 8;
-        }else{
-            // param default
-//            $applies['type_service'] = 2;
-            $applies['type_invoice'] = 1;
-            $applies['status'] = 8;
         }
 
         // param default
         $applies['type_get_data_payment'] = 1;
+        $applies['type_invoice'] = 1;
+        $applies['status'] = 8;
         $applies['hospital_id'] = HospitalAccess::getIdByName($input['hospital_access']);
         $applies['created_at'] = convert_date_to_db(date('d-m-Y'));
 
