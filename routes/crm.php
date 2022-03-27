@@ -221,6 +221,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('ajax/customer/getPrice',[\App\Http\Controllers\Admin\CustomerController::class,'getPrice'])->name('ajax.customer.getPrice');
     Route::get('ajax/customer/getStatusFilterCustomer/{tab}',[\App\Http\Controllers\Admin\CustomerController::class,'getStatusFilterCustomer'])->name('ajax.customer.getStatusFilterCustomer');
     Route::post('ajax/customer/udpateMultipleStaff',[\App\Http\Controllers\Admin\CustomerController::class,'udpateMultipleStaff'])->name('ajax.customer.udpateMultipleStaff');
+    Route::post('ajax/customer/udpateMultipleStatus',[\App\Http\Controllers\Admin\CustomerController::class,'udpateMultipleStatus'])->name('ajax.customer.udpateMultipleStatus');
     Route::get('modalCreate', [\App\Http\Controllers\Admin\CustomerController::class,'modalCreate'])->name('modal.create.customer');
     Route::resource('customer', Admin\CustomerController::class);
 

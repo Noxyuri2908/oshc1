@@ -471,6 +471,7 @@
                 var checkBoxLength = $('.sub_chk:checked').length
                 if (checkBoxLength > 0) {
                     $('#modalAgentPersonCharge').modal('hide');
+                    $('#modalUpdateStatus').modal('hide');
                     $('.sub_chk').prop('checked', false);
                     $('#multi_action').hide();
                 }
@@ -498,6 +499,32 @@
                         checkBox();
                         $.each(data.apply_ids, function (index, value) {
                             $('#data-customer_' + value + ' #staff_id').text(staff_name)
+                        })
+                    },
+                })
+
+            });
+
+            $('#UpdateMultipleStatus').on('click', function(e) {
+                var allVals = [];
+                $(".sub_chk:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
+
+                var code_invoice = $('#status_invoice').find(':selected').text();
+
+                $.ajax({
+                    url: "{{route('ajax.customer.udpateMultipleStatus')}}",
+                    data: {
+                        apply_ids: allVals,
+                        code_invoice : code_invoice,
+                        _token: "{{csrf_token()}}",
+                    },
+                    type: 'post',
+                    success: function (data) {
+                        checkBox();
+                        $.each(data.apply_ids, function (index, value) {
+                            $('#data-customer_' + value + ' #status_invoice').text(code_invoice)
                         })
                     },
                 })

@@ -2005,6 +2005,14 @@ class CustomerController extends Controller
         return response()->json(['apply_ids' => $apply_ids]);
     }
 
+    public function udpateMultipleStatus(Request $request)
+    {
+        $apply_ids = $request->apply_ids;
+        $code_invoice = getKeyConfigByValue(config('myconfig.status_invoice'), $request->code_invoice);
+        Apply::whereIn('id', $apply_ids)->update(['status' => $code_invoice]);
+        return response()->json(['apply_ids' => $apply_ids]);
+    }
+
     public function modalCreate()
     {
         $result = [

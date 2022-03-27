@@ -58,7 +58,7 @@
         <td class="align-middle sticky-col white-space-break-spaces">
             <a style="cursor: pointer; color: red" class="customer_info" data-id={{$tmp->registerCus() != null ? $tmp->registerCus()->id : ""}}>{{$tmp->registerCus() != null ? $tmp->registerCus()->first_name.' '.$tmp->registerCus()->last_name : ''}}</a>
         </td>
-        <td class="align-middle">
+        <td class="align-middle" id="status_invoice">
             {{isset(config('myconfig.status_invoice')[$tmp->status]) ? config('myconfig.status_invoice')[$tmp->status] : ''}}
 
         </td>
