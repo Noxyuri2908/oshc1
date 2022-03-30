@@ -119,4 +119,17 @@ class Admin extends Authenticatable
 
         }
     }
+
+    static function getRoleCountriesById($id)
+    {
+        if (!empty($id))
+        {
+            $result = Admin::select('role_countries')->where('id', $id)->first();
+            if (!empty($result))
+            {
+                return $result->role_countries;
+            }
+            return $result;
+        }
+    }
 }

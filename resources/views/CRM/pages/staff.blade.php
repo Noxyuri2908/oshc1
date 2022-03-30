@@ -192,6 +192,28 @@
                 $(this).css('background-color', '#ccc');
                 $(this).attr('is-clicked', true);
                 idStaff = $(this).attr('data-id');
+                $.ajax({
+                    url: "{{route('staff.getRoleCountries')}}",
+                    type: 'post',
+                    data: {
+                        idStaff,
+                        _token: "{{csrf_token()}}",
+                    },
+                    success: function (data) {
+                        if (data.code == 200)
+                        {
+                            var countries = data.data;
+                            if (_.size(countries) > 0)
+                            {
+                                for (const [key, value] of Object.entries(countries)) {
+                                    var option = new Option(value,key, true, true)
+                                    $('#countries').append(option).trigger('change')
+                                }
+
+                            }
+                        }
+                    }
+                })
 
                 // open option role countries
                 $('#button_countries').css('display', 'block')

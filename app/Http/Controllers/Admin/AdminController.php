@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AdminUpdateRequest;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
@@ -163,5 +164,22 @@ class AdminController extends Controller
         {
             return response()->json(['code' => 200, 'message' => 'success']);
         }
+    }
+
+    public function getRoleCountries(Request $request)
+    {
+        $idStaff = $request->idStaff;
+        $roleCountries = Admin::getRoleCountriesById($idStaff);
+        $roleCountries = \GuzzleHttp\json_decode($roleCountries);
+        if (!empty($roleCountries))
+        {
+            foreach ($roleCountries as $item)
+            {
+                $data[$item] = config("country.list.$item");
+            }
+            return response()->json(['code' => 200, 'data' => $data]);
+        }
+
+        return;
     }
 }
