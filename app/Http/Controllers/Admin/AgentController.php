@@ -56,9 +56,15 @@ class AgentController extends Controller
         if (!$request->user()->can('agent.index')) {
             abort(403);
         }
+        $roleCountriesUser = Auth::user()->role_countries;
+        if (!empty($roleCountriesUser))
+        {
+            $roleCountriesUser = \GuzzleHttp\json_decode($roleCountriesUser);
+        }
         session()->forget('new_contact');
         $getChildUser = getChildUser('agent');
         $potential_service_filter = (!empty($request->get('potential_service'))) ? $request->get('potential_service') : [];
+        $roleCountriesUser = !empty($request->get('country')) ? $request->get('country') : $roleCountriesUser;
         $users = User::when($request->get('name'), function ($query) use ($request) {
             $query->where('name', 'LIKE', '%'.$request->get('name').'%');
         })
@@ -77,11 +83,11 @@ class AgentController extends Controller
                 $query->where('tel_2', 'LIKE', '%'.$request->get('tel_2').'%');
             })->when($request->get('website'), function ($query) use ($request) {
                 $query->where('website', 'LIKE', '%'.$request->get('website').'%');
-            })->when($request->get('country'), function ($query) use ($request) {
-                if ($request->get('country') == 'null') {
+            })->when($roleCountriesUser, function ($query) use ($request, $roleCountriesUser) {
+                if (empty($roleCountriesUser)) {
                     $query->whereNull('country');
-                } else {
-                    $query->where('country', $request->get('country'));
+                } else if(!empty($roleCountriesUser)){
+                    $query->whereIn('country', $roleCountriesUser);
                 }
             })->when($request->get('rating'), function ($query) use ($request) {
                 if ($request->get('rating') == 'null') {

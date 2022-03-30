@@ -153,4 +153,15 @@ class AdminController extends Controller
         Session::flash('success-staff', 'Delete staff successfull.');
         return redirect()->route('staff.index');
     }
+
+    public function roleCountries(Request $request)
+    {
+        $countries = $request->arrCountries;
+        $idStaff = $request->idStaff;
+        $update = Admin::updateRoleCountries($idStaff, $countries);
+        if ($update = 1)
+        {
+            return response()->json(['code' => 200, 'message' => 'success']);
+        }
+    }
 }

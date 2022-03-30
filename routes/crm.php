@@ -341,6 +341,8 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
     //all user admin
     Route::resource('staff', 'Admin\AdminController');
+    Route::post('/staff/role-countries', [\App\Http\Controllers\Admin\AdminController::class,'roleCountries'])->name('staff.roleCountries');
+
     //end user admin
     Route::resource('roles', 'Admin\RoleController');
     Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {

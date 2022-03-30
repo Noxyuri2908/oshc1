@@ -31,6 +31,7 @@
                 <table class="table table-sm mb-0 table-dashboard fs--1 table-flywire" id="table-flywire">
                     <thead>
                     <tr>
+                        <button id="button_countries" data-toggle="modal" data-target="#modalCountries">Countries</button>
                         <th class="no-sort check-all-table text-center"><input type="checkbox" id="master"></th>
                         <th class="text-center">Username</th>
                         <th class="text-center">Email</th>
@@ -48,7 +49,7 @@
                     </thead>
                     <tbody>
                     @foreach($data as $obj)
-                        <tr>
+                        <tr id="staff-record" data-id="{{$obj->id}}" is-clicked="false">
                             <td class="text-center"><input type="checkbox" class="sub_chk" data-id="{{$obj->id}}"></td>
                             <td class="text-center">{{$obj->username}}</td>
                             <td class="text-center">{{$obj->email}}</td>
@@ -105,13 +106,106 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal countries -->
+    <div class="modal fade" id="modalCountries" tabindex="-1" role="dialog" aria-labelledby="modalCountries" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">List of countries for staff</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="countries_parent">
+                        <label for="countries">List of countries</label>
+                        <div>
+                            <select name="countries[]" id="countries" style="width: 50%" multiple="multiple">
+                                <option value=""></option>
+                                @foreach(config('country.list') as $key => $item)
+                                    <option value="{{$key}}">{{$item}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input type="hidden" data-id="" id="id_selected">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveRoleCountries">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @push('scripts')
     <script src="{{asset('js/select-all.js')}}"></script>
     <script src="{{asset('backend/js/plugins/dataTables/datatables.min.js')}}"></script>
     <script src="{{asset('js/delete-modal.js')}}"></script>
     <script>
+        var arrCountries = [];
+        var idStaff;
+
+        $(document).on('click', '#saveRoleCountries', function (){
+            if (arrCountries.length >= 3)
+            {
+                arrCountries = arrCountries.slice(1);
+            }
+            $.ajax({
+                url: "{{route('staff.roleCountries')}}",
+                type: 'post',
+                data: {
+                    idStaff,
+                    arrCountries,
+                    _token: "{{csrf_token()}}",
+                },
+                success: function (data) {
+                    if (data.code == 200)
+                    {
+                        console.log('update role successfully');
+                        $('#modalCountries').modal('hide')
+                    }
+                }
+            })
+        })
+
+        $(document).on('change', '#countries', function(){
+            var options = $('#countries').find(':selected');
+            options.each( index => {
+                arrCountries.push(options[index].value);
+            })
+        })
+
+        $(document).on('click', '#staff-record', function (){
+            if ($(this).attr('is-clicked') == 'false')
+            {
+                //remove record in-active
+                $('tr#staff-record.odd').css('background-color','');
+                $('tr#staff-record.even').css('background-color','');
+
+                // remove att is-clicked with record in-active
+                $('tr#staff-record.odd').attr('is-clicked', false);
+                $('tr#staff-record.even').attr('is-clicked', false);
+
+                // active record clicked
+                $(this).css('background-color', '#ccc');
+                $(this).attr('is-clicked', true);
+                idStaff = $(this).attr('data-id');
+
+                // open option role countries
+                $('#button_countries').css('display', 'block')
+            }
+        })
+
         $(document).ready(function () {
+
+            $('#countries').select2({
+                multiple : true,
+                dropdownParent: $('#countries_parent'),
+            })
+
+
             @if(session()->has('success-staff'))
             toastr.success('Update successful!');
             @endif

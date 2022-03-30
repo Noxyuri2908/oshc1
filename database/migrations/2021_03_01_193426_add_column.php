@@ -304,6 +304,13 @@ class AddColumn extends Migration
                 $table->integer('s_live_in_AS')->nullable()->comment('1 => yes, 0 => no')->after('type');
             });
         }
+
+        if (!Schema::hasColumn('admins', 'role_countries'))
+        {
+            Schema::table('admins', function(Blueprint $table) {
+                $table->longText('role_countries')->nullable()->after('status');
+            });
+        }
     }
 
     /**
@@ -543,6 +550,13 @@ class AddColumn extends Migration
         {
             Schema::table('customers', function(Blueprint $table) {
                 $table->dropColumn('s_live_in_AS');
+            });
+        }
+
+        if (Schema::hasColumn('admins', 'role_countries'))
+        {
+            Schema::table('admins', function(Blueprint $table) {
+                $table->dropColumn('role_countries');
             });
         }
     }

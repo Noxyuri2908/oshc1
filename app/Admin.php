@@ -109,4 +109,14 @@ class Admin extends Authenticatable
 
         return '';
     }
+
+    static function updateRoleCountries($id, $countries)
+    {
+        if (!empty($id))
+        {
+            $result = Admin::where('id', $id)->update(['role_countries' => \GuzzleHttp\json_encode($countries, true)]);
+            return $result;
+
+        }
+    }
 }
