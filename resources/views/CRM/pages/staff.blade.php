@@ -228,10 +228,17 @@
         })
 
         $(document).on('change', '#countries', function(){
+
             var options = $('#countries').find(':selected');
             options.each( index => {
                 arrCountries.push(options[index].value);
             })
+
+            if ($('#countries').find(':selected').text() === '')
+            {
+                arrCountries = [];
+
+            }
         })
 
         $(document).on('change', '#department', function(){
@@ -239,6 +246,12 @@
             options.each( index => {
                 arrDepartment.push(options[index].value);
             })
+
+            if ($('#department').find(':selected').text() == '')
+            {
+                arrDepartment = [];
+
+            }
         })
 
         $(document).on('click', '#staff-record', function (){
