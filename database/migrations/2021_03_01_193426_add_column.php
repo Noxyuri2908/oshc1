@@ -311,6 +311,13 @@ class AddColumn extends Migration
                 $table->longText('role_countries')->nullable()->after('status');
             });
         }
+
+        if (!Schema::hasColumn('admins', 'role_department'))
+        {
+            Schema::table('admins', function(Blueprint $table) {
+                $table->longText('role_department')->nullable()->after('role_countries');
+            });
+        }
     }
 
     /**
@@ -557,6 +564,13 @@ class AddColumn extends Migration
         {
             Schema::table('admins', function(Blueprint $table) {
                 $table->dropColumn('role_countries');
+            });
+        }
+
+        if (Schema::hasColumn('admins', 'role_department'))
+        {
+            Schema::table('admins', function(Blueprint $table) {
+                $table->dropColumn('role_department');
             });
         }
     }

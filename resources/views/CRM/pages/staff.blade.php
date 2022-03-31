@@ -32,6 +32,7 @@
                     <thead>
                     <tr>
                         <button id="button_countries" data-toggle="modal" data-target="#modalCountries">Countries</button>
+                        <button id="button_department" data-toggle="modal" data-target="#modalDepartment">Department</button>
                         <th class="no-sort check-all-table text-center"><input type="checkbox" id="master"></th>
                         <th class="text-center">Username</th>
                         <th class="text-center">Email</th>
@@ -138,6 +139,38 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Department -->
+    <div class="modal fade" id="modalDepartment" tabindex="-1" role="dialog" aria-labelledby="modalDepartment" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Department authorization</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="countries_parent">
+                        <label for="department">Department</label>
+                        <div>
+                            <select name="department[]" id="department" style="width: 50%" multiple="multiple">
+                                <option value=""></option>
+                                @foreach(config('myconfig.department') as $key => $item)
+                                    <option value="{{$key}}">{{$item}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input type="hidden" data-id="" id="id_selected">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveRoleDepartment">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @push('scripts')
     <script src="{{asset('js/select-all.js')}}"></script>
@@ -145,7 +178,31 @@
     <script src="{{asset('js/delete-modal.js')}}"></script>
     <script>
         var arrCountries = [];
+        var arrDepartment = [];
         var idStaff;
+
+        $(document).on('click', '#saveRoleDepartment', function (){
+            if (arrDepartment.length >= 3)
+            {
+                arrDepartment = arrDepartment.slice(1);
+            }
+            $.ajax({
+                url: "{{route('staff.roleDepartment')}}",
+                type: 'post',
+                data: {
+                    idStaff,
+                    arrDepartment,
+                    _token: "{{csrf_token()}}",
+                },
+                success: function (data) {
+                    if (data.code == 200)
+                    {
+                        console.log('update role successfully');
+                        $('#modalDepartment').modal('hide')
+                    }
+                }
+            })
+        })
 
         $(document).on('click', '#saveRoleCountries', function (){
             if (arrCountries.length >= 3)
@@ -174,6 +231,13 @@
             var options = $('#countries').find(':selected');
             options.each( index => {
                 arrCountries.push(options[index].value);
+            })
+        })
+
+        $(document).on('change', '#department', function(){
+            var options = $('#department').find(':selected');
+            options.each( index => {
+                arrDepartment.push(options[index].value);
             })
         })
 
@@ -215,8 +279,33 @@
                     }
                 })
 
+
+                $.ajax({
+                    url: "{{route('staff.getRoleDepartment')}}",
+                    type: 'post',
+                    data: {
+                        idStaff,
+                        _token: "{{csrf_token()}}",
+                    },
+                    success: function (data) {
+                        if (data.code == 200)
+                        {
+                            var countries = data.data;
+                            if (_.size(countries) > 0)
+                            {
+                                for (const [key, value] of Object.entries(countries)) {
+                                    var option = new Option(value,key, true, true)
+                                    $('#department').append(option).trigger('change')
+                                }
+
+                            }
+                        }
+                    }
+                })
+
                 // open option role countries
                 $('#button_countries').css('display', 'block')
+                $('#button_department').css('display', 'block')
             }
         })
 
@@ -225,6 +314,10 @@
             $('#countries').select2({
                 multiple : true,
                 dropdownParent: $('#countries_parent'),
+            })
+
+            $('#department').select2({
+                multiple : true,
             })
 
 

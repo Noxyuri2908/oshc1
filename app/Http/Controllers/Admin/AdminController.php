@@ -182,4 +182,34 @@ class AdminController extends Controller
 
         return;
     }
+
+    public function roleDepartment(Request $request)
+    {
+        $department = $request->arrDepartment;
+        $idStaff = $request->idStaff;
+        $update = Admin::updateRoleDepartment($idStaff, $department);
+        if ($update = 1)
+        {
+            return response()->json(['code' => 200, 'message' => 'success']);
+        }
+    }
+
+    public function getRoleDepartment(Request $request)
+    {
+        $idStaff = $request->idStaff;
+        $roleDepartment = Admin::getRoleDepartmentById($idStaff);
+        $roleDepartment = \GuzzleHttp\json_decode($roleDepartment);
+        if (!empty($roleDepartment))
+        {
+            foreach ($roleDepartment as $item)
+            {
+                $data[$item] = config("myconfig.department.$item");
+            }
+            return response()->json(['code' => 200, 'data' => $data]);
+        }
+
+        return;
+    }
+
+
 }

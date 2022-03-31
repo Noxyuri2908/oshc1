@@ -132,4 +132,27 @@ class Admin extends Authenticatable
             return $result;
         }
     }
+
+    static function updateRoleDepartment($id, $department)
+    {
+        if (!empty($id))
+        {
+            $result = Admin::where('id', $id)->update(['role_department' => \GuzzleHttp\json_encode($department, true)]);
+            return $result;
+
+        }
+    }
+
+    static function getRoleDepartmentById($id)
+    {
+        if (!empty($id))
+        {
+            $result = Admin::select('role_department')->where('id', $id)->first();
+            if (!empty($result))
+            {
+                return $result->role_department;
+            }
+            return $result;
+        }
+    }
 }

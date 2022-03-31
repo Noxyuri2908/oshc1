@@ -57,14 +57,23 @@ class AgentController extends Controller
             abort(403);
         }
         $roleCountriesUser = Auth::user()->role_countries;
+        $roleDepartment = Auth::user()->role_department;
         if (!empty($roleCountriesUser))
         {
             $roleCountriesUser = \GuzzleHttp\json_decode($roleCountriesUser);
         }
+
+        if (!empty($roleDepartment))
+        {
+            $roleDepartment = \GuzzleHttp\json_decode($roleDepartment);
+        }
+
         session()->forget('new_contact');
         $getChildUser = getChildUser('agent');
         $potential_service_filter = (!empty($request->get('potential_service'))) ? $request->get('potential_service') : [];
         $roleCountriesUser = !empty($request->get('country')) ? $request->get('country') : $roleCountriesUser;
+        $roleDepartment = !empty($request->get('department')) ? $request->get('country') : $roleDepartment;
+
         $users = User::when($request->get('name'), function ($query) use ($request) {
             $query->where('name', 'LIKE', '%'.$request->get('name').'%');
         })
@@ -99,15 +108,11 @@ class AgentController extends Controller
                 $query->where('city', 'LIKE', '%'.$request->get('city').'%');
             })->when($request->get('office'), function ($query) use ($request) {
                 $query->where('office', 'LIKE', '%'.$request->get('office').'%');
-            })->when($request->get('department') || $request->get('f_department'), function ($query) use ($request) {
-                if ($request->get('f_department')) {
-                    $query->where('department', $request->get('f_department'));
-                } else {
-                    if ($request->get('department') == 'null') {
-                        $query->whereNull('department');
-                    } else {
-                        $query->where('department', $request->get('department'));
-                    }
+            })->when($roleDepartment || $request->get('f_department'), function ($query) use ($request, $roleDepartment) {
+                if (empty($roleDepartment)) {
+                    $query->whereNull('department');
+                } else if(!empty($roleDepartment)){
+                    $query->whereIn('department', $roleDepartment);
                 }
             })->when($request->get('registered_date'), function ($query) use ($request) {
                 $query->where('registered_date', $request->get('registered_date'));
