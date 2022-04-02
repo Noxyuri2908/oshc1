@@ -29,11 +29,13 @@
                     </ol>
                 </div>
                 @if(isset($route_button))
-                <div class="col-sm-8">
-                    <div class="title-action">
-                        <a href="{{$route_button}}" class="btn btn-primary">{{$name_button}}</a>
-                    </div>
-                </div>
+                @can('providerList.store')
+                        <div class="col-sm-8">
+                            <div class="title-action">
+                                <a href="{{$route_button}}" class="btn btn-primary">{{$name_button}}</a>
+                            </div>
+                        </div>
+                @endcan
                 @endif
             </div>
 

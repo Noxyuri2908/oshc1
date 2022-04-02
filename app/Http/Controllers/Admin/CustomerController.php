@@ -57,7 +57,8 @@ class CustomerController extends Controller
     {
         switch ($tab) {
             case 'cus':
-                if (!auth()->user()->can('customer.index')) {
+                if (!auth()->user()->
+                can('customer.index')) {
                     return abort(403);
                 }
                 $data = Apply::filter($request->all())

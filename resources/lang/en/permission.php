@@ -184,4 +184,14 @@ return [
     'agentReport'=>'Agent Report',
     'processingFollowUp.index'=>'Xem tất cả Processing FollowUp',
     'processingFollowUp'=>'Processing FollowUp',
+    'agentContact.index' => 'Xem tất cả',
+    'agentContact.store' => 'Tạo mới',
+    'agentContact.update' => 'Sửa',
+    'agentContact.destroy' => 'Xóa',
+    'agentContact.import'   => 'Import',
+    'agentContact.export'   => 'Export',
+    'providerList.index' => 'Xem tất cả',
+    'providerList.store'    => 'Tạo mới',
+    'providerList.update'   => 'Sửa',
+    'providerList.destroy'  => 'Xóa'
 ];

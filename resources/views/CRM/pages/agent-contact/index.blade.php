@@ -137,15 +137,19 @@
             <div class="card-header">
                 <h5>Agent Contact Manager</h5>
                 <div class="d-flex justify-content-end">
-{{--                    @can('customerManager.store')--}}
+                    @can('agentContact.store')
                         <a href="#" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px" id="btn_add_agent_contact"><i class="fas fa-plus"></i> Add</a>
-{{--                    @endcan--}}
+                    @endcan
                     <a href="{{route('queue_error_log.index',['model'=>\App\Admin\Person::class])}}" class=" mr-2 btn btn-falcon-default btn-sm font-weight-normal font-size-12px btn-show-error-log" title="Show error import"><i class="fas fa-exclamation-circle"></i>Show error import</a>
-                    <a href="javascript:void(0)" class=" mr-2 btn btn-falcon-default btn-sm font-weight-normal font-size-12px"  id="exportExcel" title="Export"><i class="fas fa-file-export"></i>Export</a>
-                    <button type="button" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px" data-toggle="modal" data-target="#importModal">
-                        <i class="fas fa-file-import"></i>
-                        Import
-                    </button>
+                    @can('agentContact.export')
+                        <a href="javascript:void(0)" class=" mr-2 btn btn-falcon-default btn-sm font-weight-normal font-size-12px"  id="exportExcel" title="Export"><i class="fas fa-file-export"></i>Export</a>
+                    @endcan
+                    @can('agentContact.import')
+                        <button type="button" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px" data-toggle="modal" data-target="#importModal">
+                            <i class="fas fa-file-import"></i>
+                            Import
+                        </button>
+                    @endcan
                     <a href="#" class="delete-filter btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px">
                         @include('CRM.partials.img-filter')
                     </a>

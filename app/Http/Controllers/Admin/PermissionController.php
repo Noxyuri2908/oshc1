@@ -27,6 +27,9 @@ class PermissionController extends Controller
             'permission_type',
             'action_id',
         ]);
+
+
+
         return view('CRM.pages.permission.index', compact(
             'flag',
             'permissions',

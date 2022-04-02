@@ -20,7 +20,7 @@ Danh sách dịch vụ
 					<h5>Bảng danh sách</h5>
 				</div>
 				{{-- END Header table --}}
-				<div class="ibox-content">					
+				<div class="ibox-content">
 					@include('back-end.partials.alert-msg')
 					@include('back-end.partials.select-box-update')
 					<div class="table-responsive">
@@ -48,7 +48,7 @@ Danh sách dịch vụ
 			responsive: true,
 			dom: '<"html5buttons"B>lTfgitp',
 			buttons: [
-			{extend: 'excel', title: 'ExampleFile'},			
+			{extend: 'excel', title: 'ExampleFile'},
 		]
 	});
 	});

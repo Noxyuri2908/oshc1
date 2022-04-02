@@ -161,9 +161,11 @@
     <div class="form-group">
         <label class="control-label">Hospital access</label>
         <select class="form-control m-b" name="hospital_acc" id="hospital_acc">
-            @foreach($hospitals as $item)
-                <option value="{{$item->id}}">{{$item->hostpital_access}}</option>
-            @endforeach
+            @if(isset($hospitals))
+                @foreach($hospitals as $item)
+                    <option value="{{$item->id}}">{{$item->hostpital_access}}</option>
+                @endforeach
+            @endif
         </select>
         <input type="number" class="hospital_input" name="hospital" id="hospital_input">
         <input type="hidden" class="hospital_input" name="hospital" id="hospital_del">

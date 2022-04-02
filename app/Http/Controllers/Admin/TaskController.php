@@ -105,7 +105,8 @@ class TaskController extends Controller
 
     public function getFollowUps(Request $request)
     {
-        if (!$request->user()->can('followUp.index')) return abort(403);
+//        if (!$request->user()->can('followUp.index')) return abort(403);
+
         $getChildUser = getChildUser('followUp');
         $startDate = (!empty($request->processing_date_follow_ups_start)) ? convert_date_to_db($request->processing_date_follow_ups_start) : null;
         $endDate = (!empty($request->processing_date_follow_ups_end)) ? convert_date_to_db($request->processing_date_follow_ups_end) : null;
