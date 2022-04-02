@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CustomerDatabaseManagerTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(TemplateInvoiceManagersTableSeeder::class);
+        $this->call(AddPermissionsSeeder::class);
     }
 }
