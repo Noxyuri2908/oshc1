@@ -14697,4 +14697,12 @@ return [
         "id" => "ZLC",
         "name" => "Zaragoza Logistics Center",
     ],
+    [
+        "id" => "ERR",
+        "name" => "SHARE! High School Exchange Program"
+    ],
+    [
+        "id" => "OXT",
+        "name" => "Oxford International - SF State"
+    ]
 ];

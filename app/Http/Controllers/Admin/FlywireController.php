@@ -843,7 +843,7 @@ class FlywireController extends Controller
         $paymentId = $request->get('payment_ids');
         $text = trim($paymentId);
         $arr = explode("\r\n", $text);
-        if(count($arr)>0){
+        if(count($arr) > 0){
             dispatch(new FlywireCrawlData($arr));
         }
         return redirect()->back();
