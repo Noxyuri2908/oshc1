@@ -131,9 +131,11 @@
                                     <a class="nav-link" href="{{route('com.index')}}">Com</a>
                                 </li>
                             @endcan
-                            <li class="nav-item {{$flag == 'agent_contact' ? 'active' : ''}}">
-                                <a class="nav-link" href="{{route('agent.contact.index')}}">Contact</a>
-                            </li>
+                            @can('agentContact.menu')
+                                <li class="nav-item {{$flag == 'agent_contact' ? 'active' : ''}}">
+                                    <a class="nav-link" href="{{route('agent.contact.index')}}">Contact</a>
+                                </li>
+                            @endcan
                         </ul>
                     </li>
                     <li class="nav-item {{in_array($flag,['partner_provider_list','partner_provider_com']) ? 'active' : ''}}">
@@ -146,9 +148,11 @@
                         </a>
                         <ul class="nav collapse {{in_array($flag, ['partner_provider_list', 'partner_provider_com']) ? 'show' : ''}}"
                             id="partner_provider_sub">
-                            <li class="nav-item {{$flag == 'partner_provider_list' ? 'active' : ''}}">
-                                <a class="nav-link" href="{{route('service.index')}}">List</a>
-                            </li>
+                            @can('providerList.menu')
+                                <li class="nav-item {{$flag == 'partner_provider_list' ? 'active' : ''}}">
+                                    <a class="nav-link" href="{{route('service.index')}}">List</a>
+                                </li>
+                            @endcan
                             @can('providerCom.index')
                                 <li class="nav-item {{$flag == 'partner_provider_com' ? 'active' : ''}}">
                                     <a class="nav-link" href="{{route('provider-com.index')}}">Com</a>
@@ -156,9 +160,11 @@
                             @endcan
                         </ul>
                     </li>
-                    <li class="nav-item {{$flag == 'partner_school' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('school.index')}}">School</a>
-                    </li>
+                    @can('school.menu')
+                        <li class="nav-item {{$flag == 'partner_school' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('school.index')}}">School</a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
             <li class="nav-item {{$flag == 'google_calendar' ? 'active' : ''}}">
@@ -254,16 +260,19 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {{$flag == 'tasks.media' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('tasks.media.index')}}">
-                    <div class="d-flex align-items-center">
+            @can('media.menu')
+                <li class="nav-item {{$flag == 'tasks.media' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('tasks.media.index')}}">
+                        <div class="d-flex align-items-center">
                         <span class="nav-link-icon">
                             <i class="fab fa-medium-m"></i>
                         </span>
-                        <span class="text-content-nav">Media</span>
-                    </div>
-                </a>
-            </li>
+                            <span class="text-content-nav">Media</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+
             <li class="nav-item {{$flag == 'it-checklist' ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('it-checklist.index')}}">
                     <div class="d-flex align-items-center">
@@ -324,26 +333,30 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item {{$flag == 'bank' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('bank.index')}}">
-                    <div class="d-flex align-items-center">
+            @can('bank.menu')
+                <li class="nav-item {{$flag == 'bank' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('bank.index')}}">
+                        <div class="d-flex align-items-center">
                         <span class="nav-link-icon">
                             <span class="fas fa-place-of-worship"></span>
                         </span>
-                        <span class="text-content-nav">BANKS</span>
-                    </div>
-                </a>
-            </li>
-            <li class="nav-item {{$flag == 'exchange-rate' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('exchange-rate.index')}}">
-                    <div class="d-flex align-items-center">
+                            <span class="text-content-nav">BANKS</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+            @can('exchangeRate.menu')
+                <li class="nav-item {{$flag == 'exchange-rate' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('exchange-rate.index')}}">
+                        <div class="d-flex align-items-center">
                         <span class="nav-link-icon">
                             <span class="fas fa-exchange-alt"></span>
                         </span>
-                        <span class="text-content-nav">EXCHANGE RATE</span>
-                    </div>
-                </a>
-            </li>
+                            <span class="text-content-nav">EXCHANGE RATE</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item {{$flag == 'promotion' ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('promotion.index')}}">
                     <div class="d-flex align-items-center">
@@ -354,58 +367,66 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item {{$flag == 'dichvu' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('dichvu.index')}}">
-                    <div class="d-flex align-items-center">
+            @can('service.menu')
+                <li class="nav-item {{$flag == 'dichvu' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('dichvu.index')}}">
+                        <div class="d-flex align-items-center">
                         <span class="nav-link-icon">
                             <span class="fab fa-servicestack"></span>
                         </span>
-                        <span class="text-content-nav">SERVICE</span>
-                    </div>
-                </a>
-            </li>
-            <li class="nav-item {{$flag == 'campain' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('campain.index')}}">
-                    <div class="d-flex align-items-center">
+                            <span class="text-content-nav">SERVICE</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+            @can('campaign.menu')
+                <li class="nav-item {{$flag == 'campain' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('campain.index')}}">
+                        <div class="d-flex align-items-center">
                         <span class="nav-link-icon">
                             <span class="far fa-snowflake"></span>
                         </span>
-                        <span class="text-content-nav">CAMPAIN</span>
-                    </div>
-                </a>
-            </li>
-            <li class="nav-item {{$flag == 'template_invoice_manager' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('template_invoice_manager.index')}}">
-                    <div class="d-flex align-items-center">
+                            <span class="text-content-nav">CAMPAIN</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+            @can('templateInvoiceManager.menu')
+                <li class="nav-item {{$flag == 'template_invoice_manager' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('template_invoice_manager.index')}}">
+                        <div class="d-flex align-items-center">
                         <span class="nav-link-icon">
                             <i class="fas fa-sticky-note"></i>
                         </span>
-                        <span class="text-content-nav">Template Invoice Manager</span>
-                    </div>
-                </a>
-            </li>
+                            <span class="text-content-nav">Template Invoice Manager</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
         </ul>
         <hr class="border-300 my-2"/>
         <ul class="navbar-nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link dropdown-indicator" href="#report" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="pages-errors">
-                    <span class="fas fa-shipping-fast"></span>
-                    <span class="text-content-nav">REPORT</span>
-                    <span class="badge badge-soft-success badge-pill ml-2"></span></a>
-                <ul class="nav collapse {{in_array($flag, ['report-month','report-quarterly']) ? 'show' : ''}}"
-                    id="report">
-                    <li class="nav-item {{$flag == 'report-month' ? 'active' : ''}}">
-                        <a target="_blank" class="nav-link" href="{{route('reportMonthly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY REPORT</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'report-quarterly' ? 'active' : ''}}">
-                        <a target="_blank" class="nav-link" href="{{route('reportQuarterly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">QUARTERLY REPORT</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'report-flywire' ? 'active' : ''}}">
-                        <a target="_blank" class="nav-link" href="{{route('reportFlywire', ['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">REPORT FLYWIRE</a>
-                    </li>
-                </ul>
-            </li>
+            @can('report.menu')
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#report" data-toggle="collapse"
+                       role="button" aria-expanded="false" aria-controls="pages-errors">
+                        <span class="fas fa-shipping-fast"></span>
+                        <span class="text-content-nav">REPORT</span>
+                        <span class="badge badge-soft-success badge-pill ml-2"></span></a>
+                    <ul class="nav collapse {{in_array($flag, ['report-month','report-quarterly']) ? 'show' : ''}}"
+                        id="report">
+                        <li class="nav-item {{$flag == 'report-month' ? 'active' : ''}}">
+                            <a target="_blank" class="nav-link" href="{{route('reportMonthly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY REPORT</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'report-quarterly' ? 'active' : ''}}">
+                            <a target="_blank" class="nav-link" href="{{route('reportQuarterly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">QUARTERLY REPORT</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'report-flywire' ? 'active' : ''}}">
+                            <a target="_blank" class="nav-link" href="{{route('reportFlywire', ['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">REPORT FLYWIRE</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item {{$flag == 'notify' ? 'active' : ''}}">
                 <a class="nav-link" href="#">
                     <div class="d-flex align-items-center">
@@ -426,16 +447,18 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item {{$flag == 'status' ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('status.index')}}">
-                    <div class="d-flex align-items-center">
-                        <span class="nav-link-icon">
-                            <i class="fas fa-cogs"></i>
-                        </span>
-                        <span class="text-content-nav">STATUS</span>
-                    </div>
-                </a>
-            </li>
+            @can('status.menu')
+                <li class="nav-item {{$flag == 'status' ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('status.index')}}">
+                        <div class="d-flex align-items-center">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-cogs"></i>
+                    </span>
+                            <span class="text-content-nav">STATUS</span>
+                        </div>
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item {{$flag == 'checklist_setting' ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('checklist_setting.index')}}">
                     <div class="d-flex align-items-center">
@@ -456,57 +479,61 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link dropdown-indicator" href="#archive_media" data-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="pages-errors">
-                    <span class="fas fa-file-invoice-dollar"></span>
-                    <span class="text-content-nav">Kho</span>
-                    <span class="badge badge-soft-success badge-pill ml-2"></span>
-                </a>
-                <ul class="nav collapse {{in_array($flag, ['archive-media-link','archive-media-content']) ? 'show' : ''}}"
-                    id="archive_media">
-                    <li class="nav-item {{$flag == 'archive-media-link' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('archive-media-link.index')}}">Link</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'archive-media-content' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('archive-media-content.index')}}">Content</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link dropdown-indicator" href="#itsystem" data-toggle="collapse" role="button"
-                   aria-expanded="false" aria-controls="pages-errors">
-                    <span class="fas fa-file-invoice-dollar"></span>
-                    <span class="text-content-nav">IT System</span>
-                    <span class="badge badge-soft-success badge-pill ml-2"></span>
-                </a>
-                <ul class="nav collapse {{in_array($flag, [
-    'domain-hosting-lists',
-    'mail-skype-lists',
-    'website-lists',
-    'account-service-lists',
-    'traffice-lists'
-    ]) ? 'show' : ''}}" id="itsystem">
-                    <li class="nav-item {{$flag == 'domain-hosting-lists' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('domain-hosting-manager.index')}}">Domain /hosting</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'mail-skype-lists' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('email-skype-manager.index')}}">Email / Skype</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'website-lists' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('website-account-manager.index',['type'=>'website'])}}">Website</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'account-service-lists' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('website-account-manager.index',['type'=>'service'])}}">Service</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'traffice-lists' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('traffice.index')}}">Traffice</a>
-                    </li>
-                    <li class="nav-item {{$flag == 'seo-keyword-lists' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('seo-keyword.index')}}">Keyword</a>
-                    </li>
-                </ul>
-            </li>
+            @can('kho.menu')
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#archive_media" data-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="pages-errors">
+                        <span class="fas fa-file-invoice-dollar"></span>
+                        <span class="text-content-nav">Kho</span>
+                        <span class="badge badge-soft-success badge-pill ml-2"></span>
+                    </a>
+                    <ul class="nav collapse {{in_array($flag, ['archive-media-link','archive-media-content']) ? 'show' : ''}}"
+                        id="archive_media">
+                        <li class="nav-item {{$flag == 'archive-media-link' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('archive-media-link.index')}}">Link</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'archive-media-content' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('archive-media-content.index')}}">Content</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('itSystem.menu')
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#itsystem" data-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="pages-errors">
+                        <span class="fas fa-file-invoice-dollar"></span>
+                        <span class="text-content-nav">IT System</span>
+                        <span class="badge badge-soft-success badge-pill ml-2"></span>
+                    </a>
+                    <ul class="nav collapse {{in_array($flag, [
+                    'domain-hosting-lists',
+                    'mail-skype-lists',
+                    'website-lists',
+                    'account-service-lists',
+                    'traffice-lists'
+                    ]) ? 'show' : ''}}" id="itsystem">
+                        <li class="nav-item {{$flag == 'domain-hosting-lists' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('domain-hosting-manager.index')}}">Domain /hosting</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'mail-skype-lists' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('email-skype-manager.index')}}">Email / Skype</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'website-lists' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('website-account-manager.index',['type'=>'website'])}}">Website</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'account-service-lists' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('website-account-manager.index',['type'=>'service'])}}">Service</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'traffice-lists' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('traffice.index')}}">Traffice</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'seo-keyword-lists' ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('seo-keyword.index')}}">Keyword</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
         </ul>
         <a class="btn btn-primary btn-sm m-3" href="{{ route('crm.logout') }}">Logout</a>
     </div>

@@ -15,6 +15,7 @@ class AddPermissionsSeeder extends Seeder
 
         $permissions = [
             'agentContact' => [
+                'agentContact.menu',
                 'agentContact.index',
                 'agentContact.store',
                 'agentContact.update',
@@ -23,29 +24,96 @@ class AddPermissionsSeeder extends Seeder
                 'agentContact.export',
             ],
             'providerList' => [
+                'providerList.menu',
                 'providerList.index',
                 'providerList.store',
                 'providerList.update',
                 'providerList.destroy',
             ],
             'school' => [
+                'school.menu',
                 'school.index',
                 'school.store',
                 'school.update',
                 'school.destroy',
             ],
             'service' => [
+                'service.menu',
                 'service.index',
                 'service.store',
                 'service.update',
                 'service.destroy',
             ],
             'status' => [
+                'status.menu',
                 'status.index',
                 'status.store',
                 'status.update',
                 'status.destroy',
             ],
+            'templateInvoiceManager' => [
+                'templateInvoiceManager.menu',
+                'templateInvoiceManager.index',
+                'templateInvoiceManager.store',
+                'templateInvoiceManager.update',
+                'templateInvoiceManager.destroy',
+            ],
+            'kho' => [
+                'kho.menu',
+                'kho.index',
+                'kho.store',
+                'kho.update',
+                'kho.destroy',
+            ],
+            'itSystem' => [
+                'itSystem.menu',
+                'itSystem.index',
+                'itSystem.store',
+                'itSystem.update',
+                'itSystem.destroy',
+            ],
+            'bank' => [
+                'bank.menu',
+                'bank.index',
+                'bank.store',
+                'bank.update',
+                'bank.destroy',
+            ],
+            'exchangeRate' => [
+                'exchangeRate.menu',
+                'exchangeRate.index',
+                'exchangeRate.store',
+                'exchangeRate.update',
+                'exchangeRate.destroy',
+            ],
+            'campaign' => [
+                'campaign.menu',
+                'campaign.index',
+                'campaign.store',
+                'campaign.update',
+                'campaign.destroy',
+            ],
+            'media' => [
+                'media.menu',
+                'media.index',
+                'media.store',
+                'media.update',
+                'media.destroy',
+            ],
+            'report' => [
+                'report.menu',
+                'report.index',
+                'report.store',
+                'report.update',
+                'report.destroy',
+            ],
+            'configLuckyDraw' => [
+                'configLuckyDraw.menu',
+                'configLuckyDraw.index',
+                'configLuckyDraw.store',
+                'configLuckyDraw.update',
+                'configLuckyDraw.destroy',
+            ]
         ];
 
         foreach ($permissions as $keyPermissionType => $arrPermission) {
