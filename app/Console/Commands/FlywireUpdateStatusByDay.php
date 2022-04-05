@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Admin\Apply;
 use App\Admin\Customer;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class FlywireUpdateStatusByDay extends Command
 {
@@ -45,16 +46,18 @@ class FlywireUpdateStatusByDay extends Command
         $scCookie = $cookies['sc'];
         $peer_session_id = $cookies['peer_session_id'];
         $XSRF_TOKEN = $cookies['XSRF_TOKEN'];
+        var_dump('Done login!');
 
         $cookie = [
             'sc' => $scCookie,
             'peer_session_id' => $peer_session_id,
             'XSRF_TOKEN' => $XSRF_TOKEN,
         ];
-        $startDate = \Carbon\Carbon::now()->subDay(10)->format('Y-m-d');
+        $startDate = \Carbon\Carbon::now()->subDay(30)->format('Y-m-d');
         $endDate = \Carbon\Carbon::now()->format('Y-m-d');
         //end login
         //start crawl
+        var_dump('Start crawl!');
         $paymentIds = $this->getAllIdFlywireOnRange($startDate, $endDate);
         if ($paymentIds->count() > 0) {
             foreach ($paymentIds as $paymentId) {
@@ -95,7 +98,7 @@ class FlywireUpdateStatusByDay extends Command
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-request/payment/search?_s=fullText=='.$paymentId.':*',
+            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-requests/fulfilments?_s=fullText=='.$paymentId.':*',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
