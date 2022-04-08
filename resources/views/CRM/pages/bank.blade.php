@@ -29,9 +29,9 @@ BANK ACCOUNTS MANAGEMENT
 		});
 
 		$(".sub_chk").on('click', function(e) {
-		    if(!$(this).is(':checked',true))  
+		    if(!$(this).is(':checked',true))
 		    {
-		      $('#master').prop('checked', false);  
+		      $('#master').prop('checked', false);
 		    }
 		});
 

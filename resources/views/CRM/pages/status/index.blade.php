@@ -167,7 +167,9 @@
                     <div class="card-body p-0">
                         <div class="just-padding">
                             <div class="list-group list-group-root well" id="form-data">
-                                @include('CRM.pages.status.data')
+                                @can('status.index')
+                                    @include('CRM.pages.status.data')
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -175,7 +177,9 @@
                 </div>
             </div>
             <div class="col-md-5" id="form-status">
-                @include('CRM.pages.status.status_form')
+                @can('status.store')
+                    @include('CRM.pages.status.status_form')
+                @endcan
             </div>
         </div>
     </div>

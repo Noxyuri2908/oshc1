@@ -28,7 +28,6 @@
                     <table class="">
                         <thead class="">
                         <tr class="first-row">
-                            <input type="hidden">
                             <th class="width-50 bg-pink text-center">Action</th>
                             <th class="width-125 bg-pink text-center">Product</th>
                             <th class="width-125 bg-pink text-center">Title</th>

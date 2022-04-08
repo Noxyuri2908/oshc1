@@ -21,9 +21,13 @@
 			<button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown1" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
 			<div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown1">
 				<div class="bg-white py-2">
-					<a class="dropdown-item modal_edit" data-id="{{$obj->id}}" href="#">Edit</a>
+                    @can('exchangeRate.update')
+                        <a class="dropdown-item modal_edit" data-id="{{$obj->id}}" href="#">Edit</a>
+                    @endcan
 					<div class="dropdown-divider"> </div>
-					<a class="dropdown-item text-danger modal_delete" data-id="{{$obj->id}}" href="#!">Delete</a>
+					@can('exchangeRate.destroy')
+                        <a class="dropdown-item text-danger modal_delete" data-id="{{$obj->id}}" href="#!">Delete</a>
+                    @endcan
 				</div>
 			</div>
 		</div>

@@ -16,8 +16,10 @@
 				<h5 class="fs-0 mb-0">EXCHANGE RATE</h5>
 			</div>
 			<div class="col-auto">
-				<a class="btn btn-falcon-primary btn-sm sxme add_new"><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>
-				<a class="btn btn-falcon-warning btn-sm sxme export"><span class="fas fa-file-export mr-1" data-fa-transform="shrink-3"></span> <span>Export</span></a>
+				@can('exchangeRate.store')
+                    <a class="btn btn-falcon-primary btn-sm sxme add_new"><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>
+                    <a class="btn btn-falcon-warning btn-sm sxme export"><span class="fas fa-file-export mr-1" data-fa-transform="shrink-3"></span> <span>Export</span></a>
+                @endcan
 			</div>
 		</div>
 	</div>
@@ -46,7 +48,9 @@
 					</tr>
 				</thead>
 				<tbody id="tbody_exchange_rate">
-					@include('CRM.elements.exchanges.table')
+					@can('exchangeRate.index')
+                        @include('CRM.elements.exchanges.table')
+                    @endcan
 				</tbody>
 			</table>
 		</div>
