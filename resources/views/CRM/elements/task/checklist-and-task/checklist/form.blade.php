@@ -186,7 +186,7 @@
                                     <label class="control-label">Creation date :</label>
                                     <input class="form-control"
                                            value="{{!empty($checkListData)?convert_date_form_db($checkListData->checklist_created_at):''}}"
-                                           name="checklist_created_at" id="checklist_created_at{{$type}}" type="text" required>
+                                           name="{{$flag == 'check-list-edit' ? 'edit_checklist_created_at' : 'checklist_created_at'}}" id="checklist_created_at{{$type}}" type="text" required>
                                 </div>
                             </div>
                             @if($type == 'checklist')
@@ -268,6 +268,7 @@
 
         return [day, month, year].join('/');
     }
+
 
     $('input[name="checklist_created_at"]').val(formatDate()) // add default creation date = date now
 
