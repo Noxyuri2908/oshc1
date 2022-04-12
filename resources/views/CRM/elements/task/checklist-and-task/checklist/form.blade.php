@@ -184,9 +184,11 @@
                             <div class="col-md-4 content-table fill_content">
                                 <div class="form-group">
                                     <label class="control-label">Creation date :</label>
-                                    <input class="form-control"
+                                    <input class="form-control {{$flag == 'check-list-edit' ? 'checklist-edit' : 'checklist-create'}}"
                                            value="{{!empty($checkListData)?convert_date_form_db($checkListData->checklist_created_at):''}}"
-                                           name="{{$flag == 'check-list-edit' ? 'edit_checklist_created_at' : 'checklist_created_at'}}" id="checklist_created_at{{$type}}" type="text" required>
+                                           name="checklist_created_at"
+                                           id="checklist_created_at{{$type}}"
+                                           type="text" required>
                                 </div>
                             </div>
                             @if($type == 'checklist')
@@ -270,6 +272,6 @@
     }
 
 
-    $('input[name="checklist_created_at"]').val(formatDate()) // add default creation date = date now
+    $('input.checklist_create').val(formatDate()) // add default creation date = date now
 
 </script>
