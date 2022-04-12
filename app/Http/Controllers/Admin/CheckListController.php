@@ -38,7 +38,7 @@ class CheckListController extends Controller
             $query->where('solution_text', 'LIKE', '%'.$request->get('solution_text').'%');
         })->when($request->get('result_id'), function ($query) use ($request) {
             $query->where('result_id', $request->get('result_id'));
-        })->when($request->get('start_processing_time'), function ($query) use ($request) {
+        })->when($request->get('start_processing_time') && $request->get('end_processing_time'), function ($query) use ($request) {
             $query->whereBetween('processing_time', [
                 convert_date_to_db($request->get('start_processing_time')),
                 convert_date_to_db($request->get('end_processing_time')),
