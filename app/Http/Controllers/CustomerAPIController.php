@@ -44,12 +44,25 @@ class CustomerAPIController extends Controller
 
     public function processDataApply($input)
     {
+        $endDate = '';
+        if (!empty($input['end_date'])){
+            if ($input['end_date'] == 'Monthly'){
+                $endDate = Carbon::parse(convert_date_to_db($input['start_date']))->addMonth(1)->subDay(1);
+            }elseif ($input['end_date'] == 'Quartely'){
+                $endDate = Carbon::parse(convert_date_to_db($input['start_date']))->addMonth(3)->subDay(1);
+            }
+            elseif ($input['end_date'] == 'Half yearly'){
+                $endDate = Carbon::parse(convert_date_to_db($input['start_date']))->addMonth(6)->subDay(1);
+            }else{
+                $endDate = onvert_date_to_db($input['end_date']);
+            }
+        }
         $applies = array(
             'agent_id' => User::getAgentIdByAgentCode(isset($input['agent_code']) ? $input['agent_code'] : ""),
             'provider_id' => Service::getProviderIDByName($input['provider']),
             'policy' => $input['policy'],
             'start_date' =>  !empty($input['start_date']) ? convert_date_to_db($input['start_date']) : null,
-            'end_date' =>  !empty($input['end_date']) ? convert_date_to_db($input['end_date']) : null,
+            'end_date' =>  $endDate,
             'no_of_adults' =>  $input['no_of_adults'],
             'no_of_children' =>  $input['no_of_children'],
             'net_amount' =>  $input['price'],
