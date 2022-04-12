@@ -54,7 +54,7 @@ class CustomerAPIController extends Controller
             elseif ($input['end_date'] == 'Half yearly'){
                 $endDate = Carbon::parse(convert_date_to_db($input['start_date']))->addMonth(6)->subDay(1);
             }else{
-                $endDate = onvert_date_to_db($input['end_date']);
+                $endDate = convert_date_to_db($input['end_date']);
             }
         }
         $applies = array(
