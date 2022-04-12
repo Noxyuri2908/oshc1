@@ -4,7 +4,8 @@
     'processing_time'.$type,
     'date_of_suggestion_filter'.$type,
     'checklist_created_at_filter'.$type,
-    'processing_time_filter'.$type
+    'start_processing_time_filter'.$type,
+    'end_processing_time_filter'.$type
 ]])
 <script>
     $(document).on('click', '.show-view-detail', function(e) {
@@ -111,7 +112,8 @@
     var solution_text_filter{{$type}};
     var level_of_process_filter{{$type}};
     var result_id_filter{{$type}};
-    var processing_time_filter{{$type}};
+    var start_processing_time_filter{{$type}};
+    var end_processing_time_filter{{$type}};
     var budget_filter{{$type}};
     var checklist_created_at_filter{{$type}};
     var assigned_by_filter{{$type}};
@@ -159,7 +161,8 @@
         solution_text_filter{{$type}} = $('#solution_text_filter{{$type}}').val();
         level_of_process_filter{{$type}} = $('#level_of_process_filter{{$type}}').val();
         result_id_filter{{$type}} = $('#result_id_filter{{$type}}').val();
-        processing_time_filter{{$type}} = $('#processing_time_filter{{$type}}').val();
+        start_processing_time_filter{{$type}} = $('#start_processing_time_filter{{$type}}').val();
+        end_processing_time_filter{{$type}} = $('#end_processing_time_filter{{$type}}').val();
         budget_filter{{$type}} = $('#budget_filter{{$type}}').val();
         checklist_created_at_filter{{$type}} = $('#checklist_created_at_filter{{$type}}').val();
         assigned_by_filter{{$type}} = $('#assigned_by_filter{{$type}}').val();
@@ -176,7 +179,8 @@
             solution_text_filter{{$type}},
             level_of_process_filter{{$type}},
             result_id_filter{{$type}},
-            processing_time_filter{{$type}},
+            start_processing_time_filter{{$type}},
+            end_processing_time_filter{{$type}},
             budget_filter{{$type}},
             checklist_created_at_filter{{$type}},
             assigned_by_filter{{$type}},
@@ -204,10 +208,10 @@
 
     const debounceAjax{{$type}} = debounce(ajax{{$type}}, 300)
 
-    $(document).on('keyup', '.card{{$type}} .last-row input', function (e) {
+    $(document).on('keyup', '.card{{$type}} .last-row input, .card{{$type}} .last-row input#start_processing_time_filterchecklist, .card{{$type}} .last-row input#end_processing_time_filterchecklist', function (e) {
         debounceAjax{{$type}}(e.target.value)
     })
-    $(document).on('change', '.card{{$type}} .last-row select', function (e) {
+    $(document).on('change', '.card{{$type}} .last-row select, .card{{$type}} .last-row input#start_processing_time_filterchecklist, .card{{$type}} .last-row input#end_processing_time_filterchecklist', function (e) {
         debounceAjax{{$type}}(e.target.value)
     })
 
@@ -252,7 +256,8 @@
         solution_text_filter{{$type}},
         level_of_process_filter{{$type}},
         result_id_filter{{$type}},
-        processing_time_filter{{$type}},
+        start_processing_time_filter{{$type}},
+        end_processing_time_filter{{$type}},
         budget_filter{{$type}},
         checklist_created_at_filter{{$type}},
         assigned_by_filter{{$type}},
@@ -276,7 +281,8 @@
                 solution_text: solution_text_filter{{$type}},
                 level_of_process: level_of_process_filter{{$type}},
                 result_id: result_id_filter{{$type}},
-                processing_time: processing_time_filter{{$type}},
+                start_processing_time: start_processing_time_filter{{$type}},
+                end_processing_time: end_processing_time_filter{{$type}},
                 budget: budget_filter{{$type}},
                 checklist_created_at: checklist_created_at_filter{{$type}},
                 assigned_by: assigned_by_filter{{$type}},

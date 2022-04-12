@@ -48,8 +48,12 @@
         </div>
     </th>
     <th>
-        <input class="form-control" value="" name="processing_time_filter" id="processing_time_filter{{$type_tab}}"
-               type="text" required>
+        <div class="d-flex">
+            <input class="form-control" value="" name="processing_time_filter" id="start_processing_time_filter{{$type_tab}}"
+                   type="text" required placeholder="Start Date">
+            <input class="form-control" value="" name="processing_time_filter" id="end_processing_time_filter{{$type_tab}}"
+                   type="text" required placeholder="Etart Date">
+        </div>
     </th>
     <th>
         <input class="form-control" value="" name="problem_filter" id="problem_filter{{$type_tab}}" type="text"

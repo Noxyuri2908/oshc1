@@ -95,8 +95,10 @@ class AgentController extends Controller
             })->when($roleCountriesUser, function ($query) use ($request, $roleCountriesUser) {
                 if (empty($roleCountriesUser)) {
                     $query->whereNull('country');
-                } else if(!empty($roleCountriesUser)){
+                }else if(is_array($roleCountriesUser)){
                     $query->whereIn('country', $roleCountriesUser);
+                }else{
+                    $query->where('country', $roleCountriesUser);
                 }
             })->when($request->get('rating'), function ($query) use ($request) {
                 if ($request->get('rating') == 'null') {
@@ -111,8 +113,10 @@ class AgentController extends Controller
             })->when($roleDepartment || $request->get('f_department'), function ($query) use ($request, $roleDepartment) {
                 if (empty($roleDepartment)) {
                     $query->whereNull('department');
-                } else if(!empty($roleDepartment)){
+                }else if(is_array($roleDepartment)){
                     $query->whereIn('department', $roleDepartment);
+                }else{
+                    $query->where('department', $roleDepartment);
                 }
             })->when($request->get('registered_date'), function ($query) use ($request) {
                 $query->where('registered_date', $request->get('registered_date'));
