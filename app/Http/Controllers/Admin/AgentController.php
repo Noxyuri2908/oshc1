@@ -51,6 +51,7 @@ class AgentController extends Controller
             )
         );
     }
+
     public function getData(Request $request)
     {
         if (!$request->user()->can('agent.index')) {
@@ -58,13 +59,11 @@ class AgentController extends Controller
         }
         $roleCountriesUser = Auth::user()->role_countries;
         $roleDepartment = Auth::user()->role_department;
-        if (!empty($roleCountriesUser))
-        {
+        if (!empty($roleCountriesUser)) {
             $roleCountriesUser = \GuzzleHttp\json_decode($roleCountriesUser);
         }
 
-        if (!empty($roleDepartment))
-        {
+        if (!empty($roleDepartment)) {
             $roleDepartment = \GuzzleHttp\json_decode($roleDepartment);
         }
 
@@ -75,10 +74,10 @@ class AgentController extends Controller
         $roleDepartment = !empty($request->get('department')) ? $request->get('country') : $roleDepartment;
 
         $users = User::when($request->get('name'), function ($query) use ($request) {
-            $query->where('name', 'LIKE', '%'.$request->get('name').'%');
+            $query->where('name', 'LIKE', $request->get('name') . '__%');
         })
             ->when($request->get('agent_code'), function ($query) use ($request) {
-                $query->where('agent_code', 'LIKE', '%'.$request->get('agent_code').'%');
+                $query->where('agent_code', 'LIKE', '%' . $request->get('agent_code') . '%');
             })
             ->when($request->get('market_id'), function ($query) use ($request) {
                 if ($request->get('market_id')[0] == 'null') {
@@ -87,17 +86,17 @@ class AgentController extends Controller
                     $query->whereJsonContains('market_id', $request->get('market_id'));
                 }
             })->when($request->get('tel_1'), function ($query) use ($request) {
-                $query->where('tel_1', 'LIKE', '%'.$request->get('tel_1').'%');
+                $query->where('tel_1', 'LIKE', '%' . $request->get('tel_1') . '%');
             })->when($request->get('tel_2'), function ($query) use ($request) {
-                $query->where('tel_2', 'LIKE', '%'.$request->get('tel_2').'%');
+                $query->where('tel_2', 'LIKE', '%' . $request->get('tel_2') . '%');
             })->when($request->get('website'), function ($query) use ($request) {
-                $query->where('website', 'LIKE', '%'.$request->get('website').'%');
+                $query->where('website', 'LIKE', '%' . $request->get('website') . '%');
             })->when($roleCountriesUser, function ($query) use ($request, $roleCountriesUser) {
                 if (empty($roleCountriesUser)) {
                     $query->whereNull('country');
-                }else if(is_array($roleCountriesUser)){
+                } else if (is_array($roleCountriesUser)) {
                     $query->whereIn('country', $roleCountriesUser);
-                }else{
+                } else {
                     $query->where('country', $roleCountriesUser);
                 }
             })->when($request->get('rating'), function ($query) use ($request) {
@@ -107,15 +106,15 @@ class AgentController extends Controller
                     $query->where('rating', $request->get('rating'));
                 }
             })->when($request->get('city'), function ($query) use ($request) {
-                $query->where('city', 'LIKE', '%'.$request->get('city').'%');
+                $query->where('city', 'LIKE', '%' . $request->get('city') . '%');
             })->when($request->get('office'), function ($query) use ($request) {
-                $query->where('office', 'LIKE', '%'.$request->get('office').'%');
+                $query->where('office', 'LIKE', '%' . $request->get('office') . '%');
             })->when($roleDepartment || $request->get('f_department'), function ($query) use ($request, $roleDepartment) {
                 if (empty($roleDepartment)) {
                     $query->whereNull('department');
-                }else if(is_array($roleDepartment)){
+                } else if (is_array($roleDepartment)) {
                     $query->whereIn('department', $roleDepartment);
-                }else{
+                } else {
                     $query->where('department', $roleDepartment);
                 }
             })->when($request->get('registered_date'), function ($query) use ($request) {
@@ -129,7 +128,7 @@ class AgentController extends Controller
             })
             ->when($request->get('user_status') || $request->get('f_status'), function ($query) use ($request) {
                 if (!empty($request->get('f_status'))) {
-                    if($request->get('f_status') != 'all'){
+                    if ($request->get('f_status') != 'all') {
                         $query->where('status', $request->get('f_status'));
                     }
                 } elseif (!empty($request->get('user_status'))) {
@@ -140,7 +139,7 @@ class AgentController extends Controller
                     }
                 }
             })->when($request->get('email'), function ($query) use ($request) {
-                $query->where('email', 'LIKE', '%'.$request->get('email').'%');
+                $query->where('email', 'LIKE', '%' . $request->get('email') . '%');
             })
             ->when($request->get('staff_id'), function ($query) use ($request) {
                 if ($request->get('staff_id') == 'null') {
@@ -153,10 +152,10 @@ class AgentController extends Controller
                 $query->whereDate('created_at', convert_date_to_db($request->get('created_at')));
             })
             ->when($request->get('note1'), function ($query) use ($request) {
-                $query->where('note1', 'LIKE', '%'.$request->get('note1').'%');
+                $query->where('note1', 'LIKE', '%' . $request->get('note1') . '%');
             })
             ->when($request->get('note2'), function ($query) use ($request) {
-                $query->where('note2', 'LIKE', '%'.$request->get('note2').'%');
+                $query->where('note2', 'LIKE', '%' . $request->get('note2') . '%');
             })
             ->when($request->get('potential_service') && $request->get('potential_service') != [], function ($query) use ($request, $potential_service_filter) {
                 $query->whereJsonContains('potential_service', $potential_service_filter);
@@ -164,8 +163,8 @@ class AgentController extends Controller
             ->when($request->get('f_period') || ($request->get('f_time_start') && $request->get('f_time_end')), function ($query) use ($request) {
                 if ($request->get('f_time_start') && $request->get('f_time_end')) {
                     $query->whereBetween('created_at', [
-                        convert_date_to_db($request->get('f_time_start').' 00:00:00'),
-                        convert_date_to_db($request->get('f_time_end').' 23:59:59'),
+                        convert_date_to_db($request->get('f_time_start') . ' 00:00:00'),
+                        convert_date_to_db($request->get('f_time_end') . ' 23:59:59'),
                     ]);
                 } elseif ($request->get('f_period')) {
                     if ($request->get('f_period') == 1) {
@@ -306,10 +305,10 @@ class AgentController extends Controller
             })
             ->orderBy('id', 'desc');
 
-        if($getChildUser['permissionSee']->contains(3)){
-            $users->where('staff_id',$getChildUser['admin']->id);
-        }elseif($getChildUser['permissionSee']->contains(2)){
-            $users->whereIn('staff_id',$getChildUser['getAllAdminDepartment']);
+        if ($getChildUser['permissionSee']->contains(3)) {
+            $users->where('staff_id', $getChildUser['admin']->id);
+        } elseif ($getChildUser['permissionSee']->contains(2)) {
+            $users->whereIn('staff_id', $getChildUser['getAllAdminDepartment']);
         }
         $users = $users->paginate(20);
         $lastPage = $users->lastPage();
@@ -321,14 +320,15 @@ class AgentController extends Controller
         ]);
     }
 
-    public function getAgentSelect(Request $request){
-        $agents = User::when($request->get('name'),function($query) use ($request){
-            $query->where('name','LIKE','%'.$request->get('name').'%');
-        })->get(['id','name','country'])->take(5)->map(function($agent){
-            $agent['country']= $agent->country();
+    public function getAgentSelect(Request $request)
+    {
+        $agents = User::when($request->get('name'), function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' . $request->get('name') . '%');
+        })->get(['id', 'name', 'country'])->take(5)->map(function ($agent) {
+            $agent['country'] = $agent->country();
             return $agent;
         });
-        if(!$request->get('name')){
+        if (!$request->get('name')) {
             $blankObj = new User();
             $blankObj->id = 0;
             $blankObj->name = 'Blank';
@@ -338,22 +338,24 @@ class AgentController extends Controller
         return $agents;
     }
 
-    public function getAgentFilterAndAgentDefault(Request $request){
-        $totalStatus =[];
+    public function getAgentFilterAndAgentDefault(Request $request)
+    {
+        $totalStatus = [];
         $agentDefault = '';
-        $getCountUser = User::get(['id','is_default','status','name']);
-        foreach(config('admin.status') as $keyStatus=>$valueStatus){
+        $getCountUser = User::get(['id', 'is_default', 'status', 'name']);
+        foreach (config('admin.status') as $keyStatus => $valueStatus) {
             $totalStatus[$valueStatus] = [
-                'count'=>$getCountUser->where('status',$keyStatus)->count(),
-                'id'=>$keyStatus
+                'count' => $getCountUser->where('status', $keyStatus)->count(),
+                'id' => $keyStatus
             ];
         }
-        $agentDefault = $getCountUser->where('is_default',1)->first();
+        $agentDefault = $getCountUser->where('is_default', 1)->first();
         return response()->json([
-            'total_row_data_status'=>$totalStatus,
-            'agent_default'=>$agentDefault
+            'total_row_data_status' => $totalStatus,
+            'agent_default' => $agentDefault
         ]);
     }
+
     public function showData(Request $request, $id)
     {
         $user = User::with(['info'])->findOrFail($id);
@@ -407,8 +409,8 @@ class AgentController extends Controller
             'gst',
             'type_payment'
         );
-        $validator = Validator::make($data,[
-            "email"=>'sometimes|required|email|unique:users,email'
+        $validator = Validator::make($data, [
+            "email" => 'sometimes|required|email|unique:users,email'
         ]);
         if ($validator->fails()) {
             Session::flash('error-create-agent', $validator->errors());
@@ -427,8 +429,7 @@ class AgentController extends Controller
         $data['date_of_contract'] = convert_date_to_db($data['date_of_contract']);
         try {
             $new_account = User::create($data);
-        }catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             echo $e->getMessage();
             echo $e->getLine();
             die();
@@ -474,8 +475,7 @@ class AgentController extends Controller
                     $_arr_contact['swift_code'] = $data_contact['contact_swift_code'][$keyContact];
                     Person::create($_arr_contact);
                 }
-            }catch (\Exception $e)
-            {
+            } catch (\Exception $e) {
                 echo $e->getMessage();
                 echo $e->getLine();
                 die();
@@ -499,8 +499,7 @@ class AgentController extends Controller
                     $_data['status'] = 1;
                     Commission::create($_data);
                 }
-            }catch (\Exception $e)
-            {
+            } catch (\Exception $e) {
                 echo $e->getMessage();
                 echo $e->getLine();
                 die();
@@ -538,7 +537,7 @@ class AgentController extends Controller
         ));
     }
 
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
         if (!$request->user()->can('agent.edit')) {
             abort(403);
@@ -598,8 +597,8 @@ class AgentController extends Controller
             "type_id",
             "staff_id"
         ]);
-        $validator = Validator::make($data_login,[
-            "email"=>'sometimes|required|email|unique:users,email,'.$id
+        $validator = Validator::make($data_login, [
+            "email" => 'sometimes|required|email|unique:users,email,' . $id
         ]);
         if ($validator->fails()) {
             Session::flash('error-edit-agent', $validator->errors());
@@ -699,7 +698,7 @@ class AgentController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         if (!$request->user()->can('agent.delete')) {
             abort(403);
@@ -766,7 +765,7 @@ class AgentController extends Controller
         $fileLists = [];
 
         foreach ($filesSendMail as $one) {
-            $newNameAttr = rand().'.'.$one->getClientOriginalExtension();
+            $newNameAttr = rand() . '.' . $one->getClientOriginalExtension();
             $one->move(public_path('/storage/attr'), $newNameAttr);
             array_push($fileLists, $newNameAttr);
         }
@@ -793,7 +792,7 @@ class AgentController extends Controller
             $agents = User::with(['info'])->whereIn('id', $ids)->get()->each(function ($agent, $key) {
                 $agent->delete();
                 $agent->info()->delete();
-            });;
+            });
             return response()->json(['success' => 1, 'ids' => $ids]);
         } catch (Exception $e) {
             return response()->json(['error' => $e]);
@@ -968,8 +967,7 @@ class AgentController extends Controller
             $var_msg = "This is an exception example";
             throw new Exception($var_msg);
 
-        }catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             echo "Message: " . $e->getMessage();
             echo "";
             echo "getCode(): " . $e->getCode();
@@ -1010,17 +1008,17 @@ class AgentController extends Controller
         ini_set('memory_limit', '-1');
         return back()->with(['msg', 'The Message Error']);
     }
+
     public function getAgentById(Request $request)
     {
         $agentName = User::where('id', $request->get('agent_id'))->select('name', 'staff_id')->get();
 
 
-        if ($request->get('staff'))
-        {
+        if ($request->get('staff')) {
             return response()->json(['staff_id' => $agentName[0]->staff_id, 'staff_name' => getStaffNameById($agentName[0]->staff_id)]);
         }
 
-        if (!empty($agentName)){
+        if (!empty($agentName)) {
             return response()->json(['agent' => $agentName[0]->name]);
         }
 
