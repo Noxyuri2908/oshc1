@@ -4,8 +4,10 @@ namespace App\Console\Commands;
 
 use App\Admin\Apply;
 use App\Admin\Customer;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Str;
 
 class FlywireUpdateStatusByDay extends Command
 {
@@ -53,8 +55,8 @@ class FlywireUpdateStatusByDay extends Command
             'peer_session_id' => $peer_session_id,
             'XSRF_TOKEN' => $XSRF_TOKEN,
         ];
-        $startDate = \Carbon\Carbon::now()->subDay(30)->format('Y-m-d');
-        $endDate = \Carbon\Carbon::now()->format('Y-m-d');
+        $startDate = Carbon::now()->subDay(150)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
         //end login
         //start crawl
         var_dump('Start crawl!');
@@ -65,11 +67,11 @@ class FlywireUpdateStatusByDay extends Command
                 $unitConfig = config('myconfig.currency');
                 $statusConfig = config('myconfig.flywire_status');
                 $schoolConfig = getSchoolFlywire();
-                if(!empty($datas)){
+                if (!empty($datas)) {
                     foreach ($datas as $data) {
                         $status = collect($statusConfig)->filter(function ($item) use ($data) {
                             if (!empty($data->status)) {
-                                return \Str::ascii($item) == ucfirst(strtolower(\Str::ascii($data->status)));
+                                return Str::ascii($item) == ucfirst(strtolower(Str::ascii($data->status)));
                             }
                         })->toArray();
                         $amount_from_unit = collect($unitConfig)->filter(function ($item) use ($data) {
@@ -84,10 +86,10 @@ class FlywireUpdateStatusByDay extends Command
                         })->toArray();
                         $invoiceData = [
                             'status' => !empty($status) ? array_keys($status)[0] : null,
-                            'delivered_date' => !empty($data->history) && !empty($data->history->deliveredAt) ? \Carbon\Carbon::parse($data->history->deliveredAt)
+                            'delivered_date' => !empty($data->history) && !empty($data->history->deliveredAt) ? Carbon::parse($data->history->deliveredAt)
                                 ->format('Y-m-d') : null
                         ];
-                        $invoice = \App\Admin\Apply::where('ref_no', $paymentId)->update($invoiceData);
+                        $invoice = Apply::where('ref_no', $paymentId)->update($invoiceData);
                     }
                 }
             }
@@ -98,7 +100,7 @@ class FlywireUpdateStatusByDay extends Command
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-requests/fulfilments?_s=fullText=='.$paymentId.':*',
+            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-requests/fulfilments?_s=fullText==' . $paymentId . ':*',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -121,7 +123,7 @@ class FlywireUpdateStatusByDay extends Command
                 'sec-fetch-dest: empty',
                 'referer: https://agents.flywire.com/',
                 'accept-language: en-US,en;q=0.9,vi;q=0.8',
-                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
+                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc=' . $scCookie . '; XSRF-TOKEN=' . $XSRF_TOKEN . '; loggedIn=true; peer_session_id=' . $peer_session_id . '; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
             ],
         ]);
         $response = curl_exec($curl);
@@ -160,7 +162,7 @@ class FlywireUpdateStatusByDay extends Command
                 'sec-fetch-dest: empty',
                 'referer: https://agents.flywire.com/',
                 'accept-language: en-US,en;q=0.9,vi;q=0.8',
-                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
+                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc=' . $scCookie . '; XSRF-TOKEN=' . $XSRF_TOKEN . '; loggedIn=true; peer_session_id=' . $peer_session_id . '; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
             ],
             CURLOPT_HEADER => 1,
         ]);
