@@ -89,6 +89,7 @@ class FlywireUpdateStatusByDay extends Command
                             'delivered_date' => !empty($data->history) && !empty($data->history->deliveredAt) ? Carbon::parse($data->history->deliveredAt)
                                 ->format('Y-m-d') : null
                         ];
+                        var_dump($paymentId);
                         $invoice = Apply::where('ref_no', $paymentId)->update($invoiceData);
                     }
                 }

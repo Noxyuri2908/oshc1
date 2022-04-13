@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="13.251.211.32" id="ef32e549-92ce-4aa0-9a5a-d571141749bd" keyPath="$USER_HOME$/Desktop/aws-ssdh.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" />
+      <sshConfig connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="13.251.211.32" id="ef32e549-92ce-4aa0-9a5a-d571141749bd" keyPath="$USER_HOME$/Desktop/aws-ssdh.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" />
     </configs>
   </component>
 </project>
