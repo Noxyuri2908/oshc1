@@ -74,7 +74,12 @@ class AgentController extends Controller
         $roleDepartment = !empty($request->get('department')) ? $request->get('country') : $roleDepartment;
 
         $users = User::when($request->get('name'), function ($query) use ($request) {
-            $query->where('name', 'LIKE', $request->get('name') . '__%');
+            if (strlen($request->get('name')) >= 3) {
+                $query->where('name', 'LIKE', $request->get('name') . '__%');
+            } else {
+                $query->where('name', 'LIKE', '%' . $request->get('name') . '%');
+            }
+
         })
             ->when($request->get('agent_code'), function ($query) use ($request) {
                 $query->where('agent_code', 'LIKE', '%' . $request->get('agent_code') . '%');
