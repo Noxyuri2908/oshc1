@@ -71,7 +71,7 @@ class AgentController extends Controller
         $getChildUser = getChildUser('agent');
         $potential_service_filter = (!empty($request->get('potential_service'))) ? $request->get('potential_service') : [];
         $roleCountriesUser = !empty($request->get('country')) ? $request->get('country') : $roleCountriesUser;
-        $roleDepartment = !empty($request->get('department')) ? $request->get('country') : $roleDepartment;
+        $roleDepartment = !empty($request->get('department')) ? $request->get('department') : $roleDepartment;
 
         $users = User::when($request->get('name'), function ($query) use ($request) {
             if (strlen($request->get('name')) > 3) {
@@ -114,7 +114,7 @@ class AgentController extends Controller
                 $query->where('city', 'LIKE', '%' . $request->get('city') . '%');
             })->when($request->get('office'), function ($query) use ($request) {
                 $query->where('office', 'LIKE', '%' . $request->get('office') . '%');
-            })->when($roleDepartment || $request->get('f_department'), function ($query) use ($request, $roleDepartment) {
+            })->when($roleDepartment, function ($query) use ($request, $roleDepartment) {
                 if (empty($roleDepartment)) {
                     $query->whereNull('department');
                 } else if (is_array($roleDepartment)) {
