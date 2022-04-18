@@ -23,6 +23,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];
@@ -60,7 +61,8 @@ class User extends Authenticatable implements JWTSubject
         'contact_person',
         'note',
         'type',
-        'type_agent'
+        'type_agent',
+        'gst'
     ];
     protected $append = [
         'array_shares',
@@ -106,17 +108,21 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Admin\Person', 'user_id');
     }
+
     public function info()
     {
         return $this->hasOne(Info::class);
     }
+
     public function staff()
     {
         return $this->belongsTo('App\Admin', 'staff_id');
     }
-    public function getNote(){
+
+    public function getNote()
+    {
         $info = $this->info()->first();
-        return (!empty($info))?$info->note:'';
+        return (!empty($info)) ? $info->note : '';
     }
 
 
@@ -171,21 +177,24 @@ class User extends Authenticatable implements JWTSubject
         $tmp = $this->attributes['status'];
         return isset(config('admin.status')[$tmp]) ? config('admin.status')[$tmp] : '';
     }
-    public function getTextMarketAttribute(){
+
+    public function getTextMarketAttribute()
+    {
         $tmp = $this->attributes['market_id'];
         $values = '';
         $arrayValue = json_decode($tmp);
-        if(is_array($arrayValue)){
-            foreach($arrayValue as $key => $one){
-                if(isset(config('myconfig.market')[$one])){
-                    $values .= ($key+1 != count($arrayValue))?config('myconfig.market')[$one].',':config('myconfig.market')[$one];
+        if (is_array($arrayValue)) {
+            foreach ($arrayValue as $key => $one) {
+                if (isset(config('myconfig.market')[$one])) {
+                    $values .= ($key + 1 != count($arrayValue)) ? config('myconfig.market')[$one] . ',' : config('myconfig.market')[$one];
                 }
             }
             return $values;
-        }else{
-            return ;
+        } else {
+            return;
         }
     }
+
     public function getPotentialService($dichvu)
     {
         $potential_service = $this->potential_service;
@@ -198,19 +207,23 @@ class User extends Authenticatable implements JWTSubject
                 }
                 return $nameService;
             } else {
-                $dichvus = $dichvu->where('id',$potential_service)->first();
+                $dichvus = $dichvu->where('id', $potential_service)->first();
                 return $dichvus->name;
             }
         }
         return '';
     }
-    public static function getAllAgentCache(){
-        $allAgent = cache()->rememberForever('getAllAgentComm',function (){
-            return \App\User::with(['info'])->get(['name','id']);
+
+    public static function getAllAgentCache()
+    {
+        $allAgent = cache()->rememberForever('getAllAgentComm', function () {
+            return User::with(['info'])->get(['name', 'id']);
         });
         return $allAgent;
     }
-    public function getTextTypeAgentAttribute() {
+
+    public function getTextTypeAgentAttribute()
+    {
         $tmp = $this->attributes['type_id'];
         return isset(config('admin.type_agent')[$tmp]) ? config('admin.type_agent')[$tmp] : '';
     }
@@ -231,18 +244,18 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'potential_service'=>'array',
-        'market_id'=>'array'
+        'potential_service' => 'array',
+        'market_id' => 'array'
     ];
 
     public static function queryExportAgent($request)
     {
         $potential_service_filter = (!empty($request->get('potential_service'))) ? $request->get('potential_service') : [];
         $users = User::when($request->get('name'), function ($query) use ($request) {
-            $query->where('name', 'LIKE', $request->get('name').'%');
+            $query->where('name', 'LIKE', $request->get('name') . '%');
         })
             ->when($request->get('agent_code'), function ($query) use ($request) {
-                $query->where('agent_code', 'LIKE', '%'.$request->get('agent_code').'%');
+                $query->where('agent_code', 'LIKE', '%' . $request->get('agent_code') . '%');
             })
             ->when($request->get('market_id'), function ($query) use ($request) {
                 if ($request->get('market_id')[0] == 'null') {
@@ -251,11 +264,11 @@ class User extends Authenticatable implements JWTSubject
                     $query->whereJsonContains('market_id', $request->get('market_id'));
                 }
             })->when($request->get('tel_1'), function ($query) use ($request) {
-                $query->where('tel_1', 'LIKE', '%'.$request->get('tel_1').'%');
+                $query->where('tel_1', 'LIKE', '%' . $request->get('tel_1') . '%');
             })->when($request->get('tel_2'), function ($query) use ($request) {
-                $query->where('tel_2', 'LIKE', '%'.$request->get('tel_2').'%');
+                $query->where('tel_2', 'LIKE', '%' . $request->get('tel_2') . '%');
             })->when($request->get('website'), function ($query) use ($request) {
-                $query->where('website', 'LIKE', '%'.$request->get('website').'%');
+                $query->where('website', 'LIKE', '%' . $request->get('website') . '%');
             })->when($request->get('country'), function ($query) use ($request) {
                 if ($request->get('country') == 'null') {
                     $query->whereNull('country');
@@ -269,9 +282,9 @@ class User extends Authenticatable implements JWTSubject
                     $query->where('rating', $request->get('rating'));
                 }
             })->when($request->get('city'), function ($query) use ($request) {
-                $query->where('city', 'LIKE', '%'.$request->get('city').'%');
+                $query->where('city', 'LIKE', '%' . $request->get('city') . '%');
             })->when($request->get('office'), function ($query) use ($request) {
-                $query->where('office', 'LIKE', '%'.$request->get('office').'%');
+                $query->where('office', 'LIKE', '%' . $request->get('office') . '%');
             })->when($request->get('department') || $request->get('f_department'), function ($query) use ($request) {
                 if ($request->get('f_department')) {
                     $query->where('department', $request->get('f_department'));
@@ -293,7 +306,7 @@ class User extends Authenticatable implements JWTSubject
             })
             ->when($request->get('user_status') || $request->get('f_status'), function ($query) use ($request) {
                 if (!empty($request->get('f_status'))) {
-                    if($request->get('f_status') != 'all'){
+                    if ($request->get('f_status') != 'all') {
                         $query->where('status', $request->get('f_status'));
                     }
                 } elseif (!empty($request->get('user_status'))) {
@@ -304,7 +317,7 @@ class User extends Authenticatable implements JWTSubject
                     }
                 }
             })->when($request->get('email'), function ($query) use ($request) {
-                $query->where('email', 'LIKE', '%'.$request->get('email').'%');
+                $query->where('email', 'LIKE', '%' . $request->get('email') . '%');
             })
             ->when($request->get('staff_id'), function ($query) use ($request) {
                 if ($request->get('staff_id') == 'null') {
@@ -317,10 +330,10 @@ class User extends Authenticatable implements JWTSubject
                 $query->whereDate('created_at', convert_date_to_db($request->get('created_at')));
             })
             ->when($request->get('note1'), function ($query) use ($request) {
-                $query->where('note1', 'LIKE', '%'.$request->get('note1').'%');
+                $query->where('note1', 'LIKE', '%' . $request->get('note1') . '%');
             })
             ->when($request->get('note2'), function ($query) use ($request) {
-                $query->where('note2', 'LIKE', '%'.$request->get('note2').'%');
+                $query->where('note2', 'LIKE', '%' . $request->get('note2') . '%');
             })
             ->when($request->get('potential_service') && $request->get('potential_service') != [], function ($query) use ($request, $potential_service_filter) {
                 $query->whereJsonContains('potential_service', $potential_service_filter);
@@ -328,8 +341,8 @@ class User extends Authenticatable implements JWTSubject
             ->when($request->get('f_period') || ($request->get('f_time_start') && $request->get('f_time_end')), function ($query) use ($request) {
                 if ($request->get('f_time_start') && $request->get('f_time_end')) {
                     $query->whereBetween('created_at', [
-                        convert_date_to_db($request->get('f_time_start').' 00:00:00'),
-                        convert_date_to_db($request->get('f_time_end').' 23:59:59'),
+                        convert_date_to_db($request->get('f_time_start') . ' 00:00:00'),
+                        convert_date_to_db($request->get('f_time_end') . ' 23:59:59'),
                     ]);
                 } elseif ($request->get('f_period')) {
                     if ($request->get('f_period') == 1) {
@@ -492,7 +505,7 @@ class User extends Authenticatable implements JWTSubject
     public static function removeAgent($agentName)
     {
 
-        DB::table('users')->where('name', 'LIKE', '%'.$agentName.'%')->delete();
+        DB::table('users')->where('name', 'LIKE', '%' . $agentName . '%')->delete();
     }
 
     public static function getAgentName($agent_id)
@@ -520,11 +533,9 @@ class User extends Authenticatable implements JWTSubject
 
     static function getAgentIdByAgentName($agent_name)
     {
-        if (!empty($agent_name))
-        {
+        if (!empty($agent_name)) {
             $agent = DB::table('users')->select('id')->where('name', $agent_name)->first();
-            if (!empty($agent))
-            {
+            if (!empty($agent)) {
                 return $agent->id;
             }
 

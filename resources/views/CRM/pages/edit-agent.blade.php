@@ -189,7 +189,7 @@
         // });
         $('#table_contact').delegate('.del_contact', 'click', function () {
             _id = $(this).data('id')
-            $.get(delContact, { id: _id }, function (data) {
+            $.get(delContact, {id: _id}, function (data) {
                 $('#table_contact_body').html(data)
             })
         })
@@ -537,9 +537,9 @@
             $('#donvi_comm option').each(function () {
                 $(this).removeAttr('selected')
             })
-            $('#gst_comm option').each(function () {
-                $(this).removeAttr('selected')
-            })
+            // $('#gst_comm option').each(function () {
+            //     $(this).removeAttr('selected')
+            // })
             $('#type_payment_comm option').each(function () {
                 $(this).removeAttr('selected')
             })

@@ -17,13 +17,15 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="email">Company email</label>
-                        <input class="form-control" name="email" id="email" type="email" placeholder="example@example.com" required>
+                        <input class="form-control" name="email" id="email" type="email"
+                               placeholder="example@example.com" required>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input class="form-control" name="password" id="password" type="password" placeholder="***********">
+                        <input class="form-control" name="password" id="password" type="password"
+                               placeholder="***********">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -93,7 +95,8 @@
                         <select name="staff_id" id="staff_id" class="form-control">
                             <option label=""></option>
                             @foreach($staffs as $staff)
-                                <option value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id?'selected':''}}>{{$staff->admin_id}}</option>
+                                <option
+                                    value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id?'selected':''}}>{{$staff->admin_id}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -101,7 +104,8 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="date_of_contract">Date of contract</label>
-                        <input type="text" onmouseover="onLoadChooseDate()" class="form-control" name="date_of_contract" id="date_of_contract" placeholder="d/m/y">
+                        <input type="text" onmouseover="onLoadChooseDate()" class="form-control" name="date_of_contract"
+                               id="date_of_contract" placeholder="d/m/y">
                     </div>
                 </div>
             </div>
@@ -109,10 +113,32 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label for="password">Commission offer</label>
-                        <input class="form-control" name="commission_offer" id="commission_offer" type="text" placeholder="">
+                        <input class="form-control" name="commission_offer" id="commission_offer" type="text"
+                               placeholder="">
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-8 d-flex">
+                    <label for="gst" style="margin-bottom: 0;margin-right: 50px">GST</label>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="gst1" id="gst1" type="checkbox" value="1"
+                               placeholder="">
+                        <label class="form-check-label" for="include">Included</label>
+                    </div>
+                    <div style="margin-right: 20px"></div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="gst2" id="gst2" type="checkbox" value="1"
+                               placeholder="">
+                        <label class="form-check-label" for="notInclude">Not included</label>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+
         </div>
     </div>
 @else
@@ -129,19 +155,22 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="name">Username</label>
-                        <input class="form-control" name="name" id="name" type="text" value="{{$obj->name}}" placeholder="Example" required>
+                        <input class="form-control" name="name" id="name" type="text" value="{{$obj->name}}"
+                               placeholder="Example" required>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="email">Company email</label>
-                        <input class="form-control" name="email" id="email" type="email" value="{{$obj->email}}" placeholder="example@example.com" required>
+                        <input class="form-control" name="email" id="email" type="email" value="{{$obj->email}}"
+                               placeholder="example@example.com" required>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input class="form-control" name="password" id="password" type="password" placeholder="Enter to change">
+                        <input class="form-control" name="password" id="password" type="password"
+                               placeholder="Enter to change">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -161,7 +190,8 @@
                         <select class="form-control" id="market_id" name="market_id[]" required multiple>
                             <option label=""></option>
                             @foreach(config('myconfig.market') as $key=>$value)
-                                <option value="{{$key}}" {{(!empty($obj)) && collect($obj->market_id)->contains($key)? "selected" : ''}}>{{$value}}</option>
+                                <option
+                                    value="{{$key}}" {{(!empty($obj)) && collect($obj->market_id)->contains($key)? "selected" : ''}}>{{$value}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -172,7 +202,8 @@
                         <select class="form-control" id="department" name="department" required>
                             <option label=""></option>
                             @foreach(config('myconfig.department') as $key=>$value)
-                                <option value="{{$key}}" {{$obj->department == $key ? "selected" : ''}}>{{$value}}</option>
+                                <option
+                                    value="{{$key}}" {{$obj->department == $key ? "selected" : ''}}>{{$value}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -182,13 +213,15 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="">Note 1</label>
-                        <textarea name="note1" class="form-control" id="note1" cols="30" rows="5">{{$obj->note1}}</textarea>
+                        <textarea name="note1" class="form-control" id="note1" cols="30"
+                                  rows="5">{{$obj->note1}}</textarea>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="">Note 2</label>
-                        <textarea name="note2" class="form-control" id="note2" cols="30" rows="5">{{$obj->note2}}</textarea>
+                        <textarea name="note2" class="form-control" id="note2" cols="30"
+                                  rows="5">{{$obj->note2}}</textarea>
                     </div>
                 </div>
             </div>
@@ -200,9 +233,11 @@
                             <option label=""></option>
                             @foreach($staffs as $staff)
                                 @if($action == 'edit')
-                                    <option value="{{$staff->id}}" {{$obj->staff_id == $staff->id ? 'selected' : '' }} >{{$staff->admin_id}}</option>
+                                    <option
+                                        value="{{$staff->id}}" {{$obj->staff_id == $staff->id ? 'selected' : '' }} >{{$staff->admin_id}}</option>
                                 @else
-                                    <option value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id?'selected':''}}>{{$staff->admin_id}}</option>
+                                    <option
+                                        value="{{$staff->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $staff->id?'selected':''}}>{{$staff->admin_id}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -211,7 +246,9 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="date_of_contract">Date of contract</label>
-                        <input type="text" onmouseover="onLoadChooseDate()" class="form-control" name="date_of_contract" id="date_of_contract" value="{{convert_date_form_db($obj->date_of_contract)}}" placeholder="d/m/y">
+                        <input type="text" onmouseover="onLoadChooseDate()" class="form-control" name="date_of_contract"
+                               id="date_of_contract" value="{{convert_date_form_db($obj->date_of_contract)}}"
+                               placeholder="d/m/y">
                     </div>
                 </div>
             </div>
@@ -219,8 +256,29 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label for="password">Commission offer</label>
-                        <input class="form-control" name="commission_offer" id="commission_offer" type="text" value="{{$obj->commission_offer}}" placeholder="">
+                        <input class="form-control" name="commission_offer" id="commission_offer" type="text"
+                               value="{{$obj->commission_offer}}" placeholder="">
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 d-flex">
+                    <label for="gst" style="margin-bottom: 0;margin-right: 50px">GST</label>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="gst1" id="gst1" type="checkbox" value="1"
+                               {{$obj->gst == 1 ? 'checked' : ''}} placeholder="">
+                        <label class="form-check-label" for="include">Included</label>
+                    </div>
+                    <div style="margin-right: 20px"></div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="gst2" id="gst2" type="checkbox" value="2"
+                               {{$obj->gst == 2 ? 'checked' : ''}} placeholder="">
+                        <label class="form-check-label" for="notInclude">Not included</label>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
                 </div>
             </div>
         </div>
@@ -233,6 +291,24 @@
             closeOnSelect: false
         });
 
+        $('#gst1').on('change', function () {
+            if ($(this).is(":checked")) {
+                console.log('check gst 1');
+                $('#gst2').prop('checked', false);
+            } else if ($(this).is(":not(:checked)")) {
+                console.log('un check')
+            }
+        })
+
+        $('#gst2').on('change', function () {
+            if ($(this).is(":checked")) {
+                console.log('check gst 2');
+                $('#gst1').prop('checked', false);
+            } else if ($(this).is(":not(:checked)")) {
+                console.log('un check')
+            }
+        })
+
         function onLoadChooseDate() {
             let date_class = $('#date_of_contract').hasClass('flatpickr-input')
             if (!date_class) {
@@ -243,4 +319,4 @@
             }
         }
     </script>
-    @endpush
+@endpush

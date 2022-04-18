@@ -432,6 +432,11 @@ class AgentController extends Controller
         $data['country'] = $data['country_id'];
         $data['registered_date'] = date('Y-m-d');
         $data['date_of_contract'] = convert_date_to_db($data['date_of_contract']);
+        if (!empty($data['gst1'])) {
+            $data['gst'] = 1;
+        } elseif (!empty($data['gst2'])) {
+            $data['gst'] = 2;
+        }
         try {
             $new_account = User::create($data);
         } catch (\Exception $e) {
@@ -553,6 +558,7 @@ class AgentController extends Controller
                     ->with('service');
             },
         ])->findOrFail($id);
+
         $comms = $obj->commission;
         $staffs = Admin::where('status', 1)->get();
         $status = config('admin.status');
@@ -600,8 +606,15 @@ class AgentController extends Controller
             "rating",
             "potential_service",
             "type_id",
-            "staff_id"
+            "staff_id",
+            "gst1",
+            "gst2"
         ]);
+        if (!empty($data_login['gst1'])) {
+            $data_login['gst'] = 1;
+        } elseif (!empty($data_login['gst2'])) {
+            $data_login['gst'] = 2;
+        }
         $validator = Validator::make($data_login, [
             "email" => 'sometimes|required|email|unique:users,email,' . $id
         ]);
