@@ -74,7 +74,10 @@ class AgentController extends Controller
         $roleDepartment = !empty($request->get('department')) ? $request->get('department') : $roleDepartment;
 
         $users = User::when($request->get('name'), function ($query) use ($request) {
-            if (strlen($request->get('name')) > 3) {
+
+            if (strlen($request->get('name')) > 5) {
+                $query->where('name', 'LIKE', '%' . $request->get('name') . '%');
+            } else if (strlen($request->get('name')) == 4) {
                 $query->where('name', 'LIKE', $request->get('name') . '__%');
             } else {
                 $query->where('name', 'LIKE', '%' . $request->get('name') . '%');
@@ -406,6 +409,8 @@ class AgentController extends Controller
             'contact_bank_address',
             'contact_receiver_address',
             'contact_swift_code',
+            'contact_is_counsellor',
+            'contact_com_counsellor',
             'type_service',
             'type',
             'comm',
@@ -461,7 +466,9 @@ class AgentController extends Controller
             'contact_currency',
             'contact_bank_address',
             'contact_receiver_address',
-            'contact_swift_code'
+            'contact_swift_code',
+            'contact_is_counsellor',
+            'contact_com_counsellor'
         );
         if (!empty($data_contact['contact_name'])) {
             try {
@@ -483,6 +490,8 @@ class AgentController extends Controller
                     $_arr_contact['bank_address'] = $data_contact['contact_bank_address'][$keyContact];
                     $_arr_contact['receiver_address'] = $data_contact['contact_receiver_address'][$keyContact];
                     $_arr_contact['swift_code'] = $data_contact['contact_swift_code'][$keyContact];
+                    $_arr_contact['is_counsellor'] = $data_contact['contact_is_counsellor'][$keyContact];
+                    $_arr_contact['com_counsellor'] = $data_contact['contact_com_counsellor'][$keyContact];
                     Person::create($_arr_contact);
                 }
             } catch (\Exception $e) {
@@ -647,7 +656,9 @@ class AgentController extends Controller
             'contact_currency',
             'contact_bank_address',
             'contact_receiver_address',
-            'contact_swift_code'
+            'contact_swift_code',
+            'contact_is_counsellor',
+            'contact_com_counsellor'
         );
         DB::beginTransaction();
         try {
@@ -671,6 +682,8 @@ class AgentController extends Controller
                     $_arr_contact['bank_address'] = $data_contact['contact_bank_address'][$keyContact];
                     $_arr_contact['receiver_address'] = $data_contact['contact_receiver_address'][$keyContact];
                     $_arr_contact['swift_code'] = $data_contact['contact_swift_code'][$keyContact];
+                    $_arr_contact['is_counsellor'] = $data_contact['contact_is_counsellor'][$keyContact];
+                    $_arr_contact['com_counsellor'] = $data_contact['contact_com_counsellor'][$keyContact];
                     Person::create($_arr_contact);
                 }
             }
@@ -881,6 +894,8 @@ class AgentController extends Controller
             'bank_address',
             'receiver_address',
             'swift_code',
+            'is_counsellor',
+            'com_counsellor'
         ]);
         $data['user_id'] = $id;
         $personContactAgent = Person::where('user_id', $id)->whereNotNull('is_receive_comm')->get();
@@ -922,6 +937,8 @@ class AgentController extends Controller
             'bank_address',
             'receiver_address',
             'swift_code',
+            'is_counsellor',
+            'com_counsellor'
         ]);
         $personContactAgent = Person::where('user_id', $person->user_id)->whereNotNull('is_receive_comm')->get();
         if ($personContactAgent->count() > 0 && $data['is_receive_comm'] == 'on') {
@@ -967,6 +984,8 @@ class AgentController extends Controller
             'bank_address' => $request->input('bank_address'),
             'receiver_address' => $request->input('receiver_address'),
             'swift_code' => $request->input('swift_code'),
+            'is_counsellor' => $request->input('is_counsellor'),
+            'com_counsellor' => $request->input('com_counsellor'),
         ];
         return view('CRM.elements.agents.modal-create-contact', ['data' => $tmp]);
     }

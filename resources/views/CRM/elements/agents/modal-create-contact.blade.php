@@ -1,4 +1,5 @@
-<div class="modal fade user-information" id="modal_create_contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade user-information" id="modal_create_contact" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,65 +13,105 @@
                     <h3 class="name">
                         {{!empty($data)?'Update':'Create'}} contact
                     </h3>
-                    <input type="hidden" id="contact_id" value="{{(!empty($data) && !empty($data['id']) )?$data['id']:''}}">
+                    <input type="hidden" id="contact_id"
+                           value="{{(!empty($data) && !empty($data['id']) )?$data['id']:''}}">
                     <div class="row">
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Name:</label>
-                                <input type="text" class="form-control" id="new_name" value="{{(!empty($data) && !empty($data['name']))?$data['name']:''}}">
+                                <input type="text" class="form-control" id="new_name"
+                                       value="{{(!empty($data) && !empty($data['name']))?$data['name']:''}}">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Position:</label>
-                                <input type="text" class="form-control" id="new_position" value="{{(!empty($data) && !empty($data['position']))?$data['position']:''}}">
+                                <input type="text" class="form-control" id="new_position"
+                                       value="{{(!empty($data) && !empty($data['position']))?$data['position']:''}}">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Phone:</label>
-                                <input type="text" class="form-control" id="new_phone" value="{{(!empty($data) && !empty($data['phone']))?$data['phone']:''}}">
+                                <input type="text" class="form-control" id="new_phone"
+                                       value="{{(!empty($data) && !empty($data['phone']))?$data['phone']:''}}">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Birthday:</label>
-                                <input onmouseover="onLoadChooseDate()" autocomplete="off" type="text" class="form-control" id="new_birthday" value="{{(!empty($data) && !empty($data['birthday']))?$data['birthday']:''}}" placeholder="dd-mm-yyyy">
+                                <input onmouseover="onLoadChooseDate()" autocomplete="off" type="text"
+                                       class="form-control" id="new_birthday"
+                                       value="{{(!empty($data) && !empty($data['birthday']))?$data['birthday']:''}}"
+                                       placeholder="dd-mm-yyyy">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Email:</label>
-                                <input type="email" class="form-control" id="new_email" value="{{(!empty($data) && !empty($data['email']))?$data['email']:''}}">
+                                <input type="email" class="form-control" id="new_email"
+                                       value="{{(!empty($data) && !empty($data['email']))?$data['email']:''}}">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Skype:</label>
-                                <input type="text" class="form-control" id="new_skype" value="{{(!empty($data) && !empty($data['skype']))?$data['skype']:''}}">
+                                <input type="text" class="form-control" id="new_skype"
+                                       value="{{(!empty($data) && !empty($data['skype']))?$data['skype']:''}}">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Facebook:</label>
-                                <input type="text" class="form-control" id="new_facebook" value="{{(!empty($data) && !empty($data['facebook']))?$data['facebook']:''}}">
+                                <input type="text" class="form-control" id="new_facebook"
+                                       value="{{(!empty($data) && !empty($data['facebook']))?$data['facebook']:''}}">
                             </div>
                         </div>
                         <div class="col-md-6 content-table">
                             <div class="form-group">
                                 <label class="control-label">Note:</label>
-                                <textarea type="text" class="form-control" id="new_note">{{(!empty($data) && !empty($data['note']))?$data['note']:''}}</textarea>
+                                <textarea type="text" class="form-control"
+                                          id="new_note">{{(!empty($data) && !empty($data['note']))?$data['note']:''}}</textarea>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div style="" class="col-lg-6">
+                            <div class="form-check">
+                                <input type="checkbox" id="check_counsellor" name="check_counsellor"
+                                       class="form-check-input"
+                                       {{ !empty($data) && !empty($data['is_counsellor']) && $data['is_counsellor'] == 1 ? 'checked' :''}} onclick="checkComCounsellor()"
+                                       value="">
+                                <label class="form-check-label" for="check_counsellor">Commission report
+                                    counsellor</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 content-table fill_content">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label" for="com_counsellor">% Com for counsellor</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="com_counsellor" name="com_counsellor"
+                                           {{ isset($data) && strlen($data['com_counsellor']) == 0 ?  'disabled' : ''}}
+                                           class="form-control"
+                                           value="{{ !empty($data) && !empty($data['com_counsellor']) ?  $data['com_counsellor'].'%' :''}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-lg-12 mb-2">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="is_receive_comm" {{!empty($data) && (!empty($data['is_receive_comm'])) && $data['is_receive_comm'] == 'on'?'checked':''}}>
+                                <input type="checkbox" class="form-check-input"
+                                       id="is_receive_comm" {{!empty($data) && (!empty($data['is_receive_comm'])) && $data['is_receive_comm'] == 'on'?'checked':''}}>
                                 <label class="form-check-label" for="is_receive_comm">Receive Commission</label>
                             </div>
                         </div>
-                        <div style="{{!empty($data) && (!empty($data['is_receive_comm'])) && $data['is_receive_comm'] == 'on'?'display:block;':'display:none;'}}" class="col-lg-12 info_bank">
+                        <div
+                            style="{{!empty($data) && (!empty($data['is_receive_comm'])) && $data['is_receive_comm'] == 'on'?'display:block;':'display:none;'}}"
+                            class="col-lg-12 info_bank">
                             <div class="row">
                                 <div class="col-md-4 content-table fill_content">
                                     <div class="form-group">
@@ -102,7 +143,8 @@
                                         <select name="" id="currency" class="form-control">
                                             @if(!empty($currency))
                                                 @foreach($currency as $keyCurrency=>$one)
-                                                    <option value="{{$one}}" {{!empty($data) && !empty($data['currency']) && $data['currency'] == $one?'selected':''}}>{{$one}}</option>
+                                                    <option
+                                                        value="{{$one}}" {{!empty($data) && !empty($data['currency']) && $data['currency'] == $one?'selected':''}}>{{$one}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -129,11 +171,15 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
             <div class="modal-footer">
                 @if(empty($is_show))
-                    <button class="btn btn-success btn-sm btn-submit-contact" type="button" data-id="{{!empty($data) && !empty($data['id'])?$data['id']:''}}" data-url="{{!empty($data)?route('agent.updateContactAgent',['id'=>$data['id']]):route('agent.storeContactAgent',['id'=>(!empty($id))?$id:''])}}">{{!empty($data)?'Update':'Create'}}</button>
+                    <button class="btn btn-success btn-sm btn-submit-contact 1111" type="button"
+                            data-id="{{!empty($data) && !empty($data['id'])?$data['id']:''}}"
+                            data-url="{{!empty($data)?route('agent.updateContactAgent',['id'=>$data['id']]):route('agent.storeContactAgent',['id'=>(!empty($id))?$id:''])}}">{{!empty($data)?'Update':'Create'}}</button>
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Close</button>
                 @endif
             </div>
@@ -147,6 +193,14 @@
                     dateFormat: 'd/m/Y',
                     allowInput: true,
                 })
+            }
+        }
+
+        function checkComCounsellor() {
+            if ($('#check_counsellor').is(':checked')) {
+                $('#com_counsellor').removeAttr('disabled');
+            } else {
+                $('#com_counsellor').attr('disabled', true);
             }
         }
     </script>

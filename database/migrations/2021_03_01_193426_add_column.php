@@ -281,6 +281,18 @@ class AddColumn extends Migration
                 $table->integer('gst')->nullable()->after('type_agent');
             });
         }
+
+        if (!Schema::hasColumn('people', 'is_counsellor')) {
+            Schema::table('people', function (Blueprint $table) {
+                $table->integer('is_counsellor')->nullable()->after('bank_address');
+            });
+        }
+
+        if (!Schema::hasColumn('people', 'com_counsellor')) {
+            Schema::table('people', function (Blueprint $table) {
+                $table->integer('com_counsellor')->nullable()->after('is_counsellor');
+            });
+        }
     }
 
     /**
@@ -507,6 +519,18 @@ class AddColumn extends Migration
         if (Schema::hasColumn('users', 'gst')) {
             Schema::table('users', function (Blueprint $table) {
                 $table->dropColumn('gst');
+            });
+        }
+
+        if (Schema::hasColumn('people', 'com_counsellor')) {
+            Schema::table('people', function (Blueprint $table) {
+                $table->dropColumn('com_counsellor');
+            });
+        }
+
+        if (Schema::hasColumn('people', 'is_counsellor')) {
+            Schema::table('people', function (Blueprint $table) {
+                $table->dropColumn('is_counsellor');
             });
         }
     }

@@ -2,7 +2,9 @@
     <tr id="data-agent-contact_{{$value['id']}}">
         <td>
             <a class="edit_contact" href="#!" data-id="{{$value['id']}}"><span class="far fa-edit"></span></a>
-            <a class="del_contact" href="#!" data-id="{{$value['id']}}" data-url="{{route('agent.destroyContactAgent',['id'=>$value['id']])}}"><span class="far fa-trash-alt "></span></a>
+            <a class="del_contact" href="#!" data-id="{{$value['id']}}"
+               data-url="{{route('agent.destroyContactAgent',['id'=>$value['id']])}}"><span
+                    class="far fa-trash-alt "></span></a>
         </td>
         <th class="white-space-break-spaces">{{$value['id']}}</th>
         <td class="white-space-break-spaces c_name">{{$value['name']}}</td>
@@ -37,5 +39,9 @@
         <input type="hidden" name="contact_currency[]" value="{{$value['currency']}}">
         <input type="hidden" name="contact_bank_address[]" value="{{$value['bank_address']}}">
         <input type="hidden" name="contact_swift_code[]" value="{{$value['swift_code']}}">
+        <input type="hidden" name="contact_is_counsellor[]" class="contact_is_counsellor"
+               value="{{$value['is_counsellor']}}">
+        <input type="hidden" name="contact_com_counsellor[]" class="contact_com_counsellor"
+               value="{{$value['com_counsellor']}}">
     </tr>
 @endforeach

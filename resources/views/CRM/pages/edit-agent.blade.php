@@ -210,6 +210,8 @@
             _bank_address = $('#bank_address').val()
             _receiver_address = $('#receiver_address').val()
             _swift_code = $('#swift_code').val()
+            _check_counsellor = $('#check_counsellor').is(':checked') ? 1 : 2;
+            _com_counsellor = $('#com_counsellor').val();
             $.get(storeContact, {
                 name: _name,
                 position: _position,
@@ -220,6 +222,8 @@
                 facebook: _facebook,
                 note: _note,
                 status: _status,
+                is_counsellor: _check_counsellor,
+                com_counsellor: _com_counsellor
             }, function (data) {
                 $('#table_contact_body').html(data)
             })
@@ -244,6 +248,8 @@
             _bank_address = $('#bank_address').val()
             _receiver_address = $('#receiver_address').val()
             _swift_code = $('#swift_code').val()
+            _check_counsellor = $('#check_counsellor').is(':checked') ? 1 : 2;
+            _com_counsellor = $('#com_counsellor').val();
             $.get(updateContact, {
                 id: _id,
                 name: _name,
@@ -255,6 +261,8 @@
                 facebook: _facebook,
                 note: _note,
                 status: _status,
+                is_counsellor: _check_counsellor,
+                com_counsellor: _com_counsellor
             }, function (data) {
                 $('#table_contact_body').html(data)
             })
@@ -320,6 +328,8 @@
             _bank_address = $('#data-agent-contact_' + _id + ' .c_bank_address').text()
             _receiver_address = $('#data-agent-contact_' + _id + ' .c_receiver_address').text()
             _swift_code = $('#data-agent-contact_' + _id + ' .c_swift_code').text()
+            _is_counsellor = $('#data-agent-contact_' + _id + ' .contact_is_counsellor').val()
+            _com_counsellor = $('#data-agent-contact_' + _id + ' .contact_com_counsellor').val()
 
             $.ajax({
                 url: '{{route('agent.getModalFormContact')}}',
@@ -340,6 +350,8 @@
                     bank_address: _bank_address,
                     receiver_address: _receiver_address,
                     swift_code: _swift_code,
+                    is_counsellor: _is_counsellor,
+                    com_counsellor: _com_counsellor
                 },
                 type: 'get',
                 success: function (data) {
@@ -369,6 +381,9 @@
             _bank_address = $('#bank_address').val()
             _receiver_address = $('#receiver_address').val()
             _swift_code = $('#swift_code').val()
+            _check_counsellor = $('#check_counsellor').is(':checked') ? 1 : 2;
+            _com_counsellor = $('#com_counsellor').val();
+
             $.ajax({
                 url: _url,
                 type: 'post',
@@ -390,6 +405,8 @@
                     bank_address: _bank_address,
                     receiver_address: _receiver_address,
                     swift_code: _swift_code,
+                    is_counsellor: _check_counsellor,
+                    com_counsellor: _com_counsellor
                 },
                 success: function (data) {
                     if (data.type == 'update') {

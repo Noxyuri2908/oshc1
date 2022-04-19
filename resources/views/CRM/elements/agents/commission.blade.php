@@ -87,13 +87,15 @@
                         <div class="col-lg-7">
                             <select class="form-control" id="gst_comm" style="text-transform: uppercase">
                                 <option value=""></option>
-                                @foreach(config('myconfig.gst') as $key => $value)
-                                    @if($key == (int)$obj->gst)
-                                        <option value="{{$key}}" selected>{{$value}}</option>
-                                    @else
-                                        <option value="{{$key}}">{{$value}}</option>
-                                    @endif
-                                @endforeach
+                                @if(isset($obj))
+                                    @foreach(config('myconfig.gst') as $key => $value)
+                                        @if($key == (int)$obj->gst)
+                                            <option value="{{$key}}" selected>{{$value}}</option>
+                                        @else
+                                            <option value="{{$key}}">{{$value}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>
