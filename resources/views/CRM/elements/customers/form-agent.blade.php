@@ -1,4 +1,3 @@
-
 <div class="card mb-3">
     <div class="card-header">
         <div class="chevron-down-up">
@@ -9,7 +8,8 @@
     <div class="card-body bg-light" data-id="accountobj">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group row agent_id_select2" onmouseover="loadAgents()">
+                <div class="form-group row agent_id_select2" onmouseover="loadAgents()"
+                     onchange="handleOnchangeAgent()">
                     <label class="col-sm-4" for="agent_id">Agent</label>
                     <div class="col-sm-8">
                         <select class="form-control " id="agent_id" name="agent_id" required>
@@ -34,7 +34,16 @@
                 <div class="form-group row">
                     <label class="col-sm-4" for="name">GST</label>
                     <div class="col-sm-8">
-                        <input class="form-control" id="comm_gst" type="text" placeholder="" value="{{!empty($gst)?$gst:''}}" readonly>
+                        <input class="form-control" id="comm_gst" type="text" placeholder=""
+                               value="{{!empty($gst)?$gst:''}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4" for="name">Counsellor</label>
+                    <div class="col-sm-8">
+                        <select name="counsellor_id" id="counsellor_id">
+                            <option value=""></option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -43,12 +52,15 @@
 
                 <div class="form-group row">
                     <label class="col-sm-4" for="name">Agent country</label>
-                    <input class="form-control col-sm-8" id="agent_country" type="text" placeholder="{{(!empty($obj) && !empty($obj->agent))?$obj->agent->country():''}}" value="" readonly>
+                    <input class="form-control col-sm-8" id="agent_country" type="text"
+                           placeholder="{{(!empty($obj) && !empty($obj->agent))?$obj->agent->country():''}}" value=""
+                           readonly>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-4" for="name">Commission</label>
-                    <input class="form-control col-sm-8" id="comm_agent" type="text" placeholder="" value="{{!empty($comm)?$comm:''}}" readonly>
+                    <input class="form-control col-sm-8" id="comm_agent" type="text" placeholder=""
+                           value="{{!empty($comm)?$comm:''}}" readonly>
                 </div>
 
                 <div class="form-group row">
@@ -57,13 +69,15 @@
                         <option value=""></option>
                         @if(!empty($typePaymentConfig))
                             @foreach($typePaymentConfig as $keyTypePayment=>$valueTypePayment)
-                                <option value="{{$keyTypePayment}}" {{!empty($obj) && $obj->type_payment_agent_id == $keyTypePayment ?'selected':''}}>
+                                <option
+                                    value="{{$keyTypePayment}}" {{!empty($obj) && $obj->type_payment_agent_id == $keyTypePayment ?'selected':''}}>
                                     {{$valueTypePayment}}
                                 </option>
                             @endforeach
                         @endif
                     </select>
-                    <input class="form-control col-sm-8" id="comm_type_payment" type="text" placeholder="" hidden value="{{!empty($typePayment)?$typePayment:''}}" readonly>
+                    <input class="form-control col-sm-8" id="comm_type_payment" type="text" placeholder="" hidden
+                           value="{{!empty($typePayment)?$typePayment:''}}" readonly>
                 </div>
             </div>
             <!-- HIDDEN DATA -->
@@ -75,11 +89,32 @@
     </div>
 </div>
 <script>
+
+    function handleOnchangeAgent() {
+        $('#agent_id').on('change', function () {
+            $.ajax({
+                url: '{{route('agent.contact.getCounsellorByAgentId')}}',
+                type: 'GET',
+                data: {
+                    agent_id: $(this).val()
+                },
+                success: function (result) {
+                    var html = '<option value="">  </option>';
+                    result.data.forEach(e => {
+                        html += `<option value="${e.id}"> ${e.name} </option>`;
+                    })
+                    $('#counsellor_id').html(html);
+
+                }
+            })
+        })
+    }
+
     var loadAgentsOnMouse = true;
-    function loadAgents()
-    {
+
+    function loadAgents() {
         console.log(loadAgentsOnMouse);
-        if (loadAgentsOnMouse){
+        if (loadAgentsOnMouse) {
             $('#agent_id').select2({
                 dropdownParent: $('.agent_id_select2'),
                 ajax: {
@@ -116,10 +151,9 @@
     }
 
     var loadAgentMasterOnMouse = true;
-    function loadMasterAgents()
-    {
-        if (loadAgentMasterOnMouse)
-        {
+
+    function loadMasterAgents() {
+        if (loadAgentMasterOnMouse) {
             $('#master_agent').select2({
                 dropdownParent: $('.master_agent_select2'),
                 ajax: {
@@ -156,12 +190,12 @@
 @push('scripts')
     <script>
 
-        $(document).ready(function (){
+        $(document).ready(function () {
 
             @if(request()->get('name_agent'))
-                var agent_id = {{request()->get('apply_id')}};
-                var name_agent = "{{request()->get('name_agent')}}";
-                $('#agent_id').append('<option value="'+agent_id+'">'+name_agent+'</option>');
+            var agent_id = {{request()->get('apply_id')}};
+            var name_agent = "{{request()->get('name_agent')}}";
+            $('#agent_id').append('<option value="' + agent_id + '">' + name_agent + '</option>');
             @endif
 
 
@@ -235,13 +269,30 @@
             })
         })
 
+        $('#agent_id').on('change', function () {
+            $.ajax({
+                url: '{{route('agent.contact.getCounsellorByAgentId')}}',
+                type: 'GET',
+                data: {
+                    agent_id: $(this).val()
+                },
+                success: function (result) {
+                    var html = '<option value="">  </option>';
+                    result.data.forEach(e => {
+                        html += `<option value="${e.id}"> ${e.name} </option>`;
+                    })
+                    $('#counsellor_id').html(html);
+
+                }
+            })
+        })
 
 
-        function logs(){
+        function logs() {
             @if(request()->get('name_agent'))
             var agent_id = {{request()->get('apply_id')}};
             var name_agent = "{{request()->get('name_agent')}}";
-            $('#agent_id').append('<option value="'+agent_id+'">'+name_agent+'</option>');
+            $('#agent_id').append('<option value="' + agent_id + '">' + name_agent + '</option>');
             @endif
         }
 

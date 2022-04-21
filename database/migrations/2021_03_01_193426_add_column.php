@@ -293,6 +293,12 @@ class AddColumn extends Migration
                 $table->integer('com_counsellor')->nullable()->after('is_counsellor');
             });
         }
+
+        if (!Schema::hasColumn('customers', 'person_counsellor_id')) {
+            Schema::table('customers', function (Blueprint $table) {
+                $table->integer('person_counsellor_id')->nullable()->after('extend_fee');
+            });
+        }
     }
 
     /**

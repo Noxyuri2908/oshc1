@@ -14,6 +14,7 @@ use App\Admin\Promotion;
 use App\Admin\Refund;
 use App\Admin\School;
 use App\Admin\Service;
+use App\Admin\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CRM\UpdateCustomer;
 use App\Http\Requests\CustomerGetPriceRequest;
@@ -21,12 +22,14 @@ use App\Http\Requests\CustomerStoreRequest;
 use App\Info;
 use App\Mail\InvoiceMail;
 use App\User;
+
 //use Barryvdh\DomPDF\PDF;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Exception;
 use Google\Service\AdMob\App;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +41,7 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -120,8 +123,8 @@ class CustomerController extends Controller
                 }
                 $tab_name = 'PROFIT';
                 $data = Profit::filter($request->all())
-                    ->whereHas('invoice',function($q){
-                       $q->where('type_get_data_payment',1);
+                    ->whereHas('invoice', function ($q) {
+                        $q->where('type_get_data_payment', 1);
                     })
                     ->with([
                         'invoice' => function ($query) {
@@ -152,9 +155,9 @@ class CustomerController extends Controller
                 $tab_name = 'REFUND';
 
                 $hoahongIds = Hoahong::when($request->get('policy_no'), function ($query) use ($request) {
-                    $query->where('policy_no', 'LIKE', '%'.$request->get('policy_no').'%');
+                    $query->where('policy_no', 'LIKE', '%' . $request->get('policy_no') . '%');
                 })->when($request->get('email'), function ($query) use ($request) {
-                    $query->where('email', 'LIKE', '%'.$request->get('email').'%');
+                    $query->where('email', 'LIKE', '%' . $request->get('email') . '%');
                 })->when($request->get('payment_note_provider'), function ($query) use ($request) {
                     $query->where('payment_note_provider', $request->get('payment_note_provider'));
                 })
@@ -163,10 +166,10 @@ class CustomerController extends Controller
 
                 $customerIds = Customer::when($request->get('register'), function ($query) use ($request) {
                     $query
-                        ->where('first_name', 'LIKE', '%'.$request->get('register').'%')
-                        ->orWhere('last_name', 'LIKE', '%'.$request->get('register').'%');
+                        ->where('first_name', 'LIKE', '%' . $request->get('register') . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $request->get('register') . '%');
                 })->when($request->get('email'), function ($query) use ($request) {
-                    $query->where('email', 'LIKE', '%'.$request->get('email').'%');
+                    $query->where('email', 'LIKE', '%' . $request->get('email') . '%');
                 })
                     ->pluck('apply_id')
                     ->unique();
@@ -178,7 +181,7 @@ class CustomerController extends Controller
                 })->pluck('user_id')->unique();
 
                 $applyIds = Apply::when($request->get('ref_no'), function ($query) use ($request) {
-                    $query->where('ref_no', 'LIKE', '%'.$request->get('ref_no').'%');
+                    $query->where('ref_no', 'LIKE', '%' . $request->get('ref_no') . '%');
                 })
                     ->when($request->get('agent_id'), function ($query) use ($request) {
                         $query->where('agent_id', $request->get('agent_id'));
@@ -356,9 +359,9 @@ class CustomerController extends Controller
                 })->when($request->get('visa_status'), function ($query) use ($request, $applyIds) {
                     $query->where('visa_status', $request->get('visa_status'));
                 })->when($request->get('visa_month'), function ($query) use ($request, $applyIds) {
-                    $query->where('visa_month', 'LIKE', '%'.$request->get('visa_month').'%');
+                    $query->where('visa_month', 'LIKE', '%' . $request->get('visa_month') . '%');
                 })->when($request->get('visa_year'), function ($query) use ($request, $applyIds) {
-                    $query->where('visa_year', 'LIKE', '%'.$request->get('visa_year').'%');
+                    $query->where('visa_year', 'LIKE', '%' . $request->get('visa_year') . '%');
                 })->when($request->get('profit_status'), function ($query) use ($request, $applyIds) {
                     $query->where('profit_status', $request->get('profit_status'));
                 })->when($request->get('commission_payment_status'), function ($query) use ($request, $applyIds) {
@@ -366,13 +369,13 @@ class CustomerController extends Controller
                 })->when($request->get('date_payment'), function ($query) use ($request, $applyIds) {
                     $query->whereDate('pay_provider_date', convert_date_to_db($request->get('date_payment')));
                 })->when($request->get('bank_account'), function ($query) use ($request) {
-                    $query->where('pay_provider_bank_account', 'LIKE', '%'.$request->get('bank_account').'%');
+                    $query->where('pay_provider_bank_account', 'LIKE', '%' . $request->get('bank_account') . '%');
                 })->when($request->get('pay_agent_date'), function ($query) use ($request) {
                     $query->whereDate('pay_agent_date', convert_date_to_db($request->get('pay_agent_date')));
                 })->when($request->get('date_of_receipt'), function ($query) use ($request, $applyIds) {
                     $query->whereDate('date_of_receipt', convert_date_to_db($request->get('date_of_receipt')));
                 })->when($request->get('note_of_receipt'), function ($query) use ($request, $applyIds) {
-                    $query->where('note_of_receipt', 'LIKE', '%'.$request->get('note_of_receipt').'%');
+                    $query->where('note_of_receipt', 'LIKE', '%' . $request->get('note_of_receipt') . '%');
                 })
                     ->pluck('apply_id')
                     ->unique();
@@ -466,10 +469,10 @@ class CustomerController extends Controller
                         $query->whereIn('apply_id', $profitIds);
                     })
                     ->when($request->get('std_note'), function ($query) use ($request, $applyIds) {
-                        $query->where('std_note', 'LIKE', '%'.$request->get('std_note').'%');
+                        $query->where('std_note', 'LIKE', '%' . $request->get('std_note') . '%');
                     })
                     ->when($request->get('note2'), function ($query) use ($request, $applyIds) {
-                        $query->where('note2', 'LIKE', '%'.$request->get('note2').'%');
+                        $query->where('note2', 'LIKE', '%' . $request->get('note2') . '%');
                     })
                     ->when($request->get('request_date'), function ($query) use ($request, $applyIds) {
                         $query->whereDate('request_date', convert_date_to_db($request->get('request_date')));
@@ -543,7 +546,7 @@ class CustomerController extends Controller
                 }
                 if ($request->get('promotion_code')) {
                     $promotionIds = Promotion::when($request->get('promotion_code'), function ($query) use ($request) {
-                        $query->where('code', 'LIKE', '%'.$request->get('promotion_code').'%');
+                        $query->where('code', 'LIKE', '%' . $request->get('promotion_code') . '%');
                     })->pluck('id');
                 } else {
                     $promotionIds = [];
@@ -719,7 +722,7 @@ class CustomerController extends Controller
             try {
                 $invoices = Apply::whereIn('id', $ids)->get()->each(function ($invoice, $key) {
                     $invoice->delete();
-                });;
+                });
                 return response()->json(['success' => 1]);
             } catch (Exception $e) {
                 return response()->json(['error' => $e]);
@@ -760,7 +763,7 @@ class CustomerController extends Controller
         //        $is_gst = $info->gst;
         $is_gst = '';
         $typeFile = $data['type_file'];
-        $template = Storage::disk('template')->get('template_invoice_'.$data['type_file'].'.php');
+        $template = Storage::disk('template')->get('template_invoice_' . $data['type_file'] . '.php');
         $templateConfig = Admin\TemplateInvoiceManager::where('template_name', $typeFile)->first();
 
         if (
@@ -804,11 +807,9 @@ class CustomerController extends Controller
         $template = str_replace('_invoiceAmount', number_format($obj->net_amount), $template);
         $template = str_replace('_currencyInvoice', $provider->currency(), $template);
 
-        if ($templateConfig->logo)
-        {
+        if ($templateConfig->logo) {
             $template = str_replace('_logoCompany', $templateConfig->logo, $template);
-        }elseif (!$templateConfig->logo)
-        {
+        } elseif (!$templateConfig->logo) {
             $template = str_replace('_logoCompany', "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D", $template);
         }
 
@@ -861,7 +862,7 @@ class CustomerController extends Controller
         }
         //
         if ($data['type_file'] == 2 || $data['type_file'] == 5 || $data['type_file'] == 15) {
-            $template = str_replace('_cusName', $cus->first_name." ".$cus->last_name, $template);
+            $template = str_replace('_cusName', $cus->first_name . " " . $cus->last_name, $template);
             $template = str_replace('_cusContent', $obj->invoice_code, $template);
             $template = str_replace('_invoiceStartDate', $obj->start_date, $template);
             $template = str_replace('_invoiceEndDate', $obj->end_date, $template);
@@ -874,8 +875,8 @@ class CustomerController extends Controller
         if ($data['type_file'] == 3 || $data['type_file'] == 4) {
             $start = convert_date_form_db($obj->start_date);
             $end = convert_date_form_db($obj->end_date);
-            $template = str_replace('_cusName', $cus->first_name." ".$cus->last_name, $template);
-            $template = str_replace('_cusContent', $obj->ref_no . ' ' . $cus->first_name." ".$cus->last_name, $template);
+            $template = str_replace('_cusName', $cus->first_name . " " . $cus->last_name, $template);
+            $template = str_replace('_cusContent', $obj->ref_no . ' ' . $cus->first_name . " " . $cus->last_name, $template);
             $template = str_replace('_invoiceStartDate', $start, $template);
             $template = str_replace('_invoiceEndDate', $end, $template);
             $template = str_replace('_providerName', $provider->name, $template);
@@ -907,7 +908,7 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -919,15 +920,15 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(CustomerStoreRequest $request)
     {
         $data = $request->validated();
         $statuses = cache()->remember('customer.statuses.store', 60, function () {
-            return \App\Admin\Status::whereIn('type', [
+            return Status::whereIn('type', [
                 'customer_database_manager_type_of_customer',
                 'customer_database_manager_resource',
                 'customer_database_manager_english_center',
@@ -947,7 +948,7 @@ class CustomerController extends Controller
             return '';
         }
         $stt = Apply::max('id') + 1;
-        $invoice_code = $dichvu->viettat.$country.date("y").str_pad($stt, 6, '0', STR_PAD_LEFT);
+        $invoice_code = $dichvu->viettat . $country . date("y") . str_pad($stt, 6, '0', STR_PAD_LEFT);
         $data = $request->all();
         // $data['staff_id'] = auth()->guard('admin')->user()->id;
         $data['ref_no'] = $invoice_code;
@@ -979,7 +980,7 @@ class CustomerController extends Controller
 
         $data['type_get_data_payment'] = 1;
         //Create apply
-        $dataCustomerManager['full_name'] = $request->get('first_name').$request->get('last_name');
+        $dataCustomerManager['full_name'] = $request->get('first_name') . $request->get('last_name');
         $dataCustomerManager['source_id'] = $idStatusCRMOshc;
         $dataCustomerManager['agent_id'] = $request->get('agent_id');
         $dataCustomerManager['gender'] = $request->get('gender');
@@ -1009,6 +1010,7 @@ class CustomerController extends Controller
         $data_register['extend_fee'] = convert_number_currency_to_db($request->get('extend_fee'));
         $data_register['type'] = 1;
         $data_register['s_live_in_AS'] = $request->get('live_in_AS');
+        $data_register['person_counsellor_id'] = $request->get('counsellor_id');
         Customer::create($data_register);
         $data_partner = $request->only('partner_prefix_name', 'partner_first_name', 'partner_last_name', 'partner_gender', 'partner_birth_of_date', 'partner_passport');
         $data_child = $request->only('child_prefix_name', 'child_first_name', 'child_last_name', 'child_gender', 'child_birth_of_date', 'child_passport');
@@ -1054,16 +1056,16 @@ class CustomerController extends Controller
                 ]);
             }
         }
-        \Session::flash('success-create-customer', 'Create new invoice successfull.');
+        Session::flash('success-create-customer', 'Create new invoice successfull.');
         return redirect()->route('customer.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -1074,9 +1076,9 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Request $request, $id)
     {
@@ -1112,17 +1114,17 @@ class CustomerController extends Controller
         }
 
         $result = [
-          'view' =>   view('CRM.elements.customers.modal-create', compact(
-              'obj',
-              'cus',
-              'flag',
-              'partners',
-              'childrens',
-              'page',
-              'comm',
-              'gst',
-              'typePayment'
-          ))->render(),
+            'view' => view('CRM.elements.customers.modal-create', compact(
+                'obj',
+                'cus',
+                'flag',
+                'partners',
+                'childrens',
+                'page',
+                'comm',
+                'gst',
+                'typePayment'
+            ))->render(),
         ];
 
         return response()->json($result);
@@ -1131,10 +1133,10 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int                       $id
+     * @param Request $request
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -1143,7 +1145,7 @@ class CustomerController extends Controller
                 abort(403);
             }
             $statuses = cache()->remember('customer.statuses.store', 60, function () {
-                return \App\Admin\Status::whereIn('type', [
+                return Status::whereIn('type', [
                     'customer_database_manager_type_of_customer',
                     'customer_database_manager_resource',
                     'customer_database_manager_english_center',
@@ -1174,7 +1176,7 @@ class CustomerController extends Controller
                 return '';
             }
             $invoice = Apply::find($id);
-            $invoice_code = $dichvu->viettat.$country.date("y").str_pad($id, 6, 0, STR_PAD_LEFT);
+            $invoice_code = $dichvu->viettat . $country . date("y") . str_pad($id, 6, 0, STR_PAD_LEFT);
 
             $invoice->ref_no = $request->ref_no;
             $invoice->save();
@@ -1204,7 +1206,7 @@ class CustomerController extends Controller
             }
 
 
-            $dataCustomerManager['full_name'] = $request->get('first_name').$request->get('last_name');
+            $dataCustomerManager['full_name'] = $request->get('first_name') . $request->get('last_name');
             $dataCustomerManager['source_id'] = $idStatusCRMOshc;
             $dataCustomerManager['agent_id'] = $request->get('agent_id');
             $dataCustomerManager['gender'] = $request->get('gender');
@@ -1214,10 +1216,10 @@ class CustomerController extends Controller
             $dataCustomerManager['country_id'] = $request->get('country');
             $dataCustomerManager['potential_service'] = $request->get('provider_id');
 
-            if (empty($invoice->customer_manager_id)){
+            if (empty($invoice->customer_manager_id)) {
                 $customerDatabaseManager = Admin\CustomerDatabaseManager::create($dataCustomerManager);
                 $data['customer_manager_id'] = $customerDatabaseManager->id;
-            }else{
+            } else {
                 $customerDatabaseManager = Admin\CustomerDatabaseManager::find($invoice->customer_manager_id);
                 $customerDatabaseManager->update($dataCustomerManager);
             }
@@ -1232,6 +1234,7 @@ class CustomerController extends Controller
             $apply_id = $invoice->id;
             $data_register['type'] = 1;
             $data_register['s_live_in_AS'] = $request->get('live_in_AS');
+            $data_register['person_counsellor_id'] = $request->get('counsellor_id');
             $customer = Customer::where('type', 1)->where('apply_id', $apply_id)->first();
 
             if (!empty($customer)) {
@@ -1325,8 +1328,7 @@ class CustomerController extends Controller
                 }
             }
             return redirect()->back();
-        }catch (\Exception $e)
-        {
+        } catch (Exception $e) {
             dd($e);
         }
     }
@@ -1334,9 +1336,9 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public
     function destroy($id)
@@ -1418,7 +1420,7 @@ class CustomerController extends Controller
             return '';
         }
         $stt = Apply::count() + 1;
-        return $dichvu->viettat.$country.date('y').$stt;
+        return $dichvu->viettat . $country . date('y') . $stt;
     }
 
     public function getSu(Request $request)
@@ -1481,7 +1483,7 @@ class CustomerController extends Controller
         $fileLists = [];
 
         foreach ($filesSendMail as $one) {
-            $newNameAttr = rand().'.'.$one->getClientOriginalExtension();
+            $newNameAttr = rand() . '.' . $one->getClientOriginalExtension();
             $one->move(public_path('/storage/attr'), $newNameAttr);
             array_push($fileLists, $newNameAttr);
         }
@@ -1489,7 +1491,7 @@ class CustomerController extends Controller
             $customerName = $names[$key];
             try {
                 Mail::to($mail)->later(20, new InvoiceMail($content, $customerName, $fileLists));
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 report($e);
             }
         }
@@ -1514,7 +1516,7 @@ class CustomerController extends Controller
 
         $res = [];
         $res['comm_agent'] = $comm->comm;
-        $res['text_comm_agent'] = $comm->donvi == 1 ? number_format($comm->comm).'%' : number_format($comm->comm).'$';
+        $res['text_comm_agent'] = $comm->donvi == 1 ? number_format($comm->comm) . '%' : number_format($comm->comm) . '$';
         $res['comm_donvi'] = $comm->donvi;
         $res['comm_gst'] = $comm->gst;
         $res['text_comm_gst'] = $comm->gst == 1 ? 'Include' : 'Not Include';
@@ -1589,23 +1591,23 @@ class CustomerController extends Controller
                 switch ($period) {
                     case '1':
                         $today = date("Y-m-d");
-                        $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') = '".$today."'");
+                        $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') = '" . $today . "'");
                         break;
                     case '2':
                         $week = get_week(0);
-                        $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') >= '".$week['start']."' AND STR_TO_DATE(applies.created_at,'%Y-%m-%d') <= '".$week['end']."'");
+                        $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') >= '" . $week['start'] . "' AND STR_TO_DATE(applies.created_at,'%Y-%m-%d') <= '" . $week['end'] . "'");
                         break;
                     case '3':
                         $month = date('m');
-                        $query->whereRaw("EXTRACT(MONTH FROM STR_TO_DATE(applies.created_at,'%Y-%m-%d')) =".$month);
+                        $query->whereRaw("EXTRACT(MONTH FROM STR_TO_DATE(applies.created_at,'%Y-%m-%d')) =" . $month);
                         break;
                     case '4':
                         $year = date('Y');
-                        $query->whereRaw("EXTRACT(YEAR FROM STR_TO_DATE(applies.created_at,'%Y-%m-%d')) =".$year);
+                        $query->whereRaw("EXTRACT(YEAR FROM STR_TO_DATE(applies.created_at,'%Y-%m-%d')) =" . $year);
                         break;
                     default:
                         $month = intval(trim(str_replace('t', '', $period), ' '));
-                        $query->whereRaw("EXTRACT(MONTH FROM STR_TO_DATE(applies.created_at,'%Y-%m-%d')) =".$month);
+                        $query->whereRaw("EXTRACT(MONTH FROM STR_TO_DATE(applies.created_at,'%Y-%m-%d')) =" . $month);
                         break;
                 }
             }
@@ -1613,11 +1615,11 @@ class CustomerController extends Controller
             $tmp = explode('to', $time);
             if (sizeof($tmp) != 2) {
                 $start = trim($tmp[0], ' ');
-                $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') >= '".$start."'");
+                $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') >= '" . $start . "'");
             } else {
                 $start = trim($tmp[0], ' ');
                 $end = trim($tmp[1], ' ');
-                $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') >= '".$start."' AND STR_TO_DATE(applies.created_at,'%Y-%m-%d') <= '".$end."'");
+                $query = $query->whereRaw("STR_TO_DATE(applies.created_at,'%Y-%m-%d') >= '" . $start . "' AND STR_TO_DATE(applies.created_at,'%Y-%m-%d') <= '" . $end . "'");
             }
         }
         $query = $query->select('applies.*')->paginate(50);
@@ -1720,18 +1722,19 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function getBankFeeByPaymentMethod(Request $request){
-        $paymentMethods= config('myconfig.payment_method');
-        $creditCardId = array_search('Credit card',$paymentMethods);
-        $paypalId = array_search('Paypal',$paymentMethods);
+    public function getBankFeeByPaymentMethod(Request $request)
+    {
+        $paymentMethods = config('myconfig.payment_method');
+        $creditCardId = array_search('Credit card', $paymentMethods);
+        $paypalId = array_search('Paypal', $paymentMethods);
         $paymentId = $request->get('payment_id');
-        if($paymentId == $paypalId || $paymentId == $creditCardId){
+        if ($paymentId == $paypalId || $paymentId == $creditCardId) {
             return response()->json([
-                'bankfee'=>3
+                'bankfee' => 3
             ]);
-        }else{
+        } else {
             return response()->json([
-                'bankfee'=>0
+                'bankfee' => 0
             ]);
         }
     }
@@ -1810,12 +1813,12 @@ class CustomerController extends Controller
 
             $dataInvoice = $this->mappingDataInvoice($templateConfig, $obj, $template_id, $apply_id, $cus);
 
-            $pdf = PDF::loadView('CRM.template_invoice.template_export_invoice.template_export_invoice_'.$template_id,compact('dataInvoice'));
+            $pdf = PDF::loadView('CRM.template_invoice.template_export_invoice.template_export_invoice_' . $template_id, compact('dataInvoice'));
             PDF::setOptions(['isHtml5ParserEnabled' => true]);
             $pdf->setPaper('a4');
             return $pdf->download('invoice.pdf');
-        }catch(DOMPDF_Exception $e){
-            echo '<pre>',print_r($e),'</pre>';
+        } catch (DOMPDF_Exception $e) {
+            echo '<pre>', print_r($e), '</pre>';
         }
     }
 
@@ -1841,27 +1844,25 @@ class CustomerController extends Controller
 
         $dataInvoice['extend_fee'] = !empty($cus) ? $cus->extend_fee : '';
         $dataInvoice['discount'] = !empty($obj->extra) ? $obj->extra : '';
-        $dataInvoice['promotion'] = !empty($obj->promotion_amount) ? $obj->promotion_amount :  '';
+        $dataInvoice['promotion'] = !empty($obj->promotion_amount) ? $obj->promotion_amount : '';
         $dataInvoice['bank_fee'] = !empty($obj->bank_fee_number) ? $obj->bank_fee_number : '';
-        $dataInvoice['gst'] = !empty($obj->gst) ? ($obj->net_amount - $obj->extra) * ($comm / 100) / 11 :  0;
+        $dataInvoice['gst'] = !empty($obj->gst) ? ($obj->net_amount - $obj->extra) * ($comm / 100) / 11 : 0;
         $dataInvoice['comm'] = !empty($comm) ? ($obj->net_amount - $obj->extra) * ($comm / 100) : '';
 
         $dataInvoice['promotion_amount'] = ($obj->promotion_amount) ?? '';
         $dataInvoice['extra'] = ($obj->extra) ?? '';
 
 
-        if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14 || $template_id == 16)
-        {
+        if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 || $template_id == 13 || $template_id == 14 || $template_id == 16) {
             $dataInvoice['company_name'] = ($templateConfig->company_name) ?? '';
             $dataInvoice['company_address'] = ($templateConfig->company_address) ?? '';
             $dataInvoice['company_phone'] = ($templateConfig->company_phone) ?? '';
             $dataInvoice['company_website'] = ($templateConfig->company_website) ?? '';
         }
 
-        if ($template_id == 1 || $template_id == 2 || $template_id == 3 || $template_id == 4 || $template_id == 5 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16)
-        {
-            $dataInvoice['cusContent'] = $obj->ref_no .' '. $cus->first_name." ".$cus->last_name;
-            $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
+        if ($template_id == 1 || $template_id == 2 || $template_id == 3 || $template_id == 4 || $template_id == 5 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16) {
+            $dataInvoice['cusContent'] = $obj->ref_no . ' ' . $cus->first_name . " " . $cus->last_name;
+            $dataInvoice['cusName'] = $cus->first_name . ' ' . $cus->last_name;
             $dataInvoice['provider_name'] = ($obj->provider->name) ?? '';
             $dataInvoice['policy'] = ($obj->policyName()) ?? '';
             $dataInvoice['start_date'] = ($obj->start_date) ?? '';
@@ -1873,25 +1874,21 @@ class CustomerController extends Controller
             $dataInvoice['date'] = ($obj->created_at) ?? '';
         }
 
-        if ($template_id == 1 || $template_id == 2 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16)
-        {
+        if ($template_id == 1 || $template_id == 2 || $template_id == 6 || $template_id == 7 || $template_id == 8 || $template_id == 15 || $template_id == 16) {
             $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $obj->extra;
         }
 
-        if ($template_id == 4 || $template_id == 5)
-        {
+        if ($template_id == 4 || $template_id == 5) {
             $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
         }
 
-        if ($template_id == 3)
-        {
+        if ($template_id == 3) {
             $dataInvoice['amount_AUD'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number - convert_price_float($obj->comm);
         }
 
-        if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 ||  $template_id == 13 || $template_id == 14)
-        {
+        if ($template_id == 9 || $template_id == 10 || $template_id == 11 || $template_id == 12 || $template_id == 13 || $template_id == 14) {
             $dataInvoice['date'] = ($obj->created_at) ?? '';
-            $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
+            $dataInvoice['cusName'] = $cus->first_name . ' ' . $cus->last_name;
             $dataInvoice['provider_name'] = ($obj->provider->name) ?? '';
             $dataInvoice['policy'] = ($obj->policyName()) ?? '';
             $dataInvoice['start_date'] = ($obj->start_date) ?? '';
@@ -1900,25 +1897,22 @@ class CustomerController extends Controller
 
         }
 
-        if ($template_id == 9 || $template_id == 10){
+        if ($template_id == 9 || $template_id == 10) {
             $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number;
         }
 
-        if ($template_id == 10)
-        {
+        if ($template_id == 10) {
             $dataInvoice['amount'] = $obj->net_amount + $obj->surcharge;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
 
         }
 
-        if ($template_id == 11)
-        {
+        if ($template_id == 11) {
             $dataInvoice['amount'] = $obj->net_amount;
-            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'] + $dataInvoice['gst'] ;
+            $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'] + $dataInvoice['gst'];
         }
 
-        if ($template_id == 12)
-        {
+        if ($template_id == 12) {
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['comm'] = $obj->comm;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
@@ -1926,47 +1920,41 @@ class CustomerController extends Controller
 
         }
 
-        if ($template_id == 13)
-        {
+        if ($template_id == 13) {
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['comm'] = $obj->comm;
             $dataInvoice['gst'] = $obj->gst;
             $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra + $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
         }
 
-        if ($template_id == 14)
-        {
+        if ($template_id == 14) {
             $dataInvoice['amount'] = $obj->net_amount;
             $dataInvoice['total'] = $obj->net_amount + $cus->extend_fee - $obj->extra - $obj->promotion_amount + $obj->bank_fee_number - $dataInvoice['comm'];
 
         }
 
-        if ($template_id == 3)
-        {
+        if ($template_id == 3) {
             $dataInvoice['comm'] = $obj->comm;
             $dataInvoice['total'] = $obj->net_amount + $obj->bank_fee_number - $obj->comm;
         }
 
-        if ($template_id == 15){
+        if ($template_id == 15) {
             $dataInvoice['amount'] = $obj->net_amount - $obj->promotion_amount - $obj->extra;
             $dataInvoice['bank_fee'] = $obj->bank_fee_number;
             $dataInvoice['total_amount_due'] = $obj->total;
         }
 
-        if ($template_id == 4)
-        {
+        if ($template_id == 4) {
             $dataInvoice['comm'] = $obj->comm;
             $dataInvoice['total'] = $obj->net_amount - $obj->extra + $obj->bank_fee_number - $dataInvoice['comm'];
         }
 
-        if ($template_id == 5 || $template_id == 8)
-        {
+        if ($template_id == 5 || $template_id == 8) {
             $dataInvoice['total'] = $obj->net_amount;
         }
 
 
-        if ($template_id == 8 || $template_id == 7 || $template_id == 6 || $template_id == 4 || $template_id == 1 || $template_id == 3 || $template_id == 5 || $template_id == 15 || $template_id == 2 || $template_id == 16)
-        {
+        if ($template_id == 8 || $template_id == 7 || $template_id == 6 || $template_id == 4 || $template_id == 1 || $template_id == 3 || $template_id == 5 || $template_id == 15 || $template_id == 2 || $template_id == 16) {
             $dataInvoice['companyNameVi'] = $templateConfig->company_name_vi;
             $dataInvoice['companyAddressVi1'] = $templateConfig->company_address_vi_1;
             $dataInvoice['companyAddressVi2'] = $templateConfig->company_address_vi_2;
@@ -1976,21 +1964,18 @@ class CustomerController extends Controller
         }
 
 
-        if ($template_id == 6)
-        {
+        if ($template_id == 6) {
             $dataInvoice['biiling_address'] = $obj->getAgentName();
-            $dataInvoice['cusName'] = $cus->first_name.' '.$cus->last_name;
+            $dataInvoice['cusName'] = $cus->first_name . ' ' . $cus->last_name;
         }
 
-        if ($template_id == 19 || $template_id == 8)
-        {
+        if ($template_id == 19 || $template_id == 8) {
             $dataInvoice['total'] = $obj->net_amount - $obj->extra;
             $dataInvoice['gst'] = convert_price_float($obj->comm / 11);
         }
 
 
-        if ($template_id == 26 || $template_id == 1)
-        {
+        if ($template_id == 26 || $template_id == 1) {
             $dataInvoice['serviceCharge'] = $obj->total - $obj->bank_fee_number;
         }
 
@@ -2017,9 +2002,9 @@ class CustomerController extends Controller
     public function modalCreate()
     {
         $result = [
-          'view' => view('CRM.elements.customers.modal-create', [
-              'flag' => 'customer',
-          ])->render()
+            'view' => view('CRM.elements.customers.modal-create', [
+                'flag' => 'customer',
+            ])->render()
         ];
         return response()->json($result);
     }

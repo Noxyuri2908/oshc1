@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use Filterable;
+
     protected $fillable = [
         'apply_id',
         'prefix_name',
@@ -32,7 +33,8 @@ class Customer extends Model
         'exchange_rate',
         'extend_fee',
         'cover_id',
-        's_live_in_AS'
+        's_live_in_AS',
+        'person_counsellor_id'
     ];
 
     protected $append = ['dateB', 'monthB', 'yearB'];
@@ -42,7 +44,8 @@ class Customer extends Model
         return $this->belongsTo('App\Admin\Apply');
     }
 
-    public function cover(){
+    public function cover()
+    {
         return $this->hasOne('App\Cover', 'id', 'cover_id');
     }
 
@@ -92,12 +95,12 @@ class Customer extends Model
     {
         return static::when($request->get('register'), function ($query) use ($request) {
             $query
-                ->where('first_name', 'LIKE', '%'.$request->get('register').'%')
-                ->orWhere('last_name', 'LIKE', '%'.$request->get('register').'%');
+                ->where('first_name', 'LIKE', '%' . $request->get('register') . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $request->get('register') . '%');
         })->when($request->get('email'), function ($query) use ($request) {
-            $query->where('email', 'LIKE', '%'.$request->get('email').'%');
+            $query->where('email', 'LIKE', '%' . $request->get('email') . '%');
         })->when($request->get('destination'), function ($query) use ($request) {
-            $query->where('destination',$request->get('destination'));
+            $query->where('destination', $request->get('destination'));
         })->pluck('apply_id')->unique();
     }
 
@@ -105,11 +108,11 @@ class Customer extends Model
     {
         return static::when($request->get('register'), function ($query) use ($request) {
             $query
-                ->where('first_name', 'LIKE', '%'.$request->get('register').'%')
-                ->orWhere('last_name', 'LIKE', '%'.$request->get('register').'%');
+                ->where('first_name', 'LIKE', '%' . $request->get('register') . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $request->get('register') . '%');
         })->when($request->get('email'), function ($query) use ($request) {
             $query
-                ->where('email', 'LIKE', '%'.$request->get('email').'%');
+                ->where('email', 'LIKE', '%' . $request->get('email') . '%');
         })->pluck('apply_id')->unique();
     }
 
@@ -117,11 +120,11 @@ class Customer extends Model
     {
         return static::when($request->get('register'), function ($query) use ($request) {
             $query
-                ->where('first_name', 'LIKE', '%'.$request->get('register').'%')
-                ->orWhere('last_name', 'LIKE', '%'.$request->get('register').'%');
+                ->where('first_name', 'LIKE', '%' . $request->get('register') . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $request->get('register') . '%');
         })->when($request->get('email'), function ($query) use ($request) {
             $query
-                ->where('email', 'LIKE', '%'.$request->get('email').'%');
+                ->where('email', 'LIKE', '%' . $request->get('email') . '%');
         })->pluck('apply_id')->unique();
     }
 
