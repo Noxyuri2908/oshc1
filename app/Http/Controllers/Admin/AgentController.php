@@ -511,7 +511,7 @@ class AgentController extends Controller
                     $_data['provider_id'] = $data_comm['type_service'][$key];
                     $_data['policy'] = $data_comm['type'][$key];
                     $_data['comm'] = $data_comm['comm'][$key];
-                    $_data['date'] = $data_comm['date'][$key];
+                    $_data['validity_start_date'] = convert_date_to_db($data_comm['date'][$key]);
                     $_data['donvi'] = $data_comm['donvi'][$key];
                     $_data['gst'] = $data_comm['gst'][$key];
                     $_data['type_payment'] = $data_comm['type_payment'][$key];
