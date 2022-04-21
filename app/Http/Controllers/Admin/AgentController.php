@@ -507,8 +507,9 @@ class AgentController extends Controller
             try {
                 foreach ($data_comm['type_service'] as $key => $value) {
                     $_data = [];
-                    $_data['type_service'] = $value;
-                    $_data['type'] = $data_comm['type'][$key];
+//                    $_data['service_id'] = $value;
+                    $_data['provider_id'] = $data_comm['type_service'][$key];
+                    $_data['policy'] = $data_comm['type'][$key];
                     $_data['comm'] = $data_comm['comm'][$key];
                     $_data['date'] = $data_comm['date'][$key];
                     $_data['donvi'] = $data_comm['donvi'][$key];
@@ -516,7 +517,7 @@ class AgentController extends Controller
                     $_data['type_payment'] = $data_comm['type_payment'][$key];
                     $_data['user_id'] = $new_account->id;
                     $_data['status'] = 1;
-                    Commission::create($_data);
+                    $data = Commission::create($_data)->id;
                 }
             } catch (\Exception $e) {
                 echo $e->getMessage();

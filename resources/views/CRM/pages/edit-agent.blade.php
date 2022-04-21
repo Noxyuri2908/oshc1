@@ -571,6 +571,7 @@
         })
 
         $(document).on('click', '#add_new_comm', function (e) {
+            console.log('up up');
             var me = $(this)
             if (me.data('requestRunning')) {
                 return

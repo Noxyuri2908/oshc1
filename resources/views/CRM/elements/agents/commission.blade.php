@@ -162,7 +162,7 @@
                 <table class="table">
                     <thead>
                     <tr class="first-row">
-                        <th class="width-40" scope="col">Action</th>
+                        <th class="width-60" scope="col">Action</th>
                         <th class="width-140" scope="col">Service</th>
                         <th class="width-80" scope="col">Policy</th>
                         <th class="width-90" scope="col">Commission</th>
