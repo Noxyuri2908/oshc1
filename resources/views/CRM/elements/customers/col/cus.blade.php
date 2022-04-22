@@ -12,6 +12,7 @@
     <th class="width-100">Status</th>
     <th class="width-200">Email</th>
     <th class="width-100">Master agent</th>
+    <th class="width-100">Counsellor</th>
     <th class="width-100">Service country</th>
     <th class="width-100">Type of service</th>
     <th class="width-100">Type of invoice</th>
