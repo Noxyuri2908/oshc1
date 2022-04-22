@@ -1,7 +1,14 @@
 <?php
 
 use App\Admin;
+use App\Admin\ExchangRate;
+use App\Ahm;
+use App\Allianz;
+use App\Cover;
+use App\Medibank;
+use App\Nib;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\Admin\Webinfo;
@@ -21,8 +28,8 @@ if (!function_exists('get_week')) {
         $monday = strtotime("last monday");
         $monday = date('w', $monday) == date('w') ? $monday + 7 * 86400 : $monday;
         $sunday = strtotime(date("Y-m-d", $monday) . " +6 days");
-        $this_week_sd = (new \DateTime(date("Y-m-d", $monday)))->modify('-' . (intval($week) * 7) . ' day');
-        $this_week_ed = (new \DateTime(date("Y-m-d", $sunday)))->modify('-' . (intval($week) * 7) . ' day');
+        $this_week_sd = (new DateTime(date("Y-m-d", $monday)))->modify('-' . (intval($week) * 7) . ' day');
+        $this_week_ed = (new DateTime(date("Y-m-d", $sunday)))->modify('-' . (intval($week) * 7) . ' day');
         return array('start' => $this_week_sd->format('Y-m-d'), 'end' => $this_week_ed->format('Y-m-d'));
     }
 }
@@ -96,10 +103,10 @@ if (!function_exists('reload_date_of_birth')) {
 if (!function_exists('set_step')) {
     function set_step($number)
     {
-        $step = \Session::get('step', 0);
-        if ($step == 0) \Session::put('step', $number);
+        $step = Session::get('step', 0);
+        if ($step == 0) Session::put('step', $number);
         else {
-            if ($step < $number) \Session::put('step', $number);
+            if ($step < $number) Session::put('step', $number);
         }
         return true;
     }
@@ -124,13 +131,13 @@ if (!function_exists('get_sum_comm_by_month')) {
 if (!function_exists('reset_data')) {
     function reset_data()
     {
-        \Session::forget('step');
-        \Session::forget('apply');
-        \Session::forget('start_date');
-        \Session::forget('end_date');
-        \Session::forget('childs');
-        \Session::forget('adults');
-        \Session::forget('price');
+        Session::forget('step');
+        Session::forget('apply');
+        Session::forget('start_date');
+        Session::forget('end_date');
+        Session::forget('childs');
+        Session::forget('adults');
+        Session::forget('price');
     }
 }
 
@@ -172,8 +179,8 @@ if (!function_exists('get_content')) {
     function get_content($obj)
     {
         if ($obj != null) {
-            if (\App::isLocale('cn')) return $obj->content_cn;
-            else if (\App::isLocale('vi')) return $obj->content_vi;
+            if (App::isLocale('cn')) return $obj->content_cn;
+            else if (App::isLocale('vi')) return $obj->content_vi;
             else return $obj->content;
         } else return '';
     }
@@ -183,8 +190,8 @@ if (!function_exists('get_des_s')) {
     function get_des_s($obj)
     {
         if ($obj != null) {
-            if (\App::isLocale('cn')) return $obj->des_s_cn;
-            else if (\App::isLocale('vi')) return $obj->des_s_vi;
+            if (App::isLocale('cn')) return $obj->des_s_cn;
+            else if (App::isLocale('vi')) return $obj->des_s_vi;
             else return $obj->des_s;
         } else return '';
     }
@@ -195,8 +202,8 @@ if (!function_exists('get_note')) {
     function get_note($obj)
     {
         if ($obj != null) {
-            if (\App::isLocale('cn')) return $obj->note_cn;
-            else if (\App::isLocale('vi')) return $obj->note_vi;
+            if (App::isLocale('cn')) return $obj->note_cn;
+            else if (App::isLocale('vi')) return $obj->note_vi;
             else return $obj->note;
         } else return '';
     }
@@ -206,8 +213,8 @@ if (!function_exists('get_name')) {
     function get_name($obj)
     {
         if ($obj != null) {
-            if (\App::isLocale('cn')) return $obj->name_cn;
-            else if (\App::isLocale('vi')) return $obj->name_vi;
+            if (App::isLocale('cn')) return $obj->name_cn;
+            else if (App::isLocale('vi')) return $obj->name_vi;
             else return $obj->name;
         } else return '';
     }
@@ -242,13 +249,13 @@ if (!function_exists('multiRequest_qa')) {
 
         $mh = curl_multi_init();
         foreach ($data as $id => $d) {
-            if($d['slug'] == 'allianz'){
+            if ($d['slug'] == 'allianz') {
                 $startDate = $d['start_date'];
                 $endDate = $d['end_date'];
                 $adult = $d['number_person']['adult'];
                 $child = $d['number_person']['child'];
                 $curly[$id] = curl_init();
-                $params = "{\"classId\":\"com.allianz.cisl.core.contract.Contract\",\"contractHolder\":null,\"contractInterval\":{\"classId\":\"com.allianz.cisl.base.types.Interval\",\"startDateTime\":\"".$startDate."T00:00\",\"endDateTime\":\"".$endDate."T00:00\"},\"contractNumber\":null,\"extEntity\":{\"classId\":\"com.allianz.cisl.ext.extcontract.ExtContract\",\"applicationNumber\":1,\"businessPartnerId\":49161,\"numberOfAdults\":".$adult.",\"numberOfDependents\":".$child."},\"externalContractNumber\":\"\",\"language\":\"US\",\"parties\":[{\"classId\":\"com.allianz.cisl.core.person.Person\",\"identificationDocuments\":[{\"classId\":\"com.allianz.cisl.core.document.IdentityDocument\"}],\"roles\":[{\"classId\":\"com.allianz.cisl.core.person.InsuredPerson\",\"roleName\":\"PH\"}]}],\"premiums\":[]}";
+                $params = "{\"classId\":\"com.allianz.cisl.core.contract.Contract\",\"contractHolder\":null,\"contractInterval\":{\"classId\":\"com.allianz.cisl.base.types.Interval\",\"startDateTime\":\"" . $startDate . "T00:00\",\"endDateTime\":\"" . $endDate . "T00:00\"},\"contractNumber\":null,\"extEntity\":{\"classId\":\"com.allianz.cisl.ext.extcontract.ExtContract\",\"applicationNumber\":1,\"businessPartnerId\":49161,\"numberOfAdults\":" . $adult . ",\"numberOfDependents\":" . $child . "},\"externalContractNumber\":\"\",\"language\":\"US\",\"parties\":[{\"classId\":\"com.allianz.cisl.core.person.Person\",\"identificationDocuments\":[{\"classId\":\"com.allianz.cisl.core.document.IdentityDocument\"}],\"roles\":[{\"classId\":\"com.allianz.cisl.core.person.InsuredPerson\",\"roleName\":\"PH\"}]}],\"premiums\":[]}";
                 curl_setopt_array($curly[$id], array(
                     CURLOPT_URL => "https://api.allianz.com/gateway/contracts",
                     CURLOPT_RETURNTRANSFER => true,
@@ -258,7 +265,7 @@ if (!function_exists('multiRequest_qa')) {
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "POST",
-                    CURLOPT_POSTFIELDS =>$params,
+                    CURLOPT_POSTFIELDS => $params,
                     CURLOPT_HTTPHEADER => array(
                         "Connection: keep-alive",
                         "sec-ch-ua: \"Chromium\";v=\"86\", \"\"NotA;Brand\";v=\"99\", \"Google Chrome\";v=\"86\"",
@@ -278,7 +285,7 @@ if (!function_exists('multiRequest_qa')) {
                     ),
                 ));
                 curl_multi_add_handle($mh, $curly[$id]);
-            }else{
+            } else {
                 $curly[$id] = curl_init();
                 $url = (is_array($d) && !empty($d['url'])) ? $d['url'] : $d;
                 curl_setopt($curly[$id], CURLOPT_URL, $url);
@@ -354,8 +361,7 @@ if (!function_exists('convert_scale_to_number_person')) {
             $sc['adult'] = 2;
             $sc['child'] = 0;
         }
-        if ($scope == 'Single Parents')
-        {
+        if ($scope == 'Single Parents') {
             $sc['adult'] = $singleParents[0];
             $sc['child'] = $singleParents[1];
         }
@@ -379,14 +385,12 @@ if (!function_exists('get_arr_price_qa')) {
             if ($service->slug == 'nib') {
                 $start_date = convert_format_date_qa($start_date);
                 $end_date = convert_format_date_qa($end_date);
-                if (count($singleParents) > 0)
-                {
-                    if ($singleParents[0] == 1 && $singleParents[1] == 0)
-                    {
+                if (count($singleParents) > 0) {
+                    if ($singleParents[0] == 1 && $singleParents[1] == 0) {
                         $scale = 'Single';
-                    }else if ($singleParents[0] == 2 && $singleParents[1] == 0){
+                    } else if ($singleParents[0] == 2 && $singleParents[1] == 0) {
                         $scale = 'Couple';
-                    }else if ($singleParents[0] >= 1 && $singleParents[1] >= 1){
+                    } else if ($singleParents[0] >= 1 && $singleParents[1] >= 1) {
                         $scale = 'Family';
                     }
                 }
@@ -403,8 +407,8 @@ if (!function_exists('get_arr_price_qa')) {
             $data[$i]['header'] = array($service->des_s);
             $data[$i]['slug'] = $service->slug;
             $data[$i]['start_date'] = convert_date_to_db($start_date);
-            $data[$i]['end_date']= convert_date_to_db($end_date);
-            $data[$i]['number_person']= convert_scale_to_number_person($scale, $singleParents);
+            $data[$i]['end_date'] = convert_date_to_db($end_date);
+            $data[$i]['number_person'] = convert_scale_to_number_person($scale, $singleParents);
             $i++;
         }
 //        dd($data);
@@ -417,7 +421,7 @@ if (!function_exists('get_arr_price_qa')) {
         }
         foreach ($r as $key => $value) {
             if (is_array($value)) {
-                $data[$list_url[$key]] = (!empty($value['amount']))?$value['amount']:$value['premiums'][0];
+                $data[$list_url[$key]] = (!empty($value['amount'])) ? $value['amount'] : $value['premiums'][0];
             } elseif (is_numeric($value)) {
                 $data[$list_url[$key]] = "{$value}";
             }
@@ -825,7 +829,7 @@ if (!function_exists('get_num_month_or_day_of_range')) {
 if (!function_exists('get_price')) {
     function get_price($start, $end, $no_of_adults, $no_of_children)
     {
-        $oshcStatusId = \Config::get('admin.service_id.oshc');
+        $oshcStatusId = Config::get('admin.service_id.oshc');
         $serviceProviders = Dichvu::where('service_id', $oshcStatusId)->get()->pluck('id')->toArray();
         $cover = '';
         $sDay = array();
@@ -869,9 +873,9 @@ if (!function_exists('get_price')) {
             if ($numDays > 0) $numMonths = $numMonths + 1;
             foreach ($services as $service) {
 
-                if ($service->slug == 'bupa' && $no_of_children == 1 && $no_of_adults == 1){
+                if ($service->slug == 'bupa' && $no_of_children == 1 && $no_of_adults == 1) {
                     $price = Price::where('status', 1)->where('type', 3)->where('service_id', $service->id)->where('num_month', $numMonths)->first();
-                }else{
+                } else {
                     $price = Price::where('status', 1)->where('type', $type)->where('service_id', $service->id)->where('num_month', $numMonths)->first();
                 }
 
@@ -889,8 +893,8 @@ if (!function_exists('covert_string_date')) {
     function covert_string_date($obj)
     {
         $res['day'] = '01';
-        if (\App::isLocale('cn')) $res['month'] = '一月';
-        else if (\App::isLocale('vi')) $res['month'] = ' T1';
+        if (App::isLocale('cn')) $res['month'] = '一月';
+        else if (App::isLocale('vi')) $res['month'] = ' T1';
         else $res['month'] = 'Jan';
         $res['year'] = '2019';
         if ($obj != null) {
@@ -902,7 +906,7 @@ if (!function_exists('covert_string_date')) {
             if (sizeof($day) != 2) return $res;
             $day = $day[0];
 
-            if(!empty($created_date_main)){
+            if (!empty($created_date_main)) {
                 $day = $created_date_main;
             }
             $day = explode('-', $day);
@@ -913,70 +917,70 @@ if (!function_exists('covert_string_date')) {
 
             switch ($month) {
                 case '1':
-                    if (\App::isLocale('cn')) $res['month'] = '一月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T1';
+                    if (App::isLocale('cn')) $res['month'] = '一月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T1';
                     else $res['month'] = 'Jan';
                     break;
                 case '2':
-                    if (\App::isLocale('cn')) $res['month'] = '二月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T2';
+                    if (App::isLocale('cn')) $res['month'] = '二月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T2';
                     else $res['month'] = 'Feb';
                     break;
                 case '3':
-                    if (\App::isLocale('cn')) $res['month'] = '三月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T3';
+                    if (App::isLocale('cn')) $res['month'] = '三月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T3';
                     else $res['month'] = 'Mar';
                     break;
                 case '4':
-                    if (\App::isLocale('cn')) $res['month'] = '四月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T4';
+                    if (App::isLocale('cn')) $res['month'] = '四月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T4';
                     else $res['month'] = 'Apr';
                     break;
                 case '5':
-                    if (\App::isLocale('cn')) $res['month'] = '五月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T5';
+                    if (App::isLocale('cn')) $res['month'] = '五月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T5';
                     else $res['month'] = 'May';
                     break;
                 case '6':
-                    if (\App::isLocale('cn')) $res['month'] = '六月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T6';
+                    if (App::isLocale('cn')) $res['month'] = '六月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T6';
                     else $res['month'] = 'Jun';
                     break;
                 case '7':
-                    if (\App::isLocale('cn')) $res['month'] = '七月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T7';
+                    if (App::isLocale('cn')) $res['month'] = '七月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T7';
                     else $res['month'] = 'Jul';
                     break;
                 case '8':
-                    if (\App::isLocale('cn')) $res['month'] = '八月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T8';
+                    if (App::isLocale('cn')) $res['month'] = '八月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T8';
                     else $res['month'] = 'Aug';
                     break;
                 case '9':
-                    if (\App::isLocale('cn')) $res['month'] = '九月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T9';
+                    if (App::isLocale('cn')) $res['month'] = '九月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T9';
                     else $res['month'] = 'Sep';
                     break;
                 case '10':
-                    if (\App::isLocale('cn')) $res['month'] = '十月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T10';
+                    if (App::isLocale('cn')) $res['month'] = '十月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T10';
                     else $res['month'] = 'Oct';
                     break;
                 case '11':
-                    if (\App::isLocale('cn')) $res['month'] = '十一月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T11';
+                    if (App::isLocale('cn')) $res['month'] = '十一月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T11';
                     else $res['month'] = 'Nov';
                     break;
                 case '12':
-                    if (\App::isLocale('cn')) $res['month'] = '十二月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T12';
+                    if (App::isLocale('cn')) $res['month'] = '十二月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T12';
                     else $res['month'] = 'Dec';
                     break;
 
                 default:
                     $res['day'] = '01';
-                    if (\App::isLocale('cn')) $res['month'] = '一月';
-                    else if (\App::isLocale('vi')) $res['month'] = ' T1';
+                    if (App::isLocale('cn')) $res['month'] = '一月';
+                    else if (App::isLocale('vi')) $res['month'] = ' T1';
                     else $res['month'] = 'Jan';
                     break;
             }
@@ -989,8 +993,7 @@ if (!function_exists('covert_string_date')) {
 if (!function_exists('convert_price_float')) {
     function convert_price_float($price, $decimals = 2, $currency = null)
     {
-        if ($price == 0)
-        {
+        if ($price == 0) {
             return $price;
         }
         $number = number_format($price, $decimals, '.', ',');
@@ -1010,12 +1013,11 @@ if (!function_exists('convert_price_float_vnd_not_show_d')) {
     {
         $total = 0;
         if ($price != 0) {
-            $fmt = numfmt_create('vi_VN', \NumberFormatter::CURRENCY);
+            $fmt = numfmt_create('vi_VN', NumberFormatter::CURRENCY);
             $priceVND = numfmt_format_currency($fmt, $price, 'VND');
-            if (strlen($priceVND) > 12)
-            {
+            if (strlen($priceVND) > 12) {
                 $price = str_split($priceVND, strlen($priceVND) - 5);
-                $total =  substr_replace($price[0],' ,' , -4, 1);
+                $total = substr_replace($price[0], ' ,', -4, 1);
                 return $total;
             }
 
@@ -1116,21 +1118,18 @@ if (!function_exists('convert_id_to_name_person_in_charge')) {
     function convert_id_to_name_person_in_charge($admin, $person_id)
     {
         $data = '';
-        if (empty($person_id))
-        {
+        if (empty($person_id)) {
             return $data;
         }
 
         $person_id = json_decode($person_id);
-        if (is_array($person_id))
-        {
+        if (is_array($person_id)) {
             $personIncharge = [];
-            foreach ($person_id as $key => $value)
-            {
+            foreach ($person_id as $key => $value) {
                 array_push($personIncharge, $admin[$value]);
             }
 
-            $data = join(', ', $personIncharge);;
+            $data = join(', ', $personIncharge);
             return $data;
         }
 
@@ -1198,7 +1197,7 @@ if (!function_exists('convertDateMonthMMToM')) {
         $range = explode("/", $monthYear);
         $month = $range[0];
         $year = $range[1];
-        $date = $month.'/'.$year;
+        $date = $month . '/' . $year;
         return $date;
     }
 }
@@ -1206,7 +1205,7 @@ if (!function_exists('getUnit')) {
     function getUnit($unit)
     {
         if (!empty($unit)) {
-            return \Config::get('myconfig.unit')[$unit];
+            return Config::get('myconfig.unit')[$unit];
         }
         return '';
     }
@@ -1216,7 +1215,7 @@ if (!function_exists('getCurrency')) {
     function getCurrency($currency)
     {
         if (!empty($currency)) {
-            return \Config::get('myconfig.currency')[$currency];
+            return Config::get('myconfig.currency')[$currency];
         }
         return '';
     }
@@ -1225,7 +1224,7 @@ if (!function_exists('getComStatusFlywire')) {
     function getComStatusFlywire($status)
     {
         if (!empty($status)) {
-            return \Config::get('myconfig.com_status')[$status];
+            return Config::get('myconfig.com_status')[$status];
         }
         return '';
     }
@@ -1234,7 +1233,7 @@ if (!function_exists('getQuarterNameNumber')) {
     function getQuarterNameNumber($value)
     {
         if (!empty($value)) {
-            return \Config::get('myconfig.quarter')[$value]['name'];
+            return Config::get('myconfig.quarter')[$value]['name'];
         }
         return '';
     }
@@ -1291,7 +1290,7 @@ if (!function_exists('getColorGoogle')) {
     function getColorGoogle($color_id)
     {
         if (!empty($color_id)) {
-            $color = (!empty(\Config::get('myconfig.color_event_google')[$color_id])) ? \Config::get('myconfig.color_event_google')[$color_id] : '';
+            $color = (!empty(Config::get('myconfig.color_event_google')[$color_id])) ? Config::get('myconfig.color_event_google')[$color_id] : '';
             return $color;
         }
         return '';
@@ -1302,11 +1301,11 @@ if (!function_exists('getChildUser')) {
     {
         $admin = Auth::user();
         $permissionSee = $admin->getAccessEmployee($type);
-        $getAllAdminDepartment = Admin::where('department_id',$admin->department_id)->pluck('id');
+        $getAllAdminDepartment = Admin::where('department_id', $admin->department_id)->pluck('id');
         return collect([
-            'getAllAdminDepartment'=>$getAllAdminDepartment,
-            'permissionSee'=>$permissionSee,
-            'admin'=>$admin
+            'getAllAdminDepartment' => $getAllAdminDepartment,
+            'permissionSee' => $permissionSee,
+            'admin' => $admin
         ]);
     }
 }
@@ -1334,7 +1333,7 @@ if (!function_exists('getColorByDate')) {
 if (!function_exists('get_price_insurrance')) {
     function get_price_insurrance($start, $end, $no_of_adults, $no_of_children)
     {
-        $services = Service::where('dichvu_id',2)->get([
+        $services = Service::where('dichvu_id', 2)->get([
             'id',
             'dichvu_id',
             'slug'
@@ -1353,10 +1352,10 @@ if (!function_exists('get_price_insurrance')) {
             $numdom1 = get_num_day_of_month($eDay[1], $eDay[2]);
             $numdom2 = get_num_day_of_month($eDay[1] - 1, $eDay[2]);
             $num_month_day = get_num_month_or_day_of_range($sDay, $eDay, $numdom1, $numdom2);
-            $numMonths = ($num_month_day['num_month'] == 0)?1:$num_month_day['num_month'];
+            $numMonths = ($num_month_day['num_month'] == 0) ? 1 : $num_month_day['num_month'];
             $startDate = Carbon::parse(convert_date_to_db($start));
             $endDate = Carbon::parse(convert_date_to_db($end));
-            $numDays= $endDate->diffInDays($startDate);
+            $numDays = $endDate->diffInDays($startDate);
             $price_all = '';
             $price_m = 0;
             $numdom3 = 1;
@@ -1373,29 +1372,29 @@ if (!function_exists('get_price_insurrance')) {
             }
             foreach ($services as $service) {
                 if ($service->slug == 'allianz') {
-                    $allianz = \App\Allianz::where('type',$type)->where('num_days',$numDays)->first()->price;
-                    $insurrance[$service->slug] = !empty($allianz)?$allianz:0;
-                }elseif ($service->slug == 'medibank') {
+                    $allianz = Allianz::where('type', $type)->where('num_days', $numDays)->first()->price;
+                    $insurrance[$service->slug] = !empty($allianz) ? $allianz : 0;
+                } elseif ($service->slug == 'medibank') {
                     if ($no_of_children == 1 && $no_of_adults == 1) {
                         $type = 3;
                     }
-                    $medibank = \App\Medibank::where('type',$type)->where('num_days',$numDays)->first()->price;
-                    $insurrance[$service->slug] = !empty($medibank)?$medibank:0;
-                }elseif ($service->slug == 'AHM') {
+                    $medibank = Medibank::where('type', $type)->where('num_days', $numDays)->first()->price;
+                    $insurrance[$service->slug] = !empty($medibank) ? $medibank : 0;
+                } elseif ($service->slug == 'AHM') {
                     if ($no_of_children == 1 && $no_of_adults == 1) {
                         $type = 3;
                     }
-                    $ahm =\App\Ahm::where('type',$type)->where('num_days',$numDays)->first()->price;
-                    $insurrance[$service->slug] = !empty($ahm)?$ahm:0;
-                }elseif ($service->slug == 'nib') {
+                    $ahm = Ahm::where('type', $type)->where('num_days', $numDays)->first()->price;
+                    $insurrance[$service->slug] = !empty($ahm) ? $ahm : 0;
+                } elseif ($service->slug == 'nib') {
                     if ($no_of_children == 1 && $no_of_adults == 1) {
                         $type = 3;
                     }
-                    $nib = \App\Nib::where('type',$type)->where('num_days',$numDays)->first()->price;
-                    $insurrance[$service->slug] = !empty($nib)?$nib:0;
-                }elseif ($service->slug == 'bupa') {
+                    $nib = Nib::where('type', $type)->where('num_days', $numDays)->first()->price;
+                    $insurrance[$service->slug] = !empty($nib) ? $nib : 0;
+                } elseif ($service->slug == 'bupa') {
                     $bupa = Price::where('status', 1)->where('type', $type)->where('service_id', $service->id)->where('num_month', $numMonths)->first();
-                    $insurrance[$service->slug] = !empty($bupa)?$bupa->price:0;
+                    $insurrance[$service->slug] = !empty($bupa) ? $bupa->price : 0;
                 }
             }
             return $insurrance;
@@ -1460,12 +1459,13 @@ if (!function_exists('getSchoolFlywire')) {
 //
 //        array_push($schools, $object1, $object2);
         $schools = config('schools');
-        return collect($schools)->pluck('name','id');
+        return collect($schools)->pluck('name', 'id');
     }
 }
 
-if (!function_exists('getLoginFlywire')){
-    function getLoginFlywire(){
+if (!function_exists('getLoginFlywire')) {
+    function getLoginFlywire()
+    {
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_URL => 'https://agents.flywire.com/rest/authentication/login',
@@ -1493,7 +1493,7 @@ if (!function_exists('getLoginFlywire')){
                 'accept-language: en-US,en;q=0.9,vi;q=0.8',
                 'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=dd49fa4f-a2fb-494b-b937-df8aeda1cc57; loggedIn=true; sc=AFGFyij4d2mp6F20Cm9sHrkkjQtnmYAbXVM6p9UgxqaONC8QiCbpnzZxYwYN5csUj545Qs55Z6IS40QLyjq1eX59nN9zMbhD0ReQ; XSRF-TOKEN=C7r5nZER2Mpb0fCz2frzw9t4YBrYUoigIOB3WXTyWXwKPXin28qEtXwMZpJCIKnnc9CNbWLXD9GkB0aeH8Knuj6S7KDB9tCIYEpl; peer_session_id=4610209f-986c-4c8a-87f9-75ac10bdb085'
             ],
-            CURLOPT_HEADER=>1
+            CURLOPT_HEADER => 1
         ]);
         $response = curl_exec($curl);
         $info = curl_getinfo($curl);
@@ -1502,21 +1502,22 @@ if (!function_exists('getLoginFlywire')){
         $cookies = array();
         foreach ($ms[1] as $m) {
             [$name, $value] = explode('=', $m, 2);
-            $cookies[$name] = explode(';',$value);
+            $cookies[$name] = explode(';', $value);
         }
         $scCookie = $cookies['sc'][0];
         $peer_session_id = $cookies['peer_session_id'][0];
         $XSRF_TOKEN = $cookies['XSRF-TOKEN'][0];
         $cookie = [
-            'sc'=>$scCookie,
-            'peer_session_id'=>$peer_session_id,
-            'XSRF_TOKEN'=>$XSRF_TOKEN
+            'sc' => $scCookie,
+            'peer_session_id' => $peer_session_id,
+            'XSRF_TOKEN' => $XSRF_TOKEN
         ];
         return $cookie;
     }
 }
-if (!function_exists('ExchangeToAUDForFlywire')){
-    function ExchangeToAUDForFlywire($items){
+if (!function_exists('ExchangeToAUDForFlywire')) {
+    function ExchangeToAUDForFlywire($items)
+    {
 
         $getQuarterId = Carbon::parse($items->delivered_date)->quarter;
         $getYearQuarter = Carbon::parse($items->delivered_date)->format('Y');
@@ -1525,35 +1526,33 @@ if (!function_exists('ExchangeToAUDForFlywire')){
         $flywireComAgent = 9;
         $audUnit = 8;
         if ($getUnitProviderId == $audUnit) {
-            $exchangeRateFlywireComProvider = new \App\Admin\ExchangRate();
+            $exchangeRateFlywireComProvider = new ExchangRate();
             $exchangeRateFlywireComProvider->unit_to_aud = 1;
         } else {
-            $exchangeRateFlywireComProvider = \App\Admin\ExchangRate::where('quarter_id', $getQuarterId)
+            $exchangeRateFlywireComProvider = ExchangRate::where('quarter_id', $getQuarterId)
                 ->where('year', $getYearQuarter)
                 ->where('unit', $getUnitProviderId)
                 ->where('type', $flywireComProvider)
                 ->first();
         }
 
-        return (!empty($exchangeRateFlywireComProvider))?$exchangeRateFlywireComProvider->unit_to_aud:0;
+        return (!empty($exchangeRateFlywireComProvider)) ? $exchangeRateFlywireComProvider->unit_to_aud : 0;
     }
 }
 
-if (!function_exists('ExchangeToVNDForFlywire'))
-{
+if (!function_exists('ExchangeToVNDForFlywire')) {
     function ExchangeToVNDForFlywire($getQuarterId, $getYearQuarter)
     {
-        $exchangeRateFlywireComAgent = \App\Admin\ExchangRate::where('quarter_id', $getQuarterId)
+        $exchangeRateFlywireComAgent = ExchangRate::where('quarter_id', $getQuarterId)
             ->where('year', $getYearQuarter)
             ->where('type', 9)
             ->first();
 
-        return (!empty($exchangeRateFlywireComAgent))?$exchangeRateFlywireComAgent->aud_to_vnd:0;
+        return (!empty($exchangeRateFlywireComAgent)) ? $exchangeRateFlywireComAgent->aud_to_vnd : 0;
     }
 }
 
-if (!function_exists('getQuarter'))
-{
+if (!function_exists('getQuarter')) {
     function getQuarter($flywire, $type = null)
     {
         $result = [];
@@ -1565,25 +1564,21 @@ if (!function_exists('getQuarter'))
         $quarter_3 = '';
         $quarter_4 = '';
 
-        foreach ($flywire as $items){ // loop date and clear month year duplicate
+        foreach ($flywire as $items) { // loop date and clear month year duplicate
             $getYearQuarter = Carbon::parse($items->delivered_date)->format('m/Y'); // get year quarter
-            if (getMonthByMonthYearQuarter($getYearQuarter) < '04')
-            {
+            if (getMonthByMonthYearQuarter($getYearQuarter) < '04') {
                 array_push($quarter, $getYearQuarter);
                 $quarter = array_unique($quarter); // remove item dublicate
 
-            }elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '04' && getMonthByMonthYearQuarter($getYearQuarter) <= '06')
-            {
+            } elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '04' && getMonthByMonthYearQuarter($getYearQuarter) <= '06') {
                 array_push($quarter, $getYearQuarter);
                 $quarter = array_unique($quarter); // remove item dublicate
 
-            }elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '07' && getMonthByMonthYearQuarter($getYearQuarter) <= '09')
-            {
+            } elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '07' && getMonthByMonthYearQuarter($getYearQuarter) <= '09') {
                 array_push($quarter, $getYearQuarter);
                 $quarter = array_unique($quarter); // remove item dublicate
 
-            }elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '10' && getMonthByMonthYearQuarter($getYearQuarter) <= '12')
-            {
+            } elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '10' && getMonthByMonthYearQuarter($getYearQuarter) <= '12') {
                 array_push($quarter, $getYearQuarter);
                 $quarter = array_unique($quarter); // remove item dublicate
             }
@@ -1591,20 +1586,16 @@ if (!function_exists('getQuarter'))
         }
 
         $sortNewQuarter = [];
-        foreach ($quarter as $items)
-        {
-            if (substr($items,3) == '2021')
-            {
+        foreach ($quarter as $items) {
+            if (substr($items, 3) == '2021') {
                 array_push($sortNewQuarter, $items);
             }
         }
         sort($sortNewQuarter);
 
         $sortQuarter = [];
-        foreach ($quarter as $items)
-        {
-            if (substr($items,3) == '2020')
-            {
+        foreach ($quarter as $items) {
+            if (substr($items, 3) == '2020') {
                 array_push($sortQuarter, $items);
             }
         }
@@ -1613,40 +1604,35 @@ if (!function_exists('getQuarter'))
         array_push($sortQuarter, $sortNewQuarter);
         $sortQuarter = array_flatten($sortQuarter);
 
-        foreach ($sortQuarter as $items){
-            if (substr($items, 0, 2) == '01' || substr($items, 0, 2) == '02' || substr($items, 0, 2) == '03')
-            {
-                $a = substr($items,3);
+        foreach ($sortQuarter as $items) {
+            if (substr($items, 0, 2) == '01' || substr($items, 0, 2) == '02' || substr($items, 0, 2) == '03') {
+                $a = substr($items, 3);
                 $quarter_1 = "<td colspan=2 class='width-4 th_table_export_excel'><b>Quarter I / $a</b></td>";
                 array_push($countDataTd, 1);
                 $result[0] = $quarter_1;
-            }elseif (substr($items, 0, 2) == '04' || substr($items, 0, 2) == '05' || substr($items, 0, 2) == '06')
-            {
-                $a = substr($items,3);
+            } elseif (substr($items, 0, 2) == '04' || substr($items, 0, 2) == '05' || substr($items, 0, 2) == '06') {
+                $a = substr($items, 3);
                 $quarter_2 = "<td colspan=2 class='width-5 th_table_export_excel'><b>Quarter II / $a</b></td>";
                 array_push($countDataTd, 2);
                 $result[1] = $quarter_2;
 
 
-            }elseif (substr($items, 0, 2) == '07' || substr($items, 0, 2) == '08' || substr($items, 0, 2) == '09')
-            {
-                $a = substr($items,3);
+            } elseif (substr($items, 0, 2) == '07' || substr($items, 0, 2) == '08' || substr($items, 0, 2) == '09') {
+                $a = substr($items, 3);
                 $quarter_3 = "<td colspan=2 class='width-4 th_table_export_excel'><b>Quarter III / $a</b></td>";
                 array_push($countDataTd, 3);
                 $result[2] = $quarter_3;
 
 
-            }elseif (substr($items, 0, 2) == '10' || substr($items, 0, 2) == '11' || substr($items, 0, 2) == '12')
-            {
-                $a = substr($items,3);
+            } elseif (substr($items, 0, 2) == '10' || substr($items, 0, 2) == '11' || substr($items, 0, 2) == '12') {
+                $a = substr($items, 3);
                 $quarter_4 = "<td colspan=2 class='width-4 th_table_export_excel'><b>Quarter IV / $a</b></td>";
                 array_push($countDataTd, 4);
                 $result[3] = $quarter_4;
 
             }
         }
-        if ($type == 'dataQuarter')
-        {
+        if ($type == 'dataQuarter') {
             return $countDataTd;
         }
         echo join(' ', $result);
@@ -1654,9 +1640,7 @@ if (!function_exists('getQuarter'))
 }
 
 
-
-if (!function_exists('getQuarterDataReport'))
-{
+if (!function_exists('getQuarterDataReport')) {
     function getQuarterDataReport($flywire, $type = null)
     {
         $result = [];
@@ -1668,43 +1652,34 @@ if (!function_exists('getQuarterDataReport'))
         $quarter_3 = '';
         $quarter_4 = '';
 
-        foreach ($flywire as $items)
-        {
+        foreach ($flywire as $items) {
             $getYearQuarter = Carbon::parse($items->delivered_date)->format('m/Y'); // get year quarter
-            if (substr($getYearQuarter,0, 2) < '04')
-            {
+            if (substr($getYearQuarter, 0, 2) < '04') {
                 array_push($quarter, $getYearQuarter);
 
-            }elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '04' && getMonthByMonthYearQuarter($getYearQuarter) <= '06')
-            {
+            } elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '04' && getMonthByMonthYearQuarter($getYearQuarter) <= '06') {
                 array_push($quarter, $getYearQuarter);
 
-            }elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '07' && getMonthByMonthYearQuarter($getYearQuarter) <= '09')
-            {
+            } elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '07' && getMonthByMonthYearQuarter($getYearQuarter) <= '09') {
                 array_push($quarter, $getYearQuarter);
 
-            }elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '10' && getMonthByMonthYearQuarter($getYearQuarter) <= '12')
-            {
+            } elseif (getMonthByMonthYearQuarter($getYearQuarter) >= '10' && getMonthByMonthYearQuarter($getYearQuarter) <= '12') {
                 array_push($quarter, $getYearQuarter);
             }
             $quarter = array_unique($quarter);
         }
 
         $sortNewQuarter = [];
-        foreach ($quarter as $items)
-        {
-            if (substr($items,3) == '2021')
-            {
+        foreach ($quarter as $items) {
+            if (substr($items, 3) == '2021') {
                 array_push($sortNewQuarter, $items);
             }
         }
         sort($sortNewQuarter);
 
         $sortQuarter = [];
-        foreach ($quarter as $items)
-        {
-            if (substr($items,3) == '2020')
-            {
+        foreach ($quarter as $items) {
+            if (substr($items, 3) == '2020') {
                 array_push($sortQuarter, $items);
             }
         }
@@ -1712,10 +1687,9 @@ if (!function_exists('getQuarterDataReport'))
         sort($sortQuarter);
         array_push($sortQuarter, $sortNewQuarter);
         $sortQuarter = array_flatten($sortQuarter);
-        foreach ($sortQuarter as $items){
-            if (substr($items, 0, 2) == '01' || substr($items, 0, 2) == '02' || substr($items, 0, 2) == '03')
-            {
-                $a = substr($items,3);
+        foreach ($sortQuarter as $items) {
+            if (substr($items, 0, 2) == '01' || substr($items, 0, 2) == '02' || substr($items, 0, 2) == '03') {
+                $a = substr($items, 3);
                 $quarter_1 = '<td colspan=2 height=42  bgcolor="#EF4B88" style="
                         padding: 0px;
                         mso-ignore: padding;
@@ -1736,13 +1710,12 @@ if (!function_exists('getQuarterDataReport'))
                         border-left: .5pt solid windowtext;
                         background: hotpink;
                         mso-pattern: black none;
-                        white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter I / <br>'.$a.'</font></b></td>';
+                        white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter I / <br>' . $a . '</font></b></td>';
                 array_push($countDataTd, 1);
                 $result[0] = $quarter_1;
 
-            }elseif (substr($items, 0, 2) == '04' || substr($items, 0, 2) == '05' || substr($items, 0, 2) == '06')
-            {
-                $a = substr($items,3);
+            } elseif (substr($items, 0, 2) == '04' || substr($items, 0, 2) == '05' || substr($items, 0, 2) == '06') {
+                $a = substr($items, 3);
                 $quarter_2 = '<td colspan=2 height=42 bgcolor="#EF4B88" style=";
                 padding: 0px;
                 mso-ignore: padding;
@@ -1762,14 +1735,13 @@ if (!function_exists('getQuarterDataReport'))
                 border-bottom: .5pt solid windowtext;
                 border-left: .5pt solid windowtext;
                 mso-pattern: black none;
-                white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter II / <br>'.$a.'</font></b></td>';
+                white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter II / <br>' . $a . '</font></b></td>';
                 array_push($countDataTd, 2);
                 $result[1] = $quarter_2;
 
 
-            }elseif (substr($items, 0, 2) == '07' || substr($items, 0, 2) == '08' || substr($items, 0, 2) == '09')
-            {
-                $a = substr($items,3);
+            } elseif (substr($items, 0, 2) == '07' || substr($items, 0, 2) == '08' || substr($items, 0, 2) == '09') {
+                $a = substr($items, 3);
                 $quarter_3 = '<td colspan=2 height=42  bgcolor="#EF4B88" style="height:54.4pt;
                 padding: 0px;
                 mso-ignore: padding;
@@ -1789,14 +1761,13 @@ if (!function_exists('getQuarterDataReport'))
                 border-bottom: .5pt solid windowtext;
                 border-left: .5pt solid windowtext;
                 mso-pattern: black none;
-                white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter III / <br>'.$a.'</font></b></td>';
+                white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter III / <br>' . $a . '</font></b></td>';
                 array_push($countDataTd, 3);
                 $result[2] = $quarter_3;
 
 
-            }elseif (substr($items, 0, 2) == '10' || substr($items, 0, 2) == '11' || substr($items, 0, 2) == '12')
-            {
-                $a = substr($items,3);
+            } elseif (substr($items, 0, 2) == '10' || substr($items, 0, 2) == '11' || substr($items, 0, 2) == '12') {
+                $a = substr($items, 3);
                 $quarter_4 = '<td colspan=2 height=42 bgcolor="#EF4B88" style="height:54.4pt;
                 padding: 0px;
                 mso-ignore: padding;
@@ -1816,14 +1787,13 @@ if (!function_exists('getQuarterDataReport'))
                 border-bottom: .5pt solid windowtext;
                 border-left: .5pt solid windowtext;
                 mso-pattern: black none;
-                white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter IV / <br>'.$a.'</font></b></td>';
+                white-space: normal;"><b><font face="Times New Roman" size=3 color="white">Quarter IV / <br>' . $a . '</font></b></td>';
                 array_push($countDataTd, 4);
                 $result[3] = $quarter_4;
 
             }
         }
-        if ($type == 'dataQuarter')
-        {
+        if ($type == 'dataQuarter') {
             return $countDataTd;
         }
 
@@ -1831,65 +1801,56 @@ if (!function_exists('getQuarterDataReport'))
     }
 }
 
-if (!function_exists('getMonthByMonthYearQuarter'))
-{
+if (!function_exists('getMonthByMonthYearQuarter')) {
     function getMonthByMonthYearQuarter($item)
     {
         return substr($item, 0, 2);
     }
 }
 
-if (!function_exists('showDataReportForHTMLReport'))
-{
+if (!function_exists('showDataReportForHTMLReport')) {
     function showDataReportForHTMLReportEn($countQuarter, $getQuarterId, $totalQuarter)
     {
         $countQuarter = array_unique($countQuarter);
-        if (count($countQuarter) > 0)
-        {
+        if (count($countQuarter) > 0) {
 
-            foreach ($countQuarter as $quarter => $value)
-            {
+            foreach ($countQuarter as $quarter => $value) {
 
-                if ($getQuarterId == $value){
-                    echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index='.$quarter.' data-total-quarter-'.$value.'="'.$totalQuarter.'"><span >'.convert_price_float($totalQuarter).'</span ></td >';
-                }else{
+                if ($getQuarterId == $value) {
+                    echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index=' . $quarter . ' data-total-quarter-' . $value . '="' . $totalQuarter . '"><span >' . convert_price_float($totalQuarter) . '</span ></td >';
+                } else {
                     echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
                 }
             }
-        }else{
+        } else {
             echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" ><span ></span ></td >';
         }
     }
 }
 
-if (!function_exists('showDataReportForHTMLReport'))
-{
+if (!function_exists('showDataReportForHTMLReport')) {
     function showDataReportForHTMLReport($countQuarter, $getQuarterId, $totalQuarter)
     {
         $countQuarter = array_unique($countQuarter);
         $totalQuarterAfterConvert = convert_price_float($totalQuarter, 0, 'VND');
-        if (count($countQuarter) > 0)
-        {
-            foreach ($countQuarter as $quarter => $value)
-            {
-                if ($getQuarterId == $value){
-                    echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index='.$quarter.' data-total-quarter-'.$value.'="'.$totalQuarter.'"><span face="Times New Roman" style="font-size: 12.0pt;">'.$totalQuarterAfterConvert.'</span ></td >';
-                }else{
+        if (count($countQuarter) > 0) {
+            foreach ($countQuarter as $quarter => $value) {
+                if ($getQuarterId == $value) {
+                    echo '<td colspan = 2 align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" index=' . $quarter . ' data-total-quarter-' . $value . '="' . $totalQuarter . '"><span face="Times New Roman" style="font-size: 12.0pt;">' . $totalQuarterAfterConvert . '</span ></td >';
+                } else {
                     echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
                 }
             }
-        }else{
+        } else {
             echo '<td colspan = 2  align=center class="width-5 td_table_export_excel" style="font-family: Times New Roman;" ><span ></span ></td >';
         }
     }
 }
 
-if (!function_exists('getComm'))
-{
+if (!function_exists('getComm')) {
     function getComm($id, $provider_id, $initiated_date)
     {
-        if ($id)
-        {
+        if ($id) {
             $comm = Admin\Commission::select('comm')
                 ->where('user_id', $id)
                 ->where('provider_id', $provider_id)
@@ -1902,18 +1863,17 @@ if (!function_exists('getComm'))
     }
 }
 
-if (!function_exists('decode_html'))
-{
+if (!function_exists('decode_html')) {
     function decode_html($content, $break = false)
     {
-        if ($break == 'array'){
+        if ($break == 'array') {
             $ar = explode(',', $content);
             $length = count($ar);
             $content = '';
-            for ($i = 0; $i < $length; $i++){
+            for ($i = 0; $i < $length; $i++) {
 
                 $content .= "<a
-                            href=' ".config('admin.base_url').'tailieus/'.$ar[$i]." '> $ar[$i]
+                            href=' " . config('admin.base_url') . 'tailieus/' . $ar[$i] . " '> $ar[$i]
                         </a>" . '</br>';
 
             }
@@ -1923,68 +1883,58 @@ if (!function_exists('decode_html'))
 
         if ($break == 'customer') return html_entity_decode($content);
 
-        if ($break == false){
+        if ($break == false) {
             echo html_entity_decode($content);
         }
     }
 }
 
-if (!function_exists('getDepartmentById'))
-{
+if (!function_exists('getDepartmentById')) {
     function getDepartmentById($id)
     {
         $value = '';
         $departments = config('myconfig.department');
-        if ($id)
-        {
+        if ($id) {
             $value = array_get($departments, $id);
         }
         return $value;
     }
 }
 
-if (!function_exists('getStaffNameById'))
-{
+if (!function_exists('getStaffNameById')) {
     function getStaffNameById($id)
     {
-        if ($id)
-        {
-            $admins = \Illuminate\Support\Facades\DB::table('admins')->select('admin_id')->where('id', $id)->first();
+        if ($id) {
+            $admins = DB::table('admins')->select('admin_id')->where('id', $id)->first();
             return $admins->admin_id;
         }
         return '';
     }
 }
 
-if (!function_exists('getValueByIndexConfig'))
-{
+if (!function_exists('getValueByIndexConfig')) {
     function getValueByIndexConfig($config, $index)
     {
-        if (is_int($index) && $index != -1)
-        {
+        if (is_int($index) && $index != -1) {
             return array_get($config, $index);
         }
         return '';
     }
 }
 
-if (!function_exists('getKeyConfigByValue'))
-{
+if (!function_exists('getKeyConfigByValue')) {
     function getKeyConfigByValue($config, $value)
     {
         try {
-            if (!empty($value))
-            {
+            if (!empty($value)) {
                 $result = array_keys($config, $value);
-                if (count($result) > 0)
-                {
+                if (count($result) > 0) {
                     return $result[0];
                 }
             }
 
             return "";
-        }catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             echo $e->getMessage() . ' ===== ';
             echo $e->getLine() . ' ===== ';
             echo $e->getTrace() . ' ===== ';
@@ -1994,36 +1944,26 @@ if (!function_exists('getKeyConfigByValue'))
     }
 }
 
-if (!function_exists('setLabelStatus'))
-{
+if (!function_exists('setLabelStatus')) {
     function setLabelStatus($status_id)
     {
-        if (is_int($status_id))
-        {
-            if ($status_id == 1)
-            {
+        if (is_int($status_id)) {
+            if ($status_id == 1) {
                 return 'potential';
-            }elseif ($status_id == 2)
-            {
+            } elseif ($status_id == 2) {
                 return 'touchbase';
-            }elseif ($status_id == 3)
-            {
+            } elseif ($status_id == 3) {
                 return 'signed_contract';
 
-            }elseif ($status_id == 4)
-            {
+            } elseif ($status_id == 4) {
                 return 'cooporating';
-            }elseif ($status_id == 5)
-            {
+            } elseif ($status_id == 5) {
                 return 'quiet';
-            }elseif($status_id == 6)
-            {
+            } elseif ($status_id == 6) {
                 return 'inactive';
-            }elseif($status_id == 7)
-            {
+            } elseif ($status_id == 7) {
                 return 'pending';
-            }elseif($status_id == 8)
-            {
+            } elseif ($status_id == 8) {
                 return 'refused';
             }
         }
@@ -2031,46 +1971,38 @@ if (!function_exists('setLabelStatus'))
     }
 }
 
-if (!function_exists('countFlStatus_zero'))
-{
+if (!function_exists('countFlStatus_zero')) {
     function countFlStatus_zero($type)
     {
-        $result = \Illuminate\Support\Facades\DB::table('follows')->select(\Illuminate\Support\Facades\DB::raw('count(*) as zero'))
+        $result = DB::table('follows')->select(DB::raw('count(*) as zero'))
             ->where('follow_up_status', $type)
             ->get()[0];
         return "($result->zero)";
     }
 }
 
-if (!function_exists('countHotIssue'))
-{
+if (!function_exists('countHotIssue')) {
     function countHotIssue()
     {
-        $result = \Illuminate\Support\Facades\DB::table('follows')->select(\Illuminate\Support\Facades\DB::raw('count(*) as hot'))
+        $result = DB::table('follows')->select(DB::raw('count(*) as hot'))
             ->where('hot_issue', 1)
             ->get()[0];
         return "($result->hot)";
     }
 }
 
-if (!function_exists('setLabelFlUpStatus'))
-{
+if (!function_exists('setLabelFlUpStatus')) {
     function setLabelFlUpStatus($followUpStatus_id)
     {
-        if (is_int($followUpStatus_id))
-        {
-            if ($followUpStatus_id == 0)
-            {
+        if (is_int($followUpStatus_id)) {
+            if ($followUpStatus_id == 0) {
                 return 'need_follow';
-            }elseif ($followUpStatus_id == 1)
-            {
+            } elseif ($followUpStatus_id == 1) {
                 return 'urgent';
-            }elseif ($followUpStatus_id == 2)
-            {
+            } elseif ($followUpStatus_id == 2) {
                 return 'stop_follow';
 
-            }elseif ($followUpStatus_id == 3)
-            {
+            } elseif ($followUpStatus_id == 3) {
                 return 'done';
             }
         }
@@ -2078,14 +2010,12 @@ if (!function_exists('setLabelFlUpStatus'))
     }
 }
 
-if (!function_exists('sortSettingsByOrder'))
-{
+if (!function_exists('sortSettingsByOrder')) {
     function sortSettingsByOrder($configAgent)
     {
         $result = array();
-        forEach($configAgent as $key)
-        {
-            if($key['isShow'] != true) continue;
+        foreach ($configAgent as $key) {
+            if ($key['isShow'] != true) continue;
             array_push($result, $key);
         }
 
@@ -2097,12 +2027,10 @@ if (!function_exists('sortSettingsByOrder'))
     }
 }
 
-if (!function_exists('getBank'))
-{
+if (!function_exists('getBank')) {
     function getBank($id = null)
     {
-        if (!empty($id))
-        {
+        if (!empty($id)) {
             $bank = Admin\Bank::select('id', 'name', 'code', 'account', 'brand', 'account_name', 'country')->where('id', $id)->first();
             return !empty($bank) ? $bank : '';
         }
@@ -2112,38 +2040,51 @@ if (!function_exists('getBank'))
     }
 }
 
-if (!function_exists('getCoverByServiceAndPolicy')){
-    function getCoverByServiceAndPolicy($service, $policy){
-        $cover = \App\Cover::getCover($service, $policy);
+if (!function_exists('getCoverByServiceAndPolicy')) {
+    function getCoverByServiceAndPolicy($service, $policy)
+    {
+        $cover = Cover::getCover($service, $policy);
 
         return $cover;
     }
 }
 
-if (!function_exists('getHospitalByService')){
-    function getHospitalByService($service){
+if (!function_exists('getHospitalByService')) {
+    function getHospitalByService($service)
+    {
         $hospital = Admin\HospitalAccess::where('service_id', $service)->get();
         return $hospital;
     }
 }
 
-if (!function_exists('getFileAttachById')){
-    function getFileAttachById($id){
+if (!function_exists('getFileAttachById')) {
+    function getFileAttachById($id)
+    {
         $mkt = DB::table('marketing_material_lists')->select('file_attachment')->where('id', $id)->first();
         $findText = '[';
         $fileName = '';
-        if ($findText == substr($mkt->file_attachment, 0, 1))
-        {
+        if ($findText == substr($mkt->file_attachment, 0, 1)) {
             $listFiles = json_decode($mkt->file_attachment, true);
             $lengthListFile = count($listFiles);
-            for ($i = 0; $i < $lengthListFile; $i ++){
+            for ($i = 0; $i < $lengthListFile; $i++) {
                 $Tailieu = DB::table('tailieus')->select('link')->where('id', $listFiles[$i])->first();
                 $fileName .= $Tailieu->link . ',';
             }
             return $fileName;
         }
 
-        return  $mkt->file_attachment;
+        return $mkt->file_attachment;
+    }
+}
+
+
+if (!function_exists('getCounsellorById')) {
+    function getCounsellorById($id)
+    {
+        $counsellor = Person::select('name')->where('id', $id)->first();
+        if (!empty($counsellor)) {
+            return $counsellor->name;
+        }
     }
 }
 

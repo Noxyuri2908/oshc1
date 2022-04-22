@@ -43,6 +43,10 @@
                     <div class="col-sm-8">
                         <select name="counsellor_id" id="counsellor_id">
                             <option value=""></option>
+                            @if(!empty($cus))
+                                <option value="{{$cus->person_counsellor_id}}"
+                                        selected>{{getCounsellorById($cus->person_counsellor_id)}}</option>
+                            @endif
                         </select>
                     </div>
                 </div>
