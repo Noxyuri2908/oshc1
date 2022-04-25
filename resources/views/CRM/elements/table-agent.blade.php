@@ -22,50 +22,65 @@
                                 <a class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px"
                                    href="{{route('agent.create')}}" title="Add "><i class="fas fa-plus"></i> Add</a>
                             @endcan
-                            <a href="#" class="delete-filter btn  btn-falcon-default btn-sm font-weight-normal font-size-12px" title="Delete Filter">
-                                <img style="width: 15px" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM5Ni44MTcgMzk2LjgxNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8Zz4KCQkJPHJlY3QgeD0iMCIgeT0iMzAuNDQxIiB3aWR0aD0iMzEzLjQ2OSIgaGVpZ2h0PSIyNi4xMjIiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcmVjdD4KCQkJPHBhdGggZD0iTTYuMjY5LDcyLjIzN0wxMjYuOTU1LDE5NC40OWMxLjU2NywxLjU2NywzLjY1NywzLjY1NywzLjY1Nyw1Ljc0N3YxNjYuMTM5bDUyLjI0NS0yOC4yMTJWMjAwLjIzNyAgICAgYzAtMi4wOSwyLjA5LTQuMTgsMy42NTctNS43NDdMMzA3LjIsNzIuMjM3SDYuMjY5eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzc3LjczMSwyMDIuMzI3Yy0yOS4yNzgtMjYuOTg4LTc0Ljg5LTI1LjEzMS0xMDEuODc4LDQuMTQ3Yy0yNS40NDgsMjcuNjA3LTI1LjQ0OCw3MC4xMjQsMCw5Ny43MzEgICAgIGMyOS4yNzgsMjYuOTg4LDc0Ljg5LDI1LjEzMSwxMDEuODc4LTQuMTQ3QzQwMy4xNzgsMjcyLjQ1LDQwMy4xNzgsMjI5LjkzNCwzNzcuNzMxLDIwMi4zMjd6IE0zNjUuNzE0LDI4MS4yMTYgICAgIGMzLjAzLDIuNjcyLDMuMzIsNy4yOTQsMC42NDgsMTAuMzI0Yy0wLjIwMiwwLjIyOS0wLjQxOSwwLjQ0Ni0wLjY0OCwwLjY0OGMtMS41NTQsMS40NDYtMy42MjcsMi4yLTUuNzQ3LDIuMDkgICAgIGMtMS45NjIsMC4wOTEtMy44NjctMC42NzEtNS4yMjQtMi4wOWwtMjcuNjktMjcuNjlsLTI3LjY5LDI3LjY5Yy0zLjMxNSwyLjgxMy04LjE3OSwyLjgxMy0xMS40OTQsMCAgICAgYy0yLjUyOS0zLjIyLTIuNTI5LTcuNzUxLDAtMTAuOTcxbDI3LjY5LTI3LjY5bC0yNy42OS0yNy42OWMtMi41MjktMy4yMi0yLjUyOS03Ljc1MSwwLTEwLjk3MWMzLjIyNC0zLjA1Miw4LjI3LTMuMDUyLDExLjQ5NCwwICAgICBsMjcuNjksMjcuNjlsMjcuNjktMjcuNjljMi41OTctMy40NjMsNy41MDktNC4xNjQsMTAuOTcxLTEuNTY3YzMuNDYzLDIuNTk3LDQuMTY0LDcuNTA5LDEuNTY3LDEwLjk3MSAgICAgYy0wLjQ0NSwwLjU5NC0wLjk3MywxLjEyMi0xLjU2NywxLjU2N2wtMjcuNjksMjcuNjlMMzY1LjcxNCwyODEuMjE2eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+" /> Clear Filter
+                            <a href="#"
+                               class="delete-filter btn  btn-falcon-default btn-sm font-weight-normal font-size-12px"
+                               title="Delete Filter">
+                                <img style="width: 15px"
+                                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM5Ni44MTcgMzk2LjgxNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8Zz4KCQkJPHJlY3QgeD0iMCIgeT0iMzAuNDQxIiB3aWR0aD0iMzEzLjQ2OSIgaGVpZ2h0PSIyNi4xMjIiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcmVjdD4KCQkJPHBhdGggZD0iTTYuMjY5LDcyLjIzN0wxMjYuOTU1LDE5NC40OWMxLjU2NywxLjU2NywzLjY1NywzLjY1NywzLjY1Nyw1Ljc0N3YxNjYuMTM5bDUyLjI0NS0yOC4yMTJWMjAwLjIzNyAgICAgYzAtMi4wOSwyLjA5LTQuMTgsMy42NTctNS43NDdMMzA3LjIsNzIuMjM3SDYuMjY5eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzc3LjczMSwyMDIuMzI3Yy0yOS4yNzgtMjYuOTg4LTc0Ljg5LTI1LjEzMS0xMDEuODc4LDQuMTQ3Yy0yNS40NDgsMjcuNjA3LTI1LjQ0OCw3MC4xMjQsMCw5Ny43MzEgICAgIGMyOS4yNzgsMjYuOTg4LDc0Ljg5LDI1LjEzMSwxMDEuODc4LTQuMTQ3QzQwMy4xNzgsMjcyLjQ1LDQwMy4xNzgsMjI5LjkzNCwzNzcuNzMxLDIwMi4zMjd6IE0zNjUuNzE0LDI4MS4yMTYgICAgIGMzLjAzLDIuNjcyLDMuMzIsNy4yOTQsMC42NDgsMTAuMzI0Yy0wLjIwMiwwLjIyOS0wLjQxOSwwLjQ0Ni0wLjY0OCwwLjY0OGMtMS41NTQsMS40NDYtMy42MjcsMi4yLTUuNzQ3LDIuMDkgICAgIGMtMS45NjIsMC4wOTEtMy44NjctMC42NzEtNS4yMjQtMi4wOWwtMjcuNjktMjcuNjlsLTI3LjY5LDI3LjY5Yy0zLjMxNSwyLjgxMy04LjE3OSwyLjgxMy0xMS40OTQsMCAgICAgYy0yLjUyOS0zLjIyLTIuNTI5LTcuNzUxLDAtMTAuOTcxbDI3LjY5LTI3LjY5bC0yNy42OS0yNy42OWMtMi41MjktMy4yMi0yLjUyOS03Ljc1MSwwLTEwLjk3MWMzLjIyNC0zLjA1Miw4LjI3LTMuMDUyLDExLjQ5NCwwICAgICBsMjcuNjksMjcuNjlsMjcuNjktMjcuNjljMi41OTctMy40NjMsNy41MDktNC4xNjQsMTAuOTcxLTEuNTY3YzMuNDYzLDIuNTk3LDQuMTY0LDcuNTA5LDEuNTY3LDEwLjk3MSAgICAgYy0wLjQ0NSwwLjU5NC0wLjk3MywxLjEyMi0xLjU2NywxLjU2N2wtMjcuNjksMjcuNjlMMzY1LjcxNCwyODEuMjE2eiIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"/>
+                                Clear Filter
                             </a>
-                            <a href="{{route('queue_error_log.index',['model'=>\App\User::class])}}" class="btn btn-falcon-default btn-sm font-weight-normal font-size-12px" id="btn-show-error-log" title="Show error import"><i class="fas fa-exclamation-circle"></i>Show error import</a>
-                            <a class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px" href="javascript:void(0);" id="agentExportExcel" title="Export"><i class="fas fa-file-export"></i>Export</a>
+                            <a href="{{route('queue_error_log.index',['model'=>\App\User::class])}}"
+                               class="btn btn-falcon-default btn-sm font-weight-normal font-size-12px"
+                               id="btn-show-error-log" title="Show error import"><i
+                                    class="fas fa-exclamation-circle"></i>Show error import</a>
+                            <a class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px"
+                               href="javascript:void(0);" id="agentExportExcel" title="Export"><i
+                                    class="fas fa-file-export"></i>Export</a>
                             @can('agent.store')
-                                <a class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px" href="{{route('agent.importTypeOfAgent')}}" data-toggle="modal" data-target="#importtypeofagent" title="Import Type Of Agent"><i class="fas fa-file-export"></i>Import Type Of Agent</a>
+                                <a class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px"
+                                   href="{{route('agent.importTypeOfAgent')}}" data-toggle="modal"
+                                   data-target="#importtypeofagent" title="Import Type Of Agent"><i
+                                        class="fas fa-file-export"></i>Import Type Of Agent</a>
                                 <div class="modal fade" id="importtypeofagent" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <form id="modal-form-import"
-                                                  action="{{route('agent.importTypeOfAgent')}}"
-                                                  method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Tải file bạn muốn
-                                                            nhập vào hệ
-                                                            thống!</h5>
-                                                        <button class="close" type="button" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span class="font-weight-light" aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <input class="form-control-file" name="file" id="file"
-                                                                   type="file" required="" accept=".xlsx,.csv,.xls">
-                                                        </div>
-                                                        <input class="form-control-file" name="tmp" value="111"
-                                                               type="hidden">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-secondary" type="button"
-                                                                data-dismiss="modal">Close
-                                                        </button>
-                                                        <button type="submit" class="btn btn-primary">Upload</button>
-                                                    </div>
+                                     aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <form id="modal-form-import"
+                                              action="{{route('agent.importTypeOfAgent')}}"
+                                              method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tải file bạn muốn
+                                                        nhập vào hệ
+                                                        thống!</h5>
+                                                    <button class="close" type="button" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span class="font-weight-light" aria-hidden="true">×</span>
+                                                    </button>
                                                 </div>
-                                            </form>
-                                        </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <input class="form-control-file" name="file" id="file"
+                                                               type="file" required="" accept=".xlsx,.csv,.xls">
+                                                    </div>
+                                                    <input class="form-control-file" name="tmp" value="111"
+                                                           type="hidden">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
+                                </div>
 
-                                <a class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px" href="{{route('agent.importAgentCode')}}" data-toggle="modal" data-target="#importAgentCode" title="Import"><i class="fas fa-file-import"></i>Import Agent Code</a>
+                                <a class="btn btn-falcon-default btn-sm btn_export font-weight-normal font-size-12px"
+                                   href="{{route('agent.importAgentCode')}}" data-toggle="modal"
+                                   data-target="#importAgentCode" title="Import"><i class="fas fa-file-import"></i>Import
+                                    Agent Code</a>
                                 <div class="modal fade" id="importAgentCode" tabindex="-1" role="dialog"
                                      aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -102,7 +117,9 @@
                                     </div>
                                 </div>
 
-                                <a class="btn btn-falcon-default btn-sm btn_import font-weight-normal font-size-12px" data-toggle="modal" data-target="#importModal" title="Import"><i class="fas fa-file-import"></i>Import</a>
+                                <a class="btn btn-falcon-default btn-sm btn_import font-weight-normal font-size-12px"
+                                   data-toggle="modal" data-target="#importModal" title="Import"><i
+                                        class="fas fa-file-import"></i>Import</a>
                                 <div class="modal fade" id="importModal" tabindex="-1" role="dialog"
                                      aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -153,25 +170,27 @@
                     </a>
                 @endcan
                 @can('agent.delete')
-                    <a data-url="{{route("agent.multiDelete")}}" href="#" class="btn btn-default delete_row_data"><i class="fas fa-trash-alt"></i></a>
+                    <a data-url="{{route("agent.multiDelete")}}" href="#" class="btn btn-default delete_row_data"><i
+                            class="fas fa-trash-alt"></i></a>
                 @endcan
                 @can('agent.update')
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAgentPersonCharge">Person in charge</a>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAgentPersonCharge">Person
+                        in charge</a>
                 @endcan
             </div>
             <div class="table-div table-main-agent">
                 <table>
                     <thead class="agent-thead">
-                        <tr class="first-row">
-                            <th class="width-40">
-                                <input id="master" class="ml-3" type="checkbox" aria-label="Checkbox for this table" />
-                            </th>
-                            <th class="width-40"></th>
-                            @foreach($configAgentByOrder as $key)
-                                <th class="text-center {{$key['class']}}">{{$key['value']}}</th>
-                            @endforeach
-                        </tr>
-                        @include('CRM.elements.agents.filter')
+                    <tr class="first-row">
+                        <th class="width-40">
+                            <input id="master" class="ml-3" type="checkbox" aria-label="Checkbox for this table"/>
+                        </th>
+                        <th class="width-40"></th>
+                        @foreach($configAgentByOrder as $key)
+                            <th class="text-center {{$key['class']}}">{{$key['value']}}</th>
+                        @endforeach
+                    </tr>
+                    @include('CRM.elements.agents.filter')
                     </thead>
                     <tbody id="table_agent_body">
 
@@ -189,9 +208,18 @@
     <div class="card-body py-2">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item border-right">
-                <a class="nav-link active font-size-14px" id="follow-ups-tab" data-toggle="tab" href="#follow-ups" role="tab"
+                <a class="nav-link active font-size-14px" id="follow-ups-tab" data-toggle="tab" href="#follow-ups"
+                   role="tab"
                    aria-controls="follow-ups" aria-selected="true">
                     Follow ups
+                </a>
+            </li>
+            <li class="nav-item border-right">
+                <a class="nav-link font-size-14px" id="remind-follow-ups-tab" data-toggle="tab"
+                   href="#remind-follow-ups"
+                   role="tab"
+                   aria-controls="remind-follow-ups" aria-selected="true">
+                    Remind follow ups
                 </a>
             </li>
             <li class="nav-item border-right">
@@ -201,19 +229,22 @@
                 </a>
             </li>
             <li class="nav-item border-right">
-                <a class="nav-link font-size-14px" id="market-feedback-tab" data-toggle="tab" href="#market-feedback" role="tab"
+                <a class="nav-link font-size-14px" id="market-feedback-tab" data-toggle="tab" href="#market-feedback"
+                   role="tab"
                    aria-controls="market-feedback" aria-selected="false">
                     Agent feedback
                 </a>
             </li>
             <li class="nav-item border-right">
-                <a class="nav-link font-size-14px" id="competition-feedback-tab" data-toggle="tab" href="#competition-feedback"
+                <a class="nav-link font-size-14px" id="competition-feedback-tab" data-toggle="tab"
+                   href="#competition-feedback"
                    role="tab" aria-controls="competition-feedback" aria-selected="false">
                     Competitor update
                 </a>
             </li>
             <li class="nav-item border-right">
-                <a class="nav-link font-size-14px" id="marketing-support-tab" data-toggle="tab" href="#marketing-support" role="tab"
+                <a class="nav-link font-size-14px" id="marketing-support-tab" data-toggle="tab"
+                   href="#marketing-support" role="tab"
                    aria-controls="marketing-support" aria-selected="false">
                     Marketing support
                 </a>
@@ -235,31 +266,60 @@
                     {{--    style="font-size: 13px;width:95px"--}}
                     {{--    data-id=""--}}
                     {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
-                    <a href="#" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table" id="delete_all_follow_ups_fillter" title="Delete Filter">
+                    <a href="#"
+                       class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table"
+                       id="delete_all_follow_ups_fillter" title="Delete Filter">
                         @include('CRM.partials.img-filter')
                     </a>
                 </div>
                 <div id="follow-ups-table" class="mt-1">
                     <div class="header-search" style="padding: 7px">
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="0" href="#!" id="follow_status">{{$fl_up_status[0]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="0"
+                           href="#!" id="follow_status">{{$fl_up_status[0]}}
                             <sup style="color: red" id="count_{{$fl_up_status[0]}}">{{countFlStatus_zero(0)}}</sup>
                         </a>
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="1" href="#!" id="follow_status">{{$fl_up_status[1]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="1"
+                           href="#!" id="follow_status">{{$fl_up_status[1]}}
                             <sup style="color: red" id="count_{{$fl_up_status[1]}}">{{countFlStatus_zero(1)}}</sup>
                         </a>
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="2" href="#!" id="follow_status">{{$fl_up_status[2]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="2"
+                           href="#!" id="follow_status">{{$fl_up_status[2]}}
                             <sup style="color: red" id="count_{{$fl_up_status[2]}}">{{countFlStatus_zero(2)}}</sup>
                         </a>
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="3" href="#!" id="follow_status">{{$fl_up_status[3]}}
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px" data-value="3"
+                           href="#!" id="follow_status">{{$fl_up_status[3]}}
                             <sup style="color: red" id="count_{{$fl_up_status[3]}}">{{countFlStatus_zero(3)}}</sup>
                         </a>
 
-                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px"  href="javascript:void(0)" onclick="searchHotIssue()">Hot issue
+                        <a class="btn btn-falcon-info btn-sm sxme btn_status mr-3 font-size-12px"
+                           href="javascript:void(0)" onclick="searchHotIssue()">Hot issue
                             <sup style="color: red" id="count_hot_issue">{{countHotIssue()}}</sup>
                         </a>
 
                     </div>
                     @include('CRM.elements.task.sale.table.follow-up-agent')
+                </div>
+            </div>
+
+            {{--     remind follow ups       --}}
+            <div class="tab-pane fade" id="remind-follow-ups" role="tabpanel"
+                 aria-labelledby="remind-follow-ups">
+                <div class="d-flex justify-content-end mt-1">
+                    {{--<a--}}
+                    {{--    class="form-control form-control-sm btn btn-falcon-default btn-sm sxme btn_add_new_appointment"--}}
+                    {{--    id="btn_add_new_appointment"--}}
+                    {{--    href="{{route('event.create',['submit_form'=>'task_sale'])}}"--}}
+                    {{--    style="font-size: 13px;width:95px"--}}
+                    {{--    data-id=""--}}
+                    {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
+                    {{--                    <a href="#"--}}
+                    {{--                       class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table"--}}
+                    {{--                       id="delete_all_appointment_fillter" title="Delete Filter">--}}
+                    {{--                        @include('CRM.partials.img-filter')--}}
+                    {{--                    </a>--}}
+                </div>
+                <div id="remind-follow-up-table" class="mt-1">
+                    @include('CRM.elements.task.remind-follow-ups.index')
                 </div>
             </div>
             <div class="tab-pane fade" id="appointment" role="tabpanel" aria-labelledby="appointment-tab">
@@ -271,7 +331,9 @@
                     {{--    style="font-size: 13px;width:95px"--}}
                     {{--    data-id=""--}}
                     {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
-                    <a href="#" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table" id="delete_all_appointment_fillter" title="Delete Filter">
+                    <a href="#"
+                       class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table"
+                       id="delete_all_appointment_fillter" title="Delete Filter">
                         @include('CRM.partials.img-filter')
                     </a>
                 </div>
@@ -288,7 +350,9 @@
                     {{--    style="font-size: 13px;width:95px"--}}
                     {{--    data-id=""--}}
                     {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
-                    <a href="#" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table" id="delete_all_market_feedback_fillter" title="Delete Filter">
+                    <a href="#"
+                       class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table"
+                       id="delete_all_market_feedback_fillter" title="Delete Filter">
                         @include('CRM.partials.img-filter')
                     </a>
                 </div>
@@ -306,7 +370,9 @@
                     {{--    style="font-size: 13px;width:95px"--}}
                     {{--    data-id=""--}}
                     {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
-                    <a href="#" class="filter-btn-second-table btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px" id="delete_all_competitor_feedback_fillter" title="Delete Filter">
+                    <a href="#"
+                       class="filter-btn-second-table btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px"
+                       id="delete_all_competitor_feedback_fillter" title="Delete Filter">
                         @include('CRM.partials.img-filter')
                     </a>
                 </div>
@@ -315,7 +381,8 @@
                 </div>
             </div>
             @foreach($typeSaleTask as $key=>$type)
-                <div class="tab-pane fade" id="marketing-support" role="tabpanel" aria-labelledby="marketing-support-tab">
+                <div class="tab-pane fade" id="marketing-support" role="tabpanel"
+                     aria-labelledby="marketing-support-tab">
                     <div class="d-flex justify-content-end mt-1">
                         {{--<a--}}
                         {{--    class="form-control form-control-sm btn btn-falcon-default btn-sm sxme"--}}
@@ -325,7 +392,9 @@
                         {{--    data-id=""--}}
                         {{--    is-click='false'--}}
                         {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
-                        <a href="#" is-click='false' class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table" id="delete_all_{{$type}}_fillter" title="Delete Filter">
+                        <a href="#" is-click='false'
+                           class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table"
+                           id="delete_all_{{$type}}_fillter" title="Delete Filter">
                             @include('CRM.partials.img-filter')
                         </a>
                     </div>
@@ -343,7 +412,9 @@
                     {{--    style="font-size: 13px;width:95px"--}}
                     {{--    data-id=""--}}
                     {{--><span class="fas fa-plus mr-1" data-fa-transform="shrink-3"></span> <span>New</span></a>--}}
-                    <a href="#" class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table" id="delete_all_proposal_fillter" title="Delete Filter">
+                    <a href="#"
+                       class="btn btn-falcon-default btn-sm mr-2 font-weight-normal font-size-12px filter-btn-second-table"
+                       id="delete_all_proposal_fillter" title="Delete Filter">
                         @include('CRM.partials.img-filter')
                     </a>
                 </div>
@@ -420,7 +491,8 @@
 
 <div id="modal-validation-error">
     @if(session()->has('validation_errors'))
-        <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -490,6 +562,7 @@
                         hoverTable = 'follow-up-agent'
                     })
                     $(document).on('mouseover', '.card-table-appointment', function () {
+                        console.log(111)
                         hoverTable = 'appointment'
                     })
 
@@ -498,48 +571,48 @@
 
 
                 </script>
-            @endif
-            @include('CRM.partials.choose_date',[
-            'ids'=>[
-                'registered_date_filter',
-                'created_at_filter'
-            ]
-            ])
-            @include('CRM.elements.agents.partials.js.script-loading',[
-            'elementFilterIds'=>
-                [
-                    'name',
-                    'agent_code',
-                    'info_type_id',
-                    'user_status',
-                    'market_id',
-                    'email',
-                    'tel_1',
-                    'tel_2',
-                    'website',
-                    'country',
-                    'city',
-                    'office',
-                    'department',
-                    'staff_id',
-                    'registered_date',
-                    'created_at',
-                    'note1',
-                    'note2',
-                    'potential_service',
-                    'rating'
-                ],
-                'element_class_btn_row_edit'=>'agent_data_edit',
-                'element_id_row_edit'=>'data-agent']
-                )
+@endif
+@include('CRM.partials.choose_date',[
+'ids'=>[
+    'registered_date_filter',
+    'created_at_filter'
+]
+])
+@include('CRM.elements.agents.partials.js.script-loading',[
+'elementFilterIds'=>
+    [
+        'name',
+        'agent_code',
+        'info_type_id',
+        'user_status',
+        'market_id',
+        'email',
+        'tel_1',
+        'tel_2',
+        'website',
+        'country',
+        'city',
+        'office',
+        'department',
+        'staff_id',
+        'registered_date',
+        'created_at',
+        'note1',
+        'note2',
+        'potential_service',
+        'rating'
+    ],
+    'element_class_btn_row_edit'=>'agent_data_edit',
+    'element_id_row_edit'=>'data-agent']
+    )
 
-            @include('CRM.partials.choose_date',['ids'=>[
-                'process_date_follow_up',
-                'processing_date_market_feedback',
-                'processing_date_competition_feedback',
-                'processing_date_marketing_support',
-                'processing_date_proposal'
-            ]])
+@include('CRM.partials.choose_date',['ids'=>[
+    'process_date_follow_up',
+    'processing_date_market_feedback',
+    'processing_date_competition_feedback',
+    'processing_date_marketing_support',
+    'processing_date_proposal'
+]])
 
 @include('CRM.partials.fancybox-class-popup',[
 'classElements'=>[

@@ -51,7 +51,7 @@ return [
             'commission_offer' => [
                 'value' => 'Com',
                 'isShow' => true,
-                'class' => 'width-50 agent-comm text-center' ,
+                'class' => 'width-50 agent-comm text-center',
                 'order' => 9,
                 'filter_blade' => 'CRM.elements.agents.filters.comm'
             ],
@@ -350,6 +350,80 @@ return [
                 'class' => 'width-200 follow_task_description text-center',
                 'order' => 11,
                 'filter_blade' => 'CRM.elements.task.sale.table.follow_up_agent.filters.task-description'
+            ]
+        ]
+    ],
+    'remind_follows_up' => [
+        'keys' => [
+            'branch' => [
+                'value' => 'Branch',
+                'isShow' => true,
+                'class' => 'width-100 remind_follow_branch text-center',
+                'order' => 1,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.branch'
+            ],
+            'agent' => [
+                'value' => 'Agent',
+                'isShow' => true,
+                'class' => 'width-250 remind_follow_agent text-center',
+                'order' => 2,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.agent'
+            ],
+            'pc' => [
+                'value' => 'PC',
+                'isShow' => true,
+                'class' => 'width-150 remind_follow_pc text-center',
+                'order' => 3,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.pc'
+            ],
+            'country' => [
+                'value' => 'Country',
+                'isShow' => true,
+                'class' => 'width-200 remind_follow_country text-center',
+                'order' => 4,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.country'
+            ],
+            'rating' => [
+                'value' => 'Rating',
+                'isShow' => true,
+                'class' => 'width-50 remind_follow_rating	text-center',
+                'order' => 5,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.rating'
+            ],
+            'status' => [
+                'value' => 'Status',
+                'isShow' => true,
+                'class' => 'width-100 remind_follow_status text-center',
+                'order' => 6,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.status'
+            ],
+            'type_of_agent' => [
+                'value' => 'Type of agent',
+                'isShow' => true,
+                'class' => 'width-150 remind_follow_type_of_agent text-center',
+                'order' => 7,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.type_of_agent'
+            ],
+            'company_email' => [
+                'value' => 'Company email',
+                'isShow' => true,
+                'class' => 'width-200 remind_follow_company_email text-center',
+                'order' => 8,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.company_email'
+            ],
+            'lastest_follow_ups_date' => [
+                'value' => 'Lastest follow ups date',
+                'isShow' => true,
+                'class' => 'width-180 remind_follow_lastest_follow_ups_date text-center',
+                'order' => 9,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.lastest_follow_ups_date'
+            ],
+            'time_no_follow_ups' => [
+                'value' => 'Time no follow ups',
+                'isShow' => true,
+                'class' => 'width-180 remind_follow_time_no_follow_ups text-center',
+                'order' => 10,
+                'filter_blade' => 'CRM.elements.task.remind-follow-ups.remind-follow-ups-fields-filter.time_no_follow_ups'
             ]
         ]
     ],

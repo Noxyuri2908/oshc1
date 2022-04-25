@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin;
+use App\Admin\Dichvu;
 use App\Admin\SaleTaskAssign;
 use Illuminate\Support\Facades\View;
 
@@ -20,9 +21,9 @@ View::composer([
     $infoMarket = config('myconfig.market');
     $countries = config('country.list');
     $departments = config('myconfig.department');
-    $admins = \App\Admin::pluck('admin_id','id');
+    $admins = Admin::pluck('admin_id', 'id');
     $typeSaleTask = SaleTaskAssign::$TYPE;
-    $dichvus = \App\Admin\Dichvu::where('status',1)->select(['id','name','status'])->get();
+    $dichvus = Dichvu::where('status', 1)->select(['id', 'name', 'status'])->get();
     $configRating = config('myconfig.rating');
 
     $configAgent = config('settings.agents.keys');
@@ -30,6 +31,9 @@ View::composer([
 
     $configFollowUp = config('settings.follows_up.keys');
     $configFollowsUpByOrder = sortSettingsByOrder($configFollowUp);
+
+    $configRemindFollowUp = config('settings.remind_follows_up.keys');
+    $configRemindFollowUpByOrder = sortSettingsByOrder($configRemindFollowUp);
 
     $view->with(compact(
         'typeAgent',
@@ -42,14 +46,15 @@ View::composer([
         'dichvus',
         'configRating',
         'configAgentByOrder',
-        'configFollowsUpByOrder'
+        'configFollowsUpByOrder',
+        'configRemindFollowUpByOrder'
     ));
 });
 
 View::composer([
     'CRM.elements.form-agent'
 ], function ($view) {
-    $dichvus = \App\Admin\Dichvu::where('status',1)->get();
+    $dichvus = Dichvu::where('status', 1)->get();
     $staffs = Admin::where('status', 1)->get();
     $status = config('admin.status');
     $services = Admin\Service::where('status', 1)->get();

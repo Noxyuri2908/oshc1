@@ -5,6 +5,7 @@ namespace App\Admin;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Follow extends Model
 {
@@ -45,7 +46,7 @@ class Follow extends Model
         $arrayPotential = collect($potential_service_follow_ups_filter)->pluck('id')->toArray();
         $followUps = static::when($request->get('agent_follow_ups_filter'), function ($query) use ($request) {
             $query->whereHas('agent', function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%'.$request->get('agent_follow_ups_filter').'%');
+                $query->where('name', 'LIKE', '%' . $request->get('agent_follow_ups_filter') . '%');
             });
         })
             ->when(($request->get('processing_date_follow_ups_start') && $request->get('processing_date_follow_ups_end')), function ($query) use ($request) {
@@ -64,13 +65,13 @@ class Follow extends Model
                 $query->where('status', $request->get('status_follow_ups_filter'));
             })
             ->when($request->get('rating_follow_ups_filter'), function ($query) use ($request) {
-                $query->where('rating', 'LIKE', '%'.$request->get('rating_follow_ups_filter').'%');
+                $query->where('rating', 'LIKE', '%' . $request->get('rating_follow_ups_filter') . '%');
             })
             ->when($request->get('contact_by_follow_ups_filter'), function ($query) use ($request) {
                 $query->where('contact_by', $request->get('contact_by_follow_ups_filter'));
             })
             ->when($request->get('person_in_charge_follow_ups_filter'), function ($query) use ($request) {
-                $query->where('person_in_charge', 'LIKE', '%'.$request->get('person_in_charge_follow_ups_filter').'%');
+                $query->where('person_in_charge', 'LIKE', '%' . $request->get('person_in_charge_follow_ups_filter') . '%');
             })
             ->when($request->get('potential_service_follow_ups_filter') && $request->get('potential_service_follow_ups_filter') != '[]' && $request->get('potential_service_follow_ups_filter') != 'null', function ($query) use ($request, $arrayPotential, $potential_service_follow_ups_filter) {
                 $query->whereJsonContains('potential_service', $potential_service_follow_ups_filter);
@@ -99,10 +100,10 @@ class Follow extends Model
             })
             ->with(['agent', 'staff'])
             ->orderBy('process_date', 'desc');
-        if($getChildUser['permissionSee']->contains(3)){
-            $followUps->where('person_in_charge',$getChildUser['admin']->id);
-        }elseif($getChildUser['permissionSee']->contains(2)){
-            $followUps->whereIn('person_in_charge',$getChildUser['getAllAdminDepartment']);
+        if ($getChildUser['permissionSee']->contains(3)) {
+            $followUps->where('person_in_charge', $getChildUser['admin']->id);
+        } elseif ($getChildUser['permissionSee']->contains(2)) {
+            $followUps->whereIn('person_in_charge', $getChildUser['getAllAdminDepartment']);
         }
         return $followUps->get();
     }
@@ -110,7 +111,7 @@ class Follow extends Model
     public static function getFollowUpSale($request)
     {
         $startDate = (!empty($request->report_start_date)) ? convert_date_to_db($request->report_start_date) : date('Y-01-01');
-        $endDate = (!empty($request->report_end_date)) ? convert_date_to_db($request->report_end_date).' 23:59:59' : date('Y-m-d 23:59:59');
+        $endDate = (!empty($request->report_end_date)) ? convert_date_to_db($request->report_end_date) . ' 23:59:59' : date('Y-m-d 23:59:59');
         if (!empty($request->get('filter_date_option'))) {
             if ($request->get('filter_date_option') == 'week') {
                 $startDate = Carbon::now()->startOfWeek()->format('Y-m-d');
@@ -125,7 +126,7 @@ class Follow extends Model
         $arrayPotential = collect($potential_service_follow_ups_filter)->pluck('id')->toArray();
         $followUps = static::when($request->get('agent_follow_ups_filter'), function ($query) use ($request) {
             $query->whereHas('agent', function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%'.$request->get('agent_follow_ups_filter').'%');
+                $query->where('name', 'LIKE', '%' . $request->get('agent_follow_ups_filter') . '%');
             });
         })
             ->when($startDate && $endDate, function ($query) use ($request, $startDate, $endDate) {
@@ -135,13 +136,13 @@ class Follow extends Model
                 $query->where('status', $request->get('status_follow_ups_filter'));
             })
             ->when($request->get('rating_follow_ups_filter'), function ($query) use ($request) {
-                $query->where('rating', 'LIKE', '%'.$request->get('rating_follow_ups_filter').'%');
+                $query->where('rating', 'LIKE', '%' . $request->get('rating_follow_ups_filter') . '%');
             })
             ->when($request->get('contact_by_follow_ups_filter'), function ($query) use ($request) {
                 $query->where('contact_by', $request->get('contact_by_follow_ups_filter'));
             })
             ->when($request->get('person_in_charge_follow_ups_filter'), function ($query) use ($request) {
-                $query->where('person_in_charge', 'LIKE', '%'.$request->get('person_in_charge_follow_ups_filter').'%');
+                $query->where('person_in_charge', 'LIKE', '%' . $request->get('person_in_charge_follow_ups_filter') . '%');
             })
             ->when($request->get('potential_service_follow_ups_filter') && $request->get('potential_service_follow_ups_filter') != '[]', function ($query) use ($request, $arrayPotential, $potential_service_follow_ups_filter) {
                 $query->whereJsonContains('potential_service', $potential_service_follow_ups_filter);
@@ -239,7 +240,7 @@ class Follow extends Model
                     $dichvus = $dichvu->whereIn('id', $potential_service)->pluck('name');
                     $nameService = '';
                     foreach ($dichvus as $key => $dichvu) {
-                        $nameService .= $dichvu.(($key + 1 == count($dichvus)) ? '.' : ', ');
+                        $nameService .= $dichvu . (($key + 1 == count($dichvus)) ? '.' : ', ');
                     }
                     return $nameService;
                 } else {
@@ -250,6 +251,31 @@ class Follow extends Model
         } else {
             return '';
         }
+    }
+
+    public function getDataNotUpdateFollowUpsByProcessingDate()
+    {
+        $startDate = Carbon::now()->subDay(180)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
+
+        $miliSeconStartDate = Carbon::parse($startDate)->timestamp;
+        $miliSeconEndDate = Carbon::parse($endDate)->timestamp;
+        
+        $id = DB::select('select MAX(id) as id  from follows GROUP BY user_id');
+        $result = array_map(function ($value) {
+            return (array)$value;
+        }, $id);
+
+        $results = Follow::query()->select('follows.id', 'users.department', 'users.name', 'users.person_in_charge', 'users.country', 'users.status', 'users.type_agent', 'users.email', 'follows.user_id', 'follows.process_date')
+            ->join('users', 'follows.user_id', '=', 'users.id')
+            ->where('follows.process_date', '>=', convert_date_to_db($startDate))
+            ->where('follows.process_date', '<=', convert_date_to_db($endDate))
+            ->whereIn('users.status', [2, 3, 4, 5])
+            ->whereIn('follows.id', $result)
+            ->groupBy('user_id', 'process_date')
+            ->havingRaw('user_id >= 1')
+            ->get();
+        return $results;
     }
 
 }
