@@ -271,22 +271,15 @@
 
     $(document).on('click', '#remind-follow-ups-tab', function () {
         $.ajax({
-            {{--url: {{route('')}},--}}
-            type: 'post',
-            data: {
-                _token: "{{csrf_token()}}",
-            },
+            url: "{{route('crm.remind-follow-ups')}}",
+            type: 'get',
             success: function (data) {
-                $('#data-agent_' + data.id).remove()
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success',
-                )
+                $('#remind-follow-ups-data').html(data.view);
+
             }, complete: function () {
-                ready = true
+                // ready = true
             }, error: function (xhr) {
-                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                // alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
             }
         })
         $('#remind-follow-ups-data').html('');

@@ -194,6 +194,16 @@ class Follow extends Model
         }
     }
 
+    public function getBranchAgent()
+    {
+        $user_id = $this->user_id;
+        if (!empty($user_id)) {
+            return (!empty($this->agent->department)) ? config('myconfig.department')[$this->agent->department] : '';
+        } else {
+            return '';
+        }
+    }
+
     public function getStatus()
     {
         $status_id = $this->status;
@@ -220,6 +230,51 @@ class Follow extends Model
             }
         }
         return collect($arrValue)->implode(',');
+    }
+
+    public function getPC()
+    {
+        $person_id = $this->user_id;
+        if (!empty($person_id)) {
+            return (!empty($this->agent)) ? $this->agent->staff_id : '';
+        }
+        return '';
+    }
+
+    public function getCountryAgent()
+    {
+        $person_id = $this->user_id;
+        if (!empty($person_id)) {
+            return (!empty($this->agent->country)) ? config('country.list')[$this->agent->country] : '';
+        }
+        return '';
+    }
+
+    public function getRatingAgent()
+    {
+        $person_id = $this->user_id;
+        if (!empty($person_id)) {
+            return (!empty($this->agent)) ? $this->agent->rating : '';
+        }
+        return '';
+    }
+
+    public function getTypeAgent()
+    {
+        $person_id = $this->user_id;
+        if (!empty($person_id)) {
+            return (!empty($this->agent->type_agent)) ? config('admin.type_agent')[$this->agent->type_agent] : '';
+        }
+        return '';
+    }
+
+    public function getCompanyEmail()
+    {
+        $person_id = $this->user_id;
+        if (!empty($person_id)) {
+            return (!empty($this->agent)) ? $this->agent->email : '';
+        }
+        return '';
     }
 
     public function getPersonName()
@@ -258,9 +313,6 @@ class Follow extends Model
         $startDate = Carbon::now()->subDay(180)->format('Y-m-d');
         $endDate = Carbon::now()->format('Y-m-d');
 
-        $miliSeconStartDate = Carbon::parse($startDate)->timestamp;
-        $miliSeconEndDate = Carbon::parse($endDate)->timestamp;
-        
         $id = DB::select('select MAX(id) as id  from follows GROUP BY user_id');
         $result = array_map(function ($value) {
             return (array)$value;

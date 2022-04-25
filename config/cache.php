@@ -46,7 +46,9 @@ return [
             'table' => 'cache',
             'connection' => null,
         ],
-
+        'none' => [
+            'driver' => 'null',
+        ],
         'file' => [
             'driver' => 'file',
             'path' => storage_path('framework/cache/data'),
@@ -98,6 +100,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache'),
 
 ];

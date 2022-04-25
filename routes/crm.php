@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\ProcessController;
 use App\Http\Controllers\Admin\ProfitController;
 use App\Http\Controllers\Admin\QueueErrorLogController;
 use App\Http\Controllers\Admin\RefundController;
+use App\Http\Controllers\Admin\RemindFollowUpsController;
 use App\Http\Controllers\Admin\ReportCrmController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SeoKeywordController;
@@ -39,10 +40,12 @@ use App\Http\Controllers\Admin\TaskMediaStatusController;
 use App\Http\Controllers\Admin\TemplateInvoiceManagerController;
 use App\Http\Controllers\Admin\TrafficeController;
 use App\Http\Controllers\Admin\WebsiteAndAccountController;
+use App\Http\Controllers\AdminRemindFollowUpsController;
 use App\Http\Controllers\Auth\CrmLoginController;
 use App\Http\Controllers\CoverController;
 use App\Http\Controllers\HospitalAccessController;
 use App\Http\Controllers\LuckyDrawController;
+use App\RemindFollowUps;
 
 Route::get('crm/login', [CrmLoginController::class, 'showLoginForm'])->name('crm.login.get');
 Route::post('crm/login', [CrmLoginController::class, 'login'])->name('crm.login.post');
@@ -215,6 +218,8 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('/ajax/getFollowAgent', 'Admin\ProcessController@getFollowAgent')->name('crm.ajax.getFollowAgent');
     Route::get('/follow-up/export-to-excel', 'Admin\TaskController@exportToExcelFollowUp')->name('crm.follow-up.export-to-excel');
     Route::get('/follow-up/export-to-pdf', 'Admin\TaskController@exportToPdfFollowUp')->name('crm.follow-up.export-to-pdf');
+
+    Route::get('/remind-follow-ups', [RemindFollowUpsController::class, 'getAll'])->name('crm.remind-follow-ups');
 
     //market-feedback
     Route::post('/ajax/getMarketFeedback', [ProcessController::class, 'getMarketFeedback'])->name('crm.ajax.getMarketFeedback');

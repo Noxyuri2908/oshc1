@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Admin\Follow;
 use App\RemindFollowUps;
 use Carbon\Carbon;
+use Google\Exception;
 use Illuminate\Console\Command;
 
 class RunningScanRemindFollowUps extends Command
@@ -41,6 +42,7 @@ class RunningScanRemindFollowUps extends Command
     public function handle()
     {
         //
+        var_dump('runnning ...');
         $followUps = new Follow();
         $result = $followUps->getDataNotUpdateFollowUpsByProcessingDate();
         $dateNow = Carbon::now();
@@ -55,12 +57,19 @@ class RunningScanRemindFollowUps extends Command
 
             // check Create or Update
             $checkFollowId = RemindFollowUps::where('follow_up_id', $item->id)->first();
-            if (!empty($checkFollowId)) {
-                if ($lastDays >= 15) {
-                    $remindFollowUp->save();
+            try {
+                if (empty($checkFollowId)) {
+                    if ($lastDays >= 15) {
+                        var_dump('save ... to DB');
+                        $remindFollowUp->save();
+                    }
+                } else {
+                    var_dump('update ... to DB');
+                    $remindFollowUp->update();
                 }
-            } else {
-                $remindFollowUp->update();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                die;
             }
 
 

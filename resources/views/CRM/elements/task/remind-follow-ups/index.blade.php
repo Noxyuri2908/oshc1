@@ -16,6 +16,3 @@
         </tbody>
     </table>
 </div>
-<div id="modal_follow_ups_form">
-
-</div>
