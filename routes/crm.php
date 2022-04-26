@@ -220,6 +220,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('/follow-up/export-to-pdf', 'Admin\TaskController@exportToPdfFollowUp')->name('crm.follow-up.export-to-pdf');
 
     Route::get('/remind-follow-ups', [RemindFollowUpsController::class, 'getAll'])->name('crm.remind-follow-ups');
+    Route::post('/remind-follow-ups-filter', [RemindFollowUpsController::class, 'postFilter'])->name('crm.remind-follow-ups-filter');
 
     //market-feedback
     Route::post('/ajax/getMarketFeedback', [ProcessController::class, 'getMarketFeedback'])->name('crm.ajax.getMarketFeedback');

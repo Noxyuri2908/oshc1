@@ -282,8 +282,8 @@
                 // alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
             }
         })
-        $('#remind-follow-ups-data').html('');
     });
+
 
     $(document).on('click', '.btn_status', function () {
         _department = $('#f_department option:selected').attr('value');

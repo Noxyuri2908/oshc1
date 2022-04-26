@@ -2,6 +2,7 @@
 
 namespace App\Admin;
 
+use App\RemindFollowUps;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,11 @@ class Follow extends Model
     public function commentsTask()
     {
         return $this->hasMany(CommentsTask::class);
+    }
+
+    public function remindFollowUps()
+    {
+        return $this->hasMany(RemindFollowUps::class, 'follow_up_id');
     }
 
     public static function getDataExportExcel($request)

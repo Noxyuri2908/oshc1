@@ -1915,7 +1915,7 @@ if (!function_exists('getStaffNameById')) {
 if (!function_exists('getValueByIndexConfig')) {
     function getValueByIndexConfig($config, $index)
     {
-        if (is_int($index) && $index != -1) {
+        if (!empty($index) && $index != -1) {
             return array_get($config, $index);
         }
         return '';

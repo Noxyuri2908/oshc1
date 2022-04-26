@@ -27,24 +27,20 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownApplyReceipt{{$item->id}}">
                     <div class="bg-white py-2">
                         <a class="dropdown-item text-danger delete-follow-ups-agent" data-id="{{$item->id}}"
-                           {{--                           data-agent_id="{{$item->user_id}}"--}}
-                           {{--                           data-url="{{route('agent.process.follow-up.delete',['agent_id'=>$item->user_id,'follow_id'=>$item->id])}}"--}}
                            href="#!">Process</a>
-
                     </div>
                 </div>
             </div>
-
         </th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->follows->getBranchAgent()}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}}">{{$item->follows->getAgentName()}}</th>
-        <td class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{!empty($item->follows) ? getStaffNameById($item->follows->getPC()) :''}}</td>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->follows->getCountryAgent()}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->follows->getRatingAgent()}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->follows->getStatus()}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->follows->getTypeAgent()}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}}">{{$item->follows->getCompanyEmail()}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{convert_date_form_db($item->follows->process_date)}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('myconfig.department'), $item->department)}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}}">{{$item->name}}</th>
+        <td class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{!empty($item) ? getStaffNameById($item->staff_id) :''}}</td>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('country.list'), $item->country)}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->rating}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('admin.status'), $item->status)}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('admin.type_agent'), $item->type_id)}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}}">{{$item->email}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{convert_date_form_db($item->process_date)}}</th>
         <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->time_no_follow_up}}</th>
     </tr>
 @endforeach

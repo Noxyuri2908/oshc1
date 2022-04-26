@@ -33,24 +33,25 @@ View::composer([
     'CRM.elements.process.modal-follow-up',
     'CRM.elements.agents.process.modal-market-feedback',
     'CRM.elements.agents.process.modal-proposal',
-    'CRM.elements.process.form'
-],function($view){
+    'CRM.elements.process.form',
+    'CRM.elements.task.remind-follow-ups.index'
+], function ($view) {
     $admins = Admin::pluck('admin_id', 'id');
     $dichvus = Dichvu::get();
-    $statuses = Status::whereIn('type',[
+    $statuses = Status::whereIn('type', [
         'sale_task_assign_type'
     ])->get();
-    $saleTaskAssignType = $statuses->where('type','sale_task_assign_type');
+    $saleTaskAssignType = $statuses->where('type', 'sale_task_assign_type');
     $view->with([
-        'admins'=>$admins,
-        'dichvus'=>$dichvus,
-        'saleTaskAssignType'=>$saleTaskAssignType
+        'admins' => $admins,
+        'dichvus' => $dichvus,
+        'saleTaskAssignType' => $saleTaskAssignType
     ]);
 });
-View::composer(['CRM.pages.status.form'],function ($view){
+View::composer(['CRM.pages.status.form'], function ($view) {
     $type = Status::$TYPE;
     $view->with([
-        'type'=>$type
+        'type' => $type
     ]);
 });
 
@@ -93,27 +94,27 @@ View::composer(['CRM.pages.status.form'],function ($view){
 View::composer([
     'CRM.pages.archive-media-link.form',
     'CRM.pages.archive-media-link.filter'
-],function ($view){
-    $statuses = Status::whereIn('type',[
+], function ($view) {
+    $statuses = Status::whereIn('type', [
         'from_archive_media_link',
         'type_archive_media_link',
         'information_focused_archive_media_link',
         'category_archive_media_link'
-    ])->get(['id','name','type','value']);
-    $fromMediaLinks = $statuses->where('type','from_archive_media_link');
-    $typeMediaLinks = $statuses->where('type','type_archive_media_link');
-    $informationFocusedMediaLinks = $statuses->where('type','information_focused_archive_media_link');
+    ])->get(['id', 'name', 'type', 'value']);
+    $fromMediaLinks = $statuses->where('type', 'from_archive_media_link');
+    $typeMediaLinks = $statuses->where('type', 'type_archive_media_link');
+    $informationFocusedMediaLinks = $statuses->where('type', 'information_focused_archive_media_link');
     $countries = config('country.list');
     $hotNews = Admin\ArchiveMediaLink::$HOTNEWS;
-    $categoryArchiveMediaLink = $statuses->where('type','category_archive_media_link');
+    $categoryArchiveMediaLink = $statuses->where('type', 'category_archive_media_link');
 
     $view->with([
-        'fromMediaLinks'=>$fromMediaLinks,
-        'typeMediaLinks'=>$typeMediaLinks,
-        'informationFocusedMediaLinks'=>$informationFocusedMediaLinks,
-        'countries'=>$countries,
-        'hotNews'=>$hotNews,
-        'categoryArchiveMediaLink'=>$categoryArchiveMediaLink
+        'fromMediaLinks' => $fromMediaLinks,
+        'typeMediaLinks' => $typeMediaLinks,
+        'informationFocusedMediaLinks' => $informationFocusedMediaLinks,
+        'countries' => $countries,
+        'hotNews' => $hotNews,
+        'categoryArchiveMediaLink' => $categoryArchiveMediaLink
     ]);
 });
 
