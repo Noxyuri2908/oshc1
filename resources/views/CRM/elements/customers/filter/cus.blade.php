@@ -8,7 +8,8 @@
     </th>
     <th>
         <div>
-            <input type="text" class="form-control choose-date-form" name="created_at_filter" id="created_at_filter" autocomplete="off">
+            <input type="text" class="form-control choose-date-form" name="created_at_filter" id="created_at_filter"
+                   autocomplete="off">
         </div>
     </th>
     <th>
@@ -24,7 +25,7 @@
                 @if(!empty($countries))
                     @foreach($countries as $keyCountries=>$value)
                         <option
-                            value="{{$keyCountries}}" >{{$value}}</option>
+                            value="{{$keyCountries}}">{{$value}}</option>
                     @endforeach
                 @endif
             </select>
@@ -66,6 +67,7 @@
             </select>
         </div>
     </th>
+    <th></th>
     <th>
         <div>
             <select class="form-control" name="service_country_filter" id="service_country_filter">
@@ -302,7 +304,7 @@
                 @if(!empty($countries))
                     @foreach($countries as $keyCountries=>$value)
                         <option
-                            value="{{$keyCountries}}" >{{$value}}</option>
+                            value="{{$keyCountries}}">{{$value}}</option>
                     @endforeach
                 @endif
             </select>
@@ -319,7 +321,8 @@
         </div>
     </th>
     <th>
-        <input class="form-control" value="" name="oshc_provider_of_school_filter" id="oshc_provider_of_school_filter" type="text">
+        <input class="form-control" value="" name="oshc_provider_of_school_filter" id="oshc_provider_of_school_filter"
+               type="text">
     </th>
 </tr>
 @include('CRM.partials.script-call-agent',[
@@ -336,5 +339,5 @@
     <script>
         $('#country_id_filter').select2();
     </script>
-    @endpush
+@endpush
 
