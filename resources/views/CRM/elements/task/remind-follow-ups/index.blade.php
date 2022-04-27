@@ -1,4 +1,20 @@
 <div class="table-remind-follow-ups table-div">
+    <div class="header-search-remind d-flex" style="margin: 5px 0px">
+        <a class="btn btn-falcon-info btn-sm sxme  mr-3 font-size-12px" data-value="0" href="#!"
+           id="">Total
+            <sup style="color: red" id="total"></sup>
+        </a>
+        <a class="btn btn-falcon-info btn-sm sxme  mr-3 font-size-12px" data-value="0" href="#!"
+           id="">SOS
+            <sup style="color: red" id="sos"></sup>
+        </a>
+
+        <a class="btn btn-falcon-info btn-sm sxme  mr-3 font-size-12px" id="delete_filter" style="margin-left: 78%"
+           data-value="0"
+           href="#!"
+           id="">Delete Filter
+        </a>
+    </div>
     <table class="">
         <thead class="">
         <tr class="first-row">
@@ -20,18 +36,22 @@
     <script>
         $(document).ready(function () {
 
+            $(document).on('click', '#delete_filter', function () {
+                $('.table-remind-follow-ups input').val('')
+                $('.table-remind-follow-ups select').val('')
+                handleEventFilter();
+            })
+
             $('#lastest_date_remind_follow_ups_filter_start, #lastest_date_remind_follow_ups_filter_end ').flatpickr({
                 dateFormat: "d/m/Y",
                 allowInput: true
             });
 
             $(document).on('keyup', '.table-remind-follow-ups input', function (e) {
-                console.log(1)
                 handleEventFilter();
             })
 
             $(document).on('change', '.table-remind-follow-ups select, .table-remind-follow-ups input', function (e) {
-                console.log(2)
                 handleEventFilter();
             })
         })
@@ -68,6 +88,8 @@
                 },
                 success: function (data) {
                     $('#remind-follow-ups-data').html(data.view);
+                    $('#total').text(data.total)
+                    $('#sos').text(data.sos)
 
                 }, complete: function () {
                     // ready = true

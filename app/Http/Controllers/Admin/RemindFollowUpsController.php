@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use function foo\func;
 
 class RemindFollowUpsController extends Controller
 {
@@ -25,8 +24,21 @@ class RemindFollowUpsController extends Controller
                 $join->on("follows.user_id", "=", "users.id");
             })
             ->get();
+        $total = count($remindsFollowUps);
+
+        $i = 0;
+        foreach ($remindsFollowUps as $key) {
+            if ($key->time_no_follow_up >= 60) {
+                $i++;
+            }
+        }
+        $sos = $i;
+
         return response()->json([
-            'view' => view('CRM.elements.task.remind-follow-ups.data', compact('remindsFollowUps'))->render()
+            'view' => view('CRM.elements.task.remind-follow-ups.data', compact('remindsFollowUps'))->render(),
+            'total' => $total,
+            'sos' => $sos
+
         ]);
     }
 
@@ -72,8 +84,20 @@ class RemindFollowUpsController extends Controller
             })
             ->get();
 
+        $total = count($remindsFollowUps);
+
+        $i = 0;
+        foreach ($remindsFollowUps as $key) {
+            if ($key->time_no_follow_up >= 60) {
+                $i++;
+            }
+        }
+        $sos = $i;
+
         return response()->json([
-            'view' => view('CRM.elements.task.remind-follow-ups.data', compact('remindsFollowUps'))->render()
+            'view' => view('CRM.elements.task.remind-follow-ups.data', compact('remindsFollowUps'))->render(),
+            'total' => $total,
+            'sos' => $sos
         ]);
     }
 }

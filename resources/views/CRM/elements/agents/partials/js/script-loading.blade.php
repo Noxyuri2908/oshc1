@@ -275,6 +275,8 @@
             type: 'get',
             success: function (data) {
                 $('#remind-follow-ups-data').html(data.view);
+                $('#total').text(data.total)
+                $('#sos').text(data.sos)
 
             }, complete: function () {
                 // ready = true
