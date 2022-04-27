@@ -17,7 +17,7 @@
     </style>
 @stop
 @foreach($remindsFollowUps as $item)
-    <tr id="follow-ups-{{$item->id}}" style="background-color : {{$item->time_no_follow_up >= 60 ? 'red' : '#fff'}}">
+    <tr id="follow-ups-{{$item->id}}">
         <th>
             <div class="dropdown">
                 <button class=" btn btn-link dropdown-toggle" type="button" id="dropdownApplyReceipt{{$item->id}}"
@@ -32,15 +32,16 @@
                 </div>
             </div>
         </th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('myconfig.department'), $item->department)}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}}">{{$item->name}}</th>
-        <td class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{!empty($item) ? getStaffNameById($item->staff_id) :''}}</td>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('country.list'), $item->country)}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->rating}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('admin.status'), $item->status)}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{getValueByIndexConfig(config('admin.type_agent'), $item->type_id)}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}}">{{$item->email}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{convert_date_form_db($item->process_date)}}</th>
-        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-white' : 'text-black'}} text-center">{{$item->time_no_follow_up}}</th>
+        <th class="white-space-break-spaces text-overflow  {{$item->time_no_follow_up >= 60 ? 'text-yellow' : 'text-black'}} text-center">{{getValueByIndexConfig(config('myconfig.department'), $item->department)}}</th>
+        <th class="white-space-break-spaces text-overflow  "
+            style="background-color : {{$item->time_no_follow_up >= 60 ? 'yellow' : '#fff'}}">{{$item->name}}</th>
+        <td class="white-space-break-spaces text-overflow   text-center">{{!empty($item) ? getStaffNameById($item->staff_id) :''}}</td>
+        <th class="white-space-break-spaces text-overflow   text-center">{{getValueByIndexConfig(config('country.list'), $item->country)}}</th>
+        <th class="white-space-break-spaces text-overflow   text-center">{{$item->rating}}</th>
+        <th class="white-space-break-spaces text-overflow   text-center">{{getValueByIndexConfig(config('admin.status'), $item->status)}}</th>
+        <th class="white-space-break-spaces text-overflow   text-center">{{getValueByIndexConfig(config('admin.type_agent'), $item->type_id)}}</th>
+        <th class="white-space-break-spaces text-overflow  ">{{$item->email}}</th>
+        <th class="white-space-break-spaces text-overflow   text-center">{{convert_date_form_db($item->process_date)}}</th>
+        <th class="white-space-break-spaces text-overflow   text-center">{{$item->time_no_follow_up}}</th>
     </tr>
 @endforeach
