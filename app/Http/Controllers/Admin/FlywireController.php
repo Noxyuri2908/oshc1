@@ -299,7 +299,11 @@ class FlywireController extends Controller
                 'email' => $data['email'],
                 'type' => 1,
             ];
-            $invoice->registerCus()->update($cusData);
+            if (!empty($invoice->registerCus())) {
+                $invoice->registerCus()->update($cusData);
+            } else {
+                Customer::create($cusData);
+            }
         });
         return redirect()->back();
     }
