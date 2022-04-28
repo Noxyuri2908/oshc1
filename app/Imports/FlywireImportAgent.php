@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\withHeadingRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class FlywireImportAgent implements ToCollection, WithHeadingRow
 {
