@@ -8,32 +8,31 @@ use League\Flysystem\Exception;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\withHeadingRow;
 
-class FlywireImportAgent implements ToCollection, withHeadingRow
+class FlywireImportAgent implements ToCollection, WithHeadingRow
 {
     /**
-    * @param Collection $collection
-    */
+     * @param Collection $collection
+     */
     public function collection(Collection $collection)
     {
-        foreach ($collection as $cl)
-        {
+        foreach ($collection as $cl) {
             try {
-                if (!empty($cl['payment_id']))
-                {
+                if (!empty($cl['payment_id'])) {
                     $agent = DB::table('users')->select('id')->where('name', $cl['agent'])->first();
-                    if (!empty($agent->id)){
+                    if (!empty($agent->id)) {
                         DB::table('applies')->where('ref_no', $cl['payment_id'])->update(['agent_id' => $agent->id]);
                     }
 
                 }
-            }catch (Exception $er)
-            {
-                var_dump($er);die;
+            } catch (Exception $er) {
+                var_dump($er);
+                die;
             }
         }
     }
 
-    function headingRow(){
+    function headingRow()
+    {
         return 1;
     }
 }

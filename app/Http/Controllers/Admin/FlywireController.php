@@ -27,16 +27,18 @@ use App\Info;
 use App\User;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Str;
 
 class FlywireController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -56,15 +58,13 @@ class FlywireController extends Controller
             return abort(403);
         }
         $invoices = Apply::getFlywireList($request, 15);
-        foreach ($invoices as $invoice)
-        {
-            if (!empty($invoice->profit->first()))
-            {
+        foreach ($invoices as $invoice) {
+            if (!empty($invoice->profit->first())) {
                 array_push($idProfit, $invoice->profit->first()->id);
             }
         }
         $profit = Profit::whereIn('id', $idProfit)
-                        ->sum('com_for_agent_vnd_cp');
+            ->sum('com_for_agent_vnd_cp');
         $lastPage = $invoices->lastPage();
         $totalRow = $invoices->total();
         return response()->json([
@@ -115,7 +115,7 @@ class FlywireController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(Request $request)
     {
@@ -131,9 +131,9 @@ class FlywireController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -199,9 +199,9 @@ class FlywireController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -212,9 +212,9 @@ class FlywireController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Request $request, $id)
     {
@@ -222,7 +222,7 @@ class FlywireController extends Controller
         if (!$request->user()->can('flywire.edit')) {
             return abort(403);
         }
-        $obj = Apply::with(['profit', 'customers','promotion'])->findOrFail($id);
+        $obj = Apply::with(['profit', 'customers', 'promotion'])->findOrFail($id);
         $cus = $obj->registerCus();
         $page = 1;
         $flag = 'flywire-edit';
@@ -237,10 +237,10 @@ class FlywireController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int                       $id
+     * @param Request $request
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -307,9 +307,9 @@ class FlywireController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Request $request, $id)
     {
@@ -330,7 +330,7 @@ class FlywireController extends Controller
             return abort(403);
         }
         $id = $request->get('id');
-        $obj = Apply::with(['comms', 'provider_com','promotion', 'customers'])->findOrFail($id);
+        $obj = Apply::with(['comms', 'provider_com', 'promotion', 'customers'])->findOrFail($id);
         $profit = Profit::where('apply_id', $id)->first();
         $getInitiatedDate = (!empty($obj)) ? $obj->delivered_date : '';
         $getQuarterId = Carbon::parse($getInitiatedDate)->quarter;
@@ -351,8 +351,7 @@ class FlywireController extends Controller
         }
 
         $unitEquals = false;
-        if ($obj->amount_from_unit == $obj->amount_to_unit)
-        {
+        if ($obj->amount_from_unit == $obj->amount_to_unit) {
             $unitEquals = true;
         }
 
@@ -421,13 +420,13 @@ class FlywireController extends Controller
         $typePayment = config('myconfig.payment_type');
         $schools = getSchoolFlywire();
         $typePaymentData = collect($typePayment)->filter(function ($item) use ($data) {
-            return false !== stristr(\Str::ascii($item), \Str::ascii($data['type-payment']));
+            return false !== stristr(Str::ascii($item), Str::ascii($data['type-payment']));
         })->toArray();
         $schoolData = collect($schools)->filter(function ($item) use ($data) {
-            return false !== stristr(\Str::ascii($item), \Str::ascii($data['school']));
+            return false !== stristr(Str::ascii($item), Str::ascii($data['school']));
         })->toArray();
         $countries = collect(config('country.list'))->filter(function ($item) use ($data) {
-            return false !== stristr(\Str::ascii($item), \Str::ascii($data['Nationality']));
+            return false !== stristr(Str::ascii($item), Str::ascii($data['Nationality']));
         })->toArray();
         $dataRequest = [
             'type_get_data_payment' => 2,
@@ -596,7 +595,7 @@ class FlywireController extends Controller
                     })->toArray();
                     $status = collect($statusConfig)->filter(function ($item) use ($data) {
                         if (!empty($data->status)) {
-                            return \Str::ascii($item) == ucfirst(strtolower(\Str::ascii($data->status)));
+                            return Str::ascii($item) == ucfirst(strtolower(Str::ascii($data->status)));
                         }
                     })->toArray();
                     $invoiceData = [
@@ -608,7 +607,7 @@ class FlywireController extends Controller
                         'amount_to' => $data->amountTo->value,
                         'amount_to_unit' => !empty($amount_to_unit) ? array_keys($amount_to_unit)[0] : null,
                         'payment_type' => null,
-                        'initiated_date' => \Carbon\Carbon::parse($data->date)->format('Y-m-d'),
+                        'initiated_date' => Carbon::parse($data->date)->format('Y-m-d'),
                         'std_id' => $data->paymentRequestContact->accountNumber,
                         'payment_method' => 4,
                         'staff_id' => 1,
@@ -622,10 +621,10 @@ class FlywireController extends Controller
                         'type_get_data_payment' => 2,
                         'invoice_code_link' => null,
                     ];
-                    $invoice = \App\Admin\Apply::create($invoiceData);
+                    $invoice = Apply::create($invoiceData);
                     $place_study = collect($schoolConfig)->filter(function ($item, $key) use ($data) {
                         if (!empty($data->code)) {
-                            return \Str::ascii($key) == \Str::ascii($data->code);
+                            return Str::ascii($key) == Str::ascii($data->code);
                         }
                     })->toArray();
                     //dd(array_keys($place_study)[0]);
@@ -677,7 +676,7 @@ class FlywireController extends Controller
                 'sec-fetch-dest: empty',
                 'referer: https://agents.flywire.com/',
                 'accept-language: en-US,en;q=0.9,vi;q=0.8',
-                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
+                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc=' . $scCookie . '; XSRF-TOKEN=' . $XSRF_TOKEN . '; loggedIn=true; peer_session_id=' . $peer_session_id . '; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
             ],
         ]);
         $response = curl_exec($curl);
@@ -722,7 +721,7 @@ class FlywireController extends Controller
                 'sec-fetch-dest: empty',
                 'referer: https://agents.flywire.com/',
                 'accept-language: en-US,en;q=0.9,vi;q=0.8',
-                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
+                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc=' . $scCookie . '; XSRF-TOKEN=' . $XSRF_TOKEN . '; loggedIn=true; peer_session_id=' . $peer_session_id . '; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
             ],
             CURLOPT_HEADER => 1,
         ]);
@@ -843,7 +842,7 @@ class FlywireController extends Controller
         $paymentId = $request->get('payment_ids');
         $text = trim($paymentId);
         $arr = explode("\r\n", $text);
-        if(count($arr) > 0){
+        if (count($arr) > 0) {
             dispatch(new FlywireCrawlData($arr));
         }
         return redirect()->back();
@@ -853,7 +852,7 @@ class FlywireController extends Controller
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-request/payment/search?_s=fullText=='.$paymentId.':*',
+            CURLOPT_URL => 'https://agents.flywire.com/rest/payment-request/payment/search?_s=fullText==' . $paymentId . ':*',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -876,7 +875,7 @@ class FlywireController extends Controller
                 'sec-fetch-dest: empty',
                 'referer: https://agents.flywire.com/',
                 'accept-language: en-US,en;q=0.9,vi;q=0.8',
-                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc='.$scCookie.'; XSRF-TOKEN='.$XSRF_TOKEN.'; loggedIn=true; peer_session_id='.$peer_session_id.'; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
+                'cookie: __cfduid=dbdb33779919488513fdbaf89df45358f1614941332; __zlcmid=12xjrCOI6mpqFFb; fingerprint=252e3c3d-ef15-4819-9fe6-e80be1d0a804; sc=' . $scCookie . '; XSRF-TOKEN=' . $XSRF_TOKEN . '; loggedIn=true; peer_session_id=' . $peer_session_id . '; sc=fJpxOiG6lEn0QF4oXvJ5Mi9TnkRhPXRW7Isfnk57T4wS14MLLMWJbWbSEe8Wk8IsOzj0llCSYcJs8LXELNLSE5cLLahBptTj88jd; XSRF-TOKEN=3GHHuaPxQCRc2YR1p2HyuuCpaEGvk8L132TiKDesNazUkeM3GPn8wK7NlZIpxFC6CAJxnfmShS2B4fEHPjFze7gDLVSfFFWSQASB; loggedIn=true; peer_session_id=880d6658-713c-4185-8b36-357b179e37ca',
             ],
         ]);
         $response = curl_exec($curl);
@@ -911,8 +910,7 @@ class FlywireController extends Controller
             $var_msg = "This is an exception example";
             throw new \League\Flysystem\Exception($var_msg);
 
-        }catch (\Exception $e)
-        {
+        } catch (Exception $e) {
             echo "Message: " . $e->getMessage();
             echo "";
             echo "getCode(): " . $e->getCode();
@@ -935,7 +933,8 @@ class FlywireController extends Controller
         return back()->with(['msg', 'The Message Error']);
     }
 
-    function importPromotionCode(Request $request){
+    function importPromotionCode(Request $request)
+    {
         if (!$request->user()->can('agent.store')) {
             abort(403);
         }
@@ -948,7 +947,8 @@ class FlywireController extends Controller
         return back()->with(['msg', 'The Message Error']);
     }
 
-    function importAgent(Request $request){
+    function importAgent(Request $request)
+    {
         if (!$request->user()->can('agent.store')) {
             abort(403);
         }
@@ -964,7 +964,7 @@ class FlywireController extends Controller
     public function getAllData()
     {
         Artisan::call('flywire:get-new-data');
-        return ;
+        return;
     }
 
 }
