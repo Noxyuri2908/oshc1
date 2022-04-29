@@ -417,7 +417,8 @@ class AgentController extends Controller
             'date',
             'donvi',
             'gst',
-            'type_payment'
+            'type_payment',
+            "pit",
         );
         $validator = Validator::make($data, [
             "email" => 'sometimes|required|email|unique:users,email'
@@ -618,8 +619,10 @@ class AgentController extends Controller
             "type_id",
             "staff_id",
             "gst1",
-            "gst2"
+            "gst2",
+            "pit",
         ]);
+
         if (!empty($data_login['gst1'])) {
             $data_login['gst'] = 1;
         } elseif (!empty($data_login['gst2'])) {

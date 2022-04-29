@@ -299,6 +299,12 @@ class AddColumn extends Migration
                 $table->integer('person_counsellor_id')->nullable()->after('extend_fee');
             });
         }
+
+        if (!Schema::hasColumn('users', 'pit')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->integer('pit')->nullable()->after('username');
+            });
+        }
     }
 
     /**
@@ -537,6 +543,12 @@ class AddColumn extends Migration
         if (Schema::hasColumn('people', 'is_counsellor')) {
             Schema::table('people', function (Blueprint $table) {
                 $table->dropColumn('is_counsellor');
+            });
+        }
+
+        if (Schema::hasColumn('users', 'pit')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('pit');
             });
         }
     }

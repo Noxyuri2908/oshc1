@@ -62,7 +62,8 @@ class User extends Authenticatable implements JWTSubject
         'note',
         'type',
         'type_agent',
-        'gst'
+        'gst',
+        'pit'
     ];
     protected $append = [
         'array_shares',

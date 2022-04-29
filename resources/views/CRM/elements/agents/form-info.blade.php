@@ -69,7 +69,8 @@
                         <select name="rating" id="rating" class="form-control">
                             <option label=""></option>
                             @foreach(config('myconfig.rating') as $key=>$value)
-                                <option value="{{$key}}" {{!empty($obj) && $obj->rating == $key ? 'selected':''}}>{{$value}}</option>
+                                <option
+                                    value="{{$key}}" {{!empty($obj) && $obj->rating == $key ? 'selected':''}}>{{$value}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -77,14 +78,28 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="">Potential service</label>
-                        <select class="form-control choose_multiple_select" name="potential_service[]" id="potential_service_follow_up" multiple>
+                        <select class="form-control choose_multiple_select" name="potential_service[]"
+                                id="potential_service_follow_up" multiple>
                             {{-- <option label=""></option> --}}
                             @if(!empty($dichvus))
                                 @foreach($dichvus as $keyService=>$service)
-                                    <option value="{{$service->id}}" {{!empty($obj) && !empty($obj->potential_service) && in_array($service->id,json_decode($obj->potential_service,true)) ?'selected="selected"':''}}>{{$service->name}}</option>
+                                    <option
+                                        value="{{$service->id}}" {{!empty($obj) && !empty($obj->potential_service) && in_array($service->id,json_decode($obj->potential_service,true)) ?'selected="selected"':''}}>{{$service->name}}</option>
                                 @endforeach
                             @endif
                         </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="">PIT</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="checkEnterprise" id="checkEnterprise">
+                            <label class="form-check-label" style="padding-right: 20px;">Enterprise</label>
+
+                            <input type="radio" class="form-check-input" name="checkPrivate" id="checkPrivate">
+                            <label class="form-check-label">Private</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,7 +182,8 @@
                         <select name="rating" id="rating" class="form-control">
                             <option label=""></option>
                             @foreach(config('myconfig.rating') as $key=>$value)
-                                <option value="{{$key}}" {{!empty($obj) && $obj->rating == $key ? 'selected':''}}>{{$value}}</option>
+                                <option
+                                    value="{{$key}}" {{!empty($obj) && $obj->rating == $key ? 'selected':''}}>{{$value}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -175,11 +191,13 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="">Potential service</label>
-                        <select class="form-control choose_multiple_select" name="potential_service[]" id="potential_service_follow_up" multiple>
+                        <select class="form-control choose_multiple_select" name="potential_service[]"
+                                id="potential_service_follow_up" multiple>
                             {{-- <option label=""></option> --}}
                             @if(!empty($dichvus))
                                 @foreach($dichvus as $keyService=>$service)
-                                    <option value="{{$service->id}}" {{!empty($obj) && !empty($obj->potential_service) && in_array($service->id,$obj->potential_service) ?'selected="selected"':''}}>{{$service->name}}</option>
+                                    <option
+                                        value="{{$service->id}}" {{!empty($obj) && !empty($obj->potential_service) && in_array($service->id,$obj->potential_service) ?'selected="selected"':''}}>{{$service->name}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -191,9 +209,25 @@
                         <select class="form-control" id="type_id" name="type_id" required>
                             <option label=""></option>
                             @foreach(config('admin.type_agent') as $key=>$value)
-                                <option value="{{$key}}" {{!empty($obj) && $obj->type_id == $key ? 'selected':'' }}>{{$value}}</option>
+                                <option
+                                    value="{{$key}}" {{!empty($obj) && $obj->type_id == $key ? 'selected':'' }}>{{$value}}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="">PIT</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="pit"
+                                   {{$obj->pit == 1 ? 'checked' : ''}} id="checkEnterprise" value="1">
+                            <label class="form-check-label" style="padding-right: 20px;">Enterprise</label>
+
+                            <input type="radio" class="form-check-input" name="pit" value="0"
+                                   {{$obj->pit == 0 ? 'checked' : ''}} id="checkPrivate">
+                            <label class="form-check-label">Private</label>
+                        </div>
                     </div>
                 </div>
 
