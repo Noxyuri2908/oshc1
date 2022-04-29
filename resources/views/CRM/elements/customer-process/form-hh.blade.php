@@ -1,5 +1,5 @@
 @php
-    $agent = $obj->agent;
+    $agent = $obj->agent
 @endphp
 @if(isset($obj) && isset($agent))
     <div id="div_hh_alert"></div>
@@ -16,7 +16,8 @@
                                     <input type="text" class="form-control" value="{{$agent->name}}" readonly>
                                 </div>
                                 <div class="col-md-7 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" id="agent_comm_tab" value="" readonly>
+                                    <input type="text" class="form-control text-right" id="agent_comm_tab" value=""
+                                           readonly>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +27,8 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" data-options='{"dateFormat":"d/m/Y"}' id="date_payment_provider" value="">
+                                    <input type="text" class="form-control text-right"
+                                           data-options='{"dateFormat":"d/m/Y"}' id="date_payment_provider" value="">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +41,8 @@
                                     <select class="form-control" id="account_bank_hh">
                                         <option label=""></option>
                                         @foreach(getBank() as $key => $item)
-                                            <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
+                                            <option
+                                                value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -65,7 +68,8 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" data-options='{"dateFormat":"d/m/Y"}' id="date_payment_agent" value="">
+                                    <input type="text" class="form-control text-right"
+                                           data-options='{"dateFormat":"d/m/Y"}' id="date_payment_agent" value="">
                                 </div>
                             </div>
                         </div>
@@ -85,7 +89,8 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" data-apply_id="{{$obj->id}}" class="form-control text-right" data-options='{"dateFormat":"d/m/Y"}' id="issue_date" value="">
+                                    <input type="text" data-apply_id="{{$obj->id}}" class="form-control text-right"
+                                           data-options='{"dateFormat":"d/m/Y"}' id="issue_date" value="">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +140,9 @@
                                     <input type="text" class="form-control text-left" value="{{$agent->name}}" readonly>
                                 </div>
                                 <div class="col-md-7 col-sm-5 conte">
-                                    <input type="text" class="form-control  text-right" id="agent_comm_tab" value="{{!empty($obj) && !empty($obj->getCom())?$obj->getCom()->display:''}}" readonly>
+                                    <input type="text" class="form-control  text-right" id="agent_comm_tab"
+                                           value="{{!empty($obj) && !empty($obj->getCom())?$obj->getCom()->display:''}}"
+                                           readonly>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +152,10 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" id="date_payment_provider" value="{{(!empty($hh->date_payment_provider))?convert_date_form_db($hh->date_payment_provider):''}}">
+                                    <input type="text" class="form-control text-right"
+                                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off"
+                                           id="date_payment_provider"
+                                           value="{{(!empty($hh->date_payment_provider))?convert_date_form_db($hh->date_payment_provider):''}}">
                                 </div>
                             </div>
                         </div>
@@ -158,7 +168,8 @@
                                     <select class="form-control" id="account_bank_hh">
                                         <option label=""></option>
                                         @foreach(getBank() as $key => $item)
-                                            <option value="{{$item->id}}" {{!empty($receipt) && $receipt->account_bank == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
+                                            <option
+                                                value="{{$item->id}}" {{!empty($hh) && $hh->account_bank == $item->id ? 'selected':''}}>{{$item->account}} {{$item->code}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -170,7 +181,8 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <textarea name="" class="form-control" id="note" cols="30" rows="5">{{$hh->note}}</textarea>
+                                    <textarea name="" class="form-control" id="note" cols="30"
+                                              rows="5">{{$hh->note}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +196,9 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" data-options='{"dateFormat":"d/m/Y"}' id="date_payment_agent" autocomplete="off" value="{{convert_date_form_db($hh->date_payment_agent)}}">
+                                    <input type="text" class="form-control text-right"
+                                           data-options='{"dateFormat":"d/m/Y"}' id="date_payment_agent"
+                                           autocomplete="off" value="{{convert_date_form_db($hh->date_payment_agent)}}">
                                 </div>
                             </div>
                         </div>
@@ -194,7 +208,8 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" id="policy_no" value="{{$hh->policy_no}}">
+                                    <input type="text" class="form-control text-right" id="policy_no"
+                                           value="{{$hh->policy_no}}">
                                 </div>
                             </div>
                         </div>
@@ -204,7 +219,9 @@
                         <div class="input-contenr">
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
-                                    <input type="text" class="form-control text-right" data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" id="issue_date" value="{{convert_date_form_db($hh->issue_date)}}">
+                                    <input type="text" class="form-control text-right"
+                                           data-options='{"dateFormat":"d/m/Y"}' autocomplete="off" id="issue_date"
+                                           value="{{convert_date_form_db($hh->issue_date)}}">
                                 </div>
                             </div>
                         </div>
@@ -216,7 +233,8 @@
                                 <div class="col-md-12 col-sm-5 conte">
                                     <select class="form-control" id="policy_status">
                                         @foreach(config('myconfig.policy_status') as $key=>$value)
-                                            <option value="{{$key}}" {{$hh->policy_status == $key ? 'selected' : ''}}>{{$value}}</option>
+                                            <option
+                                                value="{{$key}}" {{$hh->policy_status == $key ? 'selected' : ''}}>{{$value}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -229,8 +247,12 @@
                             <div class="form-row ">
                                 <div class="col-md-12 col-sm-5 conte">
                                     <select class="form-control" id="com_payment_method">
-                                        <option value="1"{{!empty($hh) && $hh->com_payment_method == 1?'selected':''}}>Monthly</option>
-                                        <option value="2"{{!empty($hh) && $hh->com_payment_method == 2?'selected':''}}>Deduction com</option>
+                                        <option value="1"{{!empty($hh) && $hh->com_payment_method == 1?'selected':''}}>
+                                            Monthly
+                                        </option>
+                                        <option value="2"{{!empty($hh) && $hh->com_payment_method == 2?'selected':''}}>
+                                            Deduction com
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -243,7 +265,8 @@
                                 <div class="col-md-12 col-sm-5 conte">
                                     <select class="form-control" id="payment_note_provider">
                                         @foreach(config('myconfig.payment_note_provider') as $key=>$value)
-                                            <option value="{{$key}}" {{$hh->payment_note_provider == $key ? 'selected' : ''}}>{{$value}}</option>
+                                            <option
+                                                value="{{$key}}" {{$hh->payment_note_provider == $key ? 'selected' : ''}}>{{$value}}</option>
                                         @endforeach
                                     </select>
                                 </div>
