@@ -94,10 +94,11 @@
                     <div class="form-group">
                         <label for="">PIT</label>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="checkEnterprise" id="checkEnterprise">
+                            <input type="radio" class="form-check-input" checked name="pit" value="1"
+                                   id="checkEnterprise">
                             <label class="form-check-label" style="padding-right: 20px;">Enterprise</label>
 
-                            <input type="radio" class="form-check-input" name="checkPrivate" id="checkPrivate">
+                            <input type="radio" class="form-check-input" name="pit" id="checkPrivate" value="0">
                             <label class="form-check-label">Private</label>
                         </div>
                     </div>
