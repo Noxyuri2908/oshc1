@@ -19,7 +19,7 @@
 
     var changeInvoiceStatus = "{{route('crm.changeInvoiceStatus')}}"
     var getCus = "{{route('customer.getCus')}}"
-        {{--var getAgentInfo = "{{route('crm.getAgentInfo')}}";--}}
+    {{--var getAgentInfo = "{{route('crm.getAgentInfo')}}";--}}
     var getInvoice = "{{route('customer.getInvoice')}}"
     var getBtnReceipt = "{{route('crm.getBtnReceipt')}}"
     var saveReceipt = "{{route('ajax.saveReceipt')}}"
@@ -98,7 +98,7 @@
         loadAmountVND();
     }
 
-    function loadBalance(){
+    function loadBalance() {
         var refund_provider_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#refund_provider_exchange_rate').val()))
         var std_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#std_exchange_rate').val()))
         var std_amount = parseFloat(convertStringCurrencyToNumber($('#std_amount').val()))
@@ -106,14 +106,14 @@
         $('#balance_refund').val(balance);
     }
 
-    function loadProfit$(){
+    function loadProfit$() {
         var commission_refund = parseFloat(convertStringCurrencyToNumber($('#commission_refund').val()))
         var refund_amount_com_agent_gbcfa = parseFloat(convertStringCurrencyToNumber($('#refund_amount_com_agent_gbcfa').val()))
         var profit = (commission_refund - refund_amount_com_agent_gbcfa) * (-1);
         $('#refund_profit_2').val(profit);
     }
 
-    function loadProfitVND(){
+    function loadProfitVND() {
         var refund_profit_2 = parseFloat(convertStringCurrencyToNumber($('#refund_profit_2').val()))
         var refund_exchange_rate_agent = parseFloat(convertStringCurrencyToNumber($('#refund_exchange_rate_agent').val()))
         var extra_fee_refund = parseFloat(convertStringCurrencyToNumber($('#extra_fee_refund').val()))
@@ -125,7 +125,7 @@
 
     }
 
-    function loadTotalAmount$(){
+    function loadTotalAmount$() {
         var std_amount = parseFloat(convertStringCurrencyToNumber($('#std_amount').val()))
         var std_deduction = parseFloat(convertStringCurrencyToNumber($('#std_deduction').val()))
         var bank_fee_refund = parseFloat(convertStringCurrencyToNumber($('#bank_fee_refund').val()))
@@ -134,7 +134,7 @@
         $('#total_amount_pay_back_student_refund').val(totalAmount);
     }
 
-    function loadAmountVND(){
+    function loadAmountVND() {
         var total_amount_pay_back_student_refund = parseFloat(convertStringCurrencyToNumber($('#total_amount_pay_back_student_refund').val()))
         var std_exchange_rate = parseFloat(convertStringCurrencyToNumber($('#std_exchange_rate').val()))
         var amountVND = total_amount_pay_back_student_refund * std_exchange_rate;
@@ -320,7 +320,7 @@
             }, function (data) {
                 window.location.href = '{{config('admin.ajax_crm_url')}}customer/process/' + _id + '/2?tab_link=2'
                 $('#div_table_receipt').html(data)
-                $.get(getBtnReceipt, { type: 1, id: _id }, function (data2) {
+                $.get(getBtnReceipt, {type: 1, id: _id}, function (data2) {
                     $('#div_btn_receipt').html(data2)
                 })
             })
@@ -385,8 +385,24 @@
                 extra_time: _extra_time,
                 _token: "{{csrf_token()}}",
             }, function (data) {
-                //console.log(data);
-                window.location.href = data
+                var url = new URL(data);
+                console.log(url);
+                var requestCode = url.searchParams.get("request.code");
+                var requestMessenger = url.searchParams.get("request.messenger");
+                if (requestCode == 500) {
+                    _html = '<div class=\'alert alert-danger alert-dismissible fade show\' role=\'alert\'>'
+                    _html += `${requestMessenger} . <br/>`
+                    _html += '</div>'
+                } else {
+                    _html = '<div class=\'alert alert-success alert-dismissible fade show\' role=\'alert\'>'
+                    _html += `${requestMessenger} . <br/>`
+                    _html += '</div>'
+                }
+                $('#div_hh_alert').html(_html)
+
+                setTimeout(function () {
+                    window.location.href = data
+                }, 2000)
             })
         }
     }
@@ -558,30 +574,31 @@
                 refund_amount_com_agent_gbcfa: _refund_amount_com_agent_gbcfa,
                 refund_exchange_rate_agent: _refund_exchange_rate_agent,
                 refund_agent_vnd: _refund_agent_vnd,
-                refund_situation_pp:_refund_situation_pp,
-                refund_type_of_refund_pp:_refund_type_of_refund_pp,
-                refund_bank_pp:_refund_bank_pp,
-                commission : _commission_refund,
+                refund_situation_pp: _refund_situation_pp,
+                refund_type_of_refund_pp: _refund_type_of_refund_pp,
+                refund_bank_pp: _refund_bank_pp,
+                commission: _commission_refund,
                 extra_fee: _extra_fee_refund,
-                bank_fee : _bank_fee_refund,
-                balance : _balance_refund,
-                status : _status,
-                std_refund_VND : std_refund_VND,
-                total_amount_pay_back_student_refund : total_amount_pay_back_student_refund
+                bank_fee: _bank_fee_refund,
+                balance: _balance_refund,
+                status: _status,
+                std_refund_VND: std_refund_VND,
+                total_amount_pay_back_student_refund: total_amount_pay_back_student_refund
             }, function (data) {
                 window.location.reload();
             })
         }
     }
 
-    function callTotalAmountVnd(){
+    function callTotalAmountVnd() {
         let totalAmount = $('#pay_agent_total_amount').val() || 0;
         let exchangeRate = $('#pay_agent_exchange_rate').val() || 0;
         var vnd = (parseFloat(convertStringCurrencyToNumber($('#vnd').val())));
-        let amountTotalVND = (parseFloat(convertStringCurrencyToNumber(totalAmount))*parseFloat(convertStringCurrencyToNumber(exchangeRate))) + vnd;
+        let amountTotalVND = (parseFloat(convertStringCurrencyToNumber(totalAmount)) * parseFloat(convertStringCurrencyToNumber(exchangeRate))) + vnd;
         $('#pay_agent_amount_VN').val(amountTotalVND);
     }
-    function callTotalAmount(){
+
+    function callTotalAmount() {
         let amountCom = convertStringCurrencyToNumber($('#pay_agent_amount_comm').val()) || 0;
         let extra = convertStringCurrencyToNumber($('#pay_agent_extra').val()) || 0;
         let grossAmount = convertNumberToCurrency($('#gross-amount').val()) || 0;
@@ -601,7 +618,8 @@
         _total_VN = _net_amount * _exchange_rate
         $('#pay_agent_amount_VN').val(convertNumberToCurrency(parseInt(_total_VN)))
     }
-    $(document).on('change','#pay_agent_extra, #pay_agent_exchange_rate',function (e) {
+
+    $(document).on('change', '#pay_agent_extra, #pay_agent_exchange_rate', function (e) {
         callTotalAmount();
         callTotalAmountVnd();
     })
@@ -609,36 +627,37 @@
 
     var gstInclude = 1;
     var gstNotInclude = 2;
-    $(document).on('change','#pay_agent_bonus ,#gst_status_agent_profit',function(e){
+    $(document).on('change', '#pay_agent_bonus ,#gst_status_agent_profit', function (e) {
         loadComAgent();
     });
+
     function loadProfit() {
         calReAmountVN()
         loadPayProvider()
         //loadPayAgent();
 
     }
-    function loadComAgent(){
+
+    function loadComAgent() {
         let gstStatus = $('#gst_status_agent_profit').val();
         let net_amount = parseFloat($('#apply_net_amount').val()) || 0;
         let discount = parseFloat($('#discount_annalink_receipt').val()) || 0;
         let comRate = $('#comm_rate_agent_profit').attr('data-com') || 0;
         let bonus = $('#pay_agent_bonus').val() || 0;
-        let amountCom ;
-        if(typeof gstStatus == 'undefined'){
+        let amountCom;
+        if (typeof gstStatus == 'undefined') {
             return;
         }
-        if(gstStatus == gstInclude){
+        if (gstStatus == gstInclude) {
             // amountCom = (net_amount-discount) *(comRate/100+bonus/100);
-            amountCom = ( net_amount - discount ) * (comRate / 100);
+            amountCom = (net_amount - discount) * (comRate / 100);
 
-        }else if (gstStatus == gstNotInclude){
+        } else if (gstStatus == gstNotInclude) {
             // amountCom = ((net_amount-discount) *(comRate/100+bonus/100))/1.1;
-            amountCom = (( net_amount - discount ) * (comRate / 100) / 1.1);
+            amountCom = ((net_amount - discount) * (comRate / 100) / 1.1);
         }
 
-        if (!amountCom && amountCom !== NaN && amountCom !== undefined)
-        {
+        if (!amountCom && amountCom !== NaN && amountCom !== undefined) {
             $('#pay_agent_amount_comm').val(amountCom.toFixed(2)); //
         }
         loadProfit();
@@ -646,7 +665,8 @@
         callTotalAmountVnd();
         loadPayProfit();
     }
-    function calsTotalProfit1(){
+
+    function calsTotalProfit1() {
         let profit = parseFloat(convertStringCurrencyToNumber($("#profit_money").val()));
         let profit_extra_money = parseFloat(convertStringCurrencyToNumber($('#profit_extra_money').val()));
         let totat_profit1 = profit + profit_extra_money;
@@ -659,16 +679,16 @@
         let _discount_annalink_receipt = parseFloat(convertStringCurrencyToNumber($('#discount_annalink_receipt').val()));
         let _currency_receipt = $('#profit1_currency_receipt').val();
         var provider_pay = $('#provider_pay').val();
-        var surchagefee =  parseFloat(convertNumberToCurrency($('#bankfee_annalink_receipt').val()));
-        var payprovider_vnd =  parseFloat(convertNumberToCurrency($('#pay_provider_total_VN').val()));
+        var surchagefee = parseFloat(convertNumberToCurrency($('#bankfee_annalink_receipt').val()));
+        var payprovider_vnd = parseFloat(convertNumberToCurrency($('#pay_provider_total_VN').val()));
         let revenueExRate;
-        if(_currency_receipt == 'VND'){
-            if (provider_pay === 'HCC Student Secure' || provider_pay === 'HCC Atlas'){
+        if (_currency_receipt == 'VND') {
+            if (provider_pay === 'HCC Student Secure' || provider_pay === 'HCC Atlas') {
                 revenueExRate = (net_amount + surchagefee) * (exchangeRateInvoice - payprovider_vnd);
-            }else{
+            } else {
                 revenueExRate = net_amount * (exchangeRateInvoice - exchangeRatePayForProvider);
             }
-        }else{
+        } else {
             revenueExRate = 0;
         }
         let _bankfee_annalink_receipt = parseFloat(convertStringCurrencyToNumber($('#bankfee_annalink_receipt').val()));
@@ -689,24 +709,26 @@
         $('#profit_money_VND').val(convertNumberToCurrency(parseInt(_profit_VN).toFixed(2)));
         $('#profit_bankfee_VND').val(convertNumberToCurrency(_bankfee_profit));
     }
-    function calcAmountComFormGetBackComFromAgent(){
+
+    function calcAmountComFormGetBackComFromAgent() {
         let refund_provider_amount = convertStringCurrencyToNumber($('#refund_provider_amount').val());
         let refund_percent_com_agent = convertStringCurrencyToNumber($('#refund_percent_com_agent').attr('data-value'));
         let amount_com = refund_provider_amount * refund_percent_com_agent / 100;
         $('#refund_amount_com_agent_gbcfa').val(convertNumberToCurrency(parseInt(amount_com).toFixed(2)));
     }
 
-    function getProfitLink(){
+    function getProfitLink() {
         let typeOfRefundStatusFullRefund = 1;
         let typeOfRefundStatusPartialRefund = 2;
         let refund_type_of_refund_pp = $('#refund_type_of_refund_pp').val();
-        if(refund_type_of_refund_pp == typeOfRefundStatusFullRefund){
+        if (refund_type_of_refund_pp == typeOfRefundStatusFullRefund) {
             let pay_agent_amount_comm = convertStringCurrencyToNumber($('#pay_agent_amount_comm').val());
             let pay_agent_amount_VN = convertStringCurrencyToNumber($('#pay_agent_amount_VN').val());
             $('#refund_amount_com_agent_gbcfa').val(pay_agent_amount_comm);
             $('#refund_agent_vnd').val(pay_agent_amount_VN);
         }
     }
+
     jQuery(document).ready(function () {
         loadProfit()
         loadRefund();
@@ -714,16 +736,16 @@
         calsTotalProfit1();
         //callTotalAmount();
         //callTotalAmountVnd();
-        $(document).on('change','#refund_type_of_refund_pp',function(e){
+        $(document).on('change', '#refund_type_of_refund_pp', function (e) {
             getProfitLink();
         })
-        $(document).on('change','#std_amount, #std_deduction',function(e){
+        $(document).on('change', '#std_amount, #std_deduction', function (e) {
             calcTotalAmountPayBackStudentRefund();
         });
-        $(document).on('change','#profit_extra_money, #profit_exchange_rate',function(e){
+        $(document).on('change', '#profit_extra_money, #profit_exchange_rate', function (e) {
             calsTotalProfit1();
         });
-        $(document).on('change','#refund_provider_amount',function(e){
+        $(document).on('change', '#refund_provider_amount', function (e) {
             calcAmountComFormGetBackComFromAgent();
         })
         $('.btn-delete-task').click(function () {
@@ -740,7 +762,7 @@
             var id = $(this).data('id')
             var agent = "<?php echo $obj->id ?>"
             var url = "<?php echo route('task.edit'); ?>"
-            $.get(url, { task_id: id, agent_id: agent }, function (data) {
+            $.get(url, {task_id: id, agent_id: agent}, function (data) {
                 if (data['status'] == 1) {
                     res = data['content']
                     setDataTask(res)
@@ -773,7 +795,7 @@
             var _type = $(this).data('type')
             var _id = $('#_id').val()
             if (_type != '') {
-                $.get(getBtnReceipt, { type: _type, id: _id }, function (data) {
+                $.get(getBtnReceipt, {type: _type, id: _id}, function (data) {
                     $('#div_btn_receipt').html(data)
                     $('#receipt_net_amount').val('{{$obj->net_amount}}')
                 })
@@ -783,7 +805,7 @@
             var _id_phieuthu = $('#id_phieuthu').val()
             var _id = $('#_id').val()
             var url = '{{route("phieuthu.del")}}'
-            $.get(url, { id_phieuthu: _id_phieuthu, id: _id }, function (data) {
+            $.get(url, {id_phieuthu: _id_phieuthu, id: _id}, function (data) {
                 window.location.href = '{{config('admin.ajax_crm_url')}}customer/process/' + _id + '/2'
             })
         })
@@ -791,7 +813,7 @@
         $('#tab-doc').delegate('#btn_add_doc', 'click', function () {
             _id = '{{$obj->id}}'
             _url = "{{route('ajax.getFormCreateTailieu')}}"
-            $.get(_url, { id: _id }, function (data) {
+            $.get(_url, {id: _id}, function (data) {
                 $('#div_modal_doc').html(data)
                 $('#tailieuModal').modal('toggle')
             })
@@ -800,7 +822,7 @@
             _id = '{{$obj->id}}'
             _tailieu_id = $(this).data('id')
             _url = "{{route('ajax.getFormEditTailieu')}}"
-            $.get(_url, { id: _id, tailieu_id: _tailieu_id }, function (data) {
+            $.get(_url, {id: _id, tailieu_id: _tailieu_id}, function (data) {
                 $('#div_modal_doc').html(data)
                 $('#tailieuModal').modal('toggle')
             })
@@ -861,7 +883,7 @@
 
         $('#div_btn_receipt').delegate('#btn_close_receipt', 'click', function () {
             _id = $('#_id').val()
-            $.get(getBtnReceipt, { type: 1, id: _id }, function (data) {
+            $.get(getBtnReceipt, {type: 1, id: _id}, function (data) {
                 $('#div_btn_receipt').html(data)
 
             })
@@ -884,7 +906,7 @@
         $('#div_table_receipt').delegate('.edit_phieuthu', 'click', function () {
             _id_phieuthu = $(this).data('id')
             _id = $('#_id').val()
-            $.get(editReceipt, { id_phieuthu: _id_phieuthu, id: _id }, function (data) {
+            $.get(editReceipt, {id_phieuthu: _id_phieuthu, id: _id}, function (data) {
                 $('#div_btn_receipt').html(data)
             })
         })
@@ -947,7 +969,7 @@
             _id = $('#_id').val()
             _text = $(this).data('text')
             $('#td_invoice_status').html(_text)
-            $.get(changeInvoiceStatus, { id: _id, value: _value }, function (data) {
+            $.get(changeInvoiceStatus, {id: _id, value: _value}, function (data) {
                 $('#div_alert').html(data)
             })
         })
@@ -955,7 +977,7 @@
 
             _id = $(this).data('id')
             if (_id != '') {
-                $.get(getInvoice, { id: _id }, function (data) {
+                $.get(getInvoice, {id: _id}, function (data) {
                     $('#div_modal_invoice_info').html(data)
                     $('#modal_invoice').modal('toggle')
                 })
@@ -966,7 +988,7 @@
 
             _id = $(this).data('id')
             if (_id != '') {
-                $.get(getCus, { id: _id }, function (data) {
+                $.get(getCus, {id: _id}, function (data) {
                     $('#div_modal_customer_info').html(data)
                     $('#modal_customer').modal('toggle')
                 })
@@ -976,7 +998,7 @@
         $('#mainContent').delegate('.agent_info', 'click', function () {
 
             _id = $(this).data('id')
-            $.get(getAgentInfo, { id: _id }, function (data) {
+            $.get(getAgentInfo, {id: _id}, function (data) {
                 $('#div_modal_agent_info').html(data);
                 $('#modal_agent_info').modal('show');
             });

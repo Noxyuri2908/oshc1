@@ -1,14 +1,15 @@
 @if($hh != null && $comm != null)
-{{--    @php--}}
-{{--        dd($providerCom->textCom());--}}
-{{--    @endphp--}}
+    {{--    @php--}}
+    {{--        dd($providerCom->textCom());--}}
+    {{--    @endphp--}}
     <fieldset>
         <legend>Commission from provider</legend>
         <div class="form">
             <div class="form-group clearfix">
                 <label class="control-label">% Commission received</label>
                 <div class="input-contenr">
-                    <input type="text" class="form-control text-right" id="comm_re" value="{{$providerCom->textCom()}}" readonly>
+                    <input type="text" class="form-control text-right" id="comm_re" value="{{$providerCom->textCom()}}"
+                           readonly>
                     <input type="hidden" id="payment_note" value="{{$payment_note}}">
                     <input type="hidden" id="provider_com_id" value="2">
                 </div>
@@ -29,12 +30,14 @@
                         }else{
                             $re_total_amount = convert_price_float(floatval($obj->net_amount));
                         }
-                        $re_total_amount = floor($re_total_amount * 100) / 100;
+                        $re_total_amount = floor($re_total_amount * 100) / 100
                     @endphp
 
-                    <input type="text" class="form-control text-right" id="re_total_amount" value="{{convert_price_float($re_total_amount)}}" step="0.01" readonly>
+                    <input type="text" class="form-control text-right" id="re_total_amount"
+                           value="{{convert_price_float($re_total_amount)}}" step="0.01" readonly>
                     <div class="rounded-right input-currency-group d-flex align-items-center">
-                        <span class="" id="basic-addon1">{{$obj->provider != null ? $obj->provider->currency() : ''}}</span>
+                        <span class=""
+                              id="basic-addon1">{{$obj->provider != null ? $obj->provider->currency() : ''}}</span>
                     </div>
                 </div>
             </div>
@@ -44,15 +47,15 @@
                     <input type="text" class="form-control text-right" id="exchange_rate_re_provider"
                            @if(!empty($profit))
                            value="{{$profit->exchange_rate_re_provider}}"
-                            @else
+                           @else
                            value="{{$exchangeRateProvider}}"
                         @endif
-{{--                           @elseif(!empty($payment_note))--}}
-{{--                           @if($payment_note == 2)--}}
-{{--                           value="1"--}}
-{{--                           @elseif($payment_note == 1)--}}
-{{--                           value='0'--}}
-{{--                        @endif--}}
+                        {{--                           @elseif(!empty($payment_note))--}}
+                        {{--                           @if($payment_note == 2)--}}
+                        {{--                           value="1"--}}
+                        {{--                           @elseif($payment_note == 1)--}}
+                        {{--                           value='0'--}}
+                        {{--                        @endif--}}
                     >
                 </div>
             </div>
@@ -66,14 +69,16 @@
             <div class="form-group clearfix">
                 <label class="control-label">Date of receipt</label>
                 <div class="input-contenr">
-                    <input type="text" placeholder="dd/mm/YYYY" class="form-control text-right" id="date_of_receipt" value="{{$profit != null ? convert_date_form_db($profit->date_of_receipt) :'' }}" required>
+                    <input type="text" placeholder="dd/mm/YYYY" class="form-control text-right" id="date_of_receipt"
+                           value="{{$profit != null ? convert_date_form_db($profit->date_of_receipt) :'' }}" required>
                 </div>
             </div>
 
             <div class="form-group clearfix">
                 <label class="control-label">Note</label>
                 <div class="input-contenr">
-                    <textarea class="form-control" id="note_of_receipt" rows="5">{{$profit != null ? $profit->note_of_receipt : 0}}</textarea>
+                    <textarea class="form-control" id="note_of_receipt"
+                              rows="5">{{$profit != null ? $profit->note_of_receipt : 0}}</textarea>
                 </div>
             </div>
         </div>
@@ -93,15 +98,17 @@
 ])
     <script>
 
-        $('#exchange_rate_re_provider').inputmask({ alias: 'currency', prefix: '', digits: 2 })
+        $('#exchange_rate_re_provider').inputmask({alias: 'currency', prefix: '', digits: 2})
 
         function convertNumberToCurrency(number) {
-            var currency = number.toLocaleString(
-                undefined, // leave undefined to use the browser's locale,
-                // or use a string like 'en-US' to override it.
-                { minimumFractionDigits: 2 },
-            )
-            return currency
+            if (number !== undefined) {
+                var currency = number.toLocaleString(
+                    undefined, // leave undefined to use the browser's locale,
+                    // or use a string like 'en-US' to override it.
+                    {minimumFractionDigits: 2},
+                )
+                return currency
+            }
         }
 
         function calReAmountVN() {
