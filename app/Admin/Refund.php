@@ -37,7 +37,8 @@ class Refund extends Model
         'balance',
         'status',
         'std_refund_VND',
-        'total_amount_pay_back_student_refund'
+        'total_amount_pay_back_student_refund',
+        'date_of_recall'
 
     ];
 
@@ -45,7 +46,9 @@ class Refund extends Model
     {
         return $this->belongsTo(Apply::class, 'apply_id');
     }
-    public function getTypeOfRefund(){
-        return !empty($this->refund_type_of_refund_pp) && !empty(config('myconfig.type_of_refund_profit')[$this->refund_type_of_refund_pp])?config('myconfig.type_of_refund_profit')[$this->refund_type_of_refund_pp]:'';
+
+    public function getTypeOfRefund()
+    {
+        return !empty($this->refund_type_of_refund_pp) && !empty(config('myconfig.type_of_refund_profit')[$this->refund_type_of_refund_pp]) ? config('myconfig.type_of_refund_profit')[$this->refund_type_of_refund_pp] : '';
     }
 }

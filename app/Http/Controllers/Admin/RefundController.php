@@ -7,13 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Admin\Refund;
 use App\Admin\Apply;
 use Exception;
+use Illuminate\Http\Response;
 
 class RefundController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +24,7 @@ class RefundController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -33,8 +34,8 @@ class RefundController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -68,6 +69,7 @@ class RefundController extends Controller
         $data['status'] = $request->input('status');
         $data['std_refund_VND'] = convert_number_currency_to_db($request->input('std_refund_VND'));
         $data['total_amount_pay_back_student_refund'] = convert_number_currency_to_db($request->input('total_amount_pay_back_student_refund'));
+        $data['date_of_recall'] = convert_date_to_db($request->input('date_of_recall'));
 
 
         $apply = Apply::find($data['apply_id']);
@@ -87,8 +89,8 @@ class RefundController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -98,8 +100,8 @@ class RefundController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -109,9 +111,9 @@ class RefundController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -121,8 +123,8 @@ class RefundController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
@@ -134,6 +136,7 @@ class RefundController extends Controller
             return response()->json(['error' => $e]);
         }
     }
+
     public function multiDelete(Request $request)
     {
         $dataType = $request->get('type');

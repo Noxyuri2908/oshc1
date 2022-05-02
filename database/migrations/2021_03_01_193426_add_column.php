@@ -305,6 +305,12 @@ class AddColumn extends Migration
                 $table->integer('pit')->nullable()->after('username');
             });
         }
+
+        if (!Schema::hasColumn('refunds', 'date_of_recall')) {
+            Schema::table('refunds', function (Blueprint $table) {
+                $table->date('date_of_recall')->nullable()->after('total_amount_pay_back_student_refund');
+            });
+        }
     }
 
     /**
@@ -549,6 +555,12 @@ class AddColumn extends Migration
         if (Schema::hasColumn('users', 'pit')) {
             Schema::table('users', function (Blueprint $table) {
                 $table->dropColumn('pit');
+            });
+        }
+
+        if (Schema::hasColumn('refunds', 'date_of_recall')) {
+            Schema::table('refunds', function (Blueprint $table) {
+                $table->dropColumn('date_of_recall');
             });
         }
     }

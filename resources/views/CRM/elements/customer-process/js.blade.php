@@ -544,6 +544,7 @@
         _status = $('#status :selected').val();
         std_refund_VND = $('#std_refund_VND').val();
         total_amount_pay_back_student_refund = $('#total_amount_pay_back_student_refund').val();
+        date_of_recall = $('#date_of_recall').val();
 
 
         _html += '</div>';
@@ -583,7 +584,8 @@
                 balance: _balance_refund,
                 status: _status,
                 std_refund_VND: std_refund_VND,
-                total_amount_pay_back_student_refund: total_amount_pay_back_student_refund
+                total_amount_pay_back_student_refund: total_amount_pay_back_student_refund,
+                date_of_recall: date_of_recall
             }, function (data) {
                 window.location.reload();
             })
