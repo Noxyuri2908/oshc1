@@ -291,6 +291,13 @@
 ]
 ])
     <script>
+
+        $(document).on('change', '#payment_note_provider', function (e) {
+            if (e.target.value == 3) {
+
+            }
+        })
+
         $(document).on('change', '#issue_date', function (e) {
             e.preventDefault()
             let date = $(this).val()

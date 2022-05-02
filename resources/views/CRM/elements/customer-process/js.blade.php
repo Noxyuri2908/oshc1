@@ -352,9 +352,12 @@
             _html += 'Policy number can not blank . <br/>'
         }
 
+
         if (_account_bank == null || _account_bank == '') {
-            flag = false
-            _html += 'Acount bank can not blank . <br/>'
+            if (_payment_note_provider != 3) {
+                flag = false
+                _html += 'Acount bank can not blank . <br/>'
+            }
         }
 
         _html += '</div>'

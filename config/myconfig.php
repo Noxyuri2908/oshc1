@@ -421,6 +421,7 @@ return [
     'payment_note_provider' => [
         1 => 'Full payment',
         2 => 'Pay after deducting com',
+        3 => 'Pay later'
     ],
     'payment_status' => [
         1 => 'Not initiated',
