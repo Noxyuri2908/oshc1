@@ -1,4 +1,17 @@
 <script>
+
+    $(document).ready(function () {
+        if ($('#com_payment_method :selected').val() == 2) {
+            $('#pay_agent_date').val($('#date_payment_agent').val());
+        }
+
+        $(document).on('change', '#com_payment_method', function () {
+            if ($('#com_payment_method :selected').val() == 2) {
+                $('#pay_agent_date').val($('#date_payment_agent').val());
+            }
+        })
+    });
+
     var getParams = function (url) {
         var params = {}
         var parser = document.createElement('a')
