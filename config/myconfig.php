@@ -381,11 +381,12 @@ return [
         2 => 'Com From Provider',
         5 => 'Pay for Provider',
         7 => 'Pay provider',
-        6 => 'Pay for Agent',
+        6 => 'Pay for Agent in VND',
         3 => 'Receipt',
         4 => 'Profit',
         8 => 'Flywire com provider',
         9 => 'Flywire com agent',
+        10 => 'Pay for Agent in AUD',
     ],
     'quarter' => [
         1 => [
