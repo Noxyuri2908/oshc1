@@ -239,25 +239,29 @@
                             </li>
                         </ul>
                     </li>
-                    {{--                    <li class="nav-item {{in_array($flag,['tasks.media']) ? 'active' : ''}}">--}}
-                    {{--                        <a class="nav-link dropdown-indicator" href="#task_media_sub" data-toggle="collapse" role="button"--}}
-                    {{--                        aria-expanded="false" aria-controls="pages-errors" >--}}
-                    {{--                            <span class="fas fa-file-invoice-dollar"></span>--}}
-                    {{--                            <span class="text-content-nav">Media</span>--}}
-                    {{--                            <span class="badge badge-soft-success badge-pill ml-2"></span>--}}
-                    {{--                        </a>--}}
-                    {{--                        <ul class="nav collapse {{in_array($flag, ['tasks.media']) ? 'show' : ''}}" id="task_media_sub">--}}
-                    {{--                            <li class="nav-item {{$flag == '' ? 'active' : ''}}">--}}
-                    {{--                                <a class="nav-link" href="#">Manager</a>--}}
-                    {{--                            </li>--}}
-                    {{--                            <li class="nav-item {{$flag == 'tasks.media' ? 'active' : ''}}">--}}
-                    {{--                                <a class="nav-link" href="{{route('tasks.media.index')}}">Staff</a>--}}
-                    {{--                            </li>--}}
-                    {{--                        </ul>--}}
-                    {{--                    </li>--}}
                     <li class="nav-item {{$flag == '' ? 'active' : ''}}">
                         <a class="nav-link" href="#">Management</a>
                     </li>
+                </ul>
+            </li>
+            <li class="nav-item {{$flag == 'email' ? 'active' : ''}}">
+                <a class="nav-link dropdown-indicator" href="#email" data-toggle="collapse" role="button"
+                   aria-expanded="false" aria-controls="pages-errors">
+                    <span class="fas fa-file-invoice-dollar"></span>
+                    <span class="text-content-nav"> Email Settings</span>
+                    <span class="badge badge-soft-success badge-pill ml-2"></span>
+                </a>
+                <ul class="nav collapse" id="email">
+                    <li class="nav-item {{$flag == 'email-setting' ? 'active' : ''}}">
+                        <a class="nav-link" href="#">Email Settings</a>
+                    </li>
+                    <li class="nav-item {{$flag == 'email-template' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('email.index')}}">Email Templates</a>
+                    </li>
+                    <li class="nav-item {{$flag == 'category' ? 'active' : ''}}">
+                        <a class="nav-link" href="#">Categories</a>
+                    </li>
+
                 </ul>
             </li>
             @can('media.menu')
@@ -303,23 +307,6 @@
                     </div>
                 </a>
             </li>
-            {{--            <li class="nav-item">--}}
-            {{--                <a class="nav-link dropdown-indicator" href="#task_media_sub" data-toggle="collapse" role="button"--}}
-            {{--                   aria-expanded="false" aria-controls="pages-errors" >--}}
-            {{--                    <span class="fas fa-file-invoice-dollar"></span>--}}
-            {{--                    <span class="text-content-nav"></span>--}}
-            {{--                    <span class="badge badge-soft-success badge-pill ml-2"></span>--}}
-            {{--                </a>--}}
-            {{--                <ul class="nav collapse {{in_array($flag, ['tasks.media']) ? 'show' : ''}}" id="task_media_sub">--}}
-            {{--                    <li class="nav-item {{$flag == '' ? 'active' : ''}}">--}}
-            {{--                        <a class="nav-link" href="#">Manager</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="nav-item {{$flag == 'tasks.media' ? 'active' : ''}}">--}}
-            {{--                        <a class="nav-link" href="{{route('tasks.media.index')}}">Staff</a>--}}
-            {{--                    </li>--}}
-            {{--                </ul>--}}
-            {{--            </li>--}}
-
         </ul>
         <hr class="border-300 my-2"/>
         <ul class="navbar-nav flex-column">
@@ -416,13 +403,19 @@
                     <ul class="nav collapse {{in_array($flag, ['report-month','report-quarterly']) ? 'show' : ''}}"
                         id="report">
                         <li class="nav-item {{$flag == 'report-month' ? 'active' : ''}}">
-                            <a target="_blank" class="nav-link" href="{{route('reportMonthly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY REPORT</a>
+                            <a target="_blank" class="nav-link"
+                               href="{{route('reportMonthly',['start_date'=>Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY
+                                REPORT</a>
                         </li>
                         <li class="nav-item {{$flag == 'report-quarterly' ? 'active' : ''}}">
-                            <a target="_blank" class="nav-link" href="{{route('reportQuarterly',['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">QUARTERLY REPORT</a>
+                            <a target="_blank" class="nav-link"
+                               href="{{route('reportQuarterly',['start_date'=>Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">QUARTERLY
+                                REPORT</a>
                         </li>
                         <li class="nav-item {{$flag == 'report-flywire' ? 'active' : ''}}">
-                            <a target="_blank" class="nav-link" href="{{route('reportFlywire', ['start_date'=>\Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>\Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">REPORT FLYWIRE</a>
+                            <a target="_blank" class="nav-link"
+                               href="{{route('reportFlywire', ['start_date'=>Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">REPORT
+                                FLYWIRE</a>
                         </li>
                     </ul>
                 </li>
@@ -562,8 +555,7 @@
             $('#show-nav-bar').addClass('active');
         })
 
-        function callModelFollowUp(elm)
-        {
+        function callModelFollowUp(elm) {
             // var id = elm.getAttribute('id');
             var agent_id = elm.getAttribute('data-id-agent');
             var follow_id = elm.getAttribute('data-id-follow-up');
@@ -574,11 +566,11 @@
                 type: 'post',
                 data: {
                     comment_id,
-                    _token:"{{csrf_token()}}",
+                    _token: "{{csrf_token()}}",
                 },
                 success: function (data) {
                     $('#number-noti').text(data.number_noti);
-                    $('div[data-id="'+comment_id+'"]').css('display', 'none');
+                    $('div[data-id="' + comment_id + '"]').css('display', 'none');
                 },
             })
 
@@ -594,12 +586,11 @@
                     $('#modal_follow_ups_form').html(data);
                     $('#modal_follow_up').modal('toggle');
                 },
-                error: function(xhr){
+                error: function (xhr) {
                     alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
                 }
             })
         }
-
 
 
     </script>

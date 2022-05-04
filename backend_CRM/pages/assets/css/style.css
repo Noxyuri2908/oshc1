@@ -959,3 +959,128 @@ h3 {
 .fancybox-inner > div > pre {
     font-size: 16px;
 }
+
+.page-breadcrumb .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    color: #ced4da;
+    font-size: 11px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: "/";
+}
+
+.bg-color-email-template {
+    background-color: #1c2d41;
+    color: #fff;
+}
+
+
+.toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    height: 140px;
+    box-sizing: border-box;
+}
+
+
+.knobs, .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+/* Button 2 */
+#button-2 .knobs:before, #button-2 .knobs:after {
+    content: 'ON';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 69px;
+    height: 28px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #03A9F4;
+    border-radius: 15px;
+    transition: 0.3s ease all;
+}
+
+#button-2 .knobs:before {
+    content: 'ON';
+}
+
+#button-2 .knobs:after {
+    content: 'OFF';
+}
+
+#button-2 .knobs:after {
+    right: -72px;
+    left: auto;
+    background-color: #F44336;
+}
+
+#button-2 .checkbox:checked + .knobs:before {
+    left: -72px;
+}
+
+#button-2 .checkbox:checked + .knobs:after {
+    right: 4px;
+}
+
+#button-2 .checkbox:checked ~ .layer {
+    background-color: #fcebeb;
+}
+
+.button.r, .button.r .layer {
+    border-radius: 100px;
+}
+
+.button {
+    position: relative;
+    top: 50%;
+    width: 79px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+}
+
+.note-editor {
+    background-color: #ffffff;
+    z-index: 1000000000000000000 !important;
+}
+
+
+.table-email-templates tr.tr-content.odd {
+    background-color: #f4f8fb;
+}

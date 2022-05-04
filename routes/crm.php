@@ -43,6 +43,7 @@ use App\Http\Controllers\Admin\WebsiteAndAccountController;
 use App\Http\Controllers\AdminRemindFollowUpsController;
 use App\Http\Controllers\Auth\CrmLoginController;
 use App\Http\Controllers\CoverController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HospitalAccessController;
 use App\Http\Controllers\LuckyDrawController;
 use App\RemindFollowUps;
@@ -151,6 +152,13 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
         Route::post('/importExcel', [CommissionController::class, 'importExcel'])->name('importExcel');
         Route::get('/getProvider', [CommissionController::class, 'getProvider'])->name('getProvider');
         Route::post('/destroy/{id}', [CommissionController::class, 'destroy'])->name('destroy');
+    });
+
+    /* EMAIL */
+    Route::group(['prefix' => 'email', 'as' => 'email.'], function () {
+        Route::get('/', [EmailController::class, 'index'])->name('index');
+        Route::get('/email-template/add-new', [EmailController::class, 'addNew'])->name('add-new');
+        Route::get('/email-template/edit/{id}', [EmailController::class, 'edit'])->name('edit');
     });
 
     Route::get('/ajax/editCom', 'Admin\CommissionController@editCom')->name('crm.editCom');

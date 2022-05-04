@@ -5,6 +5,7 @@ use App\Admin\ExchangRate;
 use App\Ahm;
 use App\Allianz;
 use App\Cover;
+use App\EmailCategories;
 use App\Medibank;
 use App\Nib;
 use Illuminate\Support\Facades\Auth;
@@ -2085,6 +2086,15 @@ if (!function_exists('getCounsellorById')) {
         if (!empty($counsellor)) {
             return $counsellor->name;
         }
+    }
+}
+
+if (!function_exists('getEmailCategories')) {
+    function getEmailCategories()
+    {
+        $emailCategories = new EmailCategories();
+        $result = $emailCategories->getAll();
+        return $result;
     }
 }
 

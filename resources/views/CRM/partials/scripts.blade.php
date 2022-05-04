@@ -19,7 +19,9 @@
 <script src="{{asset('backend_CRM/pages/assets/lib/select2/select2.min.js')}}"></script>
 <script src="{{asset('backend_CRM/pages/assets/lib/flatpickr/flatpickr.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="{{asset('js/oshc.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
@@ -29,9 +31,11 @@
 <script src="{{asset('backend_CRM/pages/assets/js/typeahead/typeahead.js')}}"></script>
 <script src="{{asset('backend_CRM/js/theme/excelexportjs.js')}}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script src="{{asset('backend_CRM/js/theme/html2pdf.bundle.min.js')}}"></script>
 <script src="{{asset('public/backend_CRM/fontawesome/js/all.min.js')}}"></script>
+<script src="{{asset('backend_CRM/js/plugins/summernote.min.js')}}"></script>
 
 
 
