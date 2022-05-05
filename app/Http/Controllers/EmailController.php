@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EmailCategories;
+use App\EmailSettings;
 use App\EmailTemplate;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,18 @@ class EmailController extends Controller
     {
         $flag = 'email';
         return view('CRM.pages.email-settings.index', compact('flag'));
-
     }
+
+    public function updateEmailSettings(Request $request)
+    {
+        $emailSetting = new EmailSettings();
+        $emailSetting->email_from = $request->get('email-address');
+        $emailSetting->email_password = $request->get('email-password');
+        $emailSetting->email_description = $request->get('email-description');
+
+        $emailSetting->save();
+        return back()->with('success', 'Update Successfully');
+    }
+
+
 }

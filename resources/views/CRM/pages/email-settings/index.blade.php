@@ -60,38 +60,43 @@
     <!--  START EMAIL SETTINGS  -->
     <div class="card card-primary m-0 m-md-4 my-4 m-md-0 shadow">
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="">Email address</label>
-                            <input type="email" class="form-control" id="" aria-describedby=""
-                                   placeholder="Enter email">
+            <form action="{{route('email.email-settings.update')}}" method="post">
+                {{csrf_field()}}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="">Email address</label>
+                                <input type="email" name="email-address" class="form-control" id="" aria-describedby=""
+                                       placeholder="Enter email">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="">Password</label>
+                                <input type="password" name="email-password" class="form-control" id=""
+                                       aria-describedby=""
+                                       placeholder="Enter password">
+                            </div>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label for="">Password</label>
-                            <input type="password" class="form-control" id="" aria-describedby=""
-                                   placeholder="Enter password">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="">Email description</label>
+                                <textarea class="form-control summernote" name="email-description" id="summernote"
+                                          rows="20"
+                                          style="display: none;">{{!empty($emailTemplate) && $emailTemplate->template}}</textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label for="">Email description</label>
-                            <textarea class="form-control summernote" name="template" id="summernote" rows="20"
-                                      style="display: none;">{{!empty($emailTemplate) && $emailTemplate->template}}</textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="submit"
-                                    class="btn waves-effect waves-light btn-rounded btn-primary btn-block mt-3 "
-                                    style="border-radius: 12px">
-                                Update
-                            </button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit"
+                                        class="btn waves-effect waves-light btn-rounded btn-primary btn-block mt-3 "
+                                        style="border-radius: 12px">
+                                    Update
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <!--  END EMAIL SETTINGS  -->

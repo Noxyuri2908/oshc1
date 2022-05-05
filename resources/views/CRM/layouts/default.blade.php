@@ -8,11 +8,11 @@
 {{--   <input type="hidden" id="ajax_crm_url" value="{{route('crm.dashboard')}}">--}}
 <input type="hidden" id="ajax_crm_url" value="{{config('admin.ajax_crm_url')}}">
 <main class="main" id="top">
-{{--    @dump(session()->all())--}}
+    {{--    @dump(session()->all())--}}
     <div class="container-fluid">
         @include('CRM.partials.navbar')
         <div class="content mt-0 mt-lg-3 mt-md-3" id="mainContent">
-{{--            @include('CRM.partials.topbar')--}}
+            {{--            @include('CRM.partials.topbar')--}}
             @yield('content')
 
         </div>
@@ -20,6 +20,8 @@
 </main>
 @include('CRM.partials.scripts')
 @include('CRM.elements.modal-import')
+
+
 <script>
     function convertStringCurrencyToNumber(string) {
         if (string == null || string == '') {
@@ -30,6 +32,7 @@
         }
         return string;
     }
+
     function convertNumberToCurrency(number) {
         var currency = number.toLocaleString(
             undefined, // leave undefined to use the browser's locale,

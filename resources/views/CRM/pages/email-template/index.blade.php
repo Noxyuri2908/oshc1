@@ -27,12 +27,13 @@
     <div class="card card-primary m-0 m-md-4 my-4 m-md-0 shadow">
         <div class="card-body">
             <div class="media mb-4 justify-content-between">
-                <a href="{{route('email.email-template..add-new')}}" class="btn btn-sm  btn-primary mr-2"> Add new</a>
+                <a href="{{route('email.email-template.add-new')}}" class="btn btn-sm  btn-primary mr-2"> Add new</a>
             </div>
             <div class="table-email-templates">
                 <table class="w-100">
                     <tr class="bg-color-email-template text-center">
                         <th class="width-50">STT</th>
+                        <th class="width-100">Subject</th>
                         <th>Content</th>
                         <th class="width-150">Catogory</th>
                         <th class="width-100">Status</th>
@@ -43,6 +44,7 @@
                         @foreach($EmailTemplates as $key => $item)
                             <tr class="tr-content {{$loop->iteration / 2 != 0 ? 'odd' : ''}}">
                                 <td>{{$item->id}}</td>
+                                <td>{{$item->subject}}</td>
                                 <td>{{$item->template}}</td>
                                 <td>{{$item->cat_id}}</td>
                                 <td><span
