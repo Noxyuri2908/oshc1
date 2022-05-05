@@ -33,7 +33,7 @@
                         <option value=""></option>
                         @foreach(getEmailCategories() as $key => $item)
                             <option
-                                value="{{$item->id}}" {{$item->id == $emailTemplate->cat_id ? 'selected' : ''}}>{{$item->name}}</option>
+                                value="{{$item->id}}" {{!empty($emailTemplate) && $item->id == $emailTemplate->cat_id ? 'selected' : ''}}>{{$item->name}}</option>
                         @endforeach
                     </select>
                 </div>
