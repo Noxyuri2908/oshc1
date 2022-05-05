@@ -52,7 +52,7 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
-                                        <a href="{{route('email.email-template..edit', ['id' => $item->id])}}"
+                                        <a href="{{route('email.email-template.edit', ['id' => $item->id])}}"
                                            class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
