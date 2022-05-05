@@ -1084,3 +1084,16 @@ h3 {
 .table-email-templates tr.tr-content.odd {
     background-color: #f4f8fb;
 }
+
+.width-15 {
+    width: 15px
+}
+
+.width-25 {
+    width: 25px
+}
+
+.width-140 {
+    width: 140px;
+}
+

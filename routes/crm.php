@@ -159,6 +159,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
         Route::get('/', [EmailController::class, 'index'])->name('index');
         Route::get('/email-template/add-new', [EmailController::class, 'addNew'])->name('add-new');
         Route::get('/email-template/edit/{id}', [EmailController::class, 'edit'])->name('edit');
+        Route::get('/email-categories/index', [EmailController::class, 'indexCategories'])->name('email-categories.index');
     });
 
     Route::get('/ajax/editCom', 'Admin\CommissionController@editCom')->name('crm.editCom');

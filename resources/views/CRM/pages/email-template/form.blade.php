@@ -25,49 +25,46 @@
         </div>
     </div>
     <div class="card card-primary m-0 m-md-4 my-4 m-md-0 shadow">
-        @if(!empty($emailTemplate))
-            <div class="card-body">
-                <div class="media mb-4 justify-content-between">
-                    <div class="col-md-3 form-group ">
-                        <label for="">Category</label>
-                        <select name="" id="" class="form-control">
-                            <option value=""></option>
-                            @foreach(getEmailCategories() as $key => $item)
-                                <option
-                                    value="{{$item->id}}" {{$item->id == $emailTemplate->cat_id ? 'selected' : ''}}>{{$item->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label for="" class="position-relative" style="left: 18px">Status</label>
-                        <div class="button-cover position-absolute " style="top: 40px">
-                            <div class="button r" id="button-2">
-                                <input type="checkbox" class="checkbox" {{$emailTemplate->status == 1 ? 'checked': ''}}>
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
+        <div class="card-body">
+            <div class="media mb-4 justify-content-between">
+                <div class="col-md-3 form-group ">
+                    <label for="">Category</label>
+                    <select name="" id="" class="form-control">
+                        <option value=""></option>
+                        @foreach(getEmailCategories() as $key => $item)
+                            <option
+                                value="{{$item->id}}" {{$item->id == $emailTemplate->cat_id ? 'selected' : ''}}>{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="" class="position-relative" style="left: 18px">Status</label>
+                    <div class="button-cover position-absolute " style="top: 40px">
+                        <div class="button r" id="button-2">
+                            <input type="checkbox"
+                                   class="checkbox" {{!empty($emailTemplate) && $emailTemplate->status == 1 ? 'checked': ''}}>
+                            <div class="knobs"></div>
+                            <div class="layer"></div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <textarea class="form-control summernote" name="template" id="summernote" rows="20"
-                              style="display: none;">{{$emailTemplate->template}}</textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit"
-                                class="btn waves-effect waves-light btn-rounded btn-primary btn-block mt-3 "
-                                style="border-radius: 12px">
-                            Update
-                        </button>
-                    </div>
+                              style="display: none;">{{!empty($emailTemplate) && $emailTemplate->template}}</textarea>
                 </div>
             </div>
-        @else
-
-        @endif
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit"
+                            class="btn waves-effect waves-light btn-rounded btn-primary btn-block mt-3 "
+                            style="border-radius: 12px">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 

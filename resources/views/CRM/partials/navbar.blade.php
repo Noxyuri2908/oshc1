@@ -259,7 +259,7 @@
                         <a class="nav-link" href="{{route('email.index')}}">Email Templates</a>
                     </li>
                     <li class="nav-item {{$flag == 'category' ? 'active' : ''}}">
-                        <a class="nav-link" href="#">Categories</a>
+                        <a class="nav-link" href="{{route('email.email-categories.index')}}">Email categories</a>
                     </li>
 
                 </ul>
