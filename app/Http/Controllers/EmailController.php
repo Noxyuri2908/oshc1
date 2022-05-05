@@ -10,7 +10,7 @@ class EmailController extends Controller
 {
     //
 
-    public function index()
+    public function indexEmailTempaltes()
     {
         $emailTemplates = new EmailTemplate();
         $EmailTemplates = $emailTemplates->getAll();
@@ -19,13 +19,13 @@ class EmailController extends Controller
         return view('CRM.pages.email-template.index', compact('EmailTemplates', 'flag'));
     }
 
-    public function addNew()
+    public function addNewEmailTemplate()
     {
         $flag = 'email';
         return view('CRM.pages.email-template.form', compact('flag'));
     }
 
-    public function edit($id)
+    public function editEmailTemplate($id)
     {
 
         $flag = 'email';
@@ -39,5 +39,12 @@ class EmailController extends Controller
         $emailCategories = new EmailCategories();
         $emailCategories = $emailCategories->getAll();
         return view('CRM.pages.email-categories.index', compact('flag', 'emailCategories'));
+    }
+
+    public function indexEmailSettings()
+    {
+        $flag = 'email';
+        return view('CRM.pages.email-settings.index', compact('flag'));
+
     }
 }

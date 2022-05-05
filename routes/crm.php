@@ -156,9 +156,10 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
     /* EMAIL */
     Route::group(['prefix' => 'email', 'as' => 'email.'], function () {
-        Route::get('/', [EmailController::class, 'index'])->name('index');
-        Route::get('/email-template/add-new', [EmailController::class, 'addNew'])->name('add-new');
-        Route::get('/email-template/edit/{id}', [EmailController::class, 'edit'])->name('edit');
+        Route::get('/email-settings', [EmailController::class, 'indexEmailSettings'])->name('email-settings.index');
+        Route::get('/email-template', [EmailController::class, 'indexEmailTempaltes'])->name('email-template.index');
+        Route::get('/email-template/add-new', [EmailController::class, 'addNewEmailTemplate'])->name('email-template.add-new');
+        Route::get('/email-template/edit/{id}', [EmailController::class, 'editEmailTemplate'])->name('email-template.edit');
         Route::get('/email-categories/index', [EmailController::class, 'indexCategories'])->name('email-categories.index');
     });
 

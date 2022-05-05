@@ -248,15 +248,15 @@
                 <a class="nav-link dropdown-indicator" href="#email" data-toggle="collapse" role="button"
                    aria-expanded="false" aria-controls="pages-errors">
                     <span class="fas fa-file-invoice-dollar"></span>
-                    <span class="text-content-nav"> Email Settings</span>
+                    <span class="text-content-nav"> Email</span>
                     <span class="badge badge-soft-success badge-pill ml-2"></span>
                 </a>
                 <ul class="nav collapse" id="email">
                     <li class="nav-item {{$flag == 'email-setting' ? 'active' : ''}}">
-                        <a class="nav-link" href="#">Email Settings</a>
+                        <a class="nav-link" href="{{route('email.email-settings.index')}}">Email Settings</a>
                     </li>
                     <li class="nav-item {{$flag == 'email-template' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('email.index')}}">Email Templates</a>
+                        <a class="nav-link" href="{{route('email.email-template.index')}}">Email Templates</a>
                     </li>
                     <li class="nav-item {{$flag == 'category' ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('email.email-categories.index')}}">Email categories</a>

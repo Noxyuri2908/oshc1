@@ -27,7 +27,7 @@
     <div class="card card-primary m-0 m-md-4 my-4 m-md-0 shadow">
         <div class="card-body">
             <div class="media mb-4 justify-content-between">
-                <a href="{{route('email.add-new')}}" class="btn btn-sm  btn-primary mr-2"> Add new</a>
+                <a href="{{route('email.email-template..add-new')}}" class="btn btn-sm  btn-primary mr-2"> Add new</a>
             </div>
             <div class="table-email-templates">
                 <table class="w-100">
@@ -50,7 +50,7 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
-                                        <a href="{{route('email.edit', ['id' => $item->id])}}"
+                                        <a href="{{route('email.email-template..edit', ['id' => $item->id])}}"
                                            class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>

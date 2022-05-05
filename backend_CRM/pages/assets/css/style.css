@@ -1097,3 +1097,18 @@ h3 {
     width: 140px;
 }
 
+.table-short-code table {
+    table-layout: fixed;
+}
+
+.table-short-code table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 0.35em;
+}
+
+.table-short-code table pre {
+    display: block;
+    font-size: 132.5%;
+    color: #212529;
+}
