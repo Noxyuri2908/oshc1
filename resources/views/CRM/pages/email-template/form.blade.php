@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <textarea class="form-control summernote" name="template" id="summernote" rows="20"
-                              style="display: none;">{{!empty($emailTemplate) && $emailTemplate->template}}</textarea>
+                              style="display: none;">{{!empty($emailTemplate) ? $emailTemplate->template : ''}}</textarea>
                 </div>
             </div>
             <div class="row">
