@@ -161,11 +161,14 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
         Route::get('/email-settings', [EmailController::class, 'indexEmailSettings'])->name('email-settings.index');
         Route::post('/email-settings/update', [EmailController::class, 'updateEmailSettings'])->name('email-settings.update');
 
-
+        // email templates
         Route::get('/email-template', [EmailController::class, 'indexEmailTempaltes'])->name('email-template.index');
         Route::get('/email-template/add-new', [EmailController::class, 'addNewEmailTemplate'])->name('email-template.add-new');
         Route::get('/email-template/edit/{id}', [EmailController::class, 'editEmailTemplate'])->name('email-template.edit');
+
+        // email categories
         Route::get('/email-categories/index', [EmailController::class, 'indexCategories'])->name('email-categories.index');
+        Route::post('/email-categories/event', [EmailController::class, 'eventCategories'])->name('email-categories.event');
     });
 
     Route::get('/ajax/editCom', 'Admin\CommissionController@editCom')->name('crm.editCom');

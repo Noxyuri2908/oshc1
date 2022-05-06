@@ -42,6 +42,30 @@ class EmailController extends Controller
         return view('CRM.pages.email-categories.index', compact('flag', 'emailCategories'));
     }
 
+    public function eventCategories(Request $request)
+    {
+        $id = $request->get('id');
+        $name = $request->get('name');
+        $status = $request->get('status');
+        $action = $request->get('action');
+
+        if ($action == 'Update') {
+            $emailCategories = EmailCategories::find($id);
+        } else if ($action == 'Add new') {
+            $emailCategories = new EmailCategories();
+        }
+        if ($action == 'Delete') {
+            EmailCategories::destroy($id);
+            return $this->renderViewForCategories();
+        }
+
+        $emailCategories->name = $name;
+        $emailCategories->status = $status;
+        $emailCategories->save();
+        return $this->renderViewForCategories();
+
+    }
+
     public function indexEmailSettings()
     {
         $flag = 'email';
@@ -61,6 +85,16 @@ class EmailController extends Controller
 
         $emailSetting->save();
         return back()->with('success', 'Update Successfully');
+    }
+
+    public function renderViewForCategories()
+    {
+        $emailCategories = EmailCategories::all();
+        return response()->json([
+            'view' => view('CRM.pages.email-categories.data', compact('emailCategories'))->render(),
+            'code' => 200,
+            'message' => 'Successfully'
+        ]);
     }
 
 

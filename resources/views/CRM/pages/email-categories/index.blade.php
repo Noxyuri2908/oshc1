@@ -31,39 +31,18 @@
                 <div style="border-right: 1px solid #ccc;" class="col-md-6">
                     <div class="table-email-templates">
                         <table class="w-100">
+                            <thead>
                             <tr class="bg-color-email-template text-center">
                                 <th class="width-15">STT</th>
                                 <th class="width-140">Name</th>
                                 <th class="width-25">Status</th>
                                 <th class="width-25">Action</th>
                             </tr>
+                            </thead>
 
-                            @if(!empty($emailCategories))
-                                @foreach($emailCategories as $key => $item)
-                                    <tr class="tr-content {{$loop->iteration / 2 != 0 ? 'odd' : ''}}">
-                                        <td class="text-center">{{$item->id}}</td>
-                                        <td>{{$item->name}}</td>
-                                        <td class="text-center"><span
-                                                class="badge badge-pill badge-success">{{$item->status == 1 ? 'Active' : 'Deactive'}}</span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex justify-content-around">
-                                                <a href=""
-                                                   class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="destroy">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td>no data</td>
-                                </tr>
-                            @endif
+                            <tbody id="data-categories">
+                            @include('CRM.pages.email-categories.data', ['emailCategories' => $emailCategories]) {{--resources/views/CRM/pages/email-categories/data.blade.php--}}
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -72,11 +51,14 @@
                 <!--       START FORM ADD + UPDATE CATEGORIES         -->
                 <div class="col-md-6">
                     <div class="row">
+
+
+                        <input type="hidden" id="id-pickup" data-id="">
                         <div class="col-md-6 form-group">
                             <label for="">Name</label>
-                            <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="cat-name-edit">
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="" class="position-relative" style="left: 18px">Status</label>
                             <div class="button-cover position-absolute " style="top: 40px">
                                 <div class="button r" id="button-2">
@@ -88,11 +70,18 @@
                             </div>
 
                         </div>
+                        <div class="col-md-3 form-group">
+                            <label for=""></label>
+                            <input type="submit" class="form-control" id="btn-clear-value" value="Clear value"
+                                   style="display: none">
+
+                        </div>
                         <div class="col-md-12">
                             <button type="submit"
                                     class="btn waves-effect waves-light btn-rounded btn-primary btn-block mt-3 "
+                                    id="btn-action"
                                     style="border-radius: 12px">
-                                Update
+                                Add new
                             </button>
                         </div>
                     </div>
@@ -106,8 +95,52 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            $(document).on('click', '#destroy', function (e) {
+
+            $(document).on('click', '#btn-edit', function (e) { // action move value to form
                 e.preventDefault();
+                var id = $(this).attr('data-id');
+
+                $('#btn-action').text('Update'); // change text btn
+                $('#btn-clear-value').css('display', 'block'); // change text btn
+
+                var catName = $(`#cat-${id} > #cat-name`).text(); // get cat name
+                var catStatus = $(`#cat-${id} > td > span#cat-status`).text(); // get cat status
+
+                $('#cat-name-edit').val(catName);
+                $('#id-pickup').val(id);
+                if (catStatus === 'Active') {
+                    $('input[type="checkbox"]').prop('checked', false)
+                } else if (catStatus === 'Deactive') {
+                    $('input[type="checkbox"]').prop('checked', true)
+                }
+            })
+
+            $(document).on('click', '#btn-action', function (e) { // handle action with text in tag
+                var action = $(this).text().trim(); // get name action
+                var urlEvent = "{{route('email.email-categories.event')}}";
+
+                var id = $('#id-pickup').val();
+                var name = $('#cat-name-edit').val();
+                var status = $('input[type="checkbox"]').is(':checked') ? 0 : 1;
+
+
+                if (action === 'Update') {
+                    objectProcessEmail.handleEventAjaxEmail({urlEvent, id, name, status, action});
+                } else if (action === 'Add new') {
+                    objectProcessEmail.handleEventAjaxEmail({urlEvent, id, name, status, action});
+                }
+            })
+
+            $(document).on('click', '#btn-clear-value', function () { // action clear value in form
+                $('#cat-name-edit').val(''); // clear value
+                $('input[type="checkbox"]').prop('checked', false) // change status
+                $('#btn-action').text('Add new'); // change text btn
+            });
+
+
+            $(document).on('click', '#destroy', function (e) { // action delete record
+                e.preventDefault();
+
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -118,6 +151,13 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then(result => {
                     if (result.isConfirmed) {
+
+                        var urlEvent = "{{route('email.email-categories.event')}}";
+                        var action = 'Delete';
+                        var id = $(this).attr('data-id');
+
+                        objectProcessEmail.handleEventAjaxEmail({urlEvent, id, action});
+
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -127,5 +167,27 @@
                 })
             })
         })
+
+        var objectProcessEmail = {
+            handleEventAjaxEmail: function (...rest) {
+                $.ajax({
+                    url: rest[0].urlEvent,
+                    type: 'post',
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        id: rest[0].id ?? '',
+                        name: rest[0].name ?? '',
+                        status: rest[0].status ?? '',
+                        action: rest[0].action ?? ''
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            $('#data-categories').html(result.view);
+                            Notiflix.Notify.success(`${result.message}`);
+                        }
+                    }
+                })
+            }
+        }
     </script>
 @endpush
