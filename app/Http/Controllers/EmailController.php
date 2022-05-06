@@ -45,12 +45,16 @@ class EmailController extends Controller
     public function indexEmailSettings()
     {
         $flag = 'email';
-        return view('CRM.pages.email-settings.index', compact('flag'));
+        $emailSettings = EmailSettings::limit(1)->get();
+        return view('CRM.pages.email-settings.index', compact('flag', 'emailSettings'));
     }
 
     public function updateEmailSettings(Request $request)
     {
         $emailSetting = new EmailSettings();
+        if (!empty($request->get('id'))) {
+            $emailSetting = EmailSettings::find($request->get('id'));
+        }
         $emailSetting->email_from = $request->get('email-address');
         $emailSetting->email_password = $request->get('email-password');
         $emailSetting->email_description = $request->get('email-description');

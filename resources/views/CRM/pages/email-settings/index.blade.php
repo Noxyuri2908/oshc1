@@ -60,21 +60,26 @@
     <!--  START EMAIL SETTINGS  -->
     <div class="card card-primary m-0 m-md-4 my-4 m-md-0 shadow">
         <div class="card-body">
-            <form action="{{route('email.email-settings.update')}}" method="post">
+
+            <form action="{{route('email.email-settings.update')}}"
+                  method="post">
                 {{csrf_field()}}
+                <input type="hidden" value="{{!empty($emailSettings) ? $emailSettings[0]->id : ''}}" name="id">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="">Email address</label>
                                 <input type="email" name="email-address" class="form-control" id="" aria-describedby=""
-                                       placeholder="Enter email">
+                                       placeholder="Enter email"
+                                       value="{{!empty($emailSettings) ? $emailSettings[0]->email_from : ''}}">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="">Password</label>
                                 <input type="password" name="email-password" class="form-control" id=""
                                        aria-describedby=""
-                                       placeholder="Enter password">
+                                       placeholder="Enter password"
+                                       value="{{!empty($emailSettings) ? $emailSettings[0]->email_password : ''}}">
                             </div>
                         </div>
                         <div class="row">
@@ -82,7 +87,7 @@
                                 <label for="">Email description</label>
                                 <textarea class="form-control summernote" name="email-description" id="summernote"
                                           rows="20"
-                                          style="display: none;">{{!empty($emailTemplate) && $emailTemplate->template}}</textarea>
+                                          style="display: none;">{{!empty($emailSettings) ? $emailSettings[0]->email_description : ''}}</textarea>
                             </div>
                         </div>
                         <div class="row">

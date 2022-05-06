@@ -15,9 +15,9 @@ class CreateEmailSettings extends Migration
     {
         Schema::create('email_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('email_from');
-            $table->text('email_password');
-            $table->longText('email_description');
+            $table->text('email_from')->nullable();
+            $table->text('email_password')->nullable();
+            $table->longText('email_description')->nullable();
             $table->timestamps();
         });
     }
