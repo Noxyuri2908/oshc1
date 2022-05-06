@@ -2098,5 +2098,14 @@ if (!function_exists('getEmailCategories')) {
     }
 }
 
+if (!function_exists('getEmailCategoryById')) {
+    function getEmailCategoryById($id)
+    {
+        $emailCategories = new EmailCategories();
+        $result = $emailCategories->getNameCategoryById($id);
+        return $result;
+    }
+}
+
 
 

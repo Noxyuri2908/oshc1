@@ -31,6 +31,7 @@
             </div>
             <div class="table-email-templates">
                 <table class="w-100">
+                    <thead>
                     <tr class="bg-color-email-template text-center">
                         <th class="width-50">STT</th>
                         <th class="width-100">Subject</th>
@@ -39,35 +40,11 @@
                         <th class="width-100">Status</th>
                         <th class="width-100">Action</th>
                     </tr>
+                    </thead>
 
-                    @if(!empty($EmailTemplates))
-                        @foreach($EmailTemplates as $key => $item)
-                            <tr class="tr-content {{$loop->iteration / 2 != 0 ? 'odd' : ''}}">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->subject}}</td>
-                                <td>{{$item->template}}</td>
-                                <td>{{$item->cat_id}}</td>
-                                <td><span
-                                        class="badge badge-pill badge-success">{{$item->mail_status == 1 ? 'Active' : 'Deactive'}}</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-around">
-                                        <a href="{{route('email.email-template.edit', ['id' => $item->id])}}"
-                                           class="btn btn-sm btn-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="destroy">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td>no data</td>
-                        </tr>
-                    @endif
+                    <tbody id="data-email-templates">
+                    @include('CRM.pages.email-template.data', ['EmailTemplates' => $EmailTemplates]) {{--resources/views/CRM/pages/email-template/data.blade.php--}}
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -79,6 +56,7 @@
         $(document).ready(function () {
             $(document).on('click', '#destroy', function (e) {
                 e.preventDefault();
+                var id = $(this).attr('data-id');
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -89,11 +67,20 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then(result => {
                     if (result.isConfirmed) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
+                        $.ajax({
+                            url: "{{route('email.email-template.destroy')}}",
+                            type: 'post',
+                            data: {
+                                _token: "{{csrf_token()}}",
+                                id,
+                            },
+                            success: function (result) {
+                                if (result.code == 200) {
+                                    $('#data-email-templates').html(result.view);
+                                    Notiflix.Notify.success(`${result.message}`);
+                                }
+                            }
+                        })
                     }
                 })
             })

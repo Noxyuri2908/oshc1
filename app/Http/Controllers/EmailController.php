@@ -23,15 +23,61 @@ class EmailController extends Controller
     public function addNewEmailTemplate()
     {
         $flag = 'email';
-        return view('CRM.pages.email-template.form', compact('flag'));
+        $action = 'add-new';
+        return view('CRM.pages.email-template.form', compact('flag', 'action'));
+    }
+
+    public function storeEmailTemplate(Request $request)
+    {
+        $mail_status = $request->get('status') && $request->get('status') == 'on' ? 0 : 1;
+        $template = $request->get('template');
+        $subject = $request->get('subject');
+        $cat_id = $request->get('cat_id');
+
+        $emailTemplate = new EmailTemplate();
+        $emailTemplate->mail_status = $mail_status;
+        $emailTemplate->subject = $subject;
+        $emailTemplate->template = $template;
+        $emailTemplate->cat_id = $cat_id;
+        $emailTemplate->save();
+        return back()->with('success', 'Store Successfully');
     }
 
     public function editEmailTemplate($id)
     {
 
         $flag = 'email';
+        $action = 'update';
         $emailTemplate = EmailTemplate::find($id);
-        return view('CRM.pages.email-template.form', compact('flag', 'emailTemplate'));
+        return view('CRM.pages.email-template.form', compact('flag', 'emailTemplate', 'action'));
+    }
+
+    public function updateEmailTemplate(Request $request, $id)
+    {
+        $mail_status = $request->get('status') && $request->get('status') == 'on' ? 0 : 1;
+        $template = $request->get('template');
+        $subject = $request->get('subject');
+        $cat_id = $request->get('cat_id');
+
+        $emailTemplate = EmailTemplate::find($id);
+        $emailTemplate->mail_status = $mail_status;
+        $emailTemplate->subject = $subject;
+        $emailTemplate->template = $template;
+        $emailTemplate->cat_id = $cat_id;
+        $emailTemplate->save();
+        return back()->with('success', 'Update Successfully');
+    }
+
+    public function destroyEmailTemplate(Request $request)
+    {
+        EmailTemplate::destroy($request->get('id'));
+
+        $EmailTemplates = EmailTemplate::get();
+        return response()->json([
+            'view' => view('CRM.pages.email-template.data', compact('EmailTemplates'))->render(),
+            'code' => 200,
+            'message' => 'Successfully'
+        ]);
     }
 
     public function indexCategories()

@@ -163,8 +163,13 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
         // email templates
         Route::get('/email-template', [EmailController::class, 'indexEmailTempaltes'])->name('email-template.index');
+
         Route::get('/email-template/add-new', [EmailController::class, 'addNewEmailTemplate'])->name('email-template.add-new');
+        Route::post('/email-template/store', [EmailController::class, 'storeEmailTemplate'])->name('email-template.store');
+
         Route::get('/email-template/edit/{id}', [EmailController::class, 'editEmailTemplate'])->name('email-template.edit');
+        Route::post('/email-template/update/{id}', [EmailController::class, 'updateEmailTemplate'])->name('email-template.update');
+        Route::post('/email-template/delete', [EmailController::class, 'destroyEmailTemplate'])->name('email-template.destroy');
 
         // email categories
         Route::get('/email-categories/index', [EmailController::class, 'indexCategories'])->name('email-categories.index');
