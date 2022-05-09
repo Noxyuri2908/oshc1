@@ -64,7 +64,7 @@
             <form action="{{route('email.email-settings.update')}}"
                   method="post">
                 {{csrf_field()}}
-                <input type="hidden" value="{{!empty($emailSettings) ? $emailSettings[0]->id : ''}}" name="id">
+                <input type="hidden" value="{{!empty($emailSettings[0]) ? $emailSettings[0]->id : ''}}" name="id">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
@@ -72,14 +72,14 @@
                                 <label for="">Email address</label>
                                 <input type="email" name="email-address" class="form-control" id="" aria-describedby=""
                                        placeholder="Enter email"
-                                       value="{{!empty($emailSettings) ? $emailSettings[0]->email_from : ''}}">
+                                       value="{{!empty($emailSettings[0]) ? $emailSettings[0]->email_from : ''}}">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="">Password</label>
                                 <input type="password" name="email-password" class="form-control" id=""
                                        aria-describedby=""
                                        placeholder="Enter password"
-                                       value="{{!empty($emailSettings) ? $emailSettings[0]->email_password : ''}}">
+                                       value="{{!empty($emailSettings[0]) ? $emailSettings[0]->email_password : ''}}">
                             </div>
                         </div>
                         <div class="row">
@@ -87,7 +87,7 @@
                                 <label for="">Email description</label>
                                 <textarea class="form-control summernote" name="email-description" id="summernote"
                                           rows="20"
-                                          style="display: none;">{{!empty($emailSettings) ? $emailSettings[0]->email_description : ''}}</textarea>
+                                          style="display: none;">{{!empty($emailSettings[0]) ? $emailSettings[0]->email_description : ''}}</textarea>
                             </div>
                         </div>
                         <div class="row">

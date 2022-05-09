@@ -6,6 +6,7 @@ use App\EmailCategories;
 use App\EmailSettings;
 use App\EmailTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 
 class EmailController extends Controller
 {
@@ -141,6 +142,11 @@ class EmailController extends Controller
             'code' => 200,
             'message' => 'Successfully'
         ]);
+    }
+
+    public function sendMail($receiver = 'thancuong3@gmail.com', $idTemplateEmail = '1')
+    {
+        
     }
 
 
