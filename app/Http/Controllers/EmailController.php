@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\EmailCategories;
 use App\EmailSettings;
 use App\EmailTemplate;
+use App\Http\Traits\Notify;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class EmailController extends Controller
 {
     //
+    use Notify;
 
     public function indexEmailTempaltes()
     {
@@ -32,6 +34,7 @@ class EmailController extends Controller
     {
         $mail_status = $request->get('status') && $request->get('status') == 'on' ? 0 : 1;
         $template = $request->get('template');
+        $name = $request->get('name');
         $subject = $request->get('subject');
         $cat_id = $request->get('cat_id');
 
@@ -39,6 +42,7 @@ class EmailController extends Controller
         $emailTemplate->mail_status = $mail_status;
         $emailTemplate->subject = $subject;
         $emailTemplate->template = $template;
+        $emailTemplate->name = $name;
         $emailTemplate->cat_id = $cat_id;
         $emailTemplate->save();
         return back()->with('success', 'Store Successfully');
@@ -57,6 +61,7 @@ class EmailController extends Controller
     {
         $mail_status = $request->get('status') && $request->get('status') == 'on' ? 0 : 1;
         $template = $request->get('template');
+        $name = $request->get('name');
         $subject = $request->get('subject');
         $cat_id = $request->get('cat_id');
 
@@ -64,6 +69,7 @@ class EmailController extends Controller
         $emailTemplate->mail_status = $mail_status;
         $emailTemplate->subject = $subject;
         $emailTemplate->template = $template;
+        $emailTemplate->name = $name;
         $emailTemplate->cat_id = $cat_id;
         $emailTemplate->save();
         return back()->with('success', 'Update Successfully');
@@ -100,8 +106,7 @@ class EmailController extends Controller
             $emailCategories = EmailCategories::find($id);
         } else if ($action == 'Add new') {
             $emailCategories = new EmailCategories();
-        }
-        if ($action == 'Delete') {
+        } else if ($action == 'Delete') {
             EmailCategories::destroy($id);
             return $this->renderViewForCategories();
         }
@@ -144,9 +149,12 @@ class EmailController extends Controller
         ]);
     }
 
-    public function sendMail($receiver = 'thancuong3@gmail.com', $idTemplateEmail = '1')
+    public function sendMailWithTemplate($receiver = 'son.dang@annalink.com', $idTemplateEmail = '1')
     {
-        
+        $emailTemplate = EmailTemplate::find('name', 'test');
+        $emailSetting = EmailSettings::limit(1)->get();
+
+        $this->sendMail($emailSetting[0], $receiver, $emailTemplate);
     }
 
 

@@ -34,9 +34,9 @@
                     <thead>
                     <tr class="bg-color-email-template text-center">
                         <th class="width-50">STT</th>
+                        <th class="width-50">Name</th>
                         <th class="width-100">Subject</th>
-                        <th>Content</th>
-                        <th class="width-150">Catogory</th>
+                        <th class="width-150">Category</th>
                         <th class="width-100">Status</th>
                         <th class="width-100">Action</th>
                     </tr>

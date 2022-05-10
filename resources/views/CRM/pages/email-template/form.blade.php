@@ -42,6 +42,11 @@
                         </select>
                     </div>
                     <div class="col-md-3 form-group ">
+                        <label for="">Name</label>
+                        <input type="text" name="name" class="form-control"
+                               value="{{!empty($emailTemplate) ? $emailTemplate->name : ''}}">
+                    </div>
+                    <div class="col-md-3 form-group ">
                         <label for="">Subject</label>
                         <input type="text" name="subject" class="form-control"
                                value="{{!empty($emailTemplate) ? $emailTemplate->subject : ''}}">

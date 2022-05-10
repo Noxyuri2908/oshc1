@@ -176,7 +176,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
         Route::post('/email-categories/event', [EmailController::class, 'eventCategories'])->name('email-categories.event');
 
         // send mail
-        Route::get('/send-mail', [EmailController::class, 'sendMail'])->name('send-mail');
+        Route::get('/send-mail', [EmailController::class, 'sendMailWithTemplate'])->name('send-mail');
     });
 
     Route::get('/ajax/editCom', 'Admin\CommissionController@editCom')->name('crm.editCom');
