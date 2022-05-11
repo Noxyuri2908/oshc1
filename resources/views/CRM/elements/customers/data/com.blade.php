@@ -7,7 +7,7 @@
             $val_comm = $commission->comm.$donvi;
         }
 
-        $bank = !empty($tmp->account_bank) ? getBank($tmp->account_bank) : '';
+        $bank = !empty($tmp->account_bank) ? getBank($tmp->account_bank) : ''
 
     @endphp
     <tr class="data-commission" id="data-commission_{{$tmp->id}}" data-id="{{$tmp->invoice->id}}">
@@ -23,10 +23,10 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCommission">
                     {{-- <a class="dropdown-item invoice_info" style="cursor: pointer;" data-id="{{$tmp->invoice->id}}">View</a> --}}
-                    @can('commissionInvoice.edit')
-                        <a class="dropdown-item commission_data_edit" data-url_edit="{{route('ajax.customer.showData',['tab'=>'com','id'=>$tmp->id])}}"
-                           href="{{route('customer.process.index',['id'=>$tmp->invoice->id,'tab'=>3,'tab_link'=>3,'page'=>request()->get('page')])}}">Edit</a>
-                    @endcan
+                    {{--                    @can('commissionInvoice.edit')--}}
+                    {{--                        <a class="dropdown-item commission_data_edit" data-url_edit="{{route('ajax.customer.showData',['tab'=>'com','id'=>$tmp->id])}}"--}}
+                    {{--                           href="{{route('customer.process.index',['id'=>$tmp->invoice->id,'tab'=>3,'tab_link'=>3,'page'=>request()->get('page')])}}">Edit</a>--}}
+                    {{--                    @endcan--}}
 
                     <a class="dropdown-item"
                        href="{{route('customer.process.index',['id'=>$tmp->invoice->id,'tab'=>1,'tab_link'=>1,'page'=>request()->get('page')])}}"
@@ -41,7 +41,8 @@
         </td>
         <td class="sticky-col"><a>{{$tmp->invoice->ref_no}}</a></td>
         <td class=" sticky-col white-space-break-spaces">
-            <a style="cursor: pointer; color: red" class="agent_info" data-id={{!empty($tmp->invoice) && !empty($tmp->invoice->agent)? $tmp->invoice->agent->id : ''}}>{{!empty($tmp->invoice) && !empty($tmp->invoice->agent)? $tmp->invoice->agent->name : ''}}</a>
+            <a style="cursor: pointer; color: red" class="agent_info"
+               data-id={{!empty($tmp->invoice) && !empty($tmp->invoice->agent)? $tmp->invoice->agent->id : ''}}>{{!empty($tmp->invoice) && !empty($tmp->invoice->agent)? $tmp->invoice->agent->name : ''}}</a>
         </td>
         <td class=" sticky-col white-space-break-spaces">{{!empty($tmp->invoice) && !empty($tmp->invoice->agent) ? $tmp->invoice->agent->country() : ''}}</td>
         <td class=" sticky-col white-space-break-spaces">{{!empty($tmp->invoice) &&!empty($tmp->invoice->registerCus())? $tmp->invoice->registerCus()->first_name." ".$tmp->invoice->registerCus()->last_name : ''}}</td>
@@ -59,12 +60,12 @@
         <td class="">{{isset(config('myconfig.status_visa')[$tmp->visa_status]) ? config('myconfig.status_visa')[$tmp->visa_status] : ''}}</td>
         <td class="">{{$tmp->hoahong_month}}</td>
         <td class="">{{$tmp->hoahong_year}}</td>
-        <td class="">{{!empty($tmp->date_payment_provider)?\Carbon::parse($tmp->date_payment_provider)->format('d/m/Y'):''}}</td>
+        <td class="">{{!empty($tmp->date_payment_provider)?Carbon::parse($tmp->date_payment_provider)->format('d/m/Y'):''}}</td>
         <td class="">{{!empty($bank) ? "$bank->account $bank->code" : ''}}</td>
-        <td class="">{{!empty($tmp->date_payment_agent)?\Carbon::parse($tmp->date_payment_agent)->format('d/m/Y'):''}}</td>
+        <td class="">{{!empty($tmp->date_payment_agent)?Carbon::parse($tmp->date_payment_agent)->format('d/m/Y'):''}}</td>
         <td class="">{{$tmp->policy_no}}</td>
         <td class="">{{$val_comm}}</td>
-        <td class="">{{!empty($tmp->issue_date)?\Carbon::parse($tmp->issue_date)->format('d/m/Y'):''}}</td>
+        <td class="">{{!empty($tmp->issue_date)?Carbon::parse($tmp->issue_date)->format('d/m/Y'):''}}</td>
         <td class="">{{isset(config('myconfig.policy_status')[$tmp->policy_status]) ? config('myconfig.policy_status')[$tmp->policy_status] : ''}}</td>
         <td class="">{{isset(config('myconfig.payment_note_provider')[$tmp->payment_note_provider]) ? config('myconfig.payment_note_provider')[$tmp->payment_note_provider] : ''}}</td>
         <td class="">{{(!empty($tmp->invoice))?convert_price_float($tmp->invoice->phieuthus->sum('amount')):''}}</td>

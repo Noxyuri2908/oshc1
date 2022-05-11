@@ -50,7 +50,8 @@
     @endphp
     <tr class="data-profit" id="data-profit_{{$tmp->id}}" data-id="{{(!empty($invoice))?$invoice->id:''}}">
         <td class="align-middle sticky-col">
-            <input class="ml-3 sub_chk" data-id="{{(!empty($tmp->invoice))?$tmp->invoice->id:''}}" data-id-profit="{{(!empty($tmp))?$tmp->id:''}}" type="checkbox"
+            <input class="ml-3 sub_chk" data-id="{{(!empty($tmp->invoice))?$tmp->invoice->id:''}}"
+                   data-id-profit="{{(!empty($tmp))?$tmp->id:''}}" type="checkbox"
                    aria-label="Checkbox for tdis row"/>
         </td>
         <td class="align-middle sticky-col second-col">
@@ -60,12 +61,37 @@
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-ellipsis-h fs--1">
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: unset">
                     {{-- <a class="dropdown-item invoice_info" style="cursor: pointer;" data-id="{{(!empty($tmp->invoice))?$tmp->invoice->id:''}}">View</a> --}}
                     @can('profitInvoice.edit')
-                        <a class="dropdown-item profit_data_edit"  data-url_edit="{{route('ajax.customer.showData',['tab'=>'profit','id'=>$tmp->id])}}"
+                        <a class="dropdown-item profit_data_edit"
+                           data-url_edit="{{route('ajax.customer.showData',['tab'=>'profit','id'=>$tmp->id])}}"
                            href="{{route('customer.process.index',['id'=>(!empty($tmp->invoice))?$tmp->invoice->id:'', 'tab'=>4,'tab_link'=>4])}}">Edit</a>
                     @endcan
+                    <div class="position-relative process-hover-dropdown">
+                        <a class="dropdown-item nav-link dropdown-toggle btn-process-dropdown"
+                           style="cursor: pointer">Process &raquo </a>
+                        <ul class="submenu dropdown-menu submenu-process" style="left: 100%;top: 0;">
+                            @can('commissionInvoice.edit')
+                                <li>
+                                    <a class="dropdown-item link-popup"
+                                       href="{{route('customer.process.index',['id'=>$tmp->apply_id,'tab'=>3,'tab_link'=>3,'page'=>(!empty(request()->get('page')))?request()->get('page'):1])}}">Commission</a>
+                                </li>
+                            @endcan
+                            @can('profitInvoice.edit')
+                                <li>
+                                    <a class="dropdown-item link-popup"
+                                       href="{{route('customer.process.index',['id'=>$tmp->apply_id,'tab'=>4,'tab_link'=>4,'page'=>(!empty(request()->get('page')))?request()->get('page'):1])}}">Profit</a>
+                                </li>
+                            @endcan
+                            @can('refundInvoice.edit')
+                                <li>
+                                    <a class="dropdown-item link-popup"
+                                       href="{{route('customer.process.index',['id'=>$tmp->apply_id,'tab'=>5,'tab_link'=>5,'page'=>(!empty(request()->get('page')))?request()->get('page'):1])}}">Refund</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                     {{-- <a class="dropdown-item" href="{{route('customer.process.index',['id'=>(!empty($tmp->invoice))?$tmp->invoice->id:'', 'tab'=>1])}}" target="_blank">Process</a> --}}
                     {{-- <a class="dropdown-item export_invoice" data-id="{{(!empty($tmp->invoice))?$tmp->invoice->id:''}}" style="cursor: pointer;">Export Invoice</a> --}}
                     @can('profitInvoice.delete')
@@ -89,22 +115,24 @@
         <td class="align-middle">{{!empty($tmp->invoice) && $tmp->invoice->service != null ? $tmp->invoice->service->name : ''}}</td>
         <td class="align-middle">{{!empty($tmp->invoice)?$tmp->invoice->visaName():''}}</td>
         <td class="align-middle">{{!empty($tmp->invoice)?$tmp->invoice->policyName():''}}</td>
-        <td class="align-middle">{{!empty($tmp->invoice)?\Carbon::parse($tmp->invoice->start_date)->format('d/m/Y'):''}}</td>
-        <td class="align-middle">{{!empty($tmp->invoice)?\Carbon::parse($tmp->invoice->end_date)->format('d/m/Y'):''}}</td>
+        <td class="align-middle">{{!empty($tmp->invoice)?Carbon::parse($tmp->invoice->start_date)->format('d/m/Y'):''}}</td>
+        <td class="align-middle">{{!empty($tmp->invoice)?Carbon::parse($tmp->invoice->end_date)->format('d/m/Y'):''}}</td>
         <td class="align-middle">{{$tmp->statusVisaText()}}</td>
         <td class="align-middle">{{$tmp->visa_month}}</td>
         <td class="align-middle">{{$tmp->visa_year}}</td>
 
         <!-- Revenue -->
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_extra_money)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_total)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_exchange_rate)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money_VND)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_bankfee_VND)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->gst)}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{$tmp->profit_status == 1 ? 'Done' : ($tmp->profit_status == 2 ? 'Refund' : '')}}</td>
-            <td style="background-color: #bfffff" title="Profit 1">{{$tmp->comm_status == 1 ? 'Done' : ($tmp->comm_status == 2 ? 'Refund' : '')}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_extra_money)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_total)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_exchange_rate)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_money_VND)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->profit_bankfee_VND)}}</td>
+        <td style="background-color: #bfffff" title="Profit 1">{{convert_price_float($tmp->gst)}}</td>
+        <td style="background-color: #bfffff"
+            title="Profit 1">{{$tmp->profit_status == 1 ? 'Done' : ($tmp->profit_status == 2 ? 'Refund' : '')}}</td>
+        <td style="background-color: #bfffff"
+            title="Profit 1">{{$tmp->comm_status == 1 ? 'Done' : ($tmp->comm_status == 2 ? 'Refund' : '')}}</td>
         <!-- Revenue -->
 
         <!-- Annalink received -->
@@ -126,20 +154,32 @@
         <!-- Annalink received -->
 
         <!-- Commission for Agent -->
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{(!empty($comm) && !empty($text_donvi))?$comm->comm.' '.$text_donvi:''}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{(!empty($comm) && !empty($text_donvi))?$comm->comm.' '.$text_donvi:''}}</td>
         <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$tmp->pay_agent_bonus}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->invoice->comm)}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_deduction)}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_total_amount)}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_exchange_rate)}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->vnd)}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_amount_VN)}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->pay_agent_date)->format('d/m/Y')}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{$tmp->gst_status_agent_profit == 1 ? 'Included' : (($tmp->gst_status_agent_profit == 2) ? 'Not included ' : '')}}</td>
-        <td style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">{{\Carbon::parse($tmp->issue_date_com_agent)->format('d/m/Y')}}</td>
-        <td class="align-middle text-overflow" style="background-color: #fffe98" title="Pay commission for Agent/Cousellor">
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->invoice->comm)}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_deduction)}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_total_amount)}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_exchange_rate)}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->vnd)}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{convert_price_float($tmp->pay_agent_amount_VN)}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{Carbon::parse($tmp->pay_agent_date)->format('d/m/Y')}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{$tmp->gst_status_agent_profit == 1 ? 'Included' : (($tmp->gst_status_agent_profit == 2) ? 'Not included ' : '')}}</td>
+        <td style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">{{Carbon::parse($tmp->issue_date_com_agent)->format('d/m/Y')}}</td>
+        <td class="align-middle text-overflow" style="background-color: #fffe98"
+            title="Pay commission for Agent/Cousellor">
             <a href="javascript:void(0)" data-toggle="modal" data-target="#notemodal{{$tmp->id}}">{{$tmp->note_cp}}</a>
-            <div class="modal fade" id="notemodal{{$tmp->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="notemodal{{$tmp->id}}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -167,10 +207,11 @@
         <td style="background-color: #ffbfff"
             title="Commission received from provider">{{convert_price_float($tmp->re_total_amount_vn)}}</td>
         <td style="background-color: #ffbfff"
-            title="Commission received from provider">{{\Carbon::parse($tmp->date_of_receipt)->format('d/m/Y')}}</td>
+            title="Commission received from provider">{{Carbon::parse($tmp->date_of_receipt)->format('d/m/Y')}}</td>
         <td style="background-color: #ffbfff" title="Commission received from provider" class="text-overflow">
             <a href="" data-toggle="modal" data-target="#note_of_re_{{$tmp->id}}">{{$tmp->note_of_receipt}}</a>
-            <div class="modal fade" id="note_of_re_{{$tmp->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="note_of_re_{{$tmp->id}}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -208,8 +249,9 @@
         <td style="background-color: #81d881"
             title="Pay for provider">{{ !empty($payment_note) && !empty(config('myconfig.payment_note_provider')[$payment_note]) ? config('myconfig.payment_note_provider')[$payment_note] : ''}}</td>
         <td style="background-color: #81d881"
-            title="Pay for provider">{{ !empty($tmp->pay_provider_date)?\Carbon::parse($tmp->pay_provider_date)->format('d/m/Y'):'' }}</td>
-        <td style="background-color: #81d881" title="Pay for provider">{{!empty($tmp->pay_provider_bank_account) && !empty($bank) ? $bank->account . ' ' . $bank->code : ''}}</td>
+            title="Pay for provider">{{ !empty($tmp->pay_provider_date)?Carbon::parse($tmp->pay_provider_date)->format('d/m/Y'):'' }}</td>
+        <td style="background-color: #81d881"
+            title="Pay for provider">{{!empty($tmp->pay_provider_bank_account) && !empty($bank) ? $bank->account . ' ' . $bank->code : ''}}</td>
     </tr>
 @endforeach
 
