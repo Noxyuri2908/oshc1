@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\TemplateInvoiceManagerController;
 use App\Http\Controllers\Admin\TrafficeController;
 use App\Http\Controllers\Admin\WebsiteAndAccountController;
 use App\Http\Controllers\AdminRemindFollowUpsController;
+use App\Http\Controllers\ApprovedComReportController;
 use App\Http\Controllers\Auth\CrmLoginController;
 use App\Http\Controllers\CoverController;
 use App\Http\Controllers\EmailController;
@@ -670,6 +671,9 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('/cover/pushStore/', [CoverController::class, 'pushStore'])->name('pushStoreCover');
     Route::post('/cover/delete', [CoverController::class, 'delete'])->name('removeCoverById');
     Route::post('/cover/getCover', [CoverController::class, 'getCoverByServiceAndPolicy'])->name('getCoverByServiceAndPolicy');
+
+
+    Route::get('/approve-com-report', [ApprovedComReportController::class, 'index'])->name('com_report');
 
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {

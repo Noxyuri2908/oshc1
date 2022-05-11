@@ -417,6 +417,10 @@
                                href="{{route('reportFlywire', ['start_date'=>Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">REPORT
                                 FLYWIRE</a>
                         </li>
+                        <li class="nav-item {{$flag == 'com-report' ? 'active' : ''}}">
+                            <a class="nav-link"
+                               href="{{route('com_report')}}">Approved Com Report</a>
+                        </li>
                     </ul>
                 </li>
             @endcan

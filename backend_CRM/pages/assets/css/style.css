@@ -1112,3 +1112,59 @@ h3 {
     font-size: 132.5%;
     color: #212529;
 }
+
+.width-60 {
+    width: 60px;
+}
+
+.pr-15 {
+    padding-right: 15px;
+}
+
+.width-75 {
+    width: 75px;
+}
+
+.width-88 {
+    width: 88px;
+}
+
+.width-85 {
+    width: 85px;
+}
+
+.custom-icon {
+    margin-right: 16px;
+}
+
+.width-200 {
+    width: 200px;
+}
+
+.custom-css-input {
+    line-height: 16px;
+    background-color: #fff;
+    border: 1px solid rgb(118, 118, 118);
+    color: #4A4A4A;
+}
+
+input, button {
+    cursor: pointer;
+}
+
+.custom-css-action-send-mail {
+    background: #16ADEB 0% 0% no-repeat padding-box;
+    border-radius: 17px;
+    opacity: 0.9;
+    color: #fff;
+    border: 1px solid #16ADEB;
+}
+
+.custom-border {
+    border: 1px solid #707070;
+    border-radius: 3px;
+}
+
+.custom-h {
+    height: 28px;
+}
