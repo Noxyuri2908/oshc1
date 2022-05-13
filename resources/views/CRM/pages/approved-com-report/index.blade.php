@@ -9,7 +9,7 @@
     @include('CRM.partials.loading-css')
 @stop
 @section('content')
-    <div class="card">
+    <div class="card" style="border-bottom: 2px solid #ccc;">
         <div class="card-body " id="top-filter">
             <div class="row">
                 <div class="col-md-9">
@@ -62,6 +62,97 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!--  table data approve com  -->
+    <div class="card">
+        <div class="card-body" style="overflow-x: auto">
+            <table style="width: 1400px">
+                <thead>
+                <tr>
+                    <th class="width-100 text-center">Action</th>
+                    <th class="width-70 text-center">#Report</th>
+                    <th class="width-150 text-center">Agent</th>
+                    <th class="width-150 text-center">Type of report</th>
+                    <th class="width-50 text-center">Month</th>
+                    <th class="width-50 text-center">Year</th>
+                    <th class="width-210 text-center">Period</th>
+                    <th class="width-50 text-center">Report</th>
+                    <th class="width-100 text-center">Amount</th>
+                    <th class="width-110 text-center">Checked by</th>
+                    <th class="width-110 text-center">Checked date</th>
+                    <th class="width-50 text-center">Status</th>
+                    <th class="width-100 text-center">Approved by</th>
+                    <th class="width-110 text-center">Emailed date</th>
+                    <th class="width-150 text-center">Agent request</th>
+                    <th class="width-150 text-center">Final approve</th>
+                    <th class="width-70 text-center">Paid date</th>
+                </tr>
+                </thead>
+                <tbody>
+                @for($i = 0; $i < 10; $i++)
+                    <tr>
+                        <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            <div class="d-flex justify-content-around align-items-center">
+                                <i class="fas fa-trash-alt"></i>
+                                <i class="fal fa-arrow-alt-to-bottom"></i>
+                                <i class="fal fa-check-circle"></i>
+                            </div>
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            #10001
+                        </td>
+                        <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Annalink
+                        </td>
+                        <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Commision report
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Oct
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            2021
+                        </td>
+                        <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            10/10/2021- 10/11/2021
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            <i class="fal fa-file-alt"></i>
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            1000 AUD
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Hailey
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            16/11/2021
+                        </td>
+                        <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Approved
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Richard
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            16/11/2021
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Pending
+                        </td>
+                        <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            Pending
+                        </td>
+                        <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
+                            15/11/2021
+                        </td>
+                    </tr>
+                @endfor
+                </tbody>
+
+            </table>
         </div>
     </div>
 @stop

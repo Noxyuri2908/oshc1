@@ -1,6 +1,6 @@
 @media (min-width: 992px) {
     #mainContent {
-        margin-left: 13.625rem;
+        margin-left: 11.625rem;
         transition: ease .6s;
         margin-top: 30px !important;
     }
@@ -15,7 +15,7 @@
 }
 
 #navbar-crm {
-    width: 12.625rem;
+    width: 11.5rem;
     transition: ease .6s;
 }
 
@@ -1167,4 +1167,12 @@ input, button {
 
 .custom-h {
     height: 28px;
+}
+
+.width-70 {
+    width: 70px;
+}
+
+.width-210 {
+    width: 210px;
 }
