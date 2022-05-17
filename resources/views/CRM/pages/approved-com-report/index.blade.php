@@ -68,26 +68,26 @@
     <!--  table data approve com  -->
     <div class="card">
         <div class="card-body" style="overflow-x: auto">
-            <table style="width: 1400px">
+            <table style="width: 1433px">
                 <thead>
                 <tr>
-                    <th class="width-100 text-center">Action</th>
-                    <th class="width-70 text-center">#Report</th>
-                    <th class="width-150 text-center">Agent</th>
-                    <th class="width-150 text-center">Type of report</th>
-                    <th class="width-50 text-center">Month</th>
-                    <th class="width-50 text-center">Year</th>
-                    <th class="width-210 text-center">Period</th>
-                    <th class="width-50 text-center">Report</th>
-                    <th class="width-100 text-center">Amount</th>
-                    <th class="width-110 text-center">Checked by</th>
-                    <th class="width-110 text-center">Checked date</th>
-                    <th class="width-50 text-center">Status</th>
-                    <th class="width-100 text-center">Approved by</th>
-                    <th class="width-110 text-center">Emailed date</th>
-                    <th class="width-150 text-center">Agent request</th>
-                    <th class="width-150 text-center">Final approve</th>
-                    <th class="width-70 text-center">Paid date</th>
+                    <th class="width-100 text-center f-13">Action</th>
+                    <th class="width-70 text-center f-13">#Report</th>
+                    <th class="width-150 text-center f-13">Agent</th>
+                    <th class="width-150 text-center f-13">Type of report</th>
+                    <th class="width-50 text-center f-13">Month</th>
+                    <th class="width-50 text-center f-13">Year</th>
+                    <th class="width-210 text-center f-13">Period</th>
+                    <th class="width-50 text-center f-13">Report</th>
+                    <th class="width-100 text-center f-13">Amount</th>
+                    <th class="width-110 text-center f-13">Checked by</th>
+                    <th class="width-110 text-center f-13">Checked date</th>
+                    <th class="width-50 text-center f-13">Status</th>
+                    <th class="width-100 text-center f-13">Approved by</th>
+                    <th class="width-110 text-center f-13">Emailed date</th>
+                    <th class="width-150 text-center f-13">Agent request</th>
+                    <th class="width-150 text-center f-13">Final approve</th>
+                    <th class="width-70 text-center f-13">Paid date</th>
                 </tr>
                 </thead>
                 <tbody>
