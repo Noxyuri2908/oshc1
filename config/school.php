@@ -14704,5 +14704,9 @@ return [
     [
         "id" => "OXT",
         "name" => "Oxford International - SF State"
+    ],
+    [
+        "id" => "ZST",
+        "name" => "University of Stirling"
     ]
 ];
