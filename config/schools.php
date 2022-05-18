@@ -5558,7 +5558,11 @@ return [
         "id" => "ZLX", "name" => "Zeldiva Luxury"], [
         "id" => "ZMD", "name" => "Unilodge Mayoral Drive"], [
         "id" => "ZMT", "name" => "Missouri University of Science and Technology, Rolla, MO"], [
-        "id" => "ZUC", "name" => "Jim Zuckerman Photo Tours"],[
-        'id' => 'OPP', 'name' => 'Central Okanagan Public Schools - Domestic'],[
-        'id' => 'CHS', 'name' => "Canada Homestay Network"]
+        "id" => "ZUC", "name" => "Jim Zuckerman Photo Tours"], [
+        'id' => 'OPP', 'name' => 'Central Okanagan Public Schools - Domestic'], [
+        'id' => 'CHS', 'name' => "Canada Homestay Network"],
+    [
+        "id" => "ZST",
+        "name" => "University of Stirling"
+    ]
 ];
