@@ -58,7 +58,9 @@
                 </div>
                 <div class="col-md-3 d-flex justify-content-center align-items-end ">
                     <div class="text-right">
-                        <button type="submit" class="custom-css-action-send-mail">Send mail</button>
+                        <button type="button" class="custom-css-action-send-mail" data-toggle="modal"
+                                data-target="#exampleModal">Send mail
+                        </button>
                     </div>
                 </div>
             </div>
@@ -155,6 +157,43 @@
             </table>
         </div>
     </div>
+
+    <!-- Modal Send mail -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal mail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-around">
+                        <div class="categories">
+                            <label for="">Categories</label>
+                            <select name="category" id="category">
+                                <option value=""></option>
+                                @foreach($emailCategories as $key => $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="template">
+                            <label for="">Email Templates</label>
+                            <select name="template" id="template">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="send" disabled>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @push('scripts')
@@ -233,6 +272,54 @@
             $(document).on('click', '#handle-click-reset', function () {
                 $('#top-filter select').text('');
                 $('#top-filter input').val('');
+            })
+
+            // handle click category
+            $(document).on('change', '#category', function () {
+                var id_cat = $(this).val();
+                $.ajax({
+                    url: "{{route('email.email-categories.event.email-template')}}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        id_cat
+                    },
+                    success: function (result) {
+                        var html = '<option value=""></option>';
+                        $.each(result.data, function (key, value) {
+                            html += `<option value="${value.id}">${value.name}</option>`
+                        })
+                        $('#template').append(html);
+                    }
+                })
+            })
+
+            // handle on click template
+            $(document).on('change', '#template', function () {
+                $($(this).val() > 1)
+                {
+                    $('#send').prop('disabled', false);
+                }
+            })
+
+            // handle onclick send mail
+            $(document).on('click', '#send', function () {
+                var id_template = $('#template').val();
+                $.ajax({
+                    url: "{{route('email.send-mail')}}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        id_template
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            Notiflix.Notify.success("{{session('success')}}");
+                        }
+                    }
+                })
             })
         })
     </script>

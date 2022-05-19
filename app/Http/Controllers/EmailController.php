@@ -149,12 +149,26 @@ class EmailController extends Controller
         ]);
     }
 
-    public function sendMailWithTemplate($receiver = 'son.dang@annalink.com', $idTemplateEmail = '1')
+    public function sendMailWithTemplate(Request $request, $receiver = 'thandanhcuong@gmail.com')
     {
-        $emailTemplate = EmailTemplate::find('name', 'test');
+        $emailTemplate = EmailTemplate::find($request->get('id_template'));
         $emailSetting = EmailSettings::limit(1)->get();
 
         $this->sendMail($emailSetting[0], $receiver, $emailTemplate);
+
+        return response()->json([
+            'code' => 200
+        ]);
+    }
+
+    public function getEmailTemplatesByIdCategory(Request $request)
+    {
+        $idCate = $request->get('id_cat');
+        $emailTemplates = EmailTemplate::where('cat_id', $idCate)->where('mail_status', 1)->get();
+
+        return response()->json([
+            'data' => $emailTemplates
+        ]);
     }
 
 
