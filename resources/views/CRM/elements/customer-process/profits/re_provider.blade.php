@@ -42,13 +42,20 @@
                 </div>
             </div>
             <div class="form-group clearfix">
+                <label class="control-label">Bonus com from provider </label>
+                <div class="input-contenr">
+                    <input class="form-control text-right" id="bonus_com_from_provider" type="text"
+                           value="{{!empty($profit) ? $profit->bonus_com_from_provider : ''}}">
+                </div>
+            </div>
+            <div class="form-group clearfix">
                 <label class="control-label">Exchange rate</label>
                 <div class="input-contenr">
                     <input type="text" class="form-control text-right" id="exchange_rate_re_provider"
                            @if(!empty($profit))
-                           value="{{$profit->exchange_rate_re_provider}}"
+                               value="{{$profit->exchange_rate_re_provider}}"
                            @else
-                           value="{{$exchangeRateProvider}}"
+                               value="{{$exchangeRateProvider}}"
                         @endif
                         {{--                           @elseif(!empty($payment_note))--}}
                         {{--                           @if($payment_note == 2)--}}
@@ -99,6 +106,7 @@
     <script>
 
         $('#exchange_rate_re_provider').inputmask({alias: 'currency', prefix: '', digits: 2})
+        $('#bonus_com_from_provider').inputmask({alias: 'currency', prefix: '', digits: 2})
 
         function convertNumberToCurrency(number) {
             if (number !== undefined) {

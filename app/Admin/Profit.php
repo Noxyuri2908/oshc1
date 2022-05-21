@@ -10,6 +10,7 @@ use PayPal\Api\Invoice;
 class Profit extends Model
 {
     use Filterable;
+
     protected $fillable = [
         'exchange_rate_re_provider',
         'apply_id',
@@ -68,40 +69,44 @@ class Profit extends Model
         'profit_total',
         'profit_bankfee_VND',
         'gst',
-        'pay_agent_total_amount'
+        'pay_agent_total_amount',
+        'bonus_com_from_provider'
     ];
     public static $STATUS = [
-        1=>'Done',
-        2=>'Refund'
+        1 => 'Done',
+        2 => 'Refund'
     ];
     public static $commissionPaymentStatus = [
-        1=>'Done',
-        2=>'Refund'
+        1 => 'Done',
+        2 => 'Refund'
     ];
     public static $gst_status_agent_profit = [
-        1=>'Included',
-        2=>'Not Included'
+        1 => 'Included',
+        2 => 'Not Included'
     ];
 
     public function invoice()
     {
-        return $this->belongsTo(Apply::class, 'apply_id','id');
+        return $this->belongsTo(Apply::class, 'apply_id', 'id');
     }
+
     public function getStaffName()
     {
         $staff_id = $this->staff_id_cp;
-        if(!empty($staff_id)){
+        if (!empty($staff_id)) {
             $staff = Admin::find($staff_id);
-            return (!empty($staff))?$staff->username:'';
+            return (!empty($staff)) ? $staff->username : '';
         }
 
         return '';
     }
+
     public function statusVisaText()
     {
         $visa_status = $this->visa_status;
         return isset(config('myconfig.status_visa')[$visa_status]) ? config('myconfig.status_visa')[$visa_status] : '';
     }
+
     public static function getReportAgentMonthly($request)
     {
         $hhs_id = Hoahong::when($request->get('start_date') && $request->get('end_date'), function ($query) use ($request) {

@@ -36,7 +36,7 @@ class ProfitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -84,12 +84,12 @@ class ProfitController extends Controller
         $data['profit_exchange_rate'] = $request->get('profit_exchange_rate');
         $data['issue_date_com_agent'] = convert_date_to_db($request->get('issue_date_com_agent'));
         $data['pay_agent_extra'] = convert_number_currency_to_db($request->get('pay_agent_extra'));
-        $data['pay_agent_extra'] = convert_number_currency_to_db($request->get('pay_agent_extra'));
         $data['vnd'] = convert_number_currency_to_db($request->get('vnd'));
         $data['profit_total'] = convert_number_currency_to_db($request->get('profit_total'));
         $data['profit_bankfee_VND'] = convert_number_currency_to_db($request->get('profit_bankfee_VND'));
         $data['gst'] = convert_number_currency_to_db($request->get('gst'));
         $data['pay_agent_total_amount'] = convert_number_currency_to_db($request->get('pay_agent_total_amount'));
+        $data['bonus_com_from_provider'] = convert_number_currency_to_db($request->get('bonus_com_from_provider'));
 
         $apply = Apply::find($data['apply_id']);
         if ($apply == null) return view('CRM.elements.customer-process.table-profit');
@@ -114,7 +114,7 @@ class ProfitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -125,7 +125,7 @@ class ProfitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -135,8 +135,8 @@ class ProfitController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -147,7 +147,7 @@ class ProfitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -161,6 +161,7 @@ class ProfitController extends Controller
             return response()->json(['error' => $e]);
         }
     }
+
     public function multiDelete(Request $request)
     {
         $dataType = $request->get('type');

@@ -311,6 +311,12 @@ class AddColumn extends Migration
                 $table->date('date_of_recall')->nullable()->after('total_amount_pay_back_student_refund');
             });
         }
+
+        if (!Schema::hasColumn('profits', 'bonus_com_from_provider')) {
+            Schema::table('profits', function (Blueprint $table) {
+                $table->float('bonus_com_from_provider', 10, 0)->nullable()->after('pay_agent_total_amount');
+            });
+        }
     }
 
     /**

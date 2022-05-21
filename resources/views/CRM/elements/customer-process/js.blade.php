@@ -470,6 +470,7 @@
         profit_bankfee_VND = $('#profit_bankfee_VND').val()
         gst = $('#gst').val()
         pay_agent_total_amount = $('#pay_agent_total_amount').val()
+        bonus_com_from_provider = $('#bonus_com_from_provider').val()
 
         if (!flag) {
             $('#div_profit_alert').html(_html)
@@ -523,7 +524,8 @@
                 profit_total,
                 profit_bankfee_VND,
                 gst,
-                pay_agent_total_amount
+                pay_agent_total_amount,
+                bonus_com_from_provider
             }, function (data) {
                 window.location.reload()
             })
