@@ -852,6 +852,16 @@ class AgentController extends Controller
         ]);
     }
 
+    public function updateStatusAgent(Request $request)
+    {
+
+        $status = $request->get('status');
+        $agent_ids = $request->get('agent_ids');
+        User::whereIn('id', $agent_ids)->update([
+            'status' => $status,
+        ]);
+    }
+
     public function importExcel(Request $request)
     {
         if (!$request->user()->can('agent.store')) {

@@ -8,9 +8,10 @@
 @section('css')
     @include('CRM.partials.loading-css')
     <style>
-        *,body a, body input ,body select{
+        *, body a, body input, body select {
             font-size: 12px;
         }
+
         .table-main-agent .dropdown:hover .dropdown-menu {
             display: block;
             margin-top: 0;
@@ -68,6 +69,7 @@
             color: #fff;
 
         }
+
         /*thead .last-row input,thead .last-row select{*/
         /*    font-size: 12px;*/
         /*}*/
@@ -233,8 +235,8 @@
             width: 120px;
         }
 
-        .width-140{
-            width : 140px;
+        .width-140 {
+            width: 140px;
         }
 
         .text-overflow {
@@ -285,8 +287,9 @@
             border-bottom: 3px solid #6fcbd2;
             background-color: transparent;
         }
-        .nav-tabs .nav-link{
-            border:0px;
+
+        .nav-tabs .nav-link {
+            border: 0px;
             border-top-right-radius: 0;
             border-top-left-radius: 0;
         }
@@ -387,7 +390,7 @@
                     success: function (data) {
                         // console.log(data);
                         $('#marketing-support-table').html(data)
-                        toastr.success('Cập nhật dữ liệu thành công', 'Success', { timeOut: 5000 })
+                        toastr.success('Cập nhật dữ liệu thành công', 'Success', {timeOut: 5000})
                         $('#modal_marketing_support').modal('hide')
                     },
                 })
@@ -582,19 +585,19 @@
             $('#mainContent').delegate('.agent_info', 'click', function () {
 
                 _id = $(this).data('id')
-                $.get(getAgentInfo, { id: _id }, function (data) {
+                $.get(getAgentInfo, {id: _id}, function (data) {
                     console.log(data)
                     $('#modal_agent').html(data)
                     $('#modal_agent_info').modal('show')
                 })
             })
 
-            $('#mainContent').on('click','.agent_comm', function (e) {
+            $('#mainContent').on('click', '.agent_comm', function (e) {
                 e.preventDefault();
                 _id = $(this).data('id')
-                if(readyGetComm == true){
+                if (readyGetComm == true) {
                     readyGetComm = false;
-                    $.get(getAgentComm, { id: _id }, function (data) {
+                    $.get(getAgentComm, {id: _id}, function (data) {
                         $('#div_modal_comm').html(data)
                         $('#modal_comm').modal('toggle')
                         readyGetComm = true;
@@ -605,7 +608,7 @@
 
             $('#mainContent').delegate('.agent_support', 'click', function () {
                 _id = $(this).data('id')
-                $.get(getAgentSp, { id: _id }, function (data) {
+                $.get(getAgentSp, {id: _id}, function (data) {
                     console.log(data)
                     $('#div_modal_support').html(data)
                     $('#modal_hisory_support').modal('toggle')
@@ -614,7 +617,7 @@
 
             $('#mainContent').delegate('.contact_info', 'click', function () {
                 _id = $(this).data('id')
-                $.get(getContactInfo, { id: _id }, function (data) {
+                $.get(getContactInfo, {id: _id}, function (data) {
                     console.log(data)
                     $('#modal_contact').html(data)
                     $('#modal_contact_info').modal('show')
@@ -770,6 +773,28 @@
                         })
                         checkBox()
                         $('#modalAgentPersonCharge').modal('hide')
+                    },
+                })
+            })
+
+            $(document).on('submit', '#form-set-status', function (e) {
+                e.preventDefault()
+                var status = $('#status_agent option:selected').val()
+                var allVals = []
+
+                $('.sub_chk:checked').each(function () {
+                    allVals.push($(this).attr('data-id'))
+                })
+                $.ajax({
+                    url: '{{route('agent.updateStatusAgent')}}',
+                    type: 'post',
+                    data: {
+                        status,
+                        agent_ids: allVals,
+                        _token: '{{csrf_token()}}',
+                    },
+                    success: function (data) {
+                        location.reload();
                     },
                 })
             })

@@ -68,6 +68,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
         Route::post('/sendEmailAgent', [AgentController::class, 'sendEmailAgent'])->name('sendEmailAgent');
         Route::post('/multiDelete', [AgentController::class, 'multiDelete'])->name('multiDelete');
         Route::post('/updatePersonInCharge', [AgentController::class, 'updatePersonInCharge'])->name('updatePersonInCharge');
+        Route::post('/updateStatusAgent', [AgentController::class, 'updateStatusAgent'])->name('updateStatusAgent');
         Route::post('/importExcel', [AgentController::class, 'importExcel'])->name('importExcel');
         Route::get('/create', [AgentController::class, 'create'])->name('create');
         Route::post('store', [AgentController::class, 'store'])->name('store');

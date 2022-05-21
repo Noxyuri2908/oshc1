@@ -177,6 +177,8 @@
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAgentPersonCharge">Person
                         in charge</a>
                 @endcan
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalAgentsUpdateStatus">Update
+                    Status</a>
             </div>
             <div class="table-div table-main-agent">
                 <table>
@@ -481,6 +483,11 @@
 <div id="modal-agent-person-charge">
     @include('CRM.elements.agents.modal.modal_person_in_charge')
 </div>
+
+<div id="modal-agent-person-charge">
+    @include('CRM.elements.agents.modal.modal_update_status')
+</div>
+
 <div id="modal-show-contact-agent">
 
 </div>
