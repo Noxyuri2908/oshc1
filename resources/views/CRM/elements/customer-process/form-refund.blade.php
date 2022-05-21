@@ -14,8 +14,9 @@
                 <div class="form-group clearfix">
                     <label class="control-label">% com</label>
                     <div class="input-contenr">
-                        <input type="text" class="form-control" id="refund_percent_com_agent" value="{{$comm->comm}}%"
-                               data-value="{{$comm->comm}}" readonly>
+                        <input type="text" class="form-control" id="refund_percent_com_agent"
+                               value="{{!empty($comm) ? $comm->comm : ''}}%"
+                               data-value="{{!empty($comm) ? $comm->comm : ''}}" readonly>
                     </div>
                 </div>
                 <div class="form-group clearfix">
@@ -30,11 +31,11 @@
                     <div class="input-contenr">
                         <input type="text" class="form-control" id="refund_exchange_rate_agent"
                                @if(!empty($refund))
-                               value="{{$refund->refund_exchange_rate_agent}}"
+                                   value="{{$refund->refund_exchange_rate_agent}}"
                                @elseif(!empty($profit))
-                               value="{{$profit->pay_agent_exchange_rate}}"
+                                   value="{{$profit->pay_agent_exchange_rate}}"
                                @else
-                               value=""
+                                   value=""
                             @endif>
                     </div>
                 </div>
@@ -43,11 +44,11 @@
                     <div class="input-contenr">
                         <input type="text" class="form-control" id="refund_agent_vnd"
                                @if(!empty($refund))
-                               value="{{$refund->refund_agent_vnd}}"
+                                   value="{{$refund->refund_agent_vnd}}"
                                @elseif(!empty($profit))
-                               value="{{$profit->pay_agent_amount_VN}}"
+                                   value="{{$profit->pay_agent_amount_VN}}"
                                @else
-                               value=""
+                                   value=""
                             @endif
                         >
                     </div>
