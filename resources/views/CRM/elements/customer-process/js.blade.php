@@ -244,7 +244,7 @@
         // $('#pay_agent_amount_comm').val(parseFloat(_net_amout).toFixed(2) + " " + _currency);
         //$('#pay_agent_amount_comm').val(parseFloat(_net_amout).toFixed(2));
 
-        $('#pay_agent_amount_VN').val(convertNumberToCurrency(parseInt(_amount).toFixed(2)))
+        // $('#pay_agent_amount_VN').val(convertNumberToCurrency(parseInt(_amount).toFixed(2)))
     }
 
     function loadPayProfit() {
