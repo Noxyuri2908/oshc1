@@ -19,13 +19,12 @@
                 @if(!empty($countries))
                     @foreach($countries as $keyCountries=>$value)
                         <option
-                            value="{{$keyCountries}}" >{{$value}}</option>
+                            value="{{$keyCountries}}">{{$value}}</option>
                     @endforeach
                 @endif
             </select>
         </div>
     </th>
-
 
 
     <th>
@@ -43,7 +42,8 @@
     <th></th>
     <th></th>
     <th></th>
-{{--    <th></th>--}}
+    <th></th>
+    {{--    <th></th>--}}
     <th></th>
     <th>
         <div>
@@ -112,27 +112,32 @@
     </th>
     <th>
         <div>
-            <input type="text" class="form-control" name="hoahong_month_filter" id="hoahong_month_filter" autocomplete="off">
+            <input type="text" class="form-control" name="hoahong_month_filter" id="hoahong_month_filter"
+                   autocomplete="off">
         </div>
     </th>
     <th>
         <div>
-            <input type="text" class="form-control" name="hoahong_year_filter" id="hoahong_year_filter" autocomplete="off">
+            <input type="text" class="form-control" name="hoahong_year_filter" id="hoahong_year_filter"
+                   autocomplete="off">
         </div>
     </th>
     <th>
         <div>
-            <input type="text" class="form-control choose-date-form" name="date_payment_provider_filter" id="date_payment_provider_filter" autocomplete="off">
+            <input type="text" class="form-control choose-date-form" name="date_payment_provider_filter"
+                   id="date_payment_provider_filter" autocomplete="off">
         </div>
     </th>
     <th>
         <div>
-            <input type="text" class="form-control" name="account_bank_filter" id="account_bank_filter" autocomplete="off">
+            <input type="text" class="form-control" name="account_bank_filter" id="account_bank_filter"
+                   autocomplete="off">
         </div>
     </th>
     <th>
         <div>
-            <input type="text" class="form-control choose-date-form" name="date_payment_agent_filter" id="date_payment_agent_filter" autocomplete="off">
+            <input type="text" class="form-control choose-date-form" name="date_payment_agent_filter"
+                   id="date_payment_agent_filter" autocomplete="off">
         </div>
     </th>
     <th>
@@ -143,7 +148,8 @@
     <th></th>
     <th>
         <div>
-            <input type="text" class="form-control choose-date-form" name="issue_date_filter" id="issue_date_filter" autocomplete="off">
+            <input type="text" class="form-control choose-date-form" name="issue_date_filter" id="issue_date_filter"
+                   autocomplete="off">
         </div>
     </th>
     <th>
@@ -172,8 +178,8 @@
             </select>
         </div>
     </th>
-{{--    <th></th>--}}
-{{--    <th></th>--}}
+    {{--    <th></th>--}}
+    {{--    <th></th>--}}
     <th></th>
     <th>
         <input class="form-control" value="" name="note_filter" id="note_filter" type="text" autocomplete="off">
@@ -193,7 +199,8 @@
     </th>
     <th>
         <div>
-            <input type="text" class="form-control choose-date-form" name="created_at_filter" id="created_at_filter" autocomplete="off">
+            <input type="text" class="form-control choose-date-form" name="created_at_filter" id="created_at_filter"
+                   autocomplete="off">
         </div>
     </th>
 </tr>

@@ -102,7 +102,8 @@ class CustomerController extends Controller
                                 'service',
                                 'customers',
                                 'phieuthus',
-                                'hoahong'
+                                'hoahong',
+                                'profit'
                             ]);
                         },
                         'creater'

@@ -994,7 +994,7 @@ if (!function_exists('covert_string_date')) {
 if (!function_exists('convert_price_float')) {
     function convert_price_float($price, $decimals = 2, $currency = null)
     {
-        if ($price == 0) {
+        if ($price == 0 || $price == null) {
             return $price;
         }
         $number = number_format($price, $decimals, '.', ',');

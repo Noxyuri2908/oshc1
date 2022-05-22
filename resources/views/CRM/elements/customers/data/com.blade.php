@@ -47,6 +47,7 @@
         <td class=" sticky-col white-space-break-spaces">{{!empty($tmp->invoice) && !empty($tmp->invoice->agent) ? $tmp->invoice->agent->country() : ''}}</td>
         <td class=" sticky-col white-space-break-spaces">{{!empty($tmp->invoice) &&!empty($tmp->invoice->registerCus())? $tmp->invoice->registerCus()->first_name." ".$tmp->invoice->registerCus()->last_name : ''}}</td>
         <td class=" sticky-col white-space-break-spaces">{{(!empty($tmp->invoice))?convert_price_float($tmp->invoice->net_amount):''}}</td>
+        <td class=" sticky-col white-space-break-spaces">{{( !empty($tmp->invoice->profit[0])) ? convert_price_float($tmp->invoice->profit[0]->bonus_com_from_provider) : '' }}</td>
         <td class="">{{(!empty($tmp->invoice))?convert_price_float($tmp->invoice->promotion_amount):''}}</td>
         <td class="">{{ !empty($tmp->invoice) && isset(config('myconfig.bank_fee')[$tmp->invoice->bank_fee])? convert_price_float($tmp->invoice->net_amount*$tmp->invoice->bank_fee) : ''}}</td>
         <td class="">{{ !empty($tmp->customers) ? convert_price_float($tmp->customers->extend_fee) : ''}}</td>

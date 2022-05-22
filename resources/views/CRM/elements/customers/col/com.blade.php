@@ -5,71 +5,85 @@
             left: 0;
             z-index: 2;
         }
+
         .table-main-customer thead.commission-thead .first-row th:nth-child(2),
         .table-main-customer thead.commission-thead .last-row th:nth-child(2) {
             left: 40px;
             z-index: 3;
         }
+
         .table-main-customer thead.commission-thead .first-row th:nth-child(3),
         .table-main-customer thead.commission-thead .last-row th:nth-child(3) {
             left: 90px;
             z-index: 2;
         }
+
         .table-main-customer thead.commission-thead .first-row th:nth-child(4),
         .table-main-customer thead.commission-thead .last-row th:nth-child(4) {
             left: 190px;
             z-index: 2;
         }
+
         .table-main-customer thead.commission-thead .first-row th:nth-child(5),
         .table-main-customer thead.commission-thead .last-row th:nth-child(5) {
             left: 290px;
             z-index: 2;
         }
+
         .table-main-customer thead.commission-thead .first-row th:nth-child(6),
         .table-main-customer thead.commission-thead .last-row th:nth-child(6) {
             left: 390px;
             z-index: 2;
         }
+
         .table-main-customer thead.commission-thead .first-row th:nth-child(7),
         .table-main-customer thead.commission-thead .last-row th:nth-child(7) {
             left: 510px;
             z-index: 2;
         }
+
         .table-main-customer tbody tr.data-commission td:nth-child(1) {
             left: 0;
             z-index: 1;
             background-color: #fff;
         }
+
         .table-main-customer tbody tr.data-commission td:nth-child(2) {
             left: 40px;
             z-index: 1;
             background-color: #fff;
         }
+
         .table-main-customer tbody tr.data-commission td:nth-child(3) {
             left: 90px;
             z-index: 1;
             background-color: #fff;
         }
+
         .table-main-customer tbody tr.data-commission td:nth-child(4) {
             left: 190px;
             z-index: 1;
             background-color: #fff;
         }
-        .table-main-customer tbody tr.data-commission td:nth-child(5){
+
+        .table-main-customer tbody tr.data-commission td:nth-child(5) {
             left: 290px;
             z-index: 1;
             background-color: #fff;
         }
-        .table-main-customer tbody tr.data-commission td:nth-child(6){
+
+        .table-main-customer tbody tr.data-commission td:nth-child(6) {
             left: 390px;
             z-index: 1;
             background-color: #fff;
         }
-        .table-main-customer tbody tr.data-commission td:nth-child(7){
+
+        .table-main-customer tbody tr.data-commission td:nth-child(7) {
             left: 510px;
             z-index: 1;
             background-color: #fff;
         }
+
         thead.commission-thead .last-row th {
             position: -webkit-sticky;
             position: sticky;
@@ -77,7 +91,7 @@
             color: #fff;
         }
     </style>
-    @endpush
+@endpush
 <thead class="bg-200 text-900 thead-dark commission-thead">
 <tr class="first-row">
     <th class="width-40">
@@ -89,6 +103,7 @@
     <th class="width-100">Country</th>
     <th class="width-150">Register</th>
     <th class="width-110">Gross amount</th>
+    <th class="width-110">Bonus com from provider</th>
     <th class="width-90">Promotion $</th>
     <th class="width-90">Bank fee $</th>
     <th class="width-90">Extend fee</th>
