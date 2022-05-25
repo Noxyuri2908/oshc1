@@ -22,22 +22,18 @@
     <link href="{{asset('backend_CRM/pages/assets/css/theme.css')}}" rel="stylesheet">
     <link href="{{asset('backend_CRM/pages/assets/lib/datatables-bs4/dataTables.bootstrap4.min.css')}}"
           rel="stylesheet">
-    <link href="{{asset('backend_CRM/pages/assets/lib/datatables.net-responsive-bs4/responsive.bootstrap4.css')}}"
-          rel="stylesheet">
-    <link href="{{asset('backend_CRM/pages/assets/lib/select2/select2.min.css')}}" rel="stylesheet">
-    <link href="{{asset('backend_CRM/pages/assets/lib/flatpickr/flatpickr.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
-    {{--    <link href="{{asset('backend_CRM/pages/assets/fonts/bw-modelica/BwModelicaSS01-Light.woff')}}" rel="stylesheet">--}}
-    <link href="{{asset('backend_CRM/pages/assets/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/backend_CRM/fontawesome/css/all.min.css')}}" rel="stylesheet">
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.1/css/fixedColumns.dataTables.min.css"/>
+          href="{{asset('backend_CRM/pages/assets/lib/datatables.net-responsive-bs4/responsive.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/lib/select2/select2.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/lib/flatpickr/flatpickr.min.css')}}"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/css/bootstrap-table.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/backend_CRM/fontawesome/css/all.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/css/bootstrap-table.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('backend_CRM/js/plugins/fancybox/jquery.fancybox.css')}}"/>
     <link rel="stylesheet" href="{{asset('backend_CRM/css/summernote.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('backend_CRM/css/notiflix-3.2.5.min.css')}}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
-          integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/css/toastr.min.css')}}"/>
 
 </head>

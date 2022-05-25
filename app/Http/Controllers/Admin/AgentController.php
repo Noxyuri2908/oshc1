@@ -108,11 +108,13 @@ class AgentController extends Controller
                     $query->where('country', $roleCountriesUser);
                 }
             })->when($request->get('rating'), function ($query) use ($request) {
-                if ($request->get('rating') == 'null') {
-                    $query->whereNull('rating');
-                } else {
-                    $query->where('rating', $request->get('rating'));
-                }
+//                if ($request->get('rating') == 'null') {
+//                    $query->whereNull('rating');
+//                } else {
+//                    $query->where('rating', $request->get('rating'));
+//                }
+                $query->where('rating', $request->get('rating'));
+
             })->when($request->get('city'), function ($query) use ($request) {
                 $query->where('city', 'LIKE', '%' . $request->get('city') . '%');
             })->when($request->get('office'), function ($query) use ($request) {
@@ -150,11 +152,13 @@ class AgentController extends Controller
                 $query->where('email', 'LIKE', '%' . $request->get('email') . '%');
             })
             ->when($request->get('staff_id'), function ($query) use ($request) {
-                if ($request->get('staff_id') == 'null') {
-                    $query->whereNull('staff_id');
-                } else {
-                    $query->where('staff_id', $request->get('staff_id'));
-                }
+//                if ($request->get('staff_id') == 'null') {
+//                    $query->whereNull('staff_id');
+//                } else {
+//                    $query->where('staff_id', $request->get('staff_id'));
+//                }
+                $query->where('staff_id', $request->get('staff_id'));
+
             })
             ->when($request->get('created_at'), function ($query) use ($request) {
                 $query->whereDate('created_at', convert_date_to_db($request->get('created_at')));
