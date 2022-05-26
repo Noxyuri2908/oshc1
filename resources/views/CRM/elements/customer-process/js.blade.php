@@ -611,10 +611,10 @@
     }
 
     function callTotalAmountVnd() {
-        let totalAmount = $('#pay_agent_total_amount').val() || 0;
-        let exchangeRate = $('#pay_agent_exchange_rate').val() || 0;
-        var vnd = (parseFloat(convertStringCurrencyToNumber($('#vnd').val())));
-        let amountTotalVND = (parseFloat(convertStringCurrencyToNumber(totalAmount)) * parseFloat(convertStringCurrencyToNumber(exchangeRate))) + vnd;
+        let totalAmount = isNaN($('#pay_agent_total_amount').val()) || $('#pay_agent_total_amount').val() == null ? 0 : $('#pay_agent_total_amount').val();
+        let exchangeRate = isNaN($('#pay_agent_exchange_rate').val()) || $('#pay_agent_exchange_rate').val() == null ? 0 : $('#pay_agent_exchange_rate').val();
+        var vnd = $('#vnd').val() == null || $('#vnd').val() == '' ? 0 : parseFloat(convertStringCurrencyToNumber($('#vnd').val()));
+        let amountTotalVND = (parseFloat(totalAmount) * parseFloat(exchangeRate)) + vnd;
         $('#pay_agent_amount_VN').val(amountTotalVND);
     }
 
