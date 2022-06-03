@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Admin\Person;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use App\Exports\UserExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use App\Exports\CommissionReportExport;
+use App\Exports\CommissionReportMultiSheetExport;
 use Illuminate\Http\Request;
 
 class CommissionReportController extends Controller
@@ -43,5 +48,10 @@ class CommissionReportController extends Controller
             'reports' => $reports
         ];
         return view('CRM.pages.commission-report.index', $data);
+    }
+
+    public function export($agentId, $fromDate, $toDate)
+    {
+        return Excel::download(new CommissionReportMultiSheetExport($agentId, $fromDate, $toDate), 'users.xlsx');
     }
 }

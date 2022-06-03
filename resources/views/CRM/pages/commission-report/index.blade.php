@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="d-flex flex-column pr-15 width-90">
-                        <button type="submit" class="custom-css-input px-0 custom-border custom-h">Export xlsx</button>
+                        <button type="submit" id="export-report" class="custom-css-input px-0 custom-border custom-h">Export xlsx</button>
                     </div>
                 </div>
             </div>
@@ -154,6 +154,16 @@
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
                 window.location.href = "/crm/create-commission-report/" + agentId + "/" + fromDate + "/" + toDate;
+            })
+
+            $(document).on('click', '#export-report', function () {
+                // var agentId = $('#agent_select').val();
+                var agentId = 6529;
+                var fromDate = $('#start_date').val();
+                var toDate = $('#end_date').val();
+                window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate;
+                // history.back();
+                // window.location.href = document.referrer;
             })
 
             $(document).on('mouseover', '#start_date', function () {

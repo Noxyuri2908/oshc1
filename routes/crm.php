@@ -679,6 +679,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
     ///lily's route
     Route::get('/commission-report', 'CommissionReportController@index')->name('commission-report');
+    Route::get('/export/{agentId}/{fromDate}/{toDate}', 'CommissionReportController@export')->name('commission-report-export');
     Route::get('/create-commission-report/{agentId}/{fromDate}/{toDate}', 'CommissionReportController@create')->name('create-commission-report');
 
 });
