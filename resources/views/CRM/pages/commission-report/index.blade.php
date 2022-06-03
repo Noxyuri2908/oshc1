@@ -153,7 +153,7 @@
                 var agentId = $('#agent_select').val();
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
-                window.location.href = "create-commission-report/" + agentId + "/" + fromDate + "/" + toDate;
+                window.location.href = "/crm/create-commission-report/" + agentId + "/" + fromDate + "/" + toDate;
             })
 
             $(document).on('mouseover', '#start_date', function () {

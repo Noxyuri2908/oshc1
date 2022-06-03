@@ -44,6 +44,10 @@ textarea:focus, input:focus{
     font-weight: 100;
 }
 
+.card-body {
+    overflow-x: scroll;
+}
+
 .table-bordered td {
     border: 1px solid white!important;
 }

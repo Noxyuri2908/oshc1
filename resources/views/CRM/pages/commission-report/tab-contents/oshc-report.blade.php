@@ -39,29 +39,29 @@
     @if(isset($reports) && !empty($reports))
         @foreach($reports as $report)
         <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
-            <td>infor</td>
+            <td>{{ $report->service }}</td>
+            <td>{{ $report->full_name }}</td>
+            <td>{{ $report->provider }}</td>
+            <td></td>
+            <td>{{ $report->policy_no }}</td>
+            <td>{{ $report->no_of_adults }}</td>
+            <td>{{ $report->no_of_children }}</td>
+            <td>{{ $report->start_date }}</td>
+            <td>{{ $report->end_date }}</td>
+            <td>{{ $report->amount }}</td>
+            <td></td>
+            <td>{{ $report->comm_ex_GST }}</td>
+            <td>{{ $report->gst }}</td>
+            <td></td>
+            <td>{{ $report->bonus }}</td>
+            <td></td>
+            <td>{{ $report->recall_com }}</td>
+            <td>{{ $report->amount }}</td>
+            <td>{{ $report->amount }}</td>
+            <td>{{ $report->visa_status }}</td>
+            <td>{{ $report->amount }}</td>
+            <td>{{ $report->date_of_payment }}</td>
+            <td>{{ $report->note }}</td>
             <td data-toggle="modal" data-target="#history-modal" style="cursor: pointer">view</td>
         </tr>
         @endforeach
