@@ -4,7 +4,7 @@
     </div>
     <p class="table-name">OSHC & OVHC report</p>
     <p class="table-description">Agent partner: ATS HCM + ATS HN</p>
-    <p class="table-description">Date: Start date 10/10/2021 - End date 09/11/2021</p>
+    <p class="table-description">Date: Start date @if(isset($fromDate)){{ $fromDate }}@endif - End date @if(isset($toDate)){{ $toDate }}@endif</p>
 </div>
 <table style="width: 1433px" class="oshc-table-content">
     <thead>
