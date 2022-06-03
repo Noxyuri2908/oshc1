@@ -1,6 +1,90 @@
-.card {
-    font-size: 13px;
+body {
+    font: normal normal bold 13px/15px Roboto;
 }
-#exTab2 a {
-    color: red;
+
+textarea:focus, input:focus{
+    outline: 0px;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+*:focus {
+    outline: 0px;
+}
+
+#tabs ul a {
+    color: #1C427A;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.table-name {
+    color: #1C427A;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.table-name {
+    color: #1C427A;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.table-description {
+    color: #1C427A;
+    opacity: 1;
+    font-weight: 100;
+}
+
+.oshc-table-content tbody td {
+    font-size: 12px;
+    color: #373134DB;
+    opacity: 1;
+    font-weight: 100;
+}
+
+.table-bordered td {
+    border: 1px solid white!important;
+}
+
+#top-filter button {
+    margin-top: 21px;
+}
+
+#modalTitle {
+    font-size: 14px;
+    color: #1C427A;
+    text-align: center;
+}
+
+#apply-modal .btn {
+    background: #1C427A;
+    color: white;
+    font-size: 11px;
+    padding: 5px 30px;
+    border-radius: 5px;
+}
+
+.modal-body .label {
+    font-size: 11px;
+    font-weight: 100;
+    color: #1C427A;
+    padding-right: 0px;
+}
+
+.modal-body input {
+    border: 0.5px solid #707070!important;
+}
+
+#history-modal .modal-title {
+    font-size: 14px;
+    color: #1C427A;
+    font-weight: 700;
+}
+
+.select2-results__option, .select2-selection__rendered {
+    color: #4A4A4A;
+    font-weight: 100;
+    font-size: 12px;
 }

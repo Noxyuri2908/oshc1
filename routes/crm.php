@@ -677,6 +677,10 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
 
     Route::get('/approve-com-report', [ApprovedComReportController::class, 'index'])->name('com_report');
 
+    ///lily's route
+    Route::get('/commission-report', 'CommissionReportController@index')->name('commission-report');
+    Route::get('/create-commission-report/{agentId}/{fromDate}/{toDate}', 'CommissionReportController@create')->name('create-commission-report');
+
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {
     Route::get('/', [LuckyDrawController::class, 'show'])->name('lucky.show');

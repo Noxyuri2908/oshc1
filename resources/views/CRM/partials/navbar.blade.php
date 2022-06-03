@@ -404,6 +404,11 @@
                         id="report">
                         <li class="nav-item {{$flag == 'report-month' ? 'active' : ''}}">
                             <a target="_blank" class="nav-link"
+                               href="{{ route('commission-report') }}">COMMISSION
+                                REPORT</a>
+                        </li>
+                        <li class="nav-item {{$flag == 'report-month' ? 'active' : ''}}">
+                            <a target="_blank" class="nav-link"
                                href="{{route('reportMonthly',['start_date'=>Carbon::now()->subMonth(1)->format('d/m/Y'),'end_date'=>Carbon::now()->format('d/m/Y'),'type'=>'vi'])}}">MONTHLY
                                 REPORT</a>
                         </li>

@@ -35,5 +35,6 @@
     <link rel="stylesheet" href="{{asset('backend_CRM/css/summernote.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('backend_CRM/css/notiflix-3.2.5.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/css/toastr.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('public/backend_CRM/css/commissionReport/index.css')}}">
 
 </head>
