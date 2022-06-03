@@ -56,8 +56,8 @@
                     <div class="d-flex flex-column pr-15 width-110">
                         <label for="">End date</label>
                         <input type="text" id="end_date" class="custom-border custom-h"
-                               @if(isset($fromDate))
-                                value="{{ $fromDate }}"
+                               @if(isset($toDate))
+                                value="{{ $toDate }}"
                                 @endif>
                     </div>
                     <div class="d-flex flex-column pr-15 width-90">
