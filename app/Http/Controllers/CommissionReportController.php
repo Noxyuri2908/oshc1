@@ -9,7 +9,9 @@ use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Exports\CommissionReportExport;
+use App\Exports\OshcReportExport;
 use App\Exports\CommissionReportMultiSheetExport;
+use App\Exports\TestReport;
 use Illuminate\Http\Request;
 
 class CommissionReportController extends Controller
@@ -53,8 +55,7 @@ class CommissionReportController extends Controller
 
     public function export($agentId, $fromDate, $toDate)
     {
-
-//        PHPExcel_IOFactory::load(public_path('/users.xls'));
-        return Excel::download(new CommissionReportMultiSheetExport($agentId, $fromDate, $toDate), 'users.xlsx');
+        return Excel::download(new OshcReportExport($agentId, $fromDate, $toDate), 'ComissionReport.xlsx');
     }
+
 }

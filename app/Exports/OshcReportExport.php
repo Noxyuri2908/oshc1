@@ -2,10 +2,15 @@
 
 namespace App\Exports;
 
+use Carbon\Carbon;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Events\BeforeWriting;
+use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Files\LocalTemporaryFile;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
@@ -14,7 +19,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class OshcReportExport implements FromCollection, WithTitle, WithHeadings, WithDrawings, WithCustomStartCell, ShouldAutoSize, WithStyles
+class OshcReportExport implements WithEvents, WithHeadings, WithCustomStartCell, ShouldAutoSize, WithStyles
 {
 
     private $agentId;
@@ -27,36 +32,46 @@ class OshcReportExport implements FromCollection, WithTitle, WithHeadings, WithD
         $this->fromDate  = $fromDate;
         $this->toDate  = $toDate;
     }
-    /**
-    * @return \Illuminate\Support\Collection
-    */
 
-
-    public function drawings()
+    public function registerEvents(): array
     {
-        $drawing = new Drawing();
-        $drawing->setName('Logo');
-        $drawing->setDescription('This is my logo');
-        $drawing->setPath(public_path('/images/logoExcel.png'));
-        $drawing->setHeight(90);
-//        $drawing->setCoordinates('A1');
+        return [
+            BeforeWriting::class => function(BeforeWriting $event) {
+                $templateFile = new LocalTemporaryFile(public_path('template.xlsx'));
+                $event->writer->reopen($templateFile, Excel::XLSX);
+                $sheet = $event->writer->getSheetByIndex(1);
 
-        return $drawing;
+                $this->populateSheet($sheet);
+
+                $event->writer->getSheetByIndex(1)->export($event->getConcernable()); // call the export on the first sheet
+
+                return $event->getWriter()->getSheetByIndex(1);
+            },
+        ];
     }
 
-    public function collection()
+    private function populateSheet($sheet)
     {
         $reports = DB::select("CALL create_commission_report(:agent_id, :from_date, :to_date)", [
             'agent_id' => $this->agentId,
             'from_date' => $this->fromDate,
             'to_date' => $this->toDate
         ]);
-        return collect($reports);
-    }
+        $sheet->setCellValue('b4', 'From '.$this->fromDate.' to '. $this->toDate);
+        $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
+        $startRow = 7;
+        foreach ($reports as $report) {
+            $key = 0;
 
-    public function title(): string
-    {
-        return 'OSHC & OVHC Report';
+            // Populate the static cells
+            foreach ($report as $value) {
+                $sheet->setCellValue($columns[$key] . $startRow, $value);
+                $key ++;
+//                $sheet->setCellValue('A2', Carbon::now()->format('Y-m-d'));
+            }
+
+            $startRow++;
+        }
     }
 
     public function headings(): array
@@ -86,5 +101,4 @@ class OshcReportExport implements FromCollection, WithTitle, WithHeadings, WithD
 
         ];
     }
-
 }
