@@ -157,7 +157,11 @@
                 var agentId = $('#agent_select').val();
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
-                window.location.href = "/crm/create-commission-report/" + agentId + "/" + fromDate + "/" + toDate;
+                if ($('#tabs .nav-item .active')[0].innerText == 'OSHC & OVHC Report') {
+                    window.location.href = "/crm/create-oshc-report/" + agentId + "/" + fromDate + "/" + toDate;
+                } else  if ($('#tabs .nav-item .active')[0].innerText == 'Other Insurances Report') {
+                    window.location.href = "/crm/create-insurance-report/" + agentId + "/" + fromDate + "/" + toDate;
+                }
             })
 
             $(document).on('click', '#export-report', function () {
@@ -165,6 +169,7 @@
                 {{--var agentId = {{ $agentId }};--}}
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
+
                 window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate;
                 // history.back();
                 // window.location.href = document.referrer;
