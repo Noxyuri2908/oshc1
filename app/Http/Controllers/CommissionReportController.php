@@ -36,6 +36,7 @@ class CommissionReportController extends Controller
             'from_date' => $fromDate,
             'to_date' => $toDate
         ]);
+
         $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
         $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
         $data = [
@@ -52,6 +53,8 @@ class CommissionReportController extends Controller
 
     public function export($agentId, $fromDate, $toDate)
     {
+
+//        PHPExcel_IOFactory::load(public_path('/users.xls'));
         return Excel::download(new CommissionReportMultiSheetExport($agentId, $fromDate, $toDate), 'users.xlsx');
     }
 }
