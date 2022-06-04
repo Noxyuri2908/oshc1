@@ -115,11 +115,15 @@
                     </div>
                     <div class="tab-pane active" id="tabs-2" role="tabpanel">
                         <div>
+                            @yield('oshc-report')
                             @include('CRM.pages.commission-report.tab-contents.oshc-report')
                         </div>
                     </div>
                     <div class="tab-pane" id="tabs-3" role="tabpanel">
-                        <p>Third Panel</p>
+                        <div>
+                            @yield('insurance-report')
+                            @include('CRM.pages.commission-report.tab-contents.insurance-report')
+                        </div>
                     </div>
                     <div class="tab-pane" id="tabs-4" role="tabpanel">
                         <p>4 Panel</p>
@@ -157,8 +161,8 @@
             })
 
             $(document).on('click', '#export-report', function () {
-                // var agentId = $('#agent_select').val();
-                var agentId = 6529;
+                var agentId = $('#agent_select').val();
+                {{--var agentId = {{ $agentId }};--}}
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
                 window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate;

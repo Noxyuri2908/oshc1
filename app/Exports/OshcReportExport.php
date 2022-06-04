@@ -6,15 +6,10 @@ use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\BeforeWriting;
 use Maatwebsite\Excel\Excel;
 use Maatwebsite\Excel\Files\LocalTemporaryFile;
-use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
-use Maatwebsite\Excel\Concerns\WithDrawings;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -62,12 +57,14 @@ class OshcReportExport implements WithEvents, WithHeadings, WithCustomStartCell,
         $startRow = 7;
         foreach ($reports as $report) {
             $key = 0;
-
             // Populate the static cells
-            foreach ($report as $value) {
-                $sheet->setCellValue($columns[$key] . $startRow, $value);
+            foreach ($report as $nameField=>$value) {
+                if ($nameField == 'start_date' || $nameField == "end_date" || $nameField == 'date_of_policy') {
+                    $sheet->setCellValue($columns[$key] . $startRow, Carbon::parse($value)->format('d/m/Y'));
+                } else {
+                    $sheet->setCellValue($columns[$key] . $startRow, $value);
+                }
                 $key ++;
-//                $sheet->setCellValue('A2', Carbon::now()->format('Y-m-d'));
             }
 
             $startRow++;
@@ -96,9 +93,7 @@ class OshcReportExport implements WithEvents, WithHeadings, WithCustomStartCell,
     public function styles(Worksheet $sheet)
     {
         return [
-            // Style the first row as bold text.
             6    => ['font' => ['bold' => true, 'size' => 12]],
-
         ];
     }
 }
