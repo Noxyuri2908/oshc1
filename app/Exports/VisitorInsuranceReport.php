@@ -32,7 +32,7 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
     {
         return [
             BeforeWriting::class => function(BeforeWriting $event) {
-                $templateFile = new LocalTemporaryFile(public_path('template.xlsx'));
+                $templateFile = new LocalTemporaryFile(storage_path('app/oshc-report.xlsx'));
                 $event->writer->reopen($templateFile, Excel::XLSX);
                 $sheet = $event->writer->getSheetByIndex(2);
 
@@ -47,7 +47,16 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
 
     private function populateSheet($sheet)
     {
-        $reports = Apply::where('agent_id', $this->agentId)
+        $reports = Apply::select('id',
+        'agent_id',
+        'type_service',
+        'provider_id',
+        'policy',
+        'no_of_adults',
+        'no_of_children',
+        'start_date',
+        'end_date',
+        'total')->where('agent_id', $this->agentId)
             ->whereIn('type_service', [2,3])
             ->where('start_date', '>=', $this->fromDate)
             ->where('end_date', '<=', $this->toDate)
@@ -56,6 +65,7 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
         foreach ($reports as $report) {
+            $contents = [];
             if (isset($report->hoahong->policy_status)) {
                 if ($report->hoahong->policy_status == 1) {
                     $com_status = 'Done';
@@ -88,69 +98,75 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
                 $visa_status = '';
             }
             if (isset($report->dichvu->name)) {
-                $report->service = $report->dichvu->name;
+                $contents['service'] = $report->dichvu->name;
             } else {
-                $report->service = '';
+                $contents['service'] = '';
             }
             if (isset($report->customer)) {
-                $report->full_name = $report->customer->first_name . ' ' . $report->customer->last_name;
+                $contents['full_name'] = $report->customer->first_name . ' ' . $report->customer->last_name;
             } else {
-                $report->full_name = '';
+                $contents['full_name'] = '';
             }
-            $report->cover = '';
+            if (isset($report->serviceReport->name)) {
+                $contents['provider'] = $report->serviceReport->name;
+            } else {
+                $contents['provider'] = '';
+            }
+
+            $contents['cover'] = '';
             if (isset($report->dichvu->policy_no)) {
-                $report->policy_no = $report->dichvu->policy_no;
+                $contents['policy_no'] = $report->dichvu->policy_no;
             } else {
-                $report->policy_no = 0;
+                $contents['policy_no'] = 0;
             }
-            $report->no_of_adults;
-            $report->no_of_children;
+            $contents['no_of_adults_sort'] = $report->no_of_adults;
+            $contents['no_of_children_sort'] = $report->no_of_children;
             if (isset($report->hoahong->issue_date)) {
-                $report->date_of_policy = $report->hoahong->issue_date;
+                $contents['date_of_policy'] = $report->hoahong->issue_date;
             } else {
-                $report->date_of_policy = 0;
+                $contents['date_of_policy'] = '0000/00/00';
             }
-            $report->start_date;
-            $report->end_date;
-            $report->total;
+            $contents['start_date_sort'] = $report->start_date;
+            $contents['end_date_sort'] = $report->end_date;
+            $contents['total_sort'] = $report->total;
             if (isset($report->commission->comm)) {
-                $report->comm_percent = $report->commission->comm;
+                $contents['comm_percent'] = $report->commission->comm;
             } else {
-                $report->comm_percent = 0;
+                $contents['comm_percent'] = 0;
             }
             if (isset($report->total)) {
-                $report->comm_vnd = $report->total * ($report->commission->comm / 100);
+                $contents['comm_vnd'] = $report->total * ($report->commission->comm / 100);
             } else {
-                $report->comm_vnd = 0;
+                $contents['comm_vnd'] = 0;
             }
             if (isset($report->profit->pay_agent_bonus)) {
-                $report->bonus = $report->profit->pay_agent_bonus;
+                $contents['bonus'] = $report->profit->pay_agent_bonus;
             } else {
-                $report->bonus = 0;
+                $contents['bonus'] = 0;
             }
             if (isset($report->profit->pay_agent_extra)) {
-                $report->pay_agent_extra = $report->profit->pay_agent_extra;
+                $contents['pay_agent_extra'] = $report->profit->pay_agent_extra;
             } else {
-                $report->pay_agent_extra = 0;
+                $contents['pay_agent_extra'] = 0;
             }
-            $report->recall_com = 0;//k hieu???
-            $report->total_vnd = $report->comm_vnd + $report->bonus + $report->pay_agent_extra;
-            $report->comm_status = $com_status;
-            $report->visa_status = $visa_status;
-            $report->date_of_payment = '';
-            $report->note = '';
+            $contents['recall_com'] = 0;//k hieu???
+            $contents['total_vnd'] = $report->comm_vnd + $report->bonus + $report->pay_agent_extra;
+            $contents['comm_status'] = $com_status;
+            $contents['visa_status'] = $visa_status;
+            $contents['date_of_payment'] = '';
+            $contents['note'] = '';
             $key = 0;
             // Populate the static cells
-            foreach ($report as $nameField=>$value) {
-                if ($nameField == 'start_date' || $nameField == "end_date" || $nameField == 'date_of_policy') {
+            foreach ($contents as $nameField=>$value) {
+                if ($nameField == 'start_date_sort' || $nameField == "end_date_sort" || $nameField == 'date_of_policy') {
                     $sheet->setCellValue($columns[$key] . $startRow, Carbon::parse($value)->format('d/m/Y'));
                 } else {
                     $sheet->setCellValue($columns[$key] . $startRow, $value);
                 }
                 $key ++;
             }
-
             $startRow++;
+
         }
     }
 }

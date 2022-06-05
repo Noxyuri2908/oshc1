@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Exports\CommissionReportExport;
 use App\Exports\OshcReportExport;
+use App\Exports\VisitorInsuranceReport;
 use App\Exports\CommissionReportMultiSheetExport;
 use App\Exports\TestReport;
 use Illuminate\Http\Request;
@@ -137,7 +138,8 @@ class CommissionReportController extends Controller
 
     public function export($agentId, $fromDate, $toDate)
     {
-        return Excel::download(new OshcReportExport($agentId, $fromDate, $toDate), 'ComissionReport.xlsx');
+        Excel::store(new OshcReportExport($agentId, $fromDate, $toDate), 'oshc-report.xlsx');
+        return Excel::download(new VisitorInsuranceReport($agentId, $fromDate, $toDate), 'ComissionReport.xlsx');
     }
 
 }
