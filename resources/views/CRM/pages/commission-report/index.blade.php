@@ -166,7 +166,7 @@
 
             $(document).on('click', '#export-report', function () {
                 var agentId = $('#agent_select').val();
-                var agentId = {{ $agentId }};
+                {{--var agentId = {{ $agentId }};--}}
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
 
