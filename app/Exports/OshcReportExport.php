@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class OshcReportExport implements WithEvents, WithHeadings, WithCustomStartCell, ShouldAutoSize, WithStyles
+class OshcReportExport implements WithEvents, ShouldAutoSize
 {
 
     private $agentId;
@@ -69,31 +69,5 @@ class OshcReportExport implements WithEvents, WithHeadings, WithCustomStartCell,
 
             $startRow++;
         }
-    }
-
-    public function headings(): array
-    {
-        $reports = DB::select("CALL create_commission_report(:agent_id, :from_date, :to_date)", [
-            'agent_id' => $this->agentId,
-            'from_date' => $this->fromDate,
-            'to_date' => $this->toDate
-        ]);
-        $listname = [];
-        foreach ($reports[0] as $key=>$value) {
-            $listname[] = $key;
-        }
-        return $listname;
-    }
-
-    public function startCell(): string
-    {
-        return 'A6';
-    }
-
-    public function styles(Worksheet $sheet)
-    {
-        return [
-            6    => ['font' => ['bold' => true, 'size' => 12]],
-        ];
     }
 }

@@ -40,7 +40,7 @@
             <tr>
                 <td>{{ isset($report->dichvu->name) ? $report->dichvu->name : '' }}</td>
                 <td>{{ isset($report->customer->first_name) ? $report->customer->first_name : '' }} {{ isset($report->customer->last_name) ? $report->customer->last_name : '' }}</td>
-                <td>{{ isset($report->service->name) ? $report->service->name : '' }}</td>
+                <td>{{ isset($report->serviceReport->name) ? $report->serviceReport->name : '' }}</td>
                 <td></td>
                 <td>{{ isset($report->dichvu->policy_no) ? $report->dichvu->policy_no : '' }}</td>
                 <td>{{ $report->no_of_adults }}</td>

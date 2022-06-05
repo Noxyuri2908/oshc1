@@ -94,6 +94,35 @@ class Apply extends Model
     {
         return $this->hasOne(static::class, 'ref_no', 'invoice_code_link');
     }
+    public function customer()
+    {
+        return $this->hasOne('App\Admin\Customer');
+    }
+
+    public function dichvu()
+    {
+        return $this->hasOne('App\Admin\Dichvu', 'id','type_service');
+    }
+
+    public function serviceReport()
+    {
+        return $this->hasOne('App\Admin\Service', 'id', 'provider_id');
+    }
+
+    public function hoahong()
+    {
+        return $this->hasOne('App\Admin\Hoahong');
+    }
+
+    public function profit()
+    {
+        return $this->hasOne('App\Admin\Profit','apply_id', 'id');
+    }
+
+    public function commission()
+    {
+        return $this->hasOne('App\Admin\Commission', 'user_id', 'agent_id');
+    }
 
     public function hospital(){
         return $this->hasOne(HospitalAccess::class,'id', 'hospital_id');
@@ -334,7 +363,7 @@ class Apply extends Model
         return $this->hasMany('App\Admin\Hoahong', 'apply_id');
     }
 
-    public function profit()
+    public function profits()
     {
         return $this->hasMany(Profit::class, 'apply_id');
     }
@@ -349,10 +378,6 @@ class Apply extends Model
         return $this->hasMany(Hoahong::class, 'apply_id');
     }
 
-    public function hoahong()
-    {
-        return $this->hasOne(Hoahong::class, 'apply_id', 'id');
-    }
 
     public function gethh()
     {
@@ -390,10 +415,6 @@ class Apply extends Model
         return $this->belongsTo('App\Admin\Dichvu', 'type_service');
     }
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class, 'id', 'apply_id');
-    }
 
     public function customers()
     {

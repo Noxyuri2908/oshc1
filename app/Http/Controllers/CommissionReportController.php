@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin\Person;
 use App\User;
-use App\Apply;
+use App\Admin\Apply;
 use Illuminate\Support\Facades\DB;
 use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
