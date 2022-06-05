@@ -18,6 +18,26 @@
                         <label for="">Agent</label>
                         <select name="Agent" id="agent_select" class="selectpicker width-180 custom-border custom-h">
                             <option value=""></option>
+                            <option value="6529"
+                                    @if(isset($agentId) && 6529 == $agentId)
+                                    selected
+                                    @endif
+                            >6529</option>
+                            <option value="6603"
+                                    @if(isset($agentId) && 6603 == $agentId)
+                                    selected
+                                @endif
+                            >6603</option>
+                            <option value="6581"
+                                    @if(isset($agentId) && 6581 == $agentId)
+                                    selected
+                                @endif
+                            >6581</option>
+                            <option value="8588"
+                                    @if(isset($agentId) && 8588 == $agentId)
+                                    selected
+                                @endif
+                            >8588</option>
                             @foreach($agents as $agent)
                             <option value="{{ $agent->id }}" data-select2-id="{{ $agent->id }}"
                                     @if(isset($agentId) && $agent->id == $agentId)
@@ -157,11 +177,7 @@
                 var agentId = $('#agent_select').val();
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
-                if ($('#tabs .nav-item .active')[0].innerText == 'OSHC & OVHC Report') {
-                    window.location.href = "/crm/create-oshc-report/" + agentId + "/" + fromDate + "/" + toDate;
-                } else  if ($('#tabs .nav-item .active')[0].innerText == 'Other Insurances Report') {
-                    window.location.href = "/crm/create-insurance-report/" + agentId + "/" + fromDate + "/" + toDate;
-                }
+                window.location.href = "/crm/create-comission-report/" + agentId + "/" + fromDate + "/" + toDate;
             })
 
             $(document).on('click', '#export-report', function () {

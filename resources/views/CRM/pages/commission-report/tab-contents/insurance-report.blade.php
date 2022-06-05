@@ -34,9 +34,8 @@
     </tr>
     </thead>
     <tbody class="table table-bordered" style="background: #F9F9F9">
-    @if(strpos(URL::current(), 'create-insurance-report') !== false)
-    @if(isset($reports) && !empty($reports))
-        @foreach($reports as $report)
+    @if(isset($insuranceRreports) && !empty($reports))
+        @foreach($insuranceRreports as $report)
             <tr>
                 <td>{{ isset($report->dichvu->name) ? $report->dichvu->name : '' }}</td>
                 <td>{{ isset($report->customer->first_name) ? $report->customer->first_name : '' }} {{ isset($report->customer->last_name) ? $report->customer->last_name : '' }}</td>
@@ -64,7 +63,6 @@
         @endforeach
     @else
         <div></div>
-    @endif
     @endif
     </tbody>
 

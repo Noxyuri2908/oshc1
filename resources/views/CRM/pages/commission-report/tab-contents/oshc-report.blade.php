@@ -36,7 +36,6 @@
     </tr>
     </thead>
     <tbody class="table table-bordered" style="background: #F9F9F9">
-    @if(strpos(URL::current(), 'create-oshc-report') !== false)
     @if(isset($reports) && !empty($reports))
         @foreach($reports as $report)
         <tr>
@@ -68,7 +67,6 @@
         @endforeach
     @else
     <div></div>
-    @endif
     @endif
     </tbody>
 
