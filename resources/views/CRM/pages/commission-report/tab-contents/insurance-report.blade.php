@@ -38,26 +38,72 @@
         @foreach($insuranceRreports as $report)
             <tr>
                 <td>{{ isset($report->dichvu->name) ? $report->dichvu->name : '' }}</td>
-                <td>{{ isset($report->customer->first_name) ? $report->customer->first_name : '' }} {{ isset($report->customer->last_name) ? $report->customer->last_name : '' }}</td>
+                @if (isset($report->customer))
+                    <td>{{ $report->customer->first_name . ' ' . $report->customer->last_name }}</td>
+                @else
+                    <td></td>
+                @endif
+
                 <td>{{ isset($report->serviceReport->name) ? $report->serviceReport->name : '' }}</td>
                 <td></td>
-                <td>{{ isset($report->dichvu->policy_no) ? $report->dichvu->policy_no : '' }}</td>
+                <td>{{ isset($report->dichvu->policy_no) ? $report->dichvu->policy_no : 0 }}</td>
                 <td>{{ $report->no_of_adults }}</td>
                 <td>{{ $report->no_of_children }}</td>
                 <td>{{ isset($report->hoahong->issue_date) ? $report->hoahong->issue_date : '' }}</td>
                 <td>{{ $report->start_date }}</td>
                 <td>{{ $report->end_date }}</td>
                 <td>{{ isset($report->total) ? $report->total : 0 }}</td>
-                <td>{{ $report->comm_percent }}</td>
-                <td>{{ $report->comm_vnd }}</td>
-                <td>{{ $report->bonus }}</td>
-                <td>{{ $report->pay_agent_extra }}</td>
+                <td>{{ isset($report->commission->comm) ? $report->commission->comm : 0 }}</td>
+                @if (isset($report->total))
+                    <td>{{ round($report->total * ($report->commission->comm / 100), 2)}}</td>
+                @else
+                    <td>0</td>
+                @endif
+                <td>{{ isset($report->profit->pay_agent_bonus) ? $report->profit->pay_agent_bonus : 0 }}</td>
+                <td>{{ isset($report->profit->pay_agent_extra) ? $report->profit->pay_agent_extra : 0 }}</td>
+                @if(isset($report->refund->refund_amount_com_agent_gbcfa) && isset($report->refund->std_status) && $report->refund->std_status == 1)
+                <td>{{ $report->refund->refund_amount_com_agent_gbcfa }}</td>
+                @else
+                <td>0</td>
+                @endif
+                @if ($report->recall_com == 0)
+                <td>{{ $report->comm_vnd + $report->bonus + $report->pay_agent_extra }}</td>
+                @else
                 <td>{{ $report->recall_com }}</td>
-                <td>{{ $report->total_VND }}</td>
-                <td>{{ $report->comm_status }}</td>
-                <td>{{ $report->visa_status }}</td>
-                <td>{{ $report->date_of_payment }}</td>
-                <td>{{ $report->note }}</td>
+                @endif
+                @php
+                    $com_status = '';
+                    if (isset($report->hoahong->policy_status)) {
+                        $policy_status = $report->hoahong->policy_status;
+                        if ($policy_status == 1) {
+                            $com_status = 'Done';
+                        } elseif ($policy_status == 2) {
+                            $com_status = 'Customer Bank';
+                        } elseif ($policy_status == 3) {
+                            $com_status = 'Monthly deduct';
+                        } elseif ($policy_status == 4) {
+                            $com_status = 'Monthly deduct - Annalink';
+                        }
+                    }
+                    $visa_status = '';
+                    if (isset($report->profit->visa_status)) {
+                        $visa_statusNb = $report->profit->visa_status;
+                        if ($visa_statusNb == 1) {
+                            $visa_status = 'Granted';
+                        } elseif ($visa_statusNb == 2) {
+                            $visa_status = 'Not yet';
+                        } elseif ($visa_statusNb == 3) {
+                            $visa_status = 'Failed / Cancelled';
+                        } elseif ($visa_statusNb == 4) {
+                            $visa_status = 'Cancel';
+                        }
+                    }
+                @endphp
+
+                <td>{{ $com_status }}</td>
+                <td>{{ $visa_status }}</td>
+                <td></td>
+                <td></td>
                 <td data-toggle="modal" data-target="#history-modal" style="cursor: pointer">view</td>
             </tr>
         @endforeach

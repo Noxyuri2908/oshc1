@@ -33,11 +33,11 @@
                                     selected
                                 @endif
                             >6581</option>
-                            <option value="8588"
-                                    @if(isset($agentId) && 8588 == $agentId)
+                            <option value="7974"
+                                    @if(isset($agentId) && 7974 == $agentId)
                                     selected
                                 @endif
-                            >8588</option>
+                            >7974</option>
                             @foreach($agents as $agent)
                             <option value="{{ $agent->id }}" data-select2-id="{{ $agent->id }}"
                                     @if(isset($agentId) && $agent->id == $agentId)
@@ -64,6 +64,7 @@
                     <div class="d-flex flex-column pr-15 width-180">
                         <label for="">Type of report</label>
                         <select name="typeOfReport" id="typeOfReport-by-agent" class="selectpicker custom-border custom-h">
+                            <option></option>
                         </select>
                     </div>
                     <div class="d-flex flex-column pr-15 width-110">

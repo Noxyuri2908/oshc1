@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Admin\Apply;
+use App\Admin\ExchangRate;
+use App\User;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -60,6 +62,7 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
         $sheet->setCellValue('b4', 'From '.$this->fromDate.' to '. $this->toDate);
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
+        $total = 0;
         foreach ($reports as $report) {
             $key = 0;
             // Populate the static cells
@@ -69,11 +72,17 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
                 } else {
                     $sheet->setCellValue($columns[$key] . $startRow, $value);
                 }
+                if ($nameField == 'total_amount_AUD') {
+                    $total = $total + $value;
+                }
                 $key ++;
             }
-
             $startRow++;
         }
+        $sheet->mergeCells('A'.$startRow.':S'.$startRow);
+
+        $sheet->setCellValue('A'.$startRow, 'Total');
+        $sheet->setCellValue('T'.$startRow, $total);
     }
 
     private function populateSheet1($sheet)
@@ -88,13 +97,15 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
             'start_date',
             'end_date',
             'total')->where('agent_id', $this->agentId)
-            ->whereIn('type_service', [2,3])
+            ->whereIn('type_service', [4,6])
             ->where('start_date', '>=', $this->fromDate)
             ->where('end_date', '<=', $this->toDate)
             ->get();
+        $pitAgent = User::where('id', $this->agentId)->first()->pit;
         $sheet->setCellValue('b4', 'From '.$this->fromDate.' to '. $this->toDate);
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
+        $sumTotalVnd = 0;
         foreach ($reports as $report) {
             $contents = [];
             if (isset($report->hoahong->policy_status)) {
@@ -166,7 +177,7 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
                 $contents['comm_percent'] = 0;
             }
             if (isset($report->total)) {
-                $contents['comm_vnd'] = $report->total * ($report->commission->comm / 100);
+                $contents['comm_vnd'] = round($report->total * ($report->commission->comm / 100), 2 );
             } else {
                 $contents['comm_vnd'] = 0;
             }
@@ -180,8 +191,17 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
             } else {
                 $contents['pay_agent_extra'] = 0;
             }
-            $contents['recall_com'] = 0;//k hieu???
-            $contents['total_vnd'] = $report->comm_vnd + $report->bonus + $report->pay_agent_extra;
+            if (isset($report->refund->refund_amount_com_agent_gbcfa) && isset($report->refund->std_status) && $report->refund->std_status == 1) {
+                $contents['recall_com'] = $report->refund->refund_amount_com_agent_gbcfa;
+            } else {
+                $contents['recall_com'] = 0;//k hieu???
+            }
+            if ($contents['recall_com'] == 0) {
+                $contents['total_vnd'] = $contents['comm_vnd'] + $contents['bonus'] + $contents['pay_agent_extra'];
+            } else {
+                $contents['total_vnd'] = $contents['recall_com'];
+            }
+            $sumTotalVnd = $sumTotalVnd + $contents['total_vnd'];
             $contents['comm_status'] = $com_status;
             $contents['visa_status'] = $visa_status;
             $contents['date_of_payment'] = '';
@@ -199,5 +219,39 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
             $startRow++;
 
         }
+        if ($pitAgent == 1) {
+            $pit = 0;
+        } else {
+            if ($sumTotalVnd > 2000000) {
+                $pit = round($sumTotalVnd / 11, 2);
+            } else {
+                $pit = 0;
+            }
+        }
+
+        $exchangRate = ExchangRate::where('month', Carbon::now()->month)->where('year', Carbon::now()->year)->first();
+        if (isset($exchangRate->rate)) {
+            $rate = $exchangRate->rate / 100;
+        } else {
+            $rate = 0;
+        }
+        $startRow1 = $startRow + 1;
+        $startRow2 = $startRow + 2;
+        $startRow3 = $startRow + 3;
+
+        $sheet->mergeCells('A'.$startRow.':P'.$startRow);
+        $sheet->mergeCells('A'.$startRow1.':P'.$startRow1);
+        $sheet->mergeCells('A'.$startRow2.':P'.$startRow2);
+        $sheet->mergeCells('A'.$startRow3.':P'.$startRow3);
+
+        $sheet->setCellValue('A'.$startRow, 'Total (VND)');
+        $sheet->setCellValue('A'.$startRow1, 'PIT (VND)');
+        $sheet->setCellValue('A'.$startRow2, 'Payable amount (VND)');
+        $sheet->setCellValue('A'.$startRow3, 'Payable amount (AUD)');
+
+        $sheet->setCellValue('Q'.$startRow, $sumTotalVnd);
+        $sheet->setCellValue('Q'.$startRow1, $pit);
+        $sheet->setCellValue('Q'.$startRow2, $sumTotalVnd - $pit);
+        $sheet->setCellValue('Q'.$startRow3, ($sumTotalVnd - $pit) * $rate);
     }
 }

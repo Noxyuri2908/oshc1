@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Admin\Person;
 use App\User;
 use App\Admin\Apply;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -41,71 +42,12 @@ class CommissionReportController extends Controller
             'to_date' => $toDate
         ]);
 
-        $insuranceRreports = Apply::where('agent_id', $agentId)
-            ->whereIn('type_service', [2,3])
+        $insuranceRreports = Apply::select('id', 'agent_id', 'type_service', 'provider_id', 'policy', 'no_of_adults', 'no_of_children', 'start_date', 'end_date', 'total')
+            ->where('agent_id', $agentId)
+            ->whereIn('type_service', [4, 6])
             ->where('start_date', '>=', $fromDate)
             ->where('end_date', '<=', $toDate)
             ->get();
-        foreach ($insuranceRreports as $report) {
-            if (isset($report->hoahong->policy_status)) {
-                if ($report->hoahong->policy_status == 1) {
-                    $com_status = 'Done';
-                } elseif ($report->hoahong->policy_status == 2) {
-                    $com_status = 'Customer Bank';
-                } elseif ($report->hoahong->policy_status == 3) {
-                    $com_status = 'Monthly deduct';
-                } elseif ($report->hoahong->policy_status == 4) {
-                    $com_status = 'Monthly deduct - Annalink';
-                } else {
-                    $com_status = '';
-                }
-            }else {
-                $com_status = '';
-            }
-
-            if (isset($report->profit->visa_status)) {
-                if ($report->profit->visa_status == 1) {
-                    $visa_status = 'Granted';
-                } elseif ($report->profit->visa_status == 2) {
-                    $visa_status = 'Not yet';
-                } elseif ($report->profit->visa_status == 3) {
-                    $visa_status = 'Failed / Cancelled';
-                } elseif ($report->profit->visa_status == 4) {
-                    $visa_status = 'Cancel';
-                } else {
-                    $visa_status = '';
-                }
-            } else {
-                $visa_status = '';
-            }
-            if (isset($report->commission->comm)) {
-                $report->comm_percent = $report->commission->comm;
-            } else {
-                $report->comm_percent = 0;
-            }
-            if (isset($report->total)) {
-                $report->comm_vnd = $report->total * ($report->commission->comm / 100);
-            } else {
-                $report->comm_vnd = 0;
-            }
-            if (isset($report->profit->pay_agent_bonus)) {
-                $report->bonus = $report->profit->pay_agent_bonus;
-            } else {
-                $report->bonus = 0;
-            }
-            if (isset($report->profit->pay_agent_extra)) {
-                $report->pay_agent_extra = $report->profit->pay_agent_extra;
-            } else {
-                $report->pay_agent_extra = 0;
-            }
-            $report->recall_com = 0;//k hieu???
-            $report->total_vnd = $report->comm_vnd + $report->bonus + $report->pay_agent_extra;
-            $report->comm_status = $com_status;
-            $report->visa_status = $visa_status;
-            $report->date_of_payment = '';
-            $report->note = '';
-        }
-
         $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
         $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
         $data = [

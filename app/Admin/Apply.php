@@ -104,6 +104,11 @@ class Apply extends Model
         return $this->hasOne('App\Admin\Dichvu', 'id','type_service');
     }
 
+    public function refund()
+    {
+        return $this->hasOne('App\Admin\Refund', 'apply_id');
+    }
+
     public function serviceReport()
     {
         return $this->hasOne('App\Admin\Service', 'id', 'provider_id');
@@ -368,7 +373,7 @@ class Apply extends Model
         return $this->hasMany(Profit::class, 'apply_id');
     }
 
-    public function refund()
+    public function refunds()
     {
         return $this->hasMany('App\Admin\Refund', 'apply_id');
     }
