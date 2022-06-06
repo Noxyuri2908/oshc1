@@ -123,8 +123,7 @@ class CommissionReportController extends Controller
 
     public function export($agentId, $fromDate, $toDate)
     {
-        Excel::store(new OshcReportExport($agentId, $fromDate, $toDate), 'oshc-report.xlsx');
-        return Excel::download(new VisitorInsuranceReport($agentId, $fromDate, $toDate), 'ComissionReport.xlsx');
+        return Excel::download(new OshcReportExport($agentId, $fromDate, $toDate), 'ComissionReport.xlsx');
     }
 
 }
