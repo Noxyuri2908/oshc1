@@ -79,7 +79,7 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
         ]);
         $agent = User::where('id', $this->agentId)->first();
         $sheet->setCellValue('b3', $agent->name);
-        $sheet->setCellValue('b4', 'From '.$this->fromDate.' to '. $this->toDate);
+        $sheet->setCellValue('b4', 'From '.Carbon::parse($this->fromDate)->format('d/m/Y').' to '. Carbon::parse($this->toDate)->format('d/m/Y'));
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
         $total = 0;
@@ -158,7 +158,7 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
             ->get();
         $agent = User::where('id', $this->agentId)->first();
         $pitAgent = $agent->pit;
-        $sheet->setCellValue('b4', 'From '.$this->fromDate.' to '. $this->toDate);
+        $sheet->setCellValue('b4', 'From '.Carbon::parse($this->fromDate)->format('d/m/Y').' to '. Carbon::parse($this->toDate)->format('d/m/Y'));
         $sheet->setCellValue('b3', $agent->name);
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
