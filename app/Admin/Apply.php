@@ -99,6 +99,11 @@ class Apply extends Model
         return $this->hasOne('App\Admin\Customer');
     }
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'agent_id');
+    }
+
     public function dichvu()
     {
         return $this->hasOne('App\Admin\Dichvu', 'id','type_service');
