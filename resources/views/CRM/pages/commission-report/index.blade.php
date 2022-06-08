@@ -57,14 +57,28 @@
                         <select name="counsellor" id="counsellor-by-agent" class="selectpicker custom-border custom-h">
                             <option value=""></option>
                             @foreach($counsellors as $counsellor)
-                            <option value="{{ $counsellor->name }}">{{ $counsellor->name }}</option>
+                            <option value="{{ $counsellor->id }}"
+                                    @if(isset($counsellorId) && $counsellorId == $counsellor->id)
+                                    selected
+                                    @endif
+                            >{{ $counsellor->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="d-flex flex-column pr-15 width-180">
                         <label for="">Type of report</label>
                         <select name="typeOfReport" id="typeOfReport-by-agent" class="selectpicker custom-border custom-h">
-                            <option></option>
+                            <option value=""></option>
+                            <option value="AUD"
+                                    @if(isset($currency) && $currency == 'AUD')
+                                    selected
+                                    @endif
+                            >Foreign currency</option>
+                            <option value="VND"
+                                    @if(isset($currency) && $currency == 'VND')
+                                    selected
+                                    @endif
+                            >VND</option>
                         </select>
                     </div>
                     <div class="d-flex flex-column pr-15 width-110">
@@ -178,7 +192,10 @@
                 var agentId = $('#agent_select').val();
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
-                window.location.href = "/crm/create-comission-report/" + agentId + "/" + fromDate + "/" + toDate;
+                var currency = $('#typeOfReport-by-agent').val();
+                var counsellor = $('#counsellor-by-agent').val();
+                var url = "/crm/create-comission-report/" + agentId + "/" + fromDate + "/" + toDate + '?currency=' + currency + '&&counsellor='+counsellor;
+                window.location.href = url;
             })
 
             $(document).on('click', '#export-report', function () {
@@ -186,8 +203,16 @@
                 {{--var agentId = {{ $agentId }};--}}
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
-
-                window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate;
+                var currency = $('#typeOfReport-by-agent').val();
+                var counsellor = $('#counsellor-by-agent').val();
+                console.log(counsellor)
+                if (currency === '') {
+                    currency = 'null';
+                }
+                if (counsellor === '') {
+                    counsellor = 'null';
+                }
+                window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate + "/" + currency + "/" + counsellor;
                 // history.back();
                 // window.location.href = document.referrer;
             })
