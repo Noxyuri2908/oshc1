@@ -60,13 +60,13 @@
                     <td>{{ $report->amount }}</td>
                     <td>{{ $report->comm }}</td>
                     @if(isset($currency) && $currency == 'AUD' && $gst->gst < 1 )
-                        <td>{{ $report->comm_exc_gst }}</td>
-                        <td>{{ $report->gst }}</td>
                         <td>{{ $report->comm_inc_gst }}</td>
+                        <td>{{ $report->gst }}</td>
+                        <td>{{ $report->comm_exc_gst }}</td>
                     @else
-                        <td>{{ $report->comm_inc_gst }}</td>
-                        <td>{{ $report->gst }}</td>
                         <td>{{ $report->comm_exc_gst }}</td>
+                        <td>{{ $report->gst }}</td>
+                        <td>{{ $report->comm_inc_gst }}</td>
                     @endif
                     <td>{{ $report->bonus }}</td>
                     <td>{{ $report->pay_agent_extra }}</td>
@@ -93,9 +93,15 @@
                     <td>{{ $report->end_date }}</td>
                     <td>{{ $report->amount }}</td>
                     <td>{{ $report->comm }}</td>
-                    <td>{{ $report->comm_exc_gst }}</td>
-                    <td>{{ $report->gst }}</td>
-                    <td>{{ $report->comm_inc_gst }}</td>
+                    @if(isset($currency) && $currency == 'AUD' && $gst->gst < 1 )
+                        <td>{{ $report->comm_inc_gst }}</td>
+                        <td>{{ $report->gst }}</td>
+                        <td>{{ $report->comm_exc_gst }}</td>
+                    @else
+                        <td>{{ $report->comm_exc_gst }}</td>
+                        <td>{{ $report->gst }}</td>
+                        <td>{{ $report->comm_inc_gst }}</td>
+                    @endif
                     <td>{{ $report->bonus }}</td>
                     <td>{{ $report->pay_agent_extra }}</td>
                     <td>{{ $report->recall_com }}</td>
