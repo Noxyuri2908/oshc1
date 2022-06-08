@@ -72,3 +72,4 @@ resources/.DS_Store
 .DS_Store
 .idea/.*
 .idea/.*
+composer.lock
