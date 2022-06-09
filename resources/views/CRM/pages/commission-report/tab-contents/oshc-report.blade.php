@@ -43,6 +43,9 @@
     </tr>
     </thead>
     <tbody class="table table-bordered" style="background: #F9F9F9">
+    @php
+    $amountOshc = 0;
+    @endphp
     @if(isset($reports) && !empty($reports))
         @foreach($reports as $report)
             @if (isset($counsellorId) )
@@ -58,6 +61,9 @@
                     <td>{{ $report->start_date }}</td>
                     <td>{{ $report->end_date }}</td>
                     <td>{{ $report->amount }}</td>
+                    @php
+                        $amountOshc = $amountOshc + $report->amount;
+                    @endphp
                     <td>{{ $report->comm }}</td>
                     @if(isset($currency) && $currency == 'AUD' && $gst->gst < 1 )
                         <td>{{ $report->comm_inc_gst }}</td>
@@ -92,6 +98,9 @@
                     <td>{{ $report->start_date }}</td>
                     <td>{{ $report->end_date }}</td>
                     <td>{{ $report->amount }}</td>
+                    @php
+                        $amountOshc = $amountOshc + $report->amount;
+                    @endphp
                     <td>{{ $report->comm }}</td>
                     @if(isset($currency) && $currency == 'AUD' && $gst->gst < 1 )
                         <td>{{ $report->comm_inc_gst }}</td>
@@ -119,5 +128,6 @@
     <div></div>
     @endif
     </tbody>
-
 </table>
+<div id="amountOshc" style="display: none;">{{ $amountOshc }}</div>
+

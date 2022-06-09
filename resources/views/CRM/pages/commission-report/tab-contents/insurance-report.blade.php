@@ -62,6 +62,9 @@
     </tr>
     </thead>
     <tbody class="table table-bordered" style="background: #F9F9F9">
+    @php
+        $amountInsurance = 0;
+    @endphp
     @if(isset($insuranceRreports) && !empty($reports))
         @foreach($insuranceRreports as $report)
             @if (isset($counsellorId) )
@@ -93,6 +96,9 @@
                         <td>{{ $report->end_date }}</td>
                         {{--                //Amount VND--}}
                         <td>{{ isset($report->total) ? $report->total : 0 }}</td>
+                        @php
+                            $amountInsurance = $amountInsurance + $report->total;
+                        @endphp
                         {{--                //Com %--}}
                         <td>{{ isset($report->commission->comm) ? $report->commission->comm : 0 }}</td>
                         {{--                //Commission VND--}}
@@ -201,6 +207,9 @@
                     <td>{{ $report->end_date }}</td>
                     {{--                //Amount VND--}}
                     <td>{{ isset($report->total) ? $report->total : 0 }}</td>
+                    @php
+                        $amountInsurance = $amountInsurance + $report->total;
+                    @endphp
                     {{--                //Com %--}}
                     <td>{{ isset($report->commission->comm) ? $report->commission->comm : 0 }}</td>
                     {{--                //Commission VND--}}
@@ -289,3 +298,4 @@
     </tbody>
 
 </table>
+<div id="amountInsurance" style="display: none;">{{ $amountInsurance }}</div>

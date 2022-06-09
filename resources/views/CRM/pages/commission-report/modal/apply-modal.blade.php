@@ -9,7 +9,7 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">Agent</div>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Agent name" value="{{ isset($gst->name) ? $gst->name : '#' }}">
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">Report ID</div>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Report id">
                     </div>
                 </div>
             </div>
@@ -25,11 +25,11 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">Month</div>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Month" value="{{ date('m') }}">
                     </div>
                     <div class="col-md-2 m-auto label">Year</div>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Year" value="{{ date('Y') }}">
                     </div>
                 </div>
             </div>
@@ -37,13 +37,13 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">Created by</div>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" placeholder="Created by" value="{{ \Illuminate\Support\Facades\Auth::user()->username }}">
                     </div>
                 </div>
             </div>
             <div class="modal-footer m-auto" style="border: 0px;">
-                <button type="button" class="btn">Save</button>
-                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn" id="save_report" onclick="document.getElementById('dis_save_report').click()">Save</button>
+                <button type="button" class="btn" id="dis_save_report" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

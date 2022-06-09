@@ -17,7 +17,6 @@
                     <div class="d-flex flex-column pr-15 width-180" id="agent_select_drop_down">
                         <label for="">Agent</label>
                         <select name="Agent" id="agent_select" class="selectpicker width-180 custom-border custom-h">
-                            <option value=""></option>
                             <option value="6529"
                                     @if(isset($agentId) && 6529 == $agentId)
                                     selected
@@ -68,7 +67,6 @@
                     <div class="d-flex flex-column pr-15 width-180">
                         <label for="">Type of report</label>
                         <select name="typeOfReport" id="typeOfReport-by-agent" class="selectpicker custom-border custom-h">
-                            <option value=""></option>
                             <option value="AUD"
                                     @if(isset($currency) && $currency == 'AUD')
                                     selected
@@ -106,7 +104,7 @@
                         <button class="custom-css-input px-0 custom-border custom-h" id="handle-click-reset">Show paid</button>
                     </div>
                     <div class="d-flex flex-column pr-15 width-90">
-                        <button class="custom-css-input px-0 custom-border custom-h" data-toggle="modal" data-target="#apply-modal" id="handle-click-reset">Save report</button>
+                        <button class="custom-css-input px-0 custom-border custom-h" data-toggle="modal" data-target="#apply-modal" id="handle-click-save">Save report</button>
                     </div>
 
                     <div class="d-flex flex-column pr-15 width-90">
@@ -126,10 +124,10 @@
                         <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Report overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
+                        <a class="nav-link active" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Other Insurances Report</a>
+                        <a class="nav-link" data-toggle="tab" data-text="insurance" href="#tabs-3" role="tab">Other Insurances Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Homestay Report</a>
@@ -215,6 +213,67 @@
                 window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate + "/" + currency + "/" + counsellor;
                 // history.back();
                 // window.location.href = document.referrer;
+            })
+
+            $(document).on('click', '#save_report', function () {
+                var agentId = $('#agent_select').val();
+                {{--var agentId = {{ $agentId }};--}}
+                var fromDate = $('#start_date').val();
+                var toDate = $('#end_date').val();
+                var currency = $('#typeOfReport-by-agent').val();
+                var counsellor = $('#counsellor-by-agent').val();
+                if (counsellor === '') {
+                    counsellor = 'null';
+                }
+                var amount = 0;
+                var type = 'oshc';
+                // console.log($('#tabs .active')[0].attr('data-text'));
+                if ($('#tabs .active')[0].innerText == 'OSHC & OVHC Report') {
+                    amount = $('#amountOshc')[0].innerText;
+                    type = 'oshc';
+                } else if ($('#tabs .active')[0].innerText == 'Other Insurances Report') {
+                    amount = $('#amountInsurance')[0].innerText;
+                    type = 'insurance';
+                }
+                let _token   = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: "/crm/save-comission-report",
+                    type:"POST",
+                    data:{
+                        agentId:agentId,
+                        fromDate:fromDate,
+                        toDate:toDate,
+                        typeOfReport:currency,
+                        counsellor:counsellor,
+                        amount:amount,
+                        type:type,
+                        _token: _token
+                    },
+                    success:function(response){
+                        console.log(response);
+                        Swal.fire({
+                            text: response.message,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        Swal.fire({
+                            text: error.responseJSON.message,
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
             })
 
             $(document).on('mouseover', '#start_date', function () {
