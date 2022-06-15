@@ -92,3 +92,9 @@ textarea:focus, input:focus{
     font-weight: 100;
     font-size: 12px;
 }
+
+.form-check-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C427A;
+}

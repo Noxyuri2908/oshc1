@@ -1,0 +1,25 @@
+/// public
+* folder
+public/oshc
+public/insurance
+public/oshc+insurance
+public/css
+
+/// resources
+* folder
+resources/views/commission-report
+*file
+resources/views/CRM/partials/head.blade.php
+
+///route
+routes/crm
+
+///config
+config/filesystems.php
+
+//app
+app/Admin/ApprovedComReport.php
+app/Exports/CommissionReportMultiSheetExport.php
+app/Exports/VisitorInsuranceReport.php
+app/Exports/OshcReportExport.php
+app/Http/Controllers/CommissionReportController.php

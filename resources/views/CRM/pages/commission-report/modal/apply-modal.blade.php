@@ -17,7 +17,7 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">Report ID</div>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="Report id">
+                        <input type="text" class="form-control" placeholder="Report id" value="{{ isset($newComReportId) ? $newComReportId : 1 }}">
                     </div>
                 </div>
             </div>
@@ -30,6 +30,18 @@
                     <div class="col-md-2 m-auto label">Year</div>
                     <div class="col-md-4">
                         <input type="text" class="form-control" placeholder="Year" value="{{ date('Y') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div class="col-md-2 m-auto label">OSHC</div>
+                    <div class="col-md-4">
+                        <input class="form-check-input mx-0" type="checkbox" value="" id="oshcCheckDefault">
+                    </div>
+                    <div class="col-md-2 m-auto label">Insurance</div>
+                    <div class="col-md-4">
+                        <input class="form-check-input mx-0" type="checkbox" value="" id="insuranceCheckDefault">
                     </div>
                 </div>
             </div>

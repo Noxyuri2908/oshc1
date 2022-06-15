@@ -1,10 +1,20 @@
-<div class="text-primary py-3">
-    <div class="d-inline-flex flex-center"><span class="text-sans-serif"><img
-                style="width: 180px;max-width: 100%;" src="/images/ee420406b20f4951101e.jpg" alt=""></span>
+<div class="text-primary py-3 d-flex justify-content-between">
+    <div>
+        <div class="d-inline-flex flex-center"><span class="text-sans-serif"><img
+                    style="width: 180px;max-width: 100%;" src="/images/ee420406b20f4951101e.jpg" alt=""></span>
+        </div>
+        <p class="table-name">OSHC & OVHC report</p>
+        <p class="table-description">Agent partner: ATS HCM + ATS HN</p>
+        <p class="table-description">Date: Start date @if(isset($fromDate)){{ $fromDate }}@endif - End date @if(isset($toDate)){{ $toDate }}@endif</p>
     </div>
-    <p class="table-name">OSHC & OVHC report</p>
-    <p class="table-description">Agent partner: ATS HCM + ATS HN</p>
-    <p class="table-description">Date: Start date @if(isset($fromDate)){{ $fromDate }}@endif - End date @if(isset($toDate)){{ $toDate }}@endif</p>
+    <div class="p-6">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="oshcCheckbox">
+            <label class="form-check-label m-1" for="oshcCheckbox">
+                Check
+            </label>
+        </div>
+    </div>
 </div>
 <table style="width: 1433px" class="oshc-table-content">
     <thead>
@@ -46,7 +56,7 @@
     @php
     $amountOshc = 0;
     @endphp
-    @if(isset($reports) && !empty($reports))
+    @if(isset($reports) && isset($view) && $view == 'oshc' && !empty($reports))
         @foreach($reports as $report)
             @if (isset($counsellorId) )
                 @if(isset($report->customer->person_counsellor_id) && $report->customer->person_counsellor_id == $counsellorId)

@@ -5,9 +5,8 @@
     @parent
 @stop
 
-@section('css')
-
-{{--    @include('CRM.partials.loading-css')--}}
+@section('css-report')
+    <link rel="stylesheet" href="{{asset('public/backend_CRM/css/commissionReport/index.css')}}">
 @stop
 @section('content')
     <div class="card" style="border-bottom: 2px solid #ccc;">
@@ -124,10 +123,10 @@
                         <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Report overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
+                        <a class="nav-link @if (isset($view) && isset($view) && $view == 'oshc') active @endif" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" data-text="insurance" href="#tabs-3" role="tab">Other Insurances Report</a>
+                        <a class="nav-link @if (isset($view) && $view == 'insurance') active @endif" data-toggle="tab" data-text="insurance" href="#tabs-3" role="tab">Other Insurances Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Homestay Report</a>
@@ -146,13 +145,13 @@
                     <div class="tab-pane" id="tabs-1" role="tabpanel">
                         <p>First Panel</p>
                     </div>
-                    <div class="tab-pane active" id="tabs-2" role="tabpanel">
+                    <div class="tab-pane @if (isset($view) && $view == 'oshc' || !isset($view)) active @endif" id="tabs-2" role="tabpanel">
                         <div>
                             @yield('oshc-report')
                             @include('CRM.pages.commission-report.tab-contents.oshc-report')
                         </div>
                     </div>
-                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                    <div class="tab-pane @if (isset($view) && $view == 'insurance') active @endif" id="tabs-3" role="tabpanel">
                         <div>
                             @yield('insurance-report')
                             @include('CRM.pages.commission-report.tab-contents.insurance-report')
@@ -192,7 +191,14 @@
                 var toDate = $('#end_date').val();
                 var currency = $('#typeOfReport-by-agent').val();
                 var counsellor = $('#counsellor-by-agent').val();
-                var url = "/crm/create-comission-report/" + agentId + "/" + fromDate + "/" + toDate + '?currency=' + currency + '&&counsellor='+counsellor;
+                var type = 'oshc';
+                // console.log($('#tabs .active')[0].attr('data-text'));
+                if ($('#tabs .active')[0].innerText == 'OSHC & OVHC Report') {
+                    type = 'oshc';
+                } else if ($('#tabs .active')[0].innerText == 'Other Insurances Report') {
+                    type = 'insurance';
+                }
+                var url = "/crm/create-comission-report/" + agentId + "/" + fromDate + "/" + toDate + '?currency=' + currency + '&&counsellor='+ counsellor + '&&view='+ type;
                 window.location.href = url;
             })
 

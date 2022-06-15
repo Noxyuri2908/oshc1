@@ -41,6 +41,12 @@ class CommissionReportController extends Controller
     {
         $customer = Customer::pluck('person_counsellor_id')->toArray();
 //        dd(array_unique($customer));
+        $newComReport = ApprovedComReport::latest('id')->first();
+        if (!empty($newComReport)) {
+            $newComReportId = $newComReport->id;
+        } else {
+            $newComReportId = 1;
+        }
         $data = $request->all();
         $flag = 'commission-report';
         $reports = DB::select("CALL create_commission_report(:agent_id, :from_date, :to_date)", [
@@ -49,13 +55,14 @@ class CommissionReportController extends Controller
             'to_date' => $toDate
         ]);
         $gst = User::select('id', 'gst', 'name')->where('id', $agentId)->first();
-
-        $insuranceRreports = Apply::select('id', 'agent_id', 'type_service', 'provider_id', 'policy', 'no_of_adults', 'no_of_children', 'start_date', 'end_date', 'total')
-            ->where('agent_id', $agentId)
-            ->whereIn('type_service', [4, 6])
-            ->where('start_date', '>=', $fromDate)
-            ->where('end_date', '<=', $toDate)
-            ->get();
+        if ($data['view'] == 'insurance') {
+            $reports = Apply::select('id', 'agent_id', 'type_service', 'provider_id', 'policy', 'no_of_adults', 'no_of_children', 'start_date', 'end_date', 'total')
+                ->where('agent_id', $agentId)
+                ->whereIn('type_service', [4, 6])
+                ->where('start_date', '>=', $fromDate)
+                ->where('end_date', '<=', $toDate)
+                ->get();
+        }
         $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
         $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
         $data = [
@@ -66,17 +73,17 @@ class CommissionReportController extends Controller
             'gst' => $gst,
             'currency' => $data['currency'],
             'counsellorId' => $data['counsellor'],
+            'view' => $data['view'],
             'counsellors' => $counsellors,
+            'newComReportId' => $newComReportId,
             'flag' => $flag,
             'reports' => $reports,
-            'insuranceRreports' => $insuranceRreports
         ];
         return view('CRM.pages.commission-report.index', $data);
     }
 
     public function export($agentId, $fromDate, $toDate, $currency, $counsellor)
     {
-        dd($approvedComReport =  new ApprovedComReport());
         return Excel::download(new CommissionReportMultiSheetExport($agentId, $fromDate, $toDate, $currency, $counsellor), 'ComissionReport.xlsx');
     }
 
@@ -112,6 +119,7 @@ class CommissionReportController extends Controller
             }
             $approvedComReport->report_file = '/public/excelFiles/'.$filename.'.xlsx';
             $approvedComReport->save();
+
             $dataJson = ['message' => 'Save Success'];
             return response()->json($dataJson, 200);
         } else {
