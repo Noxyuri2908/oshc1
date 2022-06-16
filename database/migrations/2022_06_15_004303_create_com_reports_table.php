@@ -18,9 +18,12 @@ class CreateComReportsTable extends Migration
             $table->date('from_date');
             $table->date('to_date');
             $table->integer('agent_id');
+            $table->integer('counsellor_id');
             $table->integer('approved_com_id');
-            $table->tinyInteger('report_type');
-            $table->integer('created_by')->nullable();
+            $table->string('report_type');
+            $table->string('report_name');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

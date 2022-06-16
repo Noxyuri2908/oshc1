@@ -9,7 +9,11 @@
     </div>
     <div class="p-6">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input check-content" type="checkbox"
+                   @if(isset($view) && isset($status) && $view == "insurance" && $status == "on")
+                   checked
+                   @endif
+                   id="flexCheckDefault" onclick="document.getElementById('insuranceCheckDefault').click()">
             <label class="form-check-label m-1" for="flexCheckDefault">
                 Check
             </label>
@@ -184,8 +188,8 @@
 
                         <td>{{ $com_status }}</td>
                         <td>{{ $visa_status }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ isset($report->refund->refund_provider_date) ? $report->refund->refund_provider_date : "" }}</td>
+                        <td> {{ isset($report->refund->note) ? $report->refund->note : "" }}</td>
                         <td data-toggle="modal" data-target="#history-modal" style="cursor: pointer">view</td>
                     </tr>
                 @endif

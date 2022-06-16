@@ -682,6 +682,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('/export/{agentId}/{fromDate}/{toDate}/{currency}/{counsellor}', 'CommissionReportController@export')->name('commission-report-export');
     Route::get('/create-comission-report/{agentId}/{fromDate}/{toDate}', 'CommissionReportController@create')->name('create-comission-report');
     Route::post('/save-comission-report', 'CommissionReportController@save')->name('save-comission-report');
+    Route::post('/check-comission-report', 'CommissionReportController@check')->name('save-comission-report');
 
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {

@@ -9,7 +9,11 @@
     </div>
     <div class="p-6">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="oshcCheckbox">
+            <input class="form-check-input check-content" type="checkbox"
+                   @if(isset($view) && isset($status) && $view == "oshc" && $status == "on")
+                    checked
+                   @endif
+                   id="oshcCheckbox" onclick="document.getElementById('oshcCheckDefault').click()">
             <label class="form-check-label m-1" for="oshcCheckbox">
                 Check
             </label>

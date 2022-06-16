@@ -37,11 +37,19 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">OSHC</div>
                     <div class="col-md-4">
-                        <input class="form-check-input mx-0" type="checkbox" value="" id="oshcCheckDefault">
+                        <input class="form-check-input mx-0" type="checkbox"
+                               @if(isset($view) && isset($status) && $view == "oshc" && $status == "on")
+                               checked
+                               @endif
+                               id="oshcCheckDefault">
                     </div>
                     <div class="col-md-2 m-auto label">Insurance</div>
                     <div class="col-md-4">
-                        <input class="form-check-input mx-0" type="checkbox" value="" id="insuranceCheckDefault">
+                        <input class="form-check-input mx-0" type="checkbox"
+                               @if(isset($view) && isset($status) && $view == "insurance" && $status == "on")
+                               checked
+                               @endif
+                               id="insuranceCheckDefault">
                     </div>
                 </div>
             </div>

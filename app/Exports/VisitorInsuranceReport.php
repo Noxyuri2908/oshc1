@@ -196,8 +196,16 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
                     }
                     $contents['comm_status'] = $com_status;
                     $contents['visa_status'] = $visa_status;
-                    $contents['date_of_payment'] = '';
-                    $contents['note'] = '';
+                    if (isset($report->refund->refund_provider_date)) {
+                        $contents['date_of_payment'] = $report->refund->refund_provider_date;
+                    } else {
+                        $contents['date_of_payment'] = '';
+                    }
+                    if (isset($report->refund->note)) {
+                        $contents['note'] = $report->refund->note;
+                    } else {
+                        $contents['note'] = '';
+                    }
                     $key = 0;
                     // Populate the static cells
                     foreach ($contents as $nameField => $value) {

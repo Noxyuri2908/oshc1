@@ -53,7 +53,7 @@
                     <div class="d-flex flex-column pr-15 width-180">
                         <label for="">Counsellor</label>
                         <select name="counsellor" id="counsellor-by-agent" class="selectpicker custom-border custom-h">
-                            <option value=""></option>
+                            <option></option>
                             @foreach($counsellors as $counsellor)
                             <option value="{{ $counsellor->id }}"
                                     @if(isset($counsellorId) && $counsellorId == $counsellor->id)
@@ -219,6 +219,70 @@
                 window.location.href = "/crm/export/" + agentId + "/" + fromDate + "/" + toDate + "/" + currency + "/" + counsellor;
                 // history.back();
                 // window.location.href = document.referrer;
+            })
+
+            $(document).on('click', '.check-content', function () {
+                var agentId = $('#agent_select').val();
+                {{--var agentId = {{ $agentId }};--}}
+                var fromDate = $('#start_date').val();
+                var toDate = $('#end_date').val();
+                var currency = $('#typeOfReport-by-agent').val();
+                var counsellor = $('#counsellor-by-agent').val();
+                if (counsellor === '') {
+                    counsellor = 'null';
+                }
+                var status = 'off';
+                var type = 'oshc';
+                // console.log($('#tabs .active')[0].attr('data-text'));
+                if ($('#tabs .active')[0].innerText == 'OSHC & OVHC Report') {
+                    if (document.getElementById('oshcCheckbox').checked) {
+                        status = 'on';
+                    }
+                    type = 'oshc';
+                } else if ($('#tabs .active')[0].innerText == 'Other Insurances Report') {
+                    if (document.getElementById('flexCheckDefault').checked) {
+                        status = 'on';
+                    }
+                    type = 'insurance';
+                }
+                let _token   = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: "/crm/check-comission-report",
+                    type:"POST",
+                    data:{
+                        agentId:agentId,
+                        fromDate:fromDate,
+                        toDate:toDate,
+                        typeOfReport:currency,
+                        counsellor:counsellor,
+                        status:status,
+                        type:type,
+                        _token: _token
+                    },
+                    success:function(response){
+                        Swal.fire({
+                            text: response.message,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        Swal.fire({
+                            text: error.responseJSON.message,
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
             })
 
             $(document).on('click', '#save_report', function () {
