@@ -93,7 +93,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @for($i = 0; $i < 10; $i++)
+                @foreach($approvedReports as $approvedReport)
                     <tr>
                         <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
                             <div class="d-flex justify-content-around align-items-center">
@@ -103,43 +103,43 @@
                             </div>
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            #10001
+                            {{ $approvedReport->id }}
                         </td>
                         <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            Annalink
+                            {{ $approvedReport->user->name }}
                         </td>
                         <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
                             Commision report
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            Oct
+                            {{ $approvedReport->month }}
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            2021
+                            {{ $approvedReport->year }}
                         </td>
                         <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            10/10/2021- 10/11/2021
+                            {{ $approvedReport->from_date }}-{{ $approvedReport->to_date }}
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            <i class="fal fa-file-alt"></i>
+                            <a href="/crm/preview-approve-com-report/{{ $approvedReport->id }}"><i class="fal fa-file-alt"></i></a>
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            1000 AUD
+                            {{ $approvedReport->amount }}
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            Hailey
+                            {{ $approvedReport->admin->username }}
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            16/11/2021
+                            {{ $approvedReport->checked_date }}
                         </td>
                         <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
                             Approved
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            Richard
+                            {{ isset($approvedReport->admin->username) ? $approvedReport->admin->username : "" }}
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            16/11/2021
+                            {{ $approvedReport->emailed_date }}
                         </td>
                         <td class="text-center" style="background: #F9F9F9 0% 0% no-repeat padding-box;">
                             Pending
@@ -148,10 +148,10 @@
                             Pending
                         </td>
                         <td style="background: #F9F9F9 0% 0% no-repeat padding-box;">
-                            15/11/2021
+                            {{ $approvedReport->paid_date }}
                         </td>
                     </tr>
-                @endfor
+                @endforeach
                 </tbody>
 
             </table>

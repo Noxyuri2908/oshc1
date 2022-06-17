@@ -198,7 +198,7 @@
                 } else if ($('#tabs .active')[0].innerText == 'Other Insurances Report') {
                     type = 'insurance';
                 }
-                var url = "/crm/create-comission-report/" + agentId + "/" + fromDate + "/" + toDate + '?currency=' + currency + '&&counsellor='+ counsellor + '&&view='+ type;
+                var url = "/crm/commission-report?agentId=" + agentId + "&&fromDate=" + fromDate + "&&toDate=" + toDate + '&&currency=' + currency + '&&counsellor='+ counsellor + '&&view='+ type;
                 window.location.href = url;
             })
 

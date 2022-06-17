@@ -30,4 +30,14 @@ class ApprovedComReport extends Model
         'updated_by',
         'updated_at',
     ];
+
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'agent_id');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne('App\Admin', 'id', 'checked_by');
+    }
 }

@@ -25,24 +25,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CommissionReportController extends Controller
 {
-    public function index()
-    {
-        $flag = 'commission-report';
-        $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
-        $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
-        $data = [
-            'agents' => $agents,
-            'counsellors' => $counsellors,
-            'flag' => $flag
-        ];
-        // resources/views/CRM/pages/commission-report/index.blade.php
-        return view('CRM.pages.commission-report.index', $data);
-    }
-
-    public function create($agentId, $fromDate, $toDate, Request $request)
+    public function index(Request $request)
     {
         $customer = Customer::pluck('person_counsellor_id')->toArray();
-//        dd(array_unique($customer));
         $newComReport = ApprovedComReport::latest('id')->first();
         if (!empty($newComReport)) {
             $newComReportId = $newComReport->id;
@@ -51,55 +36,70 @@ class CommissionReportController extends Controller
         }
 
         $data = $request->all();
-        $flag = 'commission-report';
-        $reports = DB::select("CALL create_commission_report(:agent_id, :from_date, :to_date)", [
-            'agent_id' => $agentId,
-            'from_date' => $fromDate,
-            'to_date' => $toDate
-        ]);
-        $gst = User::select('id', 'gst', 'name')->where('id', $agentId)->first();
-        if ($data['view'] == 'insurance') {
-            $reports = Apply::select('id', 'agent_id', 'type_service', 'provider_id', 'policy', 'no_of_adults', 'no_of_children', 'start_date', 'end_date', 'total')
+        if (!empty($data) && isset($data['agentId']) && isset($data['fromDate']) && isset($data['toDate'])) {
+            $agentId = $data['agentId'];
+            $fromDate = $data['fromDate'];
+            $toDate = $data['toDate'];
+            $flag = 'commission-report';
+            $reports = DB::select("CALL create_commission_report(:agent_id, :from_date, :to_date)", [
+                'agent_id' => $agentId,
+                'from_date' => $fromDate,
+                'to_date' => $toDate
+            ]);
+            $gst = User::select('id', 'gst', 'name')->where('id', $agentId)->first();
+            if ($data['view'] == 'insurance') {
+                $reports = Apply::select('id', 'agent_id', 'type_service', 'provider_id', 'policy', 'no_of_adults', 'no_of_children', 'start_date', 'end_date', 'total')
+                    ->where('agent_id', $agentId)
+                    ->whereIn('type_service', [4, 6])
+                    ->where('start_date', '>=', $fromDate)
+                    ->where('end_date', '<=', $toDate)
+                    ->get();
+            }
+            $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
+            if ($data['counsellor'] != 'null') {
+                $counsellor_id = $data['counsellor'];
+            } else {
+                $counsellor_id = null;
+            }
+            $comReportCheck = ComReport::where('from_date', $fromDate)
+                ->where('to_date', $toDate)
                 ->where('agent_id', $agentId)
-                ->whereIn('type_service', [4, 6])
-                ->where('start_date', '>=', $fromDate)
-                ->where('end_date', '<=', $toDate)
-                ->get();
+                ->where('counsellor_id', $counsellor_id)
+                ->where('report_type', $data['currency'])
+                ->where('report_name', $data['view'])
+                ->first();
+            $status = 'off';
+            if (!empty($comReportCheck)) {
+                $status = 'on';
+            }
+            $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
+            $data = [
+                'agentId' => $agentId,
+                'fromDate' => $fromDate,
+                'toDate' => $toDate,
+                'agents' => $agents,
+                'gst' => $gst,
+                'status' => $status,
+                'view' => $data['view'],
+                'currency' => $data['currency'],
+                'counsellorId' => $data['counsellor'],
+                'view' => $data['view'],
+                'counsellors' => $counsellors,
+                'newComReportId' => $newComReportId,
+                'flag' => $flag,
+                'reports' => $reports,
+            ];
+        } else {
+            $flag = 'commission-report';
+            $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
+            $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
+            $data = [
+                'agents' => $agents,
+                'counsellors' => $counsellors,
+                'flag' => $flag
+            ];
         }
-        $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
-        if ($data['counsellor'] != 'null') {
-            $counsellor_id = $data['counsellor'];
-        }else {
-            $counsellor_id = null;
-        }
-        $comReportCheck = ComReport::where('from_date', $fromDate)
-            ->where('to_date', $toDate)
-            ->where('agent_id', $agentId)
-            ->where('counsellor_id', $counsellor_id)
-            ->where('report_type', $data['currency'])
-            ->where('report_name', $data['view'])
-            ->first();
-        $status = 'off';
-        if (!empty($comReportCheck)) {
-            $status = 'on';
-        }
-        $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
-        $data = [
-            'agentId' => $agentId,
-            'fromDate' => $fromDate,
-            'toDate' => $toDate,
-            'agents' => $agents,
-            'gst' => $gst,
-            'status' => $status,
-            'view' => $data['view'],
-            'currency' => $data['currency'],
-            'counsellorId' => $data['counsellor'],
-            'view' => $data['view'],
-            'counsellors' => $counsellors,
-            'newComReportId' => $newComReportId,
-            'flag' => $flag,
-            'reports' => $reports,
-        ];
+        // resources/views/CRM/pages/commission-report/index.blade.php
         return view('CRM.pages.commission-report.index', $data);
     }
 
@@ -153,6 +153,7 @@ class CommissionReportController extends Controller
                 ->first();
             if (!empty($comReportCheck)) {
                 $comReportCheck->approved_com_id = $approvedComReport->id;
+                $comReportCheck->updated_by = Auth::user()->username;
                 $comReportCheck->save();
             }
             $dataJson = ['message' => 'Save Success'];
