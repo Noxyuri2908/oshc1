@@ -123,7 +123,7 @@
                         <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Report overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (isset($view) && isset($view) && $view == 'oshc') active @endif" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
+                        <a class="nav-link @if ((isset($view) && $view == 'oshc') || !isset($view)) active @endif" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if (isset($view) && $view == 'insurance') active @endif" data-toggle="tab" data-text="insurance" href="#tabs-3" role="tab">Other Insurances Report</a>

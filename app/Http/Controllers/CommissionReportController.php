@@ -282,139 +282,146 @@ class CommissionReportController extends Controller
             ->where('end_date', '<=', $data['toDate'])
             ->get();
         foreach ($reports as $report) {
-            if (isset($report->hoahong->policy_status)) {
-                if ($report->hoahong->policy_status == 1) {
-                    $com_status = 'Done';
-                } elseif ($report->hoahong->policy_status == 2) {
-                    $com_status = 'Customer Bank';
-                } elseif ($report->hoahong->policy_status == 3) {
-                    $com_status = 'Monthly deduct';
-                } elseif ($report->hoahong->policy_status == 4) {
-                    $com_status = 'Monthly deduct - Annalink';
+            if (isset($data['counsellor']) && $data['counsellor'] != "null") {
+                if(isset($report->customer->person_counsellor_id) && $report->customer->person_counsellor_id == $data['counsellor']) {
+            }
+                if (isset($report->hoahong->policy_status)) {
+                    if ($report->hoahong->policy_status == 1) {
+                        $com_status = 'Done';
+                    } elseif ($report->hoahong->policy_status == 2) {
+                        $com_status = 'Customer Bank';
+                    } elseif ($report->hoahong->policy_status == 3) {
+                        $com_status = 'Monthly deduct';
+                    } elseif ($report->hoahong->policy_status == 4) {
+                        $com_status = 'Monthly deduct - Annalink';
+                    } else {
+                        $com_status = '';
+                    }
                 } else {
                     $com_status = '';
                 }
-            } else {
-                $com_status = '';
-            }
 
-            if (isset($report->profit->visa_status)) {
-                if ($report->profit->visa_status == 1) {
-                    $visa_status = 'Granted';
-                } elseif ($report->profit->visa_status == 2) {
-                    $visa_status = 'Not yet';
-                } elseif ($report->profit->visa_status == 3) {
-                    $visa_status = 'Failed / Cancelled';
-                } elseif ($report->profit->visa_status == 4) {
-                    $visa_status = 'Cancel';
+                if (isset($report->profit->visa_status)) {
+                    if ($report->profit->visa_status == 1) {
+                        $visa_status = 'Granted';
+                    } elseif ($report->profit->visa_status == 2) {
+                        $visa_status = 'Not yet';
+                    } elseif ($report->profit->visa_status == 3) {
+                        $visa_status = 'Failed / Cancelled';
+                    } elseif ($report->profit->visa_status == 4) {
+                        $visa_status = 'Cancel';
+                    } else {
+                        $visa_status = '';
+                    }
                 } else {
                     $visa_status = '';
                 }
-            } else {
-                $visa_status = '';
-            }
-            $comReportDetail = new ComReportDetails();
-            $comReportDetail->com_report_id = $comReportId;
-            if (isset($report->customer)) {
-                $comReportDetail->fullname = $report->customer->first_name . ' ' . $report->customer->last_name;
-            } else {
-                $comReportDetail->fullname = '';
-            }
-            if (isset($report->serviceReport->name)) {
-                $comReportDetail->provider = $report->serviceReport->name;
-            } else {
-                $comReportDetail->provider = '';
-            }
-            if (isset($report->dichvu->name)) {
-                $comReportDetail->service = $report->dichvu->name;
-            } else {
-                $comReportDetail->service = '';
-            }
-            if (isset($report->dichvu->policy_no)) {
-                $comReportDetail->policy = $report->dichvu->policy_no;
-            } else {
-                $comReportDetail->policy = 0;
-            }
-            if (isset($report->no_of_adults)) {
-                $comReportDetail->no_of_adults = $report->no_of_adults;
-            } else {
-                $comReportDetail->no_of_adults = 0;
-            }
-            if (isset($report->no_of_children)) {
-                $comReportDetail->no_of_children = $report->no_of_children;
-            } else {
-                $comReportDetail->no_of_children = 0;
-            }
-            if (isset($report->total)) {
-                $comReportDetail->amount = $report->total;
-            } else {
-                $comReportDetail->amount = 0;
-            }
-            if (isset($report->commission->comm)) {
-                $comReportDetail->com_percent = $report->commission->comm;
-            } else {
-                $comReportDetail->com_percent = 0;
-            }
-            if (isset($report->total)) {
-                $comReportDetail->com = round($report->total * ($report->commission->comm / 100), 2);
-            } else {
-                $comReportDetail->com = 0;
-            }
+                $comReportDetail = new ComReportDetails();
+                $comReportDetail->com_report_id = $comReportId;
+                if (isset($report->customer)) {
+                    $comReportDetail->fullname = $report->customer->first_name . ' ' . $report->customer->last_name;
+                } else {
+                    $comReportDetail->fullname = '';
+                }
+                if (isset($report->serviceReport->name)) {
+                    $comReportDetail->provider = $report->serviceReport->name;
+                } else {
+                    $comReportDetail->provider = '';
+                }
+                if (isset($report->dichvu->name)) {
+                    $comReportDetail->service = $report->dichvu->name;
+                } else {
+                    $comReportDetail->service = '';
+                }
+                if (isset($report->dichvu->policy_no)) {
+                    $comReportDetail->policy = $report->dichvu->policy_no;
+                } else {
+                    $comReportDetail->policy = 0;
+                }
+                if (isset($report->no_of_adults)) {
+                    $comReportDetail->no_of_adults = $report->no_of_adults;
+                } else {
+                    $comReportDetail->no_of_adults = 0;
+                }
+                if (isset($report->no_of_children)) {
+                    $comReportDetail->no_of_children = $report->no_of_children;
+                } else {
+                    $comReportDetail->no_of_children = 0;
+                }
+                if (isset($report->total)) {
+                    $comReportDetail->amount = $report->total;
+                } else {
+                    $comReportDetail->amount = 0;
+                }
+                if (isset($report->commission->comm)) {
+                    $comReportDetail->com_percent = $report->commission->comm;
+                } else {
+                    $comReportDetail->com_percent = 0;
+                }
+                if (isset($report->total)) {
+                    $comReportDetail->com = round($report->total * ($report->commission->comm / 100), 2);
+                } else {
+                    $comReportDetail->com = 0;
+                }
 
-            if (isset($report->profit->pay_agent_extra)) {
-                $comReportDetail->extra = $report->profit->pay_agent_extra;
-            } else {
-                $comReportDetail->extra = 0;
-            }
-            $comReportDetail->gst = 0;
-            $comReportDetail->comm_inc_gst = 0;
-            $comReportDetail->comm_exc_gst =0;
-            if (isset($report->hoahong->issue_date)) {
-                $comReportDetail->date_of_policy = $report->hoahong->issue_date;
-            } else {
-                $comReportDetail->date_of_policy = '';
-            }
-            if (isset($report->refund->refund_amount_com_agent_gbcfa) && isset($report->refund->std_status) && $report->refund->std_status == 1) {
-                $comReportDetail->recall_com = $report->refund->refund_amount_com_agent_gbcfa;
-            } else {
-                $comReportDetail->recall_com = 0;//k hieu???
-            }
-            if (isset($report->customer->exchange_rate)) {
-                $comReportDetail->exchange_rate = $report->customer->exchange_rate;
-            } else {
-                $comReportDetail->exchange_rate = 0;
-            }
+                if (isset($report->profit->pay_agent_extra)) {
+                    $comReportDetail->extra = $report->profit->pay_agent_extra;
+                } else {
+                    $comReportDetail->extra = 0;
+                }
+                $comReportDetail->gst = 0;
+                $comReportDetail->comm_inc_gst = 0;
+                $comReportDetail->comm_exc_gst =0;
+                if (isset($report->hoahong->issue_date)) {
+                    $comReportDetail->date_of_policy = $report->hoahong->issue_date;
+                } else {
+                    $comReportDetail->date_of_policy = '';
+                }
+                if (isset($report->refund->refund_amount_com_agent_gbcfa) && isset($report->refund->std_status) && $report->refund->std_status == 1) {
+                    $comReportDetail->recall_com = $report->refund->refund_amount_com_agent_gbcfa;
+                } else {
+                    $comReportDetail->recall_com = 0;//k hieu???
+                }
+                if (isset($report->customer->exchange_rate)) {
+                    $comReportDetail->exchange_rate = $report->customer->exchange_rate;
+                } else {
+                    $comReportDetail->exchange_rate = 0;
+                }
 
-            if (isset($report->profit->pay_agent_bonus)) {
-                $comReportDetail->bonus = $report->profit->pay_agent_bonus;
-            } else {
-                $comReportDetail->bonus = 0;
-            }
+                if (isset($report->profit->pay_agent_bonus)) {
+                    $comReportDetail->bonus = $report->profit->pay_agent_bonus;
+                } else {
+                    $comReportDetail->bonus = 0;
+                }
 
-            if ($comReportDetail->recall_com  == 0) {
-                $totalAUD = $comReportDetail->com + $comReportDetail->bonus + $comReportDetail->extra;
-            } else {
-                $totalAUD = $comReportDetail->com;
+                if ($comReportDetail->recall_com  == 0) {
+                    $totalAUD = $comReportDetail->com + $comReportDetail->bonus + $comReportDetail->extra;
+                } else {
+                    $totalAUD = $comReportDetail->com;
+                }
+                $comReportDetail->total_AUD = $totalAUD;
+                $comReportDetail->total = $totalAUD * $comReportDetail->exchange_rate;
+                $comReportDetail->com_status = $com_status;
+                $comReportDetail->visa_status = $visa_status;
+                if (isset($report->refund->refund_provider_date)) {
+                    $comReportDetail->date_of_payment = $report->refund->refund_provider_date;
+                } else {
+                    $comReportDetail->date_of_payment = '';
+                }
+                if (isset($report->refund->note)) {
+                    $comReportDetail->note = $report->refund->note;
+                } else {
+                    $comReportDetail->note = '';
+                }
+                $comReportDetail->start_date = $report->start_date;
+                $comReportDetail->end_date = $report->end_date;
+                $comReportDetail->created_by = Auth::user()->username;
+                $comReportDetail->updated_by = Auth::user()->username;
+                $comReportDetail->save();
+            if (isset($data['counsellor']) && $data['counsellor'] != "null") {
+                }
             }
-            $comReportDetail->total_AUD = $totalAUD;
-            $comReportDetail->total = $totalAUD * $comReportDetail->exchange_rate;
-            $comReportDetail->com_status = $com_status;
-            $comReportDetail->visa_status = $visa_status;
-            if (isset($report->refund->refund_provider_date)) {
-                $comReportDetail->date_of_payment = $report->refund->refund_provider_date;
-            } else {
-                $comReportDetail->date_of_payment = '';
-            }
-            if (isset($report->refund->note)) {
-                $comReportDetail->note = $report->refund->note;
-            } else {
-                $comReportDetail->note = '';
-            }
-            $comReportDetail->start_date = $report->start_date;
-            $comReportDetail->end_date = $report->end_date;
-            $comReportDetail->created_by = Auth::user()->username;
-            $comReportDetail->updated_by = Auth::user()->username;
-            $comReportDetail->save();
         }
+        dd($reports);
     }
 }
