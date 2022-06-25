@@ -200,6 +200,7 @@ class CommissionReportController extends Controller
                     $this->createInsuranceDetail($data, $comReport->id);
                 }
             } else {
+
                 $checkDetail = ComReportDetails::where('com_report_id', $comReportCheck->id)->delete();
                 if ($data['type'] == 'oshc') {
                     $this->createOshcDetail($data, $comReportCheck->id);
