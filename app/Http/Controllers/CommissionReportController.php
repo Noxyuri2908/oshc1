@@ -45,6 +45,7 @@ class CommissionReportController extends Controller
                 'from_date' => $fromDate,
                 'to_date' => $toDate
             ]);
+
             $gst = User::select('id', 'gst', 'name')->where('id', $agentId)->first();
             if ($data['view'] == 'insurance') {
                 $reports = Apply::select('id', 'agent_id', 'type_service', 'provider_id', 'policy', 'no_of_adults', 'no_of_children', 'start_date', 'end_date', 'total')
