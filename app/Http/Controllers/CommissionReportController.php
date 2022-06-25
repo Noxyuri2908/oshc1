@@ -54,6 +54,7 @@ class CommissionReportController extends Controller
                     ->where('end_date', '<=', $toDate)
                     ->get();
             }
+
             $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
             if ($data['counsellor'] != 'null') {
                 $counsellor_id = $data['counsellor'];
