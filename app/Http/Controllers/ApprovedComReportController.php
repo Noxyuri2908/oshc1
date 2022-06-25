@@ -29,7 +29,11 @@ class ApprovedComReportController extends Controller
 
     public function preview($id) {
         $checkedReport = ComReport::where('approved_com_id', $id)->first();
-        $previewReports = ComReportDetails::where('com_report_id', $checkedReport->id)->get();
+        if (!empty($checkedReport)) {
+            $previewReports = ComReportDetails::where('com_report_id', $checkedReport->id)->get();
+        } else {
+            $previewReports=  null;
+        }
         $flag = 'preview-com-report';
 
         $data = [

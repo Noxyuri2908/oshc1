@@ -27,7 +27,6 @@ class CommissionReportController extends Controller
 {
     public function index(Request $request)
     {
-        $customer = Customer::pluck('person_counsellor_id')->toArray();
         $newComReport = ApprovedComReport::latest('id')->first();
         if (!empty($newComReport)) {
             $newComReportId = $newComReport->id;
@@ -67,6 +66,7 @@ class CommissionReportController extends Controller
                 ->where('counsellor_id', $counsellor_id)
                 ->where('report_type', $data['currency'])
                 ->where('report_name', $data['view'])
+                ->with('customer', 'hoahong', 'profit', 'serviceReport', 'dichvu', 'commission', 'refund')
                 ->first();
             $status = 'off';
             if (!empty($comReportCheck)) {
@@ -280,6 +280,7 @@ class CommissionReportController extends Controller
             ->whereIn('type_service', [4, 6])
             ->where('start_date', '>=', $data['fromDate'])
             ->where('end_date', '<=', $data['toDate'])
+            ->with('customer', 'hoahong', 'profit', 'serviceReport', 'dichvu', 'commission', 'refund')
             ->get();
         foreach ($reports as $report) {
             if (isset($data['counsellor']) && $data['counsellor'] != "null") {

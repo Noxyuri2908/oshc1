@@ -679,11 +679,11 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::get('/preview-approve-com-report/{id}', [ApprovedComReportController::class, 'preview'])->name('preview-approve-com-report');
 
     ///lily's route
-    Route::get('/commission-report', 'CommissionReportController@index')->name('commission-report');
+
     Route::get('/export/{agentId}/{fromDate}/{toDate}/{currency}/{counsellor}', 'CommissionReportController@export')->name('commission-report-export');
     Route::post('/save-comission-report', 'CommissionReportController@save')->name('save-comission-report');
     Route::post('/check-comission-report', 'CommissionReportController@check')->name('save-comission-report');
-
+    Route::get('/commission-report', 'CommissionReportController@index')->name('commission-report');
 });
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {
     Route::get('/', [LuckyDrawController::class, 'show'])->name('lucky.show');

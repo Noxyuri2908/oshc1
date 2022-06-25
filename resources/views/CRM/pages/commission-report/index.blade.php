@@ -146,13 +146,13 @@
                         <p>First Panel</p>
                     </div>
                     <div class="tab-pane @if (isset($view) && $view == 'oshc' || !isset($view)) active @endif" id="tabs-2" role="tabpanel">
-                        <div>
+                        <div style="max-height: 600px">
                             @yield('oshc-report')
                             @include('CRM.pages.commission-report.tab-contents.oshc-report')
                         </div>
                     </div>
                     <div class="tab-pane @if (isset($view) && $view == 'insurance') active @endif" id="tabs-3" role="tabpanel">
-                        <div>
+                        <div style="max-height: 600px">
                             @yield('insurance-report')
                             @include('CRM.pages.commission-report.tab-contents.insurance-report')
                         </div>
