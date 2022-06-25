@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="d-flex flex-column pr-15 width-90">
-                        <button type="submit" id="link-report" class="custom-css-input px-0 custom-border custom-h">Get report link</button>
+                        <button type="submit" id="link-report" class="custom-css-input px-0 custom-border custom-h">Get link</button>
                     </div>
                 </div>
             </div>
