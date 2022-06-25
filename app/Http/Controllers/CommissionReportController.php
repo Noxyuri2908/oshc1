@@ -100,8 +100,12 @@ class CommissionReportController extends Controller
                 'flag' => $flag
             ];
         }
-        // resources/views/CRM/pages/commission-report/index.blade.php
-        return view('CRM.pages.commission-report.index', $data);
+        if(Auth::check()) {
+            // resources/views/CRM/pages/commission-report/index.blade.php
+            return view('CRM.pages.commission-report.index', $data);
+        } else {
+            return view('CRM.pages.commission-report.link', $data);
+        }
     }
 
     public function export($agentId, $fromDate, $toDate, $currency, $counsellor)

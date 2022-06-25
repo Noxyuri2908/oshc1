@@ -685,6 +685,7 @@ Route::middleware(['auth:admin'])->prefix('crm')->group(function () {
     Route::post('/check-comission-report', 'CommissionReportController@check')->name('save-comission-report');
     Route::get('/commission-report', 'CommissionReportController@index')->name('commission-report');
 });
+Route::get('crm/commission-report-link', 'CommissionReportController@index')->name('commission-report-link');
 Route::middleware(['auth:admin'])->prefix('lucky-draw')->group(function () {
     Route::get('/', [LuckyDrawController::class, 'show'])->name('lucky.show');
 });
