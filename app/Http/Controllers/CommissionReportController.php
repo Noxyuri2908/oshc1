@@ -75,6 +75,7 @@ class CommissionReportController extends Controller
             $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
             $data = [
                 'agentId' => $agentId,
+                'agentName' => User::find($agentId)->name,
                 'fromDate' => $fromDate,
                 'toDate' => $toDate,
                 'agents' => $agents,
