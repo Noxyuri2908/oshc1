@@ -4,8 +4,8 @@
                     style="width: 180px;max-width: 100%;" src="/images/ee420406b20f4951101e.jpg" alt=""></span>
         </div>
         <p class="table-name">OSHC & OVHC report</p>
-        <p class="table-description">Agent partner: ATS HCM + ATS HN</p>
-        <p class="table-description">Date: Start date @if(isset($fromDate)){{ $fromDate }}@endif - End date @if(isset($toDate)){{ $toDate }}@endif</p>
+        <p class="table-description">Agent partner: @if(isset($agentName)) {{ $agentName }} @endif</p>
+        <p class="table-description">Date: @if(isset($fromDate)){{ $fromDate }}@endif - @if(isset($toDate)){{ $toDate }}@endif</p>
     </div>
     <div class="p-6">
         <div class="form-check">

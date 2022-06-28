@@ -4,6 +4,11 @@
 <link href="{{asset('backend_CRM/pages/assets/css/cms.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('backend_CRM/pages/assets/css/jquery-ui.css')}}">
 <link rel="stylesheet" href="{{asset('public/backend_CRM/css/commissionReport/index.css')}}">
+<style>
+    .form-check {
+        display: none;
+    }
+</style>
 <body class="p-5" style="position: relative">
 @if (isset($view) && $view == 'insurance')
     @include('CRM.pages.commission-report.tab-contents.insurance-report')
