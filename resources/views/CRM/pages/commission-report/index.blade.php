@@ -17,28 +17,28 @@
                         <label for="">Agent</label>
                         <select name="Agent" id="agent_select" class="selectpicker width-180 custom-border custom-h">
                             <option value="6529"
-                                    @if(isset($agentId) & 6529 == $agentId)
+                                    @if(isset($agentId) && 6529 == $agentId)
                                     selected
                                     @endif
                             >6529</option>
                             <option value="6603"
-                                    @if(isset($agentId) & 6603 == $agentId)
+                                    @if(isset($agentId) && 6603 == $agentId)
                                     selected
                                 @endif
                             >6603</option>
                             <option value="6581"
-                                    @if(isset($agentId) & 6581 == $agentId)
+                                    @if(isset($agentId) && 6581 == $agentId)
                                     selected
                                 @endif
                             >6581</option>
                             <option value="7974"
-                                    @if(isset($agentId) & 7974 == $agentId)
+                                    @if(isset($agentId) && 7974 == $agentId)
                                     selected
                                 @endif
                             >7974</option>
                             @foreach($agents as $agent)
                             <option value="{{ $agent->id }}" data-select2-id="{{ $agent->id }}"
-                                    @if(isset($agentId) & $agent->id == $agentId)
+                                    @if(isset($agentId) && $agent->id == $agentId)
                                     selected
                                     @endif
                             >{{ $agent->name }}</option>
@@ -56,7 +56,7 @@
                             <option></option>
                             @foreach($counsellors as $counsellor)
                             <option value="{{ $counsellor->id }}"
-                                    @if(isset($counsellorId) & $counsellorId == $counsellor->id)
+                                    @if(isset($counsellorId) && $counsellorId == $counsellor->id)
                                     selected
                                     @endif
                             >{{ $counsellor->name }}</option>
@@ -67,12 +67,12 @@
                         <label for="">Type of report</label>
                         <select name="typeOfReport" id="typeOfReport-by-agent" class="selectpicker custom-border custom-h">
                             <option value="AUD"
-                                    @if(isset($currency) & $currency == 'AUD')
+                                    @if(isset($currency) && $currency == 'AUD')
                                     selected
                                     @endif
                             >Foreign currency</option>
                             <option value="VND"
-                                    @if(isset($currency) & $currency == 'VND')
+                                    @if(isset($currency) && $currency == 'VND')
                                     selected
                                     @endif
                             >VND</option>
@@ -127,10 +127,10 @@
                         <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Report overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if ((isset($view) & $view == 'oshc') || !isset($view)) active @endif" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
+                        <a class="nav-link @if ((isset($view) && $view == 'oshc') || !isset($view)) active @endif" data-toggle="tab" data-text="oshc" href="#tabs-2" role="tab">OSHC & OVHC Report</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (isset($view) & $view == 'insurance') active @endif" data-toggle="tab" data-text="insurance" href="#tabs-3" role="tab">Other Insurances Report</a>
+                        <a class="nav-link @if (isset($view) && $view == 'insurance') active @endif" data-toggle="tab" data-text="insurance" href="#tabs-3" role="tab">Other Insurances Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Homestay Report</a>
@@ -149,13 +149,13 @@
                     <div class="tab-pane" id="tabs-1" role="tabpanel">
                         <p>First Panel</p>
                     </div>
-                    <div class="tab-pane @if (isset($view) & $view == 'oshc' || !isset($view)) active @endif" id="tabs-2" role="tabpanel">
+                    <div class="tab-pane @if (isset($view) && $view == 'oshc' || !isset($view)) active @endif" id="tabs-2" role="tabpanel">
                         <div style="max-height: 600px">
                             @yield('oshc-report')
                             @include('CRM.pages.commission-report.tab-contents.oshc-report')
                         </div>
                     </div>
-                    <div class="tab-pane @if (isset($view) & $view == 'insurance') active @endif" id="tabs-3" role="tabpanel">
+                    <div class="tab-pane @if (isset($view) && $view == 'insurance') active @endif" id="tabs-3" role="tabpanel">
                         <div style="max-height: 600px">
                             @yield('insurance-report')
                             @include('CRM.pages.commission-report.tab-contents.insurance-report')

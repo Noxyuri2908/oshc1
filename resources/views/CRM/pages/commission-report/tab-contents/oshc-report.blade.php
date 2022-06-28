@@ -5,7 +5,7 @@
         </div>
         <p class="table-name">OSHC & OVHC report</p>
         <p class="table-description">Agent partner: @if(isset($agentName)) {{ $agentName }} @endif</p>
-        <p class="table-description">Date: @if(isset($fromDate)){{ $fromDate }}@endif - @if(isset($toDate)){{ $toDate }}@endif</p>
+        <p class="table-description">Date: @if(isset($fromDate) && isset($toDate)){{ date_format(date_create($fromDate),"d/m/Y") }} - {{ date_format(date_create($toDate),"d/m/Y") }}@endif</p>
     </div>
     <div class="p-6">
         <div class="form-check">
