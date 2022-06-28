@@ -67,7 +67,6 @@ class CommissionReportController extends Controller
                 ->where('counsellor_id', $counsellor_id)
                 ->where('report_type', $data['currency'])
                 ->where('report_name', $data['view'])
-                ->with('customer', 'hoahong', 'profit', 'serviceReport', 'dichvu', 'commission', 'refund')
                 ->first();
             $status = 'off';
             if (!empty($comReportCheck)) {
