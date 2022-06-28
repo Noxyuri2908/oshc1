@@ -11,7 +11,7 @@
         <div class="form-check">
             <input class="form-check-input check-content" type="checkbox"
                    @if(isset($view) && isset($status) && $view == "oshc" && $status == "on")
-                    checked
+                   checked
                    @endif
                    id="oshcCheckbox" onclick="document.getElementById('oshcCheckDefault').click()">
             <label class="form-check-label m-1" for="oshcCheckbox">
@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<table style="width: 1433px" class="oshc-table-content">
+<table class="oshc-table-content">
     <thead>
     <tr>
         <th class="width-100 text-center f-13">Service</th>
@@ -62,6 +62,7 @@
     @endphp
     @if(isset($reports) && isset($view) && $view == 'oshc' && !empty($reports))
         @foreach($reports as $report)
+            @if($report->date_of_payment == null)
             @if (isset($counsellorId) )
                 @if(isset($report->customer->person_counsellor_id) && $report->customer->person_counsellor_id == $counsellorId)
                 <tr>
@@ -136,6 +137,7 @@
                     <td>{{ $report->note }}</td>
                     <td data-toggle="modal" data-target="#history-modal" style="cursor: pointer">view</td>
                 </tr>
+            @endif
             @endif
         @endforeach
     @else

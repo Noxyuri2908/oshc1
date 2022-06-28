@@ -57,7 +57,7 @@
                 <div class="form-group row">
                     <div class="col-md-2 m-auto label">Created by</div>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="Created by" value="{{ \Illuminate\Support\Facades\Auth::user()->username }}">
+                        <input type="text" class="form-control" placeholder="Created by" value="{{ \Illuminate\Support\Facades\Auth::user()->username ?? '' }}">
                     </div>
                 </div>
             </div>

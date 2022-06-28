@@ -109,6 +109,10 @@
                     <div class="d-flex flex-column pr-15 width-90">
                         <button type="submit" id="export-report" class="custom-css-input px-0 custom-border custom-h">Export xlsx</button>
                     </div>
+
+                    <div class="d-flex flex-column pr-15 width-90">
+                        <button type="submit" id="link-report" class="custom-css-input px-0 custom-border custom-h">Get link</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,13 +150,13 @@
                         <p>First Panel</p>
                     </div>
                     <div class="tab-pane @if (isset($view) && $view == 'oshc' || !isset($view)) active @endif" id="tabs-2" role="tabpanel">
-                        <div>
+                        <div style="max-height: 600px">
                             @yield('oshc-report')
                             @include('CRM.pages.commission-report.tab-contents.oshc-report')
                         </div>
                     </div>
                     <div class="tab-pane @if (isset($view) && $view == 'insurance') active @endif" id="tabs-3" role="tabpanel">
-                        <div>
+                        <div style="max-height: 600px">
                             @yield('insurance-report')
                             @include('CRM.pages.commission-report.tab-contents.insurance-report')
                         </div>
@@ -200,6 +204,37 @@
                 }
                 var url = "/crm/commission-report?agentId=" + agentId + "&&fromDate=" + fromDate + "&&toDate=" + toDate + '&&currency=' + currency + '&&counsellor='+ counsellor + '&&view='+ type;
                 window.location.href = url;
+            })
+
+            $(document).on('click', '#link-report', function () {
+                var agentId = $('#agent_select').val();
+                var fromDate = $('#start_date').val();
+                var toDate = $('#end_date').val();
+                var currency = $('#typeOfReport-by-agent').val();
+                var counsellor = $('#counsellor-by-agent').val();
+                var type = 'oshc';
+                // console.log($('#tabs .active')[0].attr('data-text'));
+                if ($('#tabs .active')[0].innerText == 'OSHC & OVHC Report') {
+                    type = 'oshc';
+                } else if ($('#tabs .active')[0].innerText == 'Other Insurances Report') {
+                    type = 'insurance';
+                }
+                var url = window.location.origin + "/crm/commission-report-link?agentId=" + agentId + "&&fromDate=" + fromDate + "&&toDate=" + toDate + '&&currency=' + currency + '&&counsellor='+ counsellor + '&&view='+ type;
+                var input = document.createElement('input');
+                input.setAttribute('value', url);
+                document.body.appendChild(input);
+                input.select();
+                var result = document.execCommand('copy');
+                document.body.removeChild(input);
+                Swal.fire({
+                    text: "Copied report link to clipboard",
+                    icon: "success",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                });
             })
 
             $(document).on('click', '#export-report', function () {

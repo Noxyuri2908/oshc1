@@ -78,6 +78,7 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
             ->whereIn('type_service', [4,6])
             ->where('start_date', '>=', $this->fromDate)
             ->where('end_date', '<=', $this->toDate)
+            ->with('customer', 'hoahong', 'profit', 'serviceReport', 'dichvu', 'commission', 'refund')
             ->get();
         $agent = User::where('id', $this->agentId)->first();
         $pitAgent = $agent->pit;

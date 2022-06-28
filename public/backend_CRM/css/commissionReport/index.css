@@ -1,4 +1,5 @@
 body {
+    position: fixed;
     font: normal normal bold 13px/15px Roboto;
 }
 
@@ -97,4 +98,10 @@ textarea:focus, input:focus{
     font-size: 15px;
     font-weight: 700;
     color: #1C427A;
+}
+
+thead th {
+    background: white;
+    position: sticky;
+    top: -15px;
 }

@@ -56,6 +56,7 @@
                 </tr>
                 </thead>
                 <tbody class="table table-bordered" style="background: #F9F9F9">
+                @if($previewReports != null)
                 @foreach ($previewReports as $previewReport)
                 <tr>
                     <td>{{ $previewReport->service }}</td>
@@ -85,6 +86,7 @@
                     <td>{{ $previewReport->note }}</td>
                 </tr>
                 @endforeach
+                @endif
                 </tbody>
             </table>
         </div>

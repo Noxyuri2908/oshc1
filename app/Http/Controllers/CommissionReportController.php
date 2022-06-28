@@ -27,7 +27,6 @@ class CommissionReportController extends Controller
 {
     public function index(Request $request)
     {
-        $customer = Customer::pluck('person_counsellor_id')->toArray();
         $newComReport = ApprovedComReport::latest('id')->first();
         if (!empty($newComReport)) {
             $newComReportId = $newComReport->id;
@@ -55,6 +54,7 @@ class CommissionReportController extends Controller
                     ->where('end_date', '<=', $toDate)
                     ->get();
             }
+
             $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
             if ($data['counsellor'] != 'null') {
                 $counsellor_id = $data['counsellor'];
@@ -99,8 +99,12 @@ class CommissionReportController extends Controller
                 'flag' => $flag
             ];
         }
-        // resources/views/CRM/pages/commission-report/index.blade.php
-        return view('CRM.pages.commission-report.index', $data);
+        if(Auth::check()) {
+            // resources/views/CRM/pages/commission-report/index.blade.php
+            return view('CRM.pages.commission-report.index', $data);
+        } else {
+            return view('CRM.pages.commission-report.link', $data);
+        }
     }
 
     public function export($agentId, $fromDate, $toDate, $currency, $counsellor)
@@ -200,6 +204,7 @@ class CommissionReportController extends Controller
                     $this->createInsuranceDetail($data, $comReport->id);
                 }
             } else {
+
                 $checkDetail = ComReportDetails::where('com_report_id', $comReportCheck->id)->delete();
                 if ($data['type'] == 'oshc') {
                     $this->createOshcDetail($data, $comReportCheck->id);
@@ -280,6 +285,7 @@ class CommissionReportController extends Controller
             ->whereIn('type_service', [4, 6])
             ->where('start_date', '>=', $data['fromDate'])
             ->where('end_date', '<=', $data['toDate'])
+            ->with('customer', 'hoahong', 'profit', 'serviceReport', 'dichvu', 'commission', 'refund')
             ->get();
         foreach ($reports as $report) {
             if (isset($data['counsellor']) && $data['counsellor'] != "null") {
