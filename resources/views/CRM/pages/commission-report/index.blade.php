@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{{asset('public/backend_CRM/css/commissionReport/index.css')}}">
 @stop
 @section('content')
+    <div id="spinner">
+        <div class="spinner-border text-dark" role="status">
+        </div>
+    </div>
+
     <div class="card" style="border-bottom: 2px solid #ccc;">
         <div class="card-body " id="top-filter">
             <div class="row">
@@ -190,6 +195,7 @@
             })
 
             $(document).on('click', '#apply', function () {
+                document.getElementById('spinner').style.display = 'block';
                 var agentId = $('#agent_select').val();
                 var fromDate = $('#start_date').val();
                 var toDate = $('#end_date').val();
@@ -257,6 +263,7 @@
             })
 
             $(document).on('click', '.check-content', function () {
+                document.getElementById('spinner').style.display = 'block';
                 var agentId = $('#agent_select').val();
                 {{--var agentId = {{ $agentId }};--}}
                 var fromDate = $('#start_date').val();
@@ -295,6 +302,7 @@
                         _token: _token
                     },
                     success:function(response){
+                        document.getElementById('spinner').style.display = 'none';
                         Swal.fire({
                             text: response.message,
                             icon: "success",
@@ -306,6 +314,7 @@
                         });
                     },
                     error: function(error) {
+                        document.getElementById('spinner').style.display = 'none';
                         console.log(error);
                         Swal.fire({
                             text: error.responseJSON.message,
@@ -321,6 +330,7 @@
             })
 
             $(document).on('click', '#save_report', function () {
+                document.getElementById('spinner').style.display = 'block';
                 var agentId = $('#agent_select').val();
                 {{--var agentId = {{ $agentId }};--}}
                 var fromDate = $('#start_date').val();
@@ -355,6 +365,7 @@
                         _token: _token
                     },
                     success:function(response){
+                        document.getElementById('spinner').style.display = 'none';
                         console.log(response);
                         Swal.fire({
                             text: response.message,
@@ -367,6 +378,7 @@
                         });
                     },
                     error: function(error) {
+                        document.getElementById('spinner').style.display = 'none';
                         console.log(error);
                         Swal.fire({
                             text: error.responseJSON.message,
