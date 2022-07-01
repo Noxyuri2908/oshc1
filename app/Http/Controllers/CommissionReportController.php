@@ -170,55 +170,65 @@ class CommissionReportController extends Controller
 
     public function check(Request $request)
     {
-        $data = $request->all();
-        if ($data['counsellor'] != 'null') {
-            $counsellor_id = $data['counsellor'];
-        }else {
-            $counsellor_id = null;
-        }
-        $comReportCheck = ComReport::where('from_date', $data['fromDate'])
-            ->where('to_date', $data['toDate'])
-            ->where('agent_id', $data['agentId'])
-            ->where('counsellor_id', $counsellor_id)
-            ->where('report_type', $data['typeOfReport'])
-            ->where('report_name', $data['type'])
-            ->first();
-        if ($data['status'] == 'on') {
-            if (empty($comReportCheck)) {
-                $comReport = new ComReport();
-                $comReport->from_date = $data['fromDate'];
-                $comReport->to_date = $data['toDate'];
-                $comReport->agent_id = $data['agentId'];
-                $comReport->counsellor_id = $counsellor_id;
-                $comReport->approved_com_id = null;
-                $comReport->report_type = $data['typeOfReport'];
-                $comReport->report_name = $data['type'];
-                $comReport->created_by = Auth::user()->username;
-                $comReport->updated_by = Auth::user()->username;
-                $comReport->save();
-                if ($data['type'] == 'oshc') {
-                    $this->createOshcDetail($data, $comReport->id);
-                } else if ($data['type'] == 'insurance') {
-                    $this->createInsuranceDetail($data, $comReport->id);
+        try {
+            DB::beginTransaction();
+            $data = $request->all();
+            if ($data['counsellor'] != 'null') {
+                $counsellor_id = $data['counsellor'];
+            } else {
+                $counsellor_id = null;
+            }
+            $comReportCheck = ComReport::where('from_date', $data['fromDate'])
+                ->where('to_date', $data['toDate'])
+                ->where('agent_id', $data['agentId'])
+                ->where('counsellor_id', $counsellor_id)
+                ->where('report_type', $data['typeOfReport'])
+                ->where('report_name', $data['type'])
+                ->first();
+            if ($data['status'] == 'on') {
+                if (empty($comReportCheck)) {
+                    $comReport = new ComReport();
+                    $comReport->from_date = $data['fromDate'];
+                    $comReport->to_date = $data['toDate'];
+                    $comReport->agent_id = $data['agentId'];
+                    $comReport->counsellor_id = $counsellor_id;
+                    $comReport->approved_com_id = null;
+                    $comReport->report_type = $data['typeOfReport'];
+                    $comReport->report_name = $data['type'];
+                    $comReport->created_by = Auth::user()->username;
+                    $comReport->updated_by = Auth::user()->username;
+                    $comReport->save();
+                    if ($data['type'] == 'oshc') {
+                        $this->createOshcDetail($data, $comReport->id);
+                    } else if ($data['type'] == 'insurance') {
+                        $this->createInsuranceDetail($data, $comReport->id);
+                    }
+                } else {
+                    ComReportDetails::where('com_report_id', $comReportCheck->id)->delete();
+                    if ($data['type'] == 'oshc') {
+                        $this->createOshcDetail($data, $comReportCheck->id);
+                    } else if ($data['type'] == 'insurance') {
+                        $this->createInsuranceDetail($data, $comReportCheck->id);
+                    }
                 }
+                DB::commit();
+                $dataJson = ['message' => 'Save Success'];
+                return response()->json($dataJson, 200);
             } else {
                 ComReportDetails::where('com_report_id', $comReportCheck->id)->delete();
-                if ($data['type'] == 'oshc') {
-                    $this->createOshcDetail($data, $comReportCheck->id);
-                } else if ($data['type'] == 'insurance') {
-                    $this->createInsuranceDetail($data, $comReportCheck->id);
-                }
+                $comReportCheck->delete();
+                DB::commit();
+                $dataJson = ['message' => 'Delete Success'];
+                return response()->json($dataJson, 200);
             }
-            $dataJson = ['message' => 'Save Success'];
-            return response()->json($dataJson, 200);
-        } else {
-            ComReportDetails::where('com_report_id', $comReportCheck->id)->delete();
-            $comReportCheck->delete();
-            $dataJson = ['message' => 'Delete Success'];
-            return response()->json($dataJson, 200);
+
+        } catch(\Exception $exp) {
+            DB::rollBack(); // Tell Laravel, "It's not you, it's me. Please don't persist to DB"
+            return response([
+                'message' => $exp->getMessage(),
+                'status' => 'failed'
+            ], 400);
         }
-
-
     }
 
     public function createOshcDetail($data, $comReportId) {

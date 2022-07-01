@@ -42,13 +42,13 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
                 $gst = User::select('id', 'gst')->where('id', $this->agentId)->first();
                 if ($this->currency != 'null') {
                     if ($this->currency == 'VND' && $this->counsellor != 'null') {
-                        $templateFile = new LocalTemporaryFile(public_path('oshc/VND-counsellor.xlsx'));
+                        $templateFile = new tempnam(public_path('oshc/VND-counsellor.xlsx'));
                     } elseif ($this->currency == 'VND' && $this->counsellor == 'null') {
-                        $templateFile = new LocalTemporaryFile(public_path('oshc/VND.xlsx'));
+                        $templateFile = new tempnam(public_path('oshc/VND.xlsx'), 'cre');
                     } elseif ($this->currency == 'AUD' && $gst->gst < 1) {
-                        $templateFile = new LocalTemporaryFile(public_path('oshc/AUD-exgst.xlsx'));
+                        $templateFile = new tempnam(public_path('oshc/AUD-exgst.xlsx'));
                     } elseif ($this->currency == 'AUD' && $gst->gst > 1) {
-                        $templateFile = new LocalTemporaryFile(public_path('oshc/AUD-ingst.xlsx'));
+                        $templateFile = new tempnam(public_path('oshc/AUD-ingst.xlsx'));
                     }
                 }
 
