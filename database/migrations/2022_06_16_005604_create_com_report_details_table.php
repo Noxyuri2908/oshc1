@@ -38,6 +38,7 @@ class CreateComReportDetailsTable extends Migration
             $table->string('visa_status');
             $table->string('note');
             $table->dateTime('date_of_payment')->nullable();
+            $table->dateTime('date_of_policy')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->integer('created_by')->nullable();
