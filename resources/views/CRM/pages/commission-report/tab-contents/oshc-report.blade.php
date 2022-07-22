@@ -26,10 +26,8 @@
         <th class="width-100 text-center f-13">Service</th>
         <th class="width-70 text-center f-13">Full name</th>
         <th class="width-150 text-center f-13">Provider</th>
-        <th class="width-150 text-center f-13">Cover</th>
+        <th class="width-150 text-center f-13">Policy</th>
         <th class="width-50 text-center f-13">Policy No</th>
-        <th class="width-50 text-center f-13">Adults</th>
-        <th class="width-210 text-center f-13">Children</th>
         <th class="width-50 text-center f-13">Start date</th>
         <th class="width-100 text-center f-13">End date</th>
         <th class="width-110 text-center f-13">Gross amount</th>
@@ -69,10 +67,8 @@
                     <td>{{ $report->service }}</td>
                     <td>{{ $report->full_name }}</td>
                     <td>{{ $report->provider }}</td>
-                    <td>{{ $report->cover }}</td>
+                    <td>{{ $report->policy ?? 0 }}</td>
                     <td>{{ $report->policy_no }}</td>
-                    <td>{{ $report->no_of_adults }}</td>
-                    <td>{{ $report->no_of_children }}</td>
                     <td>{{ $report->start_date }}</td>
                     <td>{{ $report->end_date }}</td>
                     <td>{{ $report->amount }}</td>
@@ -106,10 +102,8 @@
                     <td>{{ $report->service }}</td>
                     <td>{{ $report->full_name }}</td>
                     <td>{{ $report->provider }}</td>
-                    <td>{{ $report->cover }}</td>
+                    <td>{{ $report->policy ?? 0 }}</td>
                     <td>{{ $report->policy_no }}</td>
-                    <td>{{ $report->no_of_adults }}</td>
-                    <td>{{ $report->no_of_children }}</td>
                     <td>{{ $report->start_date }}</td>
                     <td>{{ $report->end_date }}</td>
                     <td>{{ $report->amount }}</td>
