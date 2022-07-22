@@ -42,13 +42,13 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
                 $gst = User::select('id', 'gst')->where('id', $this->agentId)->first();
                 if ($this->currency != 'null') {
                     if ($this->currency == 'VND' && $this->counsellor != 'null') {
-                        $templateFile = new tempnam(public_path('oshc/VND-counsellor.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('oshc/VND-counsellor.xlsx'));
                     } elseif ($this->currency == 'VND' && $this->counsellor == 'null') {
-                        $templateFile = new tempnam(public_path('oshc/VND.xlsx'), 'cre');
+                        $templateFile = new LocalTemporaryFile(public_path('oshc/VND.xlsx'), 'cre');
                     } elseif ($this->currency == 'AUD' && $gst->gst < 1) {
-                        $templateFile = new tempnam(public_path('oshc/AUD-exgst.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('oshc/AUD-exgst.xlsx'));
                     } elseif ($this->currency == 'AUD' && $gst->gst > 1) {
-                        $templateFile = new tempnam(public_path('oshc/AUD-ingst.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('oshc/AUD-ingst.xlsx'));
                     }
                 }
 
@@ -73,7 +73,7 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
         ]);
         $agent = User::where('id', $this->agentId)->first();
         $sheet->setCellValue('b3', $agent->name);
-        $sheet->setCellValue('b4', 'From '.Carbon::parse($this->fromDate)->format('d/m/Y').' to '. Carbon::parse($this->toDate)->format('d/m/Y'));
+        $sheet->setCellValue('b4', Carbon::parse($this->fromDate)->format('d/m/Y').'-'. Carbon::parse($this->toDate)->format('d/m/Y'));
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
         $total = 0;
@@ -128,7 +128,7 @@ class OshcReportExport implements WithEvents, ShouldAutoSize
                 $startRow++;
             }
         }
-        $sheet->mergeCells('A'.$startRow.':S'.$startRow);
+        $sheet->mergeCells('A'.$startRow.':Q'.$startRow);
 
         $sheet->setCellValue('A'.$startRow, 'Total');
         $sheet->setCellValue('T'.$startRow, $total);

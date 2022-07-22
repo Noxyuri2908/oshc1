@@ -41,13 +41,13 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
                 $gst = User::select('id', 'gst')->where('id', $this->agentId)->first();
                 if ($this->currency != 'null') {
                     if ($this->currency == 'VND' && $this->counsellor != 'null') {
-                        $templateFile = new tempnam(public_path('insurance/VND-counsellor.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('insurance/VND-counsellor.xlsx'));
                     } elseif ($this->currency == 'VND' && $this->counsellor == 'null') {
-                        $templateFile = new tempnam(public_path('insurance/VND.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('insurance/VND.xlsx'));
                     } elseif ($this->currency == 'AUD' && $gst->gst < 1) {
-                        $templateFile = new tempnam(public_path('insurance/AUD-exgst.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('insurance/AUD-exgst.xlsx'));
                     } elseif ($this->currency == 'AUD' && $gst->gst > 1) {
-                        $templateFile = new tempnam(public_path('insurance/AUD-ingst.xlsx'));
+                        $templateFile = new LocalTemporaryFile(public_path('insurance/AUD-ingst.xlsx'));
                     }
                 }
 
@@ -82,7 +82,7 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
             ->get();
         $agent = User::where('id', $this->agentId)->first();
         $pitAgent = $agent->pit;
-        $sheet->setCellValue('b4', 'From '.Carbon::parse($this->fromDate)->format('d/m/Y').' to '. Carbon::parse($this->toDate)->format('d/m/Y'));
+        $sheet->setCellValue('b4', Carbon::parse($this->fromDate)->format('d/m/Y').'-'. Carbon::parse($this->toDate)->format('d/m/Y'));
         $sheet->setCellValue('b3', $agent->name);
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
@@ -137,15 +137,26 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
                     } else {
                         $contents['provider'] = '';
                     }
-
-                    $contents['cover'] = '';
+                    $policy = $report->policy;
+                    switch ($policy) {
+                        case 1:
+                            $policyName = "Single";
+                            break;
+                        case 2:
+                            $policyName = "Couple";
+                            break;
+                        case 3:
+                            $policyName = "Family";
+                            break;
+                        default:
+                            $policyName = "Single parent";
+                    }
+                    $contents['policy'] = $policyName;
                     if (isset($report->dichvu->policy_no)) {
                         $contents['policy_no'] = $report->dichvu->policy_no;
                     } else {
                         $contents['policy_no'] = 0;
                     }
-                    $contents['no_of_adults_sort'] = $report->no_of_adults;
-                    $contents['no_of_children_sort'] = $report->no_of_children;
                     if (isset($report->hoahong->issue_date)) {
                         $contents['date_of_policy'] = $report->hoahong->issue_date;
                     } else {
@@ -267,15 +278,26 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
                 } else {
                     $contents['provider'] = '';
                 }
-
-                $contents['cover'] = '';
+                $policy = $report->policy;
+                switch ($policy) {
+                    case 1:
+                        $policyName = "Single";
+                        break;
+                    case 2:
+                        $policyName = "Couple";
+                        break;
+                    case 3:
+                        $policyName = "Family";
+                        break;
+                    default:
+                        $policyName = "Single parent";
+                }
+                $contents['policy'] = $policyName;
                 if (isset($report->dichvu->policy_no)) {
                     $contents['policy_no'] = $report->dichvu->policy_no;
                 } else {
                     $contents['policy_no'] = 0;
                 }
-                $contents['no_of_adults_sort'] = $report->no_of_adults;
-                $contents['no_of_children_sort'] = $report->no_of_children;
                 if (isset($report->hoahong->issue_date)) {
                     $contents['date_of_policy'] = $report->hoahong->issue_date;
                 } else {
@@ -362,15 +384,6 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
         $startRow2 = $startRow + 2;
         $startRow3 = $startRow + 3;
         if (isset($this->currency) && $this->currency == "VND") {
-            $sheet->mergeCells('A' . $startRow . ':R' . $startRow);
-            $sheet->mergeCells('A' . $startRow1 . ':R' . $startRow1);
-            $sheet->mergeCells('A' . $startRow2 . ':R' . $startRow2);
-            $sheet->mergeCells('A' . $startRow3 . ':R' . $startRow3);
-            $sheet->setCellValue('S'.$startRow, $sumTotalVnd);
-            $sheet->setCellValue('S'.$startRow1, $pit);
-            $sheet->setCellValue('S'.$startRow2, $sumTotalVnd - $pit);
-            $sheet->setCellValue('S'.$startRow3, ($sumTotalVnd - $pit) * $rate);
-        } else {
             $sheet->mergeCells('A' . $startRow . ':P' . $startRow);
             $sheet->mergeCells('A' . $startRow1 . ':P' . $startRow1);
             $sheet->mergeCells('A' . $startRow2 . ':P' . $startRow2);
@@ -379,6 +392,15 @@ class VisitorInsuranceReport implements WithEvents, ShouldAutoSize
             $sheet->setCellValue('Q'.$startRow1, $pit);
             $sheet->setCellValue('Q'.$startRow2, $sumTotalVnd - $pit);
             $sheet->setCellValue('Q'.$startRow3, ($sumTotalVnd - $pit) * $rate);
+        } else {
+            $sheet->mergeCells('A' . $startRow . ':N' . $startRow);
+            $sheet->mergeCells('A' . $startRow1 . ':N' . $startRow1);
+            $sheet->mergeCells('A' . $startRow2 . ':N' . $startRow2);
+            $sheet->mergeCells('A' . $startRow3 . ':N' . $startRow3);
+            $sheet->setCellValue('O'.$startRow, $sumTotalVnd);
+            $sheet->setCellValue('O'.$startRow1, $pit);
+            $sheet->setCellValue('O'.$startRow2, $sumTotalVnd - $pit);
+            $sheet->setCellValue('O'.$startRow3, ($sumTotalVnd - $pit) * $rate);
         }
 
         $sheet->setCellValue('A'.$startRow, 'Total (VND)');

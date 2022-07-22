@@ -74,7 +74,7 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
         ]);
         $agent = User::where('id', $this->agentId)->first();
         $sheet->setCellValue('b3', $agent->name);
-        $sheet->setCellValue('b4', 'From '.Carbon::parse($this->fromDate)->format('d/m/Y').' to '. Carbon::parse($this->toDate)->format('d/m/Y'));
+        $sheet->setCellValue('b4', Carbon::parse($this->fromDate)->format('d/m/Y').'-'. Carbon::parse($this->toDate)->format('d/m/Y'));
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
         $total = 0;
@@ -84,6 +84,7 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
                     $key = 0;
                     // Populate the static cells
                     foreach ($report as $nameField => $value) {
+                        //if ($nameField != )
                         if ($nameField == 'start_date' || $nameField == "end_date" || $nameField == 'date_of_policy') {
                             $sheet->setCellValue($columns[$key] . $startRow, Carbon::parse($value)->format('d/m/Y'));
                         } else {
@@ -129,7 +130,7 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
                 $startRow++;
             }
         }
-        $sheet->mergeCells('A'.$startRow.':S'.$startRow);
+        $sheet->mergeCells('A'.$startRow.':Q'.$startRow);
 
         $sheet->setCellValue('A'.$startRow, 'Total');
         $sheet->setCellValue('T'.$startRow, $total);
@@ -153,7 +154,7 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
             ->get();
         $agent = User::where('id', $this->agentId)->first();
         $pitAgent = $agent->pit;
-        $sheet->setCellValue('b4', 'From '.Carbon::parse($this->fromDate)->format('d/m/Y').' to '. Carbon::parse($this->toDate)->format('d/m/Y'));
+        $sheet->setCellValue('b4', Carbon::parse($this->fromDate)->format('d/m/Y').'-'. Carbon::parse($this->toDate)->format('d/m/Y'));
         $sheet->setCellValue('b3', $agent->name);
         $columns = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z','AA','AB'];
         $startRow = 7;
@@ -208,15 +209,26 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
                     } else {
                         $contents['provider'] = '';
                     }
-
-                    $contents['cover'] = '';
+                    $policy = $report->policy;
+                    switch ($policy) {
+                        case 1:
+                            $policyName = "Single";
+                            break;
+                        case 2:
+                            $policyName = "Couple";
+                            break;
+                        case 3:
+                            $policyName = "Family";
+                            break;
+                        default:
+                            $policyName = "Single parent";
+                    }
+                    $contents['policy'] = $policyName;
                     if (isset($report->dichvu->policy_no)) {
                         $contents['policy_no'] = $report->dichvu->policy_no;
                     } else {
                         $contents['policy_no'] = 0;
                     }
-                    $contents['no_of_adults_sort'] = $report->no_of_adults;
-                    $contents['no_of_children_sort'] = $report->no_of_children;
                     if (isset($report->hoahong->issue_date)) {
                         $contents['date_of_policy'] = $report->hoahong->issue_date;
                     } else {
@@ -330,15 +342,26 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
                 } else {
                     $contents['provider'] = '';
                 }
-
-                $contents['cover'] = '';
+                $policy = $report->policy;
+                switch ($policy) {
+                    case 1:
+                        $policyName = "Single";
+                        break;
+                    case 2:
+                        $policyName = "Couple";
+                        break;
+                    case 3:
+                        $policyName = "Family";
+                        break;
+                    default:
+                        $policyName = "Single parent";
+                }
+                $contents['policy'] = $policyName;
                 if (isset($report->dichvu->policy_no)) {
                     $contents['policy_no'] = $report->dichvu->policy_no;
                 } else {
                     $contents['policy_no'] = 0;
                 }
-                $contents['no_of_adults_sort'] = $report->no_of_adults;
-                $contents['no_of_children_sort'] = $report->no_of_children;
                 if (isset($report->hoahong->issue_date)) {
                     $contents['date_of_policy'] = $report->hoahong->issue_date;
                 } else {
@@ -425,15 +448,6 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
         $startRow2 = $startRow + 2;
         $startRow3 = $startRow + 3;
         if (isset($this->currency) && $this->currency == "VND") {
-            $sheet->mergeCells('A' . $startRow . ':R' . $startRow);
-            $sheet->mergeCells('A' . $startRow1 . ':R' . $startRow1);
-            $sheet->mergeCells('A' . $startRow2 . ':R' . $startRow2);
-            $sheet->mergeCells('A' . $startRow3 . ':R' . $startRow3);
-            $sheet->setCellValue('S'.$startRow, $sumTotalVnd);
-            $sheet->setCellValue('S'.$startRow1, $pit);
-            $sheet->setCellValue('S'.$startRow2, $sumTotalVnd - $pit);
-            $sheet->setCellValue('S'.$startRow3, ($sumTotalVnd - $pit) * $rate);
-        } else {
             $sheet->mergeCells('A' . $startRow . ':P' . $startRow);
             $sheet->mergeCells('A' . $startRow1 . ':P' . $startRow1);
             $sheet->mergeCells('A' . $startRow2 . ':P' . $startRow2);
@@ -442,6 +456,15 @@ class CommissionReportMultiSheetExport implements WithEvents, ShouldAutoSize
             $sheet->setCellValue('Q'.$startRow1, $pit);
             $sheet->setCellValue('Q'.$startRow2, $sumTotalVnd - $pit);
             $sheet->setCellValue('Q'.$startRow3, ($sumTotalVnd - $pit) * $rate);
+        } else {
+            $sheet->mergeCells('A' . $startRow . ':N' . $startRow);
+            $sheet->mergeCells('A' . $startRow1 . ':N' . $startRow1);
+            $sheet->mergeCells('A' . $startRow2 . ':N' . $startRow2);
+            $sheet->mergeCells('A' . $startRow3 . ':N' . $startRow3);
+            $sheet->setCellValue('O'.$startRow, $sumTotalVnd);
+            $sheet->setCellValue('O'.$startRow1, $pit);
+            $sheet->setCellValue('O'.$startRow2, $sumTotalVnd - $pit);
+            $sheet->setCellValue('O'.$startRow3, ($sumTotalVnd - $pit) * $rate);
         }
 
         $sheet->setCellValue('A'.$startRow, 'Total (VND)');

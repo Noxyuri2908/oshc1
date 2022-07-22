@@ -27,10 +27,8 @@
             <th class="width-100 text-center f-13">Service</th>
             <th class="width-70 text-center f-13">Full name</th>
             <th class="width-150 text-center f-13">Provider</th>
-            <th class="width-150 text-center f-13">Cover</th>
+            <th class="width-150 text-center f-13">Policy</th>
             <th class="width-50 text-center f-13">Policy No</th>
-            <th class="width-50 text-center f-13">Adults</th>
-            <th class="width-210 text-center f-13">Children</th>
             <th class="width-210 text-center f-13">Date of policy</th>
             <th class="width-50 text-center f-13">Start date</th>
             <th class="width-100 text-center f-13">End date</th>
@@ -52,10 +50,8 @@
             <th class="width-100 text-center f-13">Service</th>
             <th class="width-70 text-center f-13">Full name</th>
             <th class="width-150 text-center f-13">Provider</th>
-            <th class="width-150 text-center f-13">Cover</th>
+            <th class="width-150 text-center f-13">Policy</th>
             <th class="width-50 text-center f-13">Policy No</th>
-            <th class="width-50 text-center f-13">Adults</th>
-            <th class="width-210 text-center f-13">Children</th>
             <th class="width-210 text-center f-13">Date of policy</th>
             <th class="width-50 text-center f-13">Start date</th>
             <th class="width-100 text-center f-13">End date</th>
@@ -96,13 +92,25 @@
                         {{--                //Provider--}}
                         <td>{{ $report->serviceReport->name ?? '' }}</td>
                         {{--                //Cover--}}
-                        <td></td>
+                        @php
+                            $policy = $report->policy;
+                            switch ($policy) {
+                            case 1:
+                                $policyName = "Single";
+                                break;
+                            case 2:
+                                $policyName = "Couple";
+                                break;
+                            case 3:
+                                $policyName = "Family";
+                                break;
+                            default:
+                                $policyName = "Single parent";
+                            }
+                        @endphp
+                        <td>{{ $policyName }}</td>
                         {{--                //Policy No--}}
                         <td>{{ $report->dichvu->policy_no ?? 0 }}</td>
-                        {{--                //Adults--}}
-                        <td>{{ $report->no_of_adults }}</td>
-                        {{--                //Children--}}
-                        <td>{{ $report->no_of_children }}</td>
                         {{--                //Date of policy--}}
                         <td>{{ $report->hoahong->issue_date ?? '' }}</td>
                         {{--                //Start date--}}
@@ -123,18 +131,18 @@
                             } else {
                                 $commission_VND = 0;
                             }
-                            if(isset($report->refund->refund_amount_com_agent_gbcfa) && isset($report->refund->std_status) && $report->refund->std_status == 1) {
-                                $recall = $report->refund->refund_amount_com_agent_gbcfa;
+                            if(isset($report->refundHasOne->refund_amount_com_agent_gbcfa) && isset($report->refundHasOne->std_status) && $report->refundHasOne->std_status == 1) {
+                                $recall = $report->refundHasOne->refund_amount_com_agent_gbcfa;
                             } else {
                                 $recall = 0;
                             }
-                            if(isset($report->profit->pay_agent_bonus)) {
-                                $bonus = $report->profit->pay_agent_bonus;
+                            if(isset($report->profitHasOne->pay_agent_bonus)) {
+                                $bonus = $report->profitHasOne->pay_agent_bonus;
                             } else {
                                 $bonus = 0;
                             }
-                            if(isset($report->profit->pay_agent_extra)) {
-                                $extra = $report->profit->pay_agent_extra;
+                            if(isset($report->profitHasOne->pay_agent_extra)) {
+                                $extra = $report->profitHasOne->pay_agent_extra;
                             } else {
                                 $extra = 0;
                             }
@@ -155,8 +163,8 @@
                         <td>{{ $totalAUD }}</td>
                         {{--               exchange rate--}}
                         @if(isset($currency) && $currency == "VND")
-                        <td>{{ $report->profit->profit_exchange_rate ?? 0 }}</td>
-                        <td>{{ $totalAUD * $report->profit->profit_exchange_rate }}</td>
+                        <td>{{ $report->profitHasOne->profit_exchange_rate ?? 0 }}</td>
+                        <td>{{ $totalAUD * $report->profitHasOne->profit_exchange_rate }}</td>
                         @endif
                         @php
                             $com_status = '';
@@ -173,8 +181,8 @@
                                 }
                             }
                             $visa_status = '';
-                            if (isset($report->profit->visa_status)) {
-                                $visa_statusNb = $report->profit->visa_status;
+                            if (isset($report->profitHasOne->visa_status)) {
+                                $visa_statusNb = $report->profitHasOne->visa_status;
                                 if ($visa_statusNb == 1) {
                                     $visa_status = 'Granted';
                                 } elseif ($visa_statusNb == 2) {
@@ -189,8 +197,8 @@
 
                         <td>{{ $com_status }}</td>
                         <td>{{ $visa_status }}</td>
-                        <td>{{ $report->refund->refund_provider_date ?? "" }}</td>
-                        <td> {{ $report->refund->note ?? "" }}</td>
+                        <td>{{ $report->refundHasOne->refund_provider_date ?? "" }}</td>
+                        <td> {{ $report->refundHasOne->note ?? "" }}</td>
                         <td data-toggle="modal" data-target="#history-modal" style="cursor: pointer">view</td>
                     </tr>
                 @endif
@@ -207,13 +215,25 @@
                         {{--                //Provider--}}
                         <td>{{ $report->serviceReport->name ?? '' }}</td>
                         {{--                //Cover--}}
-                        <td></td>
+                        @php
+                            $policy = $report->policy;
+                            switch ($policy) {
+                            case 1:
+                                $policyName = "Single";
+                                break;
+                            case 2:
+                                $policyName = "Couple";
+                                break;
+                            case 3:
+                                $policyName = "Family";
+                                break;
+                            default:
+                                $policyName = "Single parent";
+                            }
+                        @endphp
+                        <td>{{ $policyName }}</td>
                         {{--                //Policy No--}}
                         <td>{{ $report->dichvu->policy_no ?? 0 }}</td>
-                        {{--                //Adults--}}
-                        <td>{{ $report->no_of_adults }}</td>
-                        {{--                //Children--}}
-                        <td>{{ $report->no_of_children }}</td>
                         {{--                //Date of policy--}}
                         <td>{{ $report->hoahong->issue_date ?? '' }}</td>
                         {{--                //Start date--}}
@@ -234,18 +254,18 @@
                             } else {
                                 $commission_VND = 0;
                             }
-                            if(isset($report->refund->refund_amount_com_agent_gbcfa) && isset($report->refund->std_status) && $report->refund->std_status == 1) {
-                                $recall = $report->refund->refund_amount_com_agent_gbcfa;
+                            if(isset($report->refundHasOne->refund_amount_com_agent_gbcfa) && isset($report->refundHasOne->std_status) && $report->refundHasOne->std_status == 1) {
+                                $recall = $report->refundHasOne->refund_amount_com_agent_gbcfa;
                             } else {
                                 $recall = 0;
                             }
-                            if(isset($report->profit->pay_agent_bonus)) {
-                                $bonus = $report->profit->pay_agent_bonus;
+                            if(isset($report->profitHasOne->pay_agent_bonus)) {
+                                $bonus = $report->profitHasOne->pay_agent_bonus;
                             } else {
                                 $bonus = 0;
                             }
-                            if(isset($report->profit->pay_agent_extra)) {
-                                $extra = $report->profit->pay_agent_extra;
+                            if(isset($report->profitHasOne->pay_agent_extra)) {
+                                $extra = $report->profitHasOne->pay_agent_extra;
                             } else {
                                 $extra = 0;
                             }
@@ -266,9 +286,9 @@
                         <td>{{ $totalAUD }}</td>
                         {{--               exchange rate--}}
                         @if(isset($currency) && $currency == "VND")
-                            <td>{{ $report->profit->profit_exchange_rate ?? 0 }}</td>
-                            @if(isset($report->profit->profit_exchange_rate))
-                            <td>{{ $totalAUD * $report->profit->profit_exchange_rate }}</td>
+                            <td>{{ $report->profitHasOne->profit_exchange_rate ?? 0 }}</td>
+                            @if(isset($report->profitHasOne->profit_exchange_rate))
+                            <td>{{ $totalAUD * $report->profitHasOne->profit_exchange_rate }}</td>
                             @else
                             <td> 0 </td>
                             @endif
@@ -288,8 +308,8 @@
                                 }
                             }
                             $visa_status = '';
-                            if (isset($report->profit->visa_status)) {
-                                $visa_statusNb = $report->profit->visa_status;
+                            if (isset($report->profitHasOne->visa_status)) {
+                                $visa_statusNb = $report->profitHasOne->visa_status;
                                 if ($visa_statusNb == 1) {
                                     $visa_status = 'Granted';
                                 } elseif ($visa_statusNb == 2) {
@@ -304,8 +324,8 @@
 
                         <td>{{ $com_status }}</td>
                         <td>{{ $visa_status }}</td>
-                        <td>{{ $report->refund->refund_provider_date ?? "" }}</td>
-                        <td> {{ $report->refund->note ?? "" }}</td>
+                        <td>{{ $report->refundHasOne->refund_provider_date ?? "" }}</td>
+                        <td> {{ $report->refundHasOne->note ?? "" }}</td>
                         <td data-toggle="modal" data-target="#history-modal" style="cursor: pointer">view</td>
                     </tr>
                 @endif

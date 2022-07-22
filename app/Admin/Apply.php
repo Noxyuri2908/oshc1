@@ -3,12 +3,12 @@
 namespace App\Admin;
 
 use App\Admin;
+use App\Admin\Commission;
 use App\Admin\Customer;
+use App\Admin\ProviderCom;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use App\Admin\Phieuthu;
-use App\Admin\Commission;
-use App\Admin\ProviderCom;
 use App\Info;
 use App\User;
 use Carbon\Carbon;
@@ -90,28 +90,19 @@ class Apply extends Model
         //];
     }
 
-    public function applyLink()
+    public function commission()
     {
-        return $this->hasOne(static::class, 'ref_no', 'invoice_code_link');
-    }
-    public function customer()
-    {
-        return $this->hasOne('App\Admin\Customer');
+        return $this->hasOne('App\Admin\Commission', 'user_id', 'agent_id');
     }
 
-    public function user()
-    {
-        return $this->hasOne('App\User', 'id', 'agent_id');
-    }
-
-    public function dichvu()
-    {
-        return $this->hasOne('App\Admin\Dichvu', 'id','type_service');
-    }
-
-    public function refund()
+    public function refundHasOne()
     {
         return $this->hasOne('App\Admin\Refund', 'apply_id');
+    }
+
+    public function profitHasOne()
+    {
+        return $this->hasOne('App\Admin\Profit','apply_id', 'id');
     }
 
     public function serviceReport()
@@ -119,19 +110,14 @@ class Apply extends Model
         return $this->hasOne('App\Admin\Service', 'id', 'provider_id');
     }
 
-    public function hoahong()
+    public function dichvu()
     {
-        return $this->hasOne('App\Admin\Hoahong');
+        return $this->hasOne('App\Admin\Dichvu', 'id','type_service');
     }
 
-    public function profit()
+    public function applyLink()
     {
-        return $this->hasOne('App\Admin\Profit','apply_id', 'id');
-    }
-
-    public function commission()
-    {
-        return $this->hasOne('App\Admin\Commission', 'user_id', 'agent_id');
+        return $this->hasOne(static::class, 'ref_no', 'invoice_code_link');
     }
 
     public function hospital(){
@@ -373,12 +359,12 @@ class Apply extends Model
         return $this->hasMany('App\Admin\Hoahong', 'apply_id');
     }
 
-    public function profits()
+    public function profit()
     {
         return $this->hasMany(Profit::class, 'apply_id');
     }
 
-    public function refunds()
+    public function refund()
     {
         return $this->hasMany('App\Admin\Refund', 'apply_id');
     }
@@ -388,6 +374,10 @@ class Apply extends Model
         return $this->hasMany(Hoahong::class, 'apply_id');
     }
 
+    public function hoahong()
+    {
+        return $this->hasOne(Hoahong::class, 'apply_id', 'id');
+    }
 
     public function gethh()
     {
@@ -425,6 +415,10 @@ class Apply extends Model
         return $this->belongsTo('App\Admin\Dichvu', 'type_service');
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'id', 'apply_id');
+    }
 
     public function customers()
     {
@@ -468,8 +462,8 @@ class Apply extends Model
             $request->get('phone') ||
             $request->get('gender') ||
             $request->get('email')
-                , function ($query) use ($request) {
-                $query->join('customers', function ($customer) use ($request) {
+            , function ($query) use ($request) {
+            $query->join('customers', function ($customer) use ($request) {
                 $customer
                     ->on('applies.id', '=', 'customers.apply_id')
                     ->when($request->get('full_name'), function ($query) use ($request) {
@@ -494,7 +488,7 @@ class Apply extends Model
                         $query->where('customers.email', 'LIKE', '%'.$request->get('email').'%');
                     });
             });
-            })
+        })
             ->when(
                 $request->get('f_department') ||
                 $request->get('paid_com_date_agent_cp') ||
@@ -521,9 +515,9 @@ class Apply extends Model
             ->when($request->get('comstatus'),
                 function ($query) use ($request){
                     $query->leftJoin('profits', function ($q) use ($request){
-                       $q->on('profits.apply_id', '=', 'applies.id');
+                        $q->on('profits.apply_id', '=', 'applies.id');
                     });
-            })
+                })
             ->when($request->get('f_country'), function ($query) use ($request) {
                 $query->where('payment_come_from', $request->get('f_country'));
             })->when($request->get('f_time'), function ($query) use ($request) {
@@ -756,27 +750,27 @@ class Apply extends Model
         } elseif ($getChildUser['permissionSee']->contains(2)) {
             $flywires->whereIn('staff_id', $getChildUser['getAllAdminDepartment']);
         }
-         $result = $flywires->select([
-                'ref_no',
-                'invoice_code',
-                'status',
-                'payment_come_from',
-                'payment_type',
-                'note',
-                'applies.created_at',
-                'payment_method',
-                'type_get_data_payment',
-                'applies.id',
-                'promotion_id',
-                'agent_id',
-                'staff_id',
-                'initiated_date',
-                'amount_from',
-                'amount_from_unit',
-                'amount_to',
-                'amount_to_unit',
-                'delivered_date',
-            ]);
+        $result = $flywires->select([
+            'ref_no',
+            'invoice_code',
+            'status',
+            'payment_come_from',
+            'payment_type',
+            'note',
+            'applies.created_at',
+            'payment_method',
+            'type_get_data_payment',
+            'applies.id',
+            'promotion_id',
+            'agent_id',
+            'staff_id',
+            'initiated_date',
+            'amount_from',
+            'amount_from_unit',
+            'amount_to',
+            'amount_to_unit',
+            'delivered_date',
+        ]);
 
         if ($per_page == 0)
         {

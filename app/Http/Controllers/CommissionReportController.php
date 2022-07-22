@@ -35,7 +35,8 @@ class CommissionReportController extends Controller
         }
 
         $data = $request->all();
-        if (!empty($data) && isset($data['agentId']) && isset($data['fromDate']) && isset($data['toDate'])) {
+
+        if (isset($data) && !empty($data) && isset($data['agentId']) && isset($data['fromDate']) && isset($data['toDate'])) {
             $agentId = $data['agentId'];
             $fromDate = $data['fromDate'];
             $toDate = $data['toDate'];
@@ -93,12 +94,15 @@ class CommissionReportController extends Controller
             $flag = 'commission-report';
             $agents = User::select('id', 'name', 'status', 'country')->where('status', 4)->where('country', 'VN')->get();
             $counsellors = Person::select('id', 'name', 'position')->where('position', 'Counsellor')->get();
+
             $data = [
                 'agents' => $agents,
                 'counsellors' => $counsellors,
                 'flag' => $flag
             ];
+
         }
+
         if(Auth::check()) {
             // resources/views/CRM/pages/commission-report/index.blade.php
             return view('CRM.pages.commission-report.index', $data);

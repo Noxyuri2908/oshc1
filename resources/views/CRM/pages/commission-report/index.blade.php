@@ -85,16 +85,22 @@
                     </div>
                     <div class="d-flex flex-column pr-15 width-110">
                         <label for="">Start date</label>
+                        @php
+                            if(isset($fromDate) && isset($toDate)) {
+                                $fromDate1 = strtotime($fromDate);
+                                $toDate1 = strtotime($toDate);
+                                }
+                        @endphp
                         <input type="text" id="start_date" class="custom-border custom-h"
                                @if(isset($fromDate))
-                               value="{{ $fromDate }}"
+                               value="{{ date("d/m/Y", $fromDate1) }}"
                                @endif>
                     </div>
                     <div class="d-flex flex-column pr-15 width-110">
                         <label for="">End date</label>
                         <input type="text" id="end_date" class="custom-border custom-h"
                                @if(isset($toDate))
-                                value="{{ $toDate }}"
+                                value="{{ date("d/m/Y", $toDate1) }}"
                                 @endif>
                     </div>
                     <div class="d-flex flex-column pr-15 width-90">
@@ -197,8 +203,8 @@
             $(document).on('click', '#apply', function () {
                 document.getElementById('spinner').style.display = 'block';
                 var agentId = $('#agent_select').val();
-                var fromDate = $('#start_date').val();
-                var toDate = $('#end_date').val();
+                var fromDate = $('#start_date').val().split("/").reverse().join("-");
+                var toDate = $('#end_date').val().split("/").reverse().join("-");
                 var currency = $('#typeOfReport-by-agent').val();
                 var counsellor = $('#counsellor-by-agent').val();
                 var type = 'oshc';
@@ -214,8 +220,8 @@
 
             $(document).on('click', '#link-report', function () {
                 var agentId = $('#agent_select').val();
-                var fromDate = $('#start_date').val();
-                var toDate = $('#end_date').val();
+                var fromDate = $('#start_date').val().split("/").reverse().join("-");
+                var toDate = $('#end_date').val().split("/").reverse().join("-");
                 var currency = $('#typeOfReport-by-agent').val();
                 var counsellor = $('#counsellor-by-agent').val();
                 var type = 'oshc';
@@ -246,8 +252,8 @@
             $(document).on('click', '#export-report', function () {
                 var agentId = $('#agent_select').val();
                 {{--var agentId = {{ $agentId }};--}}
-                var fromDate = $('#start_date').val();
-                var toDate = $('#end_date').val();
+                var fromDate = $('#start_date').val().split("/").reverse().join("-");
+                var toDate = $('#end_date').val().split("/").reverse().join("-");
                 var currency = $('#typeOfReport-by-agent').val();
                 var counsellor = $('#counsellor-by-agent').val();
                 console.log(counsellor)
@@ -266,8 +272,8 @@
                 document.getElementById('spinner').style.display = 'block';
                 var agentId = $('#agent_select').val();
                 {{--var agentId = {{ $agentId }};--}}
-                var fromDate = $('#start_date').val();
-                var toDate = $('#end_date').val();
+                var fromDate = $('#start_date').val().split("/").reverse().join("-");
+                var toDate = $('#end_date').val().split("/").reverse().join("-");
                 var currency = $('#typeOfReport-by-agent').val();
                 var counsellor = $('#counsellor-by-agent').val();
                 if (counsellor === '') {
@@ -333,8 +339,8 @@
                 document.getElementById('spinner').style.display = 'block';
                 var agentId = $('#agent_select').val();
                 {{--var agentId = {{ $agentId }};--}}
-                var fromDate = $('#start_date').val();
-                var toDate = $('#end_date').val();
+                var fromDate = $('#start_date').val().split("/").reverse().join("-");
+                var toDate = $('#end_date').val().split("/").reverse().join("-");
                 var currency = $('#typeOfReport-by-agent').val();
                 var counsellor = $('#counsellor-by-agent').val();
                 if (counsellor === '') {
@@ -397,7 +403,7 @@
                 let date_class = $('#start_date').hasClass('flatpickr-input')
                 if (!date_class) {
                     $('#start_date').flatpickr({
-                        dateFormat: 'Y-m-d',
+                        dateFormat: 'd/m/Y',
                         allowInput: true,
                     })
                 }
@@ -407,7 +413,7 @@
                 let date_class = $('#end_date').hasClass('flatpickr-input')
                 if (!date_class) {
                     $('#end_date').flatpickr({
-                        dateFormat: 'Y-m-d',
+                        dateFormat: 'd/m/Y',
                         allowInput: true,
                     })
                 }
